@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nexus AI — Portfolio Screens</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" crossorigin="anonymous" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+  <link rel="stylesheet" href="grid-system.css" />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-subtle: #f5f5f5;
+      --bg-muted: #eeeeee;
+      --fg: #000000;
+      --muted: #666666;
+      --muted-light: #999999;
+      --border: rgba(0, 0, 0, 0.08);
+      --border-strong: rgba(0, 0, 0, 0.14);
+      --dark: #0f172a;
+      --mono: "IBM Plex Mono", ui-monospace, monospace;
+      --mint: #e8f5e9;
+      --mint-accent: #059669;
+      --blue-soft: #e0f2fe;
+      --blue-accent: #0284c7;
+      --purple-soft: #ede9fe;
+      --purple-accent: #7c3aed;
+      --r: 12px;
+      --r-lg: 16px;
+      --nav-h: var(--nav-h);
+      --max: 960px;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Pretendard Variable", Pretendard, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.5;
+      letter-spacing: -0.02em;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ── */
+    .site-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      height: var(--nav-h);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 var(--space-4);
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: var(--space-2);
+      font-size: var(--fs-xs); font-weight: 700; color: var(--fg); text-decoration: none;
+    }
+    .nav-brand img { width: var(--space-4); height: var(--space-4); border-radius: var(--r-xs); }
+    .nav-chapters {
+      display: none; list-style: none; gap: var(--space-1);
+      padding: var(--space-1); border: 1px solid var(--border); border-radius: var(--r-pill); background: #fff;
+    }
+    @media (min-width: 768px) { .nav-chapters { display: flex; } }
+    .nav-chapters a {
+      padding: var(--space-2) var(--space-2); border-radius: var(--r-pill);
+      font-family: var(--mono); font-size: var(--fs-2xs); font-weight: 500;
+      letter-spacing: 0.04em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none; transition: all 0.2s;
+    }
+    .nav-chapters a:hover, .nav-chapters a.is-active {
+      color: var(--fg); background: var(--bg-subtle);
+    }
+
+    .chapter-rail {
+      position: fixed; left: var(--space-3); top: 50%; transform: translateY(-50%);
+      z-index: 40; display: none; flex-direction: column; gap: var(--space-2);
+    }
+    @media (min-width: 1200px) { .chapter-rail { display: flex; } }
+    .rail-dot {
+      width: var(--space-2); height: var(--space-2); border-radius: 50%;
+      background: var(--bg-muted); border: 1px solid var(--border);
+      transition: all 0.2s;
+    }
+    .rail-dot.is-active, .rail-dot:hover { background: var(--fg); transform: scale(1.3); }
+
+    /* ── Layout ── */
+    .page { max-width: var(--max); margin: 0 auto; padding: calc(var(--nav-h) + var(--space-5)) var(--space-4) var(--space-9); }
+    .screen {
+      scroll-margin-top: calc(var(--nav-h) + var(--space-3));
+      margin-bottom: clamp(var(--space-7), 8vw, var(--space-10));
+    }
+    .screen-label {
+      font-family: var(--mono); font-size: var(--fs-2xs); font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted);
+      margin-bottom: var(--space-2);
+    }
+    .screen-title {
+      font-size: clamp(var(--fs-lg), 2.5vw, var(--fs-lg));
+      font-weight: 800; margin-bottom: var(--space-4);
+    }
+    .panel {
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      background: #fff;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.04);
+    }
+
+    /* ═══ Screen 01: Nexus AI ═══ */
+    .s01-header {
+      display: flex; align-items: center; gap: var(--space-2);
+      padding: var(--space-3) var(--space-4); border-bottom: 1px solid var(--border);
+    }
+    .s01-logo { width: var(--space-4); height: var(--space-4); border-radius: var(--r-xs); }
+    .s01-header strong { font-size: var(--fs-sm); font-weight: 700; }
+    .s01-hero {
+      display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4);
+      padding: var(--space-4) var(--space-4); background: var(--bg-subtle);
+    }
+    @media (max-width: 640px) { .s01-hero { grid-template-columns: 1fr; } }
+    .s01-copy h2 {
+      font-size: var(--fs-lg); font-weight: 800; line-height: var(--lh-snug); margin-bottom: var(--space-3);
+    }
+    .s01-copy p { font-size: var(--fs-xs); color: var(--muted); margin-bottom: var(--space-3); }
+    .s01-btns { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: var(--space-2) var(--space-3); border-radius: var(--r-pill);
+      font-size: var(--fs-xs); font-weight: 600; border: 1px solid transparent;
+      cursor: default;
+    }
+    .btn-black { background: var(--fg); color: #fff; }
+    .btn-ghost { background: #fff; color: var(--fg); border-color: var(--border-strong); }
+    .s01-preview {
+      border: 1px solid var(--border); border-radius: var(--r);
+      background: var(--dark); padding: var(--space-3); min-height: 144px;
+    }
+    .s01-preview-bar {
+      display: flex; gap: var(--space-1); margin-bottom: var(--space-2);
+    }
+    .s01-preview-bar span {
+      width: var(--space-2); height: var(--space-2); border-radius: 50%; background: rgba(255,255,255,0.2);
+    }
+    .s01-preview-body {
+      display: grid; grid-template-columns: 2fr 3fr; gap: var(--space-2);
+    }
+    .s01-preview-sidebar {
+      background: rgba(255,255,255,0.06); border-radius: var(--r-xs); min-height: 80px;
+    }
+    .s01-preview-main {
+      background: rgba(255,255,255,0.04); border-radius: var(--r-xs);
+      padding: var(--space-2);
+    }
+    .s01-preview-main div {
+      height: var(--space-2); background: rgba(255,255,255,0.12); border-radius: var(--r-pill); margin-bottom: var(--space-2);
+    }
+    .s01-preview-main div:nth-child(2) { width: 70%; }
+    .s01-preview-main div:nth-child(3) { width: 50%; }
+    .s01-meta { border-top: 1px solid var(--border); }
+    .s01-meta-row {
+      display: grid; grid-template-columns: 144px 1fr;
+      padding: var(--space-3) var(--space-4); border-bottom: 1px solid var(--border);
+      font-size: var(--fs-xs);
+    }
+    .s01-meta-row:last-child { border-bottom: none; }
+    .s01-meta-row span:first-child { color: var(--muted); font-weight: 500; }
+    .s01-meta-row span:last-child { font-weight: 600; }
+
+    /* ═══ Screen 02: UX Challenge ═══ */
+    .s02-intro {
+      display: flex; gap: var(--space-3); align-items: flex-start;
+      padding: var(--space-4); border-bottom: 1px solid var(--border);
+    }
+    .s02-bulb {
+      width: var(--space-6); height: var(--space-6); border-radius: 50%;
+      background: var(--bg-subtle); border: 1px solid var(--border);
+      display: grid; place-items: center; font-size: var(--fs-lg); flex-shrink: 0;
+    }
+    .s02-intro p { font-size: var(--fs-xs); color: var(--muted); line-height: var(--lh-relaxed); }
+    .s02-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3);
+      padding: var(--space-4);
+    }
+    @media (max-width: 640px) { .s02-grid { grid-template-columns: 1fr; } }
+    .s02-card {
+      border: 1px solid var(--border); border-radius: var(--r);
+      padding: var(--space-3); background: #fff;
+    }
+    .s02-card.is-accent { background: linear-gradient(135deg, #e0f2fe, #ede9fe); border-color: transparent; }
+    .s02-card.is-mint { background: var(--mint); border-color: transparent; }
+    .s02-metric {
+      font-size: var(--fs-xl); font-weight: 800; letter-spacing: -0.04em; margin-bottom: var(--space-1);
+    }
+    .s02-metric.down { color: #dc2626; }
+    .s02-card h3 { font-size: var(--fs-xs); font-weight: 700; margin-bottom: var(--space-2); }
+    .s02-card p { font-size: var(--fs-xs); color: var(--muted); line-height: 1.5; }
+    .s02-flow {
+      display: flex; align-items: center; justify-content: center; gap: var(--space-2);
+      padding: var(--space-3) var(--space-4) var(--space-5); flex-wrap: wrap;
+    }
+    .s02-flow-step {
+      padding: var(--space-2) var(--space-3); border: 1px solid var(--border);
+      border-radius: var(--r-pill); font-size: var(--fs-xs); font-weight: 600; background: #fff;
+    }
+    .s02-flow-arrow { color: var(--muted-light); font-size: var(--fs-xs); }
+
+    /* ═══ Screen 03: Workspace UI ═══ */
+    .s03-toolbar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: var(--space-2) var(--space-3); border-bottom: 1px solid var(--border);
+      font-size: var(--fs-xs);
+    }
+    .s03-tabs { display: flex; gap: var(--space-3); }
+    .s03-tab { color: var(--muted); font-weight: 500; }
+    .s03-tab.active { color: var(--fg); font-weight: 700; border-bottom: 2px solid var(--fg); padding-bottom: var(--space-1); }
+    .s03-chat {
+      display: grid; grid-template-columns: 48px 1fr 120px; min-height: 184px;
+    }
+    @media (max-width: 640px) { .s03-chat { grid-template-columns: 40px 1fr; } }
+    .s03-sidebar {
+      border-right: 1px solid var(--border); padding: var(--space-3) var(--space-2);
+      display: flex; flex-direction: column; gap: var(--space-2); align-items: center;
+    }
+    .s03-nav-dot {
+      width: var(--space-5); height: var(--space-5); border-radius: var(--r-sm);
+      border: 1px solid var(--border); background: var(--bg-subtle);
+    }
+    .s03-nav-dot.active { background: var(--fg); border-color: var(--fg); }
+    .s03-main { padding: var(--space-3); display: flex; flex-direction: column; gap: var(--space-2); }
+    .s03-bubble {
+      max-width: 75%; padding: var(--space-2) var(--space-3); border-radius: var(--r);
+      font-size: var(--fs-xs); line-height: 1.5;
+    }
+    .s03-bubble.user {
+      align-self: flex-end; background: var(--fg); color: #fff;
+      border-bottom-right-radius: var(--r-xs);
+    }
+    .s03-bubble.ai {
+      align-self: flex-start; background: var(--bg-subtle); border: 1px solid var(--border);
+      border-bottom-left-radius: var(--r-xs);
+    }
+    .s03-input {
+      margin-top: auto; display: flex; gap: var(--space-2);
+      padding: var(--space-2) var(--space-3); border: 1px solid var(--border);
+      border-radius: var(--r-pill); font-size: var(--fs-xs); color: var(--muted);
+    }
+    .s03-result {
+      border-left: 1px solid var(--border); padding: var(--space-3);
+      background: var(--bg-subtle); font-size: var(--fs-2xs);
+    }
+    @media (max-width: 640px) { .s03-result { display: none; } }
+    .s03-result-label { font-weight: 700; margin-bottom: var(--space-2); text-transform: uppercase; letter-spacing: 0.06em; }
+    .s03-result-box {
+      height: 64px; background: #fff; border: 1px solid var(--border);
+      border-radius: var(--r-sm); margin-bottom: var(--space-2);
+    }
+    .s03-dark {
+      background: var(--dark); color: #fff; padding: var(--space-4);
+    }
+    .s03-dark-head {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: var(--space-3);
+    }
+    .s03-dark-head h3 { font-size: var(--fs-xs); font-weight: 700; }
+    .s03-dark-head span { font-size: var(--fs-2xs); color: rgba(255,255,255,0.5); }
+    .s03-gen-grid {
+      display: grid; grid-template-columns: 1fr 1fr 144px; gap: var(--space-3);
+    }
+    @media (max-width: 640px) { .s03-gen-grid { grid-template-columns: 1fr; } }
+    .s03-gen-slot {
+      aspect-ratio: 16/10; background: rgba(255,255,255,0.06);
+      border: 1px dashed rgba(255,255,255,0.15); border-radius: var(--r);
+    }
+    .s03-gen-panel {
+      background: rgba(255,255,255,0.04); border-radius: var(--r); padding: var(--space-3);
+    }
+    .s03-gen-panel div {
+      height: var(--space-2); background: rgba(255,255,255,0.1); border-radius: var(--r-pill); margin-bottom: var(--space-2);
+    }
+    .s03-gen-panel div:nth-child(2) { width: 80%; }
+    .s03-gen-panel div:nth-child(3) { width: 60%; }
+
+    /* ═══ Screen 04: Workflow & Integration ═══ */
+    .s04-body {
+      display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); padding: var(--space-4);
+    }
+    @media (max-width: 640px) { .s04-body { grid-template-columns: 1fr; } }
+    .s04-steps { display: flex; flex-direction: column; gap: var(--space-2); }
+    .s04-step {
+      display: flex; align-items: center; gap: var(--space-3);
+      padding: var(--space-3); border: 1px solid var(--border); border-radius: var(--r);
+    }
+    .s04-step-icon {
+      width: var(--space-5); height: var(--space-5); border-radius: var(--r-sm);
+      background: var(--bg-subtle); border: 1px solid var(--border);
+      display: grid; place-items: center; font-size: var(--fs-xs); flex-shrink: 0;
+    }
+    .s04-step strong { display: block; font-size: var(--fs-xs); font-weight: 700; }
+    .s04-step span { font-size: var(--fs-xs); color: var(--muted); }
+    .s04-hub {
+      border: 1px solid var(--border); border-radius: var(--r);
+      padding: var(--space-3); display: grid; place-items: center; min-height: 192px;
+      background: var(--bg-subtle);
+    }
+    .s04-hub svg { width: 100%; max-width: 200px; height: auto; }
+    .s04-metrics {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-2);
+      padding: 0 var(--space-4) var(--space-5);
+    }
+    @media (max-width: 640px) { .s04-metrics { grid-template-columns: repeat(2, 1fr); } }
+    .s04-metric {
+      border: 1px solid var(--border); border-radius: var(--r); padding: var(--space-3);
+      text-align: center;
+    }
+    .s04-metric-val {
+      font-size: var(--fs-lg); font-weight: 800; margin-bottom: var(--space-1);
+    }
+    .s04-metric-val.up { color: var(--mint-accent); }
+    .s04-metric-val.down { color: #dc2626; }
+    .s04-metric-label { font-size: var(--fs-2xs); color: var(--muted); }
+    .s04-spark {
+      height: var(--space-4); margin-top: var(--space-2);
+      background: linear-gradient(90deg, transparent, var(--mint-accent), transparent);
+      opacity: 0.3; border-radius: var(--r-pill);
+    }
+
+    /* ═══ Screen 05: Design Tokens & Components ═══ */
+    .s05-section { padding: var(--space-4); border-bottom: 1px solid var(--border); }
+    .s05-section:last-child { border-bottom: none; }
+    .s05-section h3 {
+      font-size: var(--fs-xs); font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.06em; color: var(--muted); margin-bottom: var(--space-3);
+    }
+    .s05-colors { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+    .s05-swatch {
+      width: var(--space-7); text-align: center;
+    }
+    .s05-swatch-fill {
+      height: var(--space-6); border-radius: var(--r-sm); border: 1px solid var(--border); margin-bottom: var(--space-1);
+    }
+    .s05-swatch code { font-family: var(--mono); font-size: var(--fs-2xs); color: var(--muted); }
+    .s05-btns { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: center; }
+    .s05-btn {
+      padding: var(--space-2) var(--space-3); border-radius: var(--r-pill);
+      font-size: var(--fs-xs); font-weight: 600; border: 1px solid var(--border);
+    }
+    .s05-btn.primary { background: var(--fg); color: #fff; border-color: var(--fg); }
+    .s05-btn.secondary { background: var(--bg-subtle); }
+    .s05-btn.outline { background: #fff; }
+    .s05-btn.disabled { opacity: 0.4; }
+    .s05-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+    @media (max-width: 640px) { .s05-inputs { grid-template-columns: 1fr; } }
+    .s05-field label {
+      display: block; font-size: var(--fs-2xs); font-weight: 600; color: var(--muted); margin-bottom: var(--space-1);
+    }
+    .s05-field input, .s05-field select {
+      width: 100%; padding: var(--space-2) var(--space-3); border: 1px solid var(--border);
+      border-radius: var(--r-sm); font-size: var(--fs-xs); font-family: inherit; background: #fff;
+    }
+    .s05-field input:focus { outline: 2px solid var(--fg); outline-offset: 1px; }
+    .s05-type-scale { display: flex; flex-direction: column; gap: var(--space-2); }
+    .s05-type-row {
+      display: grid; grid-template-columns: var(--space-9) 1fr var(--space-9); gap: var(--space-3); align-items: baseline;
+      padding-bottom: var(--space-2); border-bottom: 1px solid var(--border);
+    }
+    .s05-type-row:last-child { border-bottom: none; }
+    .s05-type-name { font-family: var(--mono); font-size: var(--fs-2xs); color: var(--muted); }
+    .s05-type-meta { font-family: var(--mono); font-size: var(--fs-2xs); color: var(--muted-light); text-align: right; }
+    .s05-checks { display: flex; gap: var(--space-3); flex-wrap: wrap; }
+    .s05-check {
+      display: flex; align-items: center; gap: var(--space-2); font-size: var(--fs-xs);
+    }
+    .s05-check-box {
+      width: var(--space-3); height: var(--space-3); border: 1px solid var(--border-strong);
+      border-radius: var(--r-xs); background: #fff;
+    }
+    .s05-check-box.checked { background: var(--fg); border-color: var(--fg); }
+    .s05-table { width: 100%; border-collapse: collapse; font-size: var(--fs-xs); }
+    .s05-table th, .s05-table td {
+      padding: var(--space-2) var(--space-3); text-align: left; border-bottom: 1px solid var(--border);
+    }
+    .s05-table th { font-size: var(--fs-2xs); font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+    .s05-tag {
+      display: inline-block; padding: var(--space-1) var(--space-2); border-radius: var(--r-pill);
+      font-size: var(--fs-2xs); font-weight: 600; background: var(--bg-subtle); border: 1px solid var(--border);
+    }
+
+    /* ═══ Screen 06: Outcome & Learnings ═══ */
+    .s06-roles {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-3);
+      padding: var(--space-4);
+    }
+    @media (max-width: 640px) { .s06-roles { grid-template-columns: repeat(2, 1fr); } }
+    .s06-role {
+      text-align: center; padding: var(--space-3) var(--space-2);
+      border: 1px solid var(--border); border-radius: var(--r);
+    }
+    .s06-role-icon {
+      width: var(--space-6); height: var(--space-6); border-radius: 50%;
+      background: var(--bg-subtle); border: 1px solid var(--border);
+      margin: 0 auto var(--space-2); display: grid; place-items: center; font-size: var(--fs-base);
+    }
+    .s06-role strong { display: block; font-size: var(--fs-xs); font-weight: 700; margin-bottom: var(--space-1); }
+    .s06-role span { font-size: var(--fs-2xs); color: var(--muted); }
+    .s06-learn {
+      padding: var(--space-4); border-top: 1px solid var(--border);
+    }
+    .s06-learn h3 { font-size: var(--fs-xs); font-weight: 700; margin-bottom: var(--space-3); }
+    .s06-learn ul { list-style: none; display: flex; flex-direction: column; gap: var(--space-2); }
+    .s06-learn li {
+      font-size: var(--fs-xs); color: var(--muted); line-height: var(--lh-relaxed);
+      padding-left: var(--space-3); position: relative;
+    }
+    .s06-learn li::before {
+      content: "—"; position: absolute; left: 0; color: var(--fg); font-weight: 700;
+    }
+    .s06-summary {
+      background: var(--dark); color: #fff; padding: var(--space-4) var(--space-4);
+    }
+    .s06-summary h3 {
+      font-size: var(--fs-sm); font-weight: 700; margin-bottom: var(--space-3);
+    }
+    .s06-summary p {
+      font-size: var(--fs-xs); line-height: var(--lh-relaxed); color: rgba(255,255,255,0.75);
+    }
+    .s06-summary strong { color: #fff; }
+
+    .page-footer {
+      text-align: center; padding: var(--space-5) 0;
+      font-size: var(--fs-xs); color: var(--muted);
+      border-top: 1px solid var(--border); margin-top: var(--space-5);
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav" aria-label="포트폴리오 내비게이션">
+    <a class="nav-brand" href="#screen-01">
+      <img src="assets/nexus-ai-logo.png" alt="" width="24" height="24" />
+      Nexus AI
+    </a>
+    <ol class="nav-chapters" role="list">
+      <li><a href="#screen-01" data-section="screen-01"><span>01</span> Nexus AI</a></li>
+      <li><a href="#screen-02" data-section="screen-02"><span>02</span> Challenge</a></li>
+      <li><a href="#screen-03" data-section="screen-03"><span>03</span> Workspace</a></li>
+      <li><a href="#screen-04" data-section="screen-04"><span>04</span> Workflow</a></li>
+      <li><a href="#screen-05" data-section="screen-05"><span>05</span> Tokens</a></li>
+      <li><a href="#screen-06" data-section="screen-06"><span>06</span> Outcome</a></li>
+    </ol>
+  </nav>
+
+  <aside class="chapter-rail" aria-hidden="true">
+    <a href="#screen-01" class="rail-dot is-active" data-section="screen-01"></a>
+    <a href="#screen-02" class="rail-dot" data-section="screen-02"></a>
+    <a href="#screen-03" class="rail-dot" data-section="screen-03"></a>
+    <a href="#screen-04" class="rail-dot" data-section="screen-04"></a>
+    <a href="#screen-05" class="rail-dot" data-section="screen-05"></a>
+    <a href="#screen-06" class="rail-dot" data-section="screen-06"></a>
+  </aside>
+
+  <main class="page">
+
+    <!-- 01 · Nexus AI -->
+    <section class="screen" id="screen-01" aria-labelledby="title-01">
+      <p class="screen-label">01 · Nexus AI</p>
+      <h2 class="screen-title" id="title-01">Nexus AI</h2>
+      <div class="panel">
+        <div class="s01-header">
+          <img class="s01-logo" src="assets/nexus-ai-logo.png" alt="" />
+          <strong>Nexus AI</strong>
+        </div>
+        <div class="s01-hero">
+          <div class="s01-copy">
+            <h2>AI 모델 · 이미지 생성<br />업무 효율화</h2>
+            <p>흩어진 AI 작업을 하나의 Workspace로 통합 — 생성부터 수정·비교·Export까지 맥락이 끊기지 않습니다.</p>
+            <div class="s01-btns">
+              <span class="btn btn-black">Get Started</span>
+              <span class="btn btn-ghost">Preview</span>
+            </div>
+          </div>
+          <div class="s01-preview" aria-hidden="true">
+            <div class="s01-preview-bar"><span></span><span></span><span></span></div>
+            <div class="s01-preview-body">
+              <div class="s01-preview-sidebar"></div>
+              <div class="s01-preview-main">
+                <div></div><div></div><div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="s01-meta">
+          <div class="s01-meta-row"><span>Project</span><span>Nexus AI · Design Engineer Case Study</span></div>
+          <div class="s01-meta-row"><span>Role</span><span>UX Design · UI Design · Frontend</span></div>
+          <div class="s01-meta-row"><span>Stack</span><span>Next.js · React · TypeScript · Tailwind</span></div>
+          <div class="s01-meta-row"><span>Duration</span><span>2026 · 6-Step Portfolio Flow</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 · UX Challenge -->
+    <section class="screen" id="screen-02" aria-labelledby="title-02">
+      <p class="screen-label">02 · UX Challenge</p>
+      <h2 class="screen-title" id="title-02">UX Challenge</h2>
+      <div class="panel">
+        <div class="s02-intro">
+          <div class="s02-bulb" aria-hidden="true">💡</div>
+          <p>실제 AI 사용에서 반복된 마찰 — 여러 툴 사이 작업 흐름 단절, Prompt 반복 수정, 결과 비교·히스토리 탐색 지연. 화면 설계 전 이 3가지 Pain Point를 먼저 정의했습니다.</p>
+        </div>
+        <div class="s02-grid">
+          <article class="s02-card">
+            <p class="s02-metric down">−45%</p>
+            <h3>작업 전환 시간</h3>
+            <p>3탭 오감 → 1 Workspace 사이드 전환. 동시 작업 관리 Pain에 대응.</p>
+          </article>
+          <article class="s02-card is-accent">
+            <p class="s02-metric down">−60%</p>
+            <h3>재생성 루프</h3>
+            <p>Export→재업로드 제거. In-place Revise로 반복 수정 단축.</p>
+          </article>
+          <article class="s02-card is-mint">
+            <h3>Before → After</h3>
+            <p>흩어진 탭 → 단일 Workspace · 파일 탐색 → Variant 나란히 비교</p>
+            <div class="s02-flow" style="padding:var(--space-3) 0 0; justify-content:flex-start;">
+              <span class="s02-flow-step">Problem</span>
+              <span class="s02-flow-arrow">↓</span>
+              <span class="s02-flow-step">Insight</span>
+              <span class="s02-flow-arrow">↓</span>
+              <span class="s02-flow-step">Result</span>
+            </div>
+          </article>
+        </div>
+        <div class="s02-flow">
+          <span class="s02-flow-step">툴 전환</span>
+          <span class="s02-flow-arrow">→</span>
+          <span class="s02-flow-step">맥락 상실</span>
+          <span class="s02-flow-arrow">→</span>
+          <span class="s02-flow-step">재시작</span>
+          <span class="s02-flow-arrow">→</span>
+          <span class="s02-flow-step">Workspace 통합</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 · Workspace UI -->
+    <section class="screen" id="screen-03" aria-labelledby="title-03">
+      <p class="screen-label">03 · Workspace UI</p>
+      <h2 class="screen-title" id="title-03">Workspace UI</h2>
+      <div class="panel">
+        <div class="s03-toolbar">
+          <div class="s03-tabs">
+            <span class="s03-tab active">Chat</span>
+            <span class="s03-tab">Image</span>
+            <span class="s03-tab">Auto</span>
+          </div>
+          <span style="color:var(--muted)">Export · Share</span>
+        </div>
+        <div class="s03-chat">
+          <nav class="s03-sidebar" aria-hidden="true">
+            <div class="s03-nav-dot active"></div>
+            <div class="s03-nav-dot"></div>
+            <div class="s03-nav-dot"></div>
+            <div class="s03-nav-dot"></div>
+          </nav>
+          <div class="s03-main">
+            <div class="s03-bubble user">이번 달 고객 문의 TOP 5 정리해줘</div>
+            <div class="s03-bubble ai">분석 완료. 배송 32% · 환불 21% · 사용법 18% · 교환 15% · 기타 14%</div>
+            <div class="s03-input">메시지 입력...</div>
+          </div>
+          <aside class="s03-result">
+            <p class="s03-result-label">Result Panel</p>
+            <div class="s03-result-box"></div>
+            <span>↓ Download</span>
+          </aside>
+        </div>
+        <div class="s03-dark">
+          <div class="s03-dark-head">
+            <h3>Image Generation Workspace</h3>
+            <span>Studio · 16:9 · 4K</span>
+          </div>
+          <div class="s03-gen-grid">
+            <div class="s03-gen-slot"></div>
+            <div class="s03-gen-slot"></div>
+            <div class="s03-gen-panel">
+              <div></div><div></div><div></div>
+              <p style="font-size:var(--fs-2xs);color:rgba(255,255,255,0.4);margin-top:var(--space-2)">Settings</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 · Workflow & Integration -->
+    <section class="screen" id="screen-04" aria-labelledby="title-04">
+      <p class="screen-label">04 · Workflow & Integration</p>
+      <h2 class="screen-title" id="title-04">Workflow & Integration</h2>
+      <div class="panel">
+        <div class="s04-body">
+          <div class="s04-steps">
+            <div class="s04-step">
+              <div class="s04-step-icon">💬</div>
+              <div><strong>User Intent</strong><span>목표·요구 정의</span></div>
+            </div>
+            <div class="s04-step">
+              <div class="s04-step-icon">🧠</div>
+              <div><strong>AI Planning</strong><span>방향·옵션 제안</span></div>
+            </div>
+            <div class="s04-step">
+              <div class="s04-step-icon">✨</div>
+              <div><strong>Generation</strong><span>결과물 생성</span></div>
+            </div>
+            <div class="s04-step">
+              <div class="s04-step-icon">🔄</div>
+              <div><strong>Iteration</strong><span>비교·수정 반복</span></div>
+            </div>
+            <div class="s04-step">
+              <div class="s04-step-icon">↓</div>
+              <div><strong>Export</strong><span>내보내기·공유</span></div>
+            </div>
+          </div>
+          <div class="s04-hub" aria-hidden="true">
+            <svg viewBox="0 0 200 200" fill="none">
+              <circle cx="100" cy="100" r="28" fill="#000" fill-opacity="0.06" stroke="#000" stroke-width="1.5"/>
+              <text x="100" y="104" text-anchor="middle" fill="#000" font-size="10" font-weight="700">Nexus</text>
+              <line x1="100" y1="72" x2="100" y2="30" stroke="rgba(0,0,0,0.12)" stroke-width="1"/>
+              <line x1="128" y1="84" x2="170" y2="60" stroke="rgba(0,0,0,0.12)" stroke-width="1"/>
+              <line x1="128" y1="116" x2="170" y2="140" stroke="rgba(0,0,0,0.12)" stroke-width="1"/>
+              <line x1="72" y1="84" x2="30" y2="60" stroke="rgba(0,0,0,0.12)" stroke-width="1"/>
+              <line x1="72" y1="116" x2="30" y2="140" stroke="rgba(0,0,0,0.12)" stroke-width="1"/>
+              <circle cx="100" cy="24" r="14" fill="#fff" stroke="rgba(0,0,0,0.12)"/>
+              <circle cx="176" cy="56" r="14" fill="#fff" stroke="rgba(0,0,0,0.12)"/>
+              <circle cx="176" cy="144" r="14" fill="#fff" stroke="rgba(0,0,0,0.12)"/>
+              <circle cx="24" cy="56" r="14" fill="#fff" stroke="rgba(0,0,0,0.12)"/>
+              <circle cx="24" cy="144" r="14" fill="#fff" stroke="rgba(0,0,0,0.12)"/>
+            </svg>
+          </div>
+        </div>
+        <div class="s04-metrics">
+          <div class="s04-metric">
+            <p class="s04-metric-val up">+8.2%</p>
+            <p class="s04-metric-label">Automation Results</p>
+            <div class="s04-spark"></div>
+          </div>
+          <div class="s04-metric">
+            <p class="s04-metric-val down">−2.1%</p>
+            <p class="s04-metric-label">Error Rate</p>
+            <div class="s04-spark" style="background:linear-gradient(90deg,transparent,#dc2626,transparent)"></div>
+          </div>
+          <div class="s04-metric">
+            <p class="s04-metric-val up">+67%</p>
+            <p class="s04-metric-label">Task Completion</p>
+            <div class="s04-spark"></div>
+          </div>
+          <div class="s04-metric">
+            <p class="s04-metric-val up">+72%</p>
+            <p class="s04-metric-label">User Retention</p>
+            <div class="s04-spark"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 · Design Tokens & Components -->
+    <section class="screen" id="screen-05" aria-labelledby="title-05">
+      <p class="screen-label">05 · Design Tokens & Components</p>
+      <h2 class="screen-title" id="title-05">Design Tokens & Components</h2>
+      <div class="panel">
+        <div class="s05-section">
+          <h3>Color System</h3>
+          <div class="s05-colors">
+            <div class="s05-swatch"><div class="s05-swatch-fill" style="background:#000"></div><code>#000</code></div>
+            <div class="s05-swatch"><div class="s05-swatch-fill" style="background:#666"></div><code>#666</code></div>
+            <div class="s05-swatch"><div class="s05-swatch-fill" style="background:#eee"></div><code>#EEE</code></div>
+            <div class="s05-swatch"><div class="s05-swatch-fill" style="background:#fff"></div><code>#FFF</code></div>
+            <div class="s05-swatch"><div class="s05-swatch-fill" style="background:#0284c7"></div><code>#0284C7</code></div>
+            <div class="s05-swatch"><div class="s05-swatch-fill" style="background:#059669"></div><code>#059669</code></div>
+            <div class="s05-swatch"><div class="s05-swatch-fill" style="background:#7c3aed"></div><code>#7C3AED</code></div>
+          </div>
+        </div>
+        <div class="s05-section">
+          <h3>Buttons</h3>
+          <div class="s05-btns">
+            <span class="s05-btn primary">Primary</span>
+            <span class="s05-btn secondary">Secondary</span>
+            <span class="s05-btn outline">Outline</span>
+            <span class="s05-btn outline disabled">Disabled</span>
+          </div>
+        </div>
+        <div class="s05-section">
+          <h3>Selection · Inputs</h3>
+          <div class="s05-checks" style="margin-bottom:var(--space-3)">
+            <label class="s05-check"><span class="s05-check-box checked"></span> Checkbox</label>
+            <label class="s05-check"><span class="s05-check-box"></span> Radio</label>
+            <label class="s05-check"><span class="s05-check-box checked"></span> Toggle</label>
+          </div>
+          <div class="s05-inputs">
+            <div class="s05-field"><label>Text Input</label><input type="text" placeholder="Default state" readonly /></div>
+            <div class="s05-field"><label>Dropdown</label><select disabled><option>Option A</option></select></div>
+          </div>
+        </div>
+        <div class="s05-section">
+          <h3>Typography Scale</h3>
+          <div class="s05-type-scale">
+            <div class="s05-type-row"><span class="s05-type-name">Display</span><span style="font-size:var(--fs-lg);font-weight:800">Nexus AI</span><span class="s05-type-meta">36/800</span></div>
+            <div class="s05-type-row"><span class="s05-type-name">Title</span><span style="font-size:var(--fs-sm);font-weight:700">Section Title</span><span class="s05-type-meta">28/700</span></div>
+            <div class="s05-type-row"><span class="s05-type-name">Body</span><span style="font-size:var(--fs-sm);color:var(--muted)">Lead copy text</span><span class="s05-type-meta">15/500</span></div>
+            <div class="s05-type-row"><span class="s05-type-name">Label</span><span style="font-size:var(--fs-sm);font-weight:600">KICKER</span><span class="s05-type-meta">11/600</span></div>
+          </div>
+        </div>
+        <div class="s05-section">
+          <h3>Tables · Tags</h3>
+          <table class="s05-table">
+            <thead><tr><th>Component</th><th>Variant</th><th>State</th></tr></thead>
+            <tbody>
+              <tr><td>Button</td><td><span class="s05-tag">Primary</span></td><td>default · hover · focus</td></tr>
+              <tr><td>Input</td><td><span class="s05-tag">Text</span></td><td>default · focus · disabled</td></tr>
+              <tr><td>Card</td><td><span class="s05-tag">Elevated</span></td><td>L0 · L1 · L2</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 · Outcome & Learnings -->
+    <section class="screen" id="screen-06" aria-labelledby="title-06">
+      <p class="screen-label">06 · Outcome & Learnings</p>
+      <h2 class="screen-title" id="title-06">Outcome & Learnings</h2>
+      <div class="panel">
+        <div class="s06-roles">
+          <div class="s06-role">
+            <div class="s06-role-icon">🔍</div>
+            <strong>UX Research</strong>
+            <span>Pain Point 정의</span>
+          </div>
+          <div class="s06-role">
+            <div class="s06-role-icon">🎨</div>
+            <strong>UI Design</strong>
+            <span>Workspace IA</span>
+          </div>
+          <div class="s06-role">
+            <div class="s06-role-icon">⚙️</div>
+            <strong>Frontend</strong>
+            <span>Next.js 구현</span>
+          </div>
+          <div class="s06-role">
+            <div class="s06-role-icon">📐</div>
+            <strong>Design System</strong>
+            <span>Token · Component</span>
+          </div>
+        </div>
+        <div class="s06-learn">
+          <h3>Key Learnings</h3>
+          <ul>
+            <li>AI UX에서는 기능보다 <strong style="color:var(--fg)">반복 수정 경험</strong>이 더 중요합니다. 생성만 잘 되는 것보다 같은 맥락에서 고치고 비교하는 루프가 제품 가치를 결정합니다.</li>
+            <li>하나의 Workspace 안에서 작업 흐름을 유지하는 것이 UX를 크게 향상시킵니다. UI 통합은 '기능 합치기'가 아니라 <strong style="color:var(--fg)">맥락 유지</strong>가 목적입니다.</li>
+            <li>UI보다 <strong style="color:var(--fg)">사용자의 작업 흐름을 먼저 설계</strong>하는 것이 중요했습니다. Intent → Export 순서가 모든 화면 구조의 기준이 되었습니다.</li>
+            <li>생성 이후의 수정 경험까지 고려해야 완성도 높은 AI 제품이 됩니다. Result Panel, Variant 비교, Export까지 한 화면에 두는 것이 핵심 설계 결정이었습니다.</li>
+          </ul>
+        </div>
+        <div class="s06-summary">
+          <h3>Project Summary</h3>
+          <p>
+            사용자 Pain Point 분석 → Workspace UX 설계 → Design System → 구현.<br />
+            <strong>화면을 만든 것이 아니라, AI 작업 흐름을 재설계한 프로젝트</strong>입니다.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="page-footer">
+      <strong>Nexus AI</strong> · Design Engineer Case Study · Black & White Minimal
+    </footer>
+  </main>
+
+  <script>
+    (function () {
+      const links = document.querySelectorAll(".nav-chapters a, .rail-dot");
+      const sections = ["screen-01","screen-02","screen-03","screen-04","screen-05","screen-06"];
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (!e.isIntersecting) return;
+          links.forEach((l) => l.classList.toggle("is-active", l.dataset.section === e.target.id));
+        });
+      }, { threshold: 0.35, rootMargin: "-20% 0px -40% 0px" });
+      sections.forEach((id) => { const el = document.getElementById(id); if (el) obs.observe(el); });
+    })();
+  </script>
+</body>
+</html>

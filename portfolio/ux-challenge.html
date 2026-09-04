@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nexus AI — UX Challenge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link
+    rel="stylesheet"
+    crossorigin="anonymous"
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
+  />
+  <link rel="stylesheet" href="grid-system.css" />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-subtle: #f5f5f5;
+      --bg-muted: #eeeeee;
+      --fg: #000000;
+      --muted: #666666;
+      --muted-light: #999999;
+      --accent: #6366f1;
+      --accent-soft: rgba(99, 102, 241, 0.08);
+      --border: rgba(0, 0, 0, 0.08);
+      --border-strong: rgba(0, 0, 0, 0.14);
+      --mono: "IBM Plex Mono", ui-monospace, monospace;
+      --cyan-soft: #e0f7fa;
+      --cyan-text: #0891b2;
+      --cyan-border: rgba(8, 145, 178, 0.2);
+      --lavender-soft: #ede9fe;
+      --lavender-text: #7c3aed;
+      --lavender-border: rgba(124, 58, 237, 0.2);
+      --mint-soft: #ecfdf5;
+      --mint-text: #059669;
+      --mint-border: rgba(5, 150, 105, 0.2);
+      --blue-soft: #e0f2fe;
+      --blue-text: #0284c7;      --r-lg: 24px;
+      --r-xl: 32px;
+      --max: 960px;
+      --gap-section: var(--space-7);
+      --gap-card: var(--space-3);
+      --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.03), 0 12px 40px rgba(0, 0, 0, 0.06);
+      --shadow-hover: 0 4px 8px rgba(0, 0, 0, 0.02), 0 20px 48px rgba(0, 0, 0, 0.08);
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Pretendard Variable", Pretendard, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.5;
+      letter-spacing: -0.02em;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .ambient {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background: var(--bg);
+    }
+    .ambient::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+      background-size: var(--space-3) var(--space-3);
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 20%, transparent 75%);
+    }
+
+    .page {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: clamp(var(--space-5), 6vw, var(--space-8)) clamp(var(--space-4), 4vw, var(--space-5)) var(--space-9);
+    }
+
+    /* ── Header ── */
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-family: var(--mono);
+      font-size: var(--fs-2xs);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted-light);
+      margin-bottom: var(--space-4);
+      padding: var(--space-2) var(--space-3) var(--space-2) var(--space-2);
+      border-radius: var(--r-pill);
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.8);
+    }
+    .section-label .dot {
+      width: var(--space-2);
+      height: var(--space-2);
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 var(--space-1) var(--accent-soft);
+    }
+
+    .page-header {
+      margin-bottom: var(--gap-section);
+    }
+
+    .page-title {
+      font-size: clamp(1.75rem, 4vw, 2.25rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: var(--lh-tight);
+      margin-bottom: var(--space-2);
+    }
+
+    .page-subtitle {
+      font-size: var(--fs-base);
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: var(--space-2);
+    }
+
+    .page-lead {
+      font-size: var(--fs-sm);
+      color: var(--muted);
+      margin-bottom: var(--space-3);
+    }
+
+    .section-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      list-style: none;
+    }
+
+    .section-tags li {
+      font-family: var(--mono);
+      font-size: var(--fs-2xs);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: var(--space-1) var(--space-2);
+      border-radius: var(--r-pill);
+      border: 1px solid var(--border);
+      background: var(--bg-subtle);
+      color: var(--muted);
+    }
+    .section-tags li:nth-child(1) {
+      background: var(--cyan-soft);
+      border-color: var(--cyan-border);
+      color: var(--cyan-text);
+    }
+    .section-tags li:nth-child(2) {
+      background: var(--lavender-soft);
+      border-color: var(--lavender-border);
+      color: var(--lavender-text);
+    }
+    .section-tags li:nth-child(3) {
+      background: var(--mint-soft);
+      border-color: var(--mint-border);
+      color: var(--mint-text);
+    }
+
+    /* ── Spotlight ── */
+    .spotlight {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: var(--space-4);
+      align-items: center;
+      padding: var(--space-4) var(--space-5);
+      margin-bottom: var(--gap-section);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      background: var(--bg);
+      box-shadow: var(--shadow-card);
+    }
+
+    @media (max-width: 640px) {
+      .spotlight { grid-template-columns: 1fr; text-align: center; }
+      .spotlight-art { margin: 0 auto; }
+      .pain-chips { justify-content: center; }
+    }
+
+    .spotlight-art {
+      width: 120px;
+      flex-shrink: 0;
+    }
+    .spotlight-art svg { width: 100%; height: auto; display: block; }
+
+    .spotlight-copy h2 {
+      font-size: clamp(var(--fs-lg), 2.5vw, var(--fs-lg));
+      font-weight: 800;
+      line-height: var(--lh-snug);
+      margin-bottom: var(--space-2);
+    }
+
+    .spotlight-copy p {
+      font-size: var(--fs-sm);
+      color: var(--muted);
+      line-height: var(--lh-relaxed);
+      margin-bottom: var(--space-3);
+    }
+
+    .pain-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+    }
+
+    .pain-chip {
+      font-size: var(--fs-xs);
+      font-weight: 600;
+      padding: var(--space-2) var(--space-2);
+      border-radius: var(--r-pill);
+      border: 1px solid var(--border);
+      background: var(--bg-subtle);
+    }
+    .pain-chip--cyan { background: var(--cyan-soft); border-color: var(--cyan-border); color: var(--cyan-text); }
+    .pain-chip--lavender { background: var(--lavender-soft); border-color: var(--lavender-border); color: var(--lavender-text); }
+    .pain-chip--mint { background: var(--mint-soft); border-color: var(--mint-border); color: var(--mint-text); }
+
+    /* ── Pain Columns ── */
+    .pain-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-4);
+    }
+
+    @media (max-width: 768px) {
+      .pain-grid { grid-template-columns: 1fr; }
+    }
+
+    .pain-column {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    /* Problem card */
+    .problem-card {
+      flex: 1;
+      padding: var(--space-4);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      background: var(--bg);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+      transition: box-shadow 0.3s var(--ease);
+    }
+    .problem-card:hover { box-shadow: var(--shadow-hover); }
+
+    .pain-column--1 .problem-card { border-top: 2px solid var(--cyan-text); }
+    .pain-column--2 .problem-card { border-top: 2px solid var(--lavender-text); }
+    .pain-column--3 .problem-card { border-top: 2px solid var(--mint-text); }
+
+    .problem-art {
+      width: 72px;
+      margin-bottom: var(--space-3);
+    }
+    .problem-art svg { width: 100%; height: auto; display: block; }
+
+    .pain-tag {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: var(--fs-2xs);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted-light);
+      margin-bottom: var(--space-2);
+    }
+
+    .problem-card h3 {
+      font-size: var(--fs-sm);
+      font-weight: 800;
+      margin-bottom: var(--space-2);
+    }
+
+    .problem-card p {
+      font-size: var(--fs-xs);
+      color: var(--muted);
+      line-height: var(--lh-normal);
+    }
+
+    /* Flow connector */
+    .flow-connector {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-1);
+      padding: var(--space-1) 0;
+    }
+
+    .flow-connector .line {
+      width: 1px;
+      height: var(--space-2);
+      background: var(--border-strong);
+    }
+
+    .flow-connector .arrow {
+      width: var(--space-5);
+      height: var(--space-5);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: var(--fs-xs);
+      font-weight: 700;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--muted);
+    }
+
+    .pain-column--1 .flow-connector .arrow { border-color: var(--cyan-border); color: var(--cyan-text); background: var(--cyan-soft); }
+    .pain-column--2 .flow-connector .arrow { border-color: var(--lavender-border); color: var(--lavender-text); background: var(--lavender-soft); }
+    .pain-column--3 .flow-connector .arrow { border-color: var(--mint-border); color: var(--mint-text); background: var(--mint-soft); }
+
+    /* Solution card — prominent */
+    .solution-card {
+      padding: var(--space-3) var(--space-4);
+      border-radius: var(--r-md);
+      border: 2px solid var(--fg);
+      background: var(--fg);
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    }
+
+    .solution-label {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-family: var(--mono);
+      font-size: var(--fs-2xs);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.55);
+      margin-bottom: var(--space-2);
+    }
+    .solution-label::before {
+      content: "";
+      width: var(--space-3);
+      height: 1px;
+      background: rgba(255, 255, 255, 0.35);
+    }
+
+    .solution-card p {
+      font-size: var(--fs-xs);
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .pain-column--1 .solution-card {
+      background: linear-gradient(135deg, #0e7490 0%, #0891b2 100%);
+      border-color: #0e7490;
+    }
+    .pain-column--2 .solution-card {
+      background: linear-gradient(135deg, #6d28d9 0%, #7c3aed 100%);
+      border-color: #6d28d9;
+    }
+    .pain-column--3 .solution-card {
+      background: linear-gradient(135deg, #047857 0%, #059669 100%);
+      border-color: #047857;
+    }
+
+    /* Metric card */
+    .metric-card {
+      padding: var(--space-4);
+      border-radius: var(--r-lg);
+      border: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .pain-column--1 .metric-card {
+      background: linear-gradient(160deg, var(--bg-subtle) 0%, #f0f9ff 100%);
+    }
+    .pain-column--2 .metric-card {
+      background: linear-gradient(160deg, var(--lavender-soft) 0%, var(--blue-soft) 100%);
+    }
+    .pain-column--3 .metric-card {
+      background: linear-gradient(160deg, var(--mint-soft) 0%, #d1fae5 100%);
+    }
+
+    .metric-value {
+      font-size: clamp(1.5rem, 3vw, var(--space-5));
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: var(--lh-tight);
+      margin-bottom: var(--space-1);
+    }
+
+    .pain-column--1 .metric-value { color: var(--cyan-text); }
+    .pain-column--2 .metric-value { color: var(--lavender-text); }
+    .pain-column--3 .metric-value { color: var(--mint-text); }
+
+    .metric-label {
+      font-size: var(--fs-xs);
+      font-weight: 700;
+      margin-bottom: var(--space-2);
+    }
+
+    .metric-desc {
+      font-size: var(--fs-xs);
+      color: var(--muted);
+      line-height: var(--lh-normal);
+      margin-bottom: var(--space-3);
+    }
+
+    .metric-hypo {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: var(--fs-2xs);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted-light);
+      padding: var(--space-1) var(--space-2);
+      border-radius: var(--r-pill);
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.6);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="ambient" aria-hidden="true"></div>
+
+  <main class="page">
+    <p class="section-label"><span class="dot" aria-hidden="true"></span> 02 · Problem &amp; Solution</p>
+
+    <header class="page-header">
+      <h1 class="page-title">UX Challenge</h1>
+      <p class="page-subtitle">사용자 Pain Point → UX Strategy 매핑</p>
+      <p class="page-lead">화면 설계 전, 실사용에서 반복된 마찰 3가지를 정의했습니다.</p>
+      <ul class="section-tags" aria-label="섹션 구성">
+        <li>Pain Points</li>
+        <li>Illustration</li>
+        <li>Metrics</li>
+      </ul>
+    </header>
+
+    <article class="spotlight">
+      <figure class="spotlight-art" aria-hidden="true">
+        <svg viewBox="0 0 200 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="100" cy="145" rx="72" ry="12" fill="#0b1220" fill-opacity="0.05"/>
+          <circle cx="100" cy="72" r="64" fill="url(#pv-spot-bg)"/>
+          <rect x="28" y="36" width="36" height="28" rx="8" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/>
+          <rect x="132" y="32" width="36" height="28" rx="8" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/>
+          <rect x="82" y="52" width="36" height="28" rx="8" fill="#fff" stroke="#6366f1" stroke-width="1.5"/>
+          <path d="M40 48h20M140 44h16M94 64h12" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M64 48h16M100 58v10M136 46h10" stroke="#ef4444" stroke-width="1.8" stroke-dasharray="4 3" stroke-linecap="round" opacity="0.65"/>
+          <circle cx="100" cy="108" r="18" fill="#f5c9a8"/>
+          <path d="M84 102c3-10 8-14 16-14s13 4 16 14" fill="#2d1f5c"/>
+          <path d="M92 106c1.5 1.5 3 1.5 4.5 0M103 106c1.5 1.5 3 1.5 4.5 0" stroke="#d4956a" stroke-width="1" stroke-linecap="round"/>
+          <path d="M96 112c2 2 6 2 8 0" stroke="#d4956a" stroke-width="1.2" stroke-linecap="round"/>
+          <defs><linearGradient id="pv-spot-bg" x1="40" y1="16" x2="160" y2="140" gradientUnits="userSpaceOnUse"><stop stop-color="#e8fbff"/><stop offset="0.5" stop-color="#f3eeff"/><stop offset="1" stop-color="#f0fff8"/></linearGradient></defs>
+        </svg>
+      </figure>
+      <div class="spotlight-copy">
+        <h2>여러 AI 툴 사이에서<br />작업 흐름이 끊깁니다</h2>
+        <p>Chat · Image · Auto를 오가며 Prompt 수정, 결과 비교, 히스토리 찾기 — 매번 맥락을 다시 잡아야 합니다.</p>
+        <div class="pain-chips">
+          <span class="pain-chip pain-chip--cyan">Prompt 재시작</span>
+          <span class="pain-chip pain-chip--lavender">비교 지연</span>
+          <span class="pain-chip pain-chip--mint">맥락 상실</span>
+        </div>
+      </div>
+    </article>
+
+    <div class="pain-grid" aria-label="Pain Point → Solution → Result">
+
+      <!-- Pain 01 -->
+      <div class="pain-column pain-column--1">
+        <article class="problem-card">
+          <figure class="problem-art" aria-hidden="true">
+            <svg viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="56" fill="url(#sc1-bg)"/><rect x="22" y="28" width="26" height="20" rx="5" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/><rect x="72" y="28" width="26" height="20" rx="5" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/><rect x="47" y="52" width="26" height="20" rx="5" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/><path d="M48 38h12M60 48v4M85 48 L73 52" stroke="#ef4444" stroke-width="1.6" stroke-dasharray="3 3" stroke-linecap="round" opacity="0.7"/><circle cx="60" cy="90" r="12" fill="#f5c9a8"/><path d="M50 86c2-6 5-9 10-9s8 3 10 9" fill="#2d1f5c"/><defs><linearGradient id="sc1-bg" x1="20" y1="10" x2="100" y2="110" gradientUnits="userSpaceOnUse"><stop stop-color="#fef2f2"/><stop offset="1" stop-color="#f0f9ff"/></linearGradient></defs></svg>
+          </figure>
+          <span class="pain-tag">Pain 01</span>
+          <h3>동시 작업 관리</h3>
+          <p>탭·계정을 오갈 때 Prompt와 결과 연결이 끊겨요.</p>
+        </article>
+
+        <div class="flow-connector" aria-hidden="true">
+          <span class="line"></span>
+          <span class="arrow">↓</span>
+          <span class="line"></span>
+        </div>
+
+        <article class="solution-card">
+          <span class="solution-label">Solution</span>
+          <p>→ 상태 관리로 Prompt와 결과 연결성 유지</p>
+        </article>
+
+        <div class="flow-connector" aria-hidden="true">
+          <span class="line"></span>
+          <span class="arrow">↓</span>
+          <span class="line"></span>
+        </div>
+
+        <article class="metric-card">
+          <p class="metric-value">−35%</p>
+          <p class="metric-label">작업 전환 시간</p>
+          <p class="metric-desc">3탭 오감 → 1 Workspace 사이드 전환. 동시 작업 관리 Pain에 대응.</p>
+          <span class="metric-hypo">Hypothesis · path count</span>
+        </article>
+      </div>
+
+      <!-- Pain 02 -->
+      <div class="pain-column pain-column--2">
+        <article class="problem-card">
+          <figure class="problem-art" aria-hidden="true">
+            <svg viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="56" fill="url(#sc2-bg)"/><rect x="20" y="36" width="32" height="48" rx="6" fill="#fff" stroke="#6366f1" stroke-width="1.5"/><path d="M28 50h16M28 58h12" stroke="#c7d2fe" stroke-width="2" stroke-linecap="round"/><rect x="56" y="32" width="8" height="56" rx="2" fill="#cbd5e1"/><rect x="68" y="36" width="32" height="48" rx="6" fill="#fff" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4 3"/><path d="M78 58a8 8 0 1 0 8-8" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" fill="none"/><defs><linearGradient id="sc2-bg" x1="20" y1="10" x2="100" y2="110" gradientUnits="userSpaceOnUse"><stop stop-color="#eef2ff"/><stop offset="1" stop-color="#fff7ed"/></linearGradient></defs></svg>
+          </figure>
+          <span class="pain-tag">Pain 02</span>
+          <h3>Prompt 반복 수정</h3>
+          <p>Export → 재편집 → 재생성. 작은 수정에도 전체 루프가 다시 돌아가요.</p>
+        </article>
+
+        <div class="flow-connector" aria-hidden="true">
+          <span class="line"></span>
+          <span class="arrow">↓</span>
+          <span class="line"></span>
+        </div>
+
+        <article class="solution-card">
+          <span class="solution-label">Solution</span>
+          <p>→ 컴포넌트화로 반복 작업 최소화</p>
+        </article>
+
+        <div class="flow-connector" aria-hidden="true">
+          <span class="line"></span>
+          <span class="arrow">↓</span>
+          <span class="line"></span>
+        </div>
+
+        <article class="metric-card">
+          <p class="metric-value">−30%</p>
+          <p class="metric-label">재생성 루프</p>
+          <p class="metric-desc">Export→재업로드 제거. 하단 Prompt + In-place Revise로 반복 수정 단축.</p>
+          <span class="metric-hypo">Hypothesis · loop length</span>
+        </article>
+      </div>
+
+      <!-- Pain 03 -->
+      <div class="pain-column pain-column--3">
+        <article class="problem-card">
+          <figure class="problem-art" aria-hidden="true">
+            <svg viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="56" fill="url(#sc3-bg)"/><rect x="18" y="36" width="24" height="34" rx="5" fill="#fff" stroke="#cbd5e1" stroke-width="1.4"/><rect x="48" y="30" width="24" height="40" rx="5" fill="#fff" stroke="#6366f1" stroke-width="1.5"/><rect x="78" y="36" width="24" height="34" rx="5" fill="#fff" stroke="#cbd5e1" stroke-width="1.4"/><circle cx="42" cy="88" r="10" fill="#f5c9a8"/><path d="M58 88h20M74 84l6 4-6 4" stroke="#ef4444" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/><defs><linearGradient id="sc3-bg" x1="20" y1="10" x2="100" y2="110" gradientUnits="userSpaceOnUse"><stop stop-color="#faf5ff"/><stop offset="1" stop-color="#fef2f2"/></linearGradient></defs></svg>
+          </figure>
+          <span class="pain-tag">Pain 03</span>
+          <h3>비교 · 히스토리</h3>
+          <p>Variant를 파일로 비교하고, 어제 작업을 찾느라 판단이 늦어져요.</p>
+        </article>
+
+        <div class="flow-connector" aria-hidden="true">
+          <span class="line"></span>
+          <span class="arrow">↓</span>
+          <span class="line"></span>
+        </div>
+
+        <article class="solution-card">
+          <span class="solution-label">Solution</span>
+          <p>→ Variant 구조 개선으로 작업 효율 향상</p>
+        </article>
+
+        <div class="flow-connector" aria-hidden="true">
+          <span class="line"></span>
+          <span class="arrow">↓</span>
+          <span class="line"></span>
+        </div>
+
+        <article class="metric-card">
+          <p class="metric-value">~2×</p>
+          <p class="metric-label">비교 판단 속도</p>
+          <p class="metric-desc">파일 번갈아 열기 → Variant Card 나란히. Result Panel + History로 탐색 감소.</p>
+          <span class="metric-hypo">Hypothesis · scan time</span>
+        </article>
+      </div>
+
+    </div>
+  </main>
+</body>
+</html>

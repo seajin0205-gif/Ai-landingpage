@@ -1,0 +1,2912 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nexus AI — Portfolio Screens</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" crossorigin="anonymous" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+  <link rel="stylesheet" href="grid-system.css" />
+  <style>
+    :root {
+      /* Nexus AI — Design System palette */
+      --white: #ffffff;
+      --black: #0b1220;
+      --bg: #fafbfc;
+      --bg-subtle: #f4f7fa;
+      --bg-muted: #e8edf2;
+      --fg: #0b1220;
+      --fg-soft: #1e293b;
+      --muted: #64748b;
+      --muted-light: #94a3b8;
+      --accent: #6366f1;
+      --accent-soft: rgba(99, 102, 241, 0.1);
+      --border: rgba(11, 18, 32, 0.08);
+      --border-strong: rgba(11, 18, 32, 0.14);
+      --dark: #0b1220;
+      --mono: "IBM Plex Mono", ui-monospace, monospace;
+
+      --neon: #00d4ff;
+      --neon-soft: rgba(0, 212, 255, 0.1);
+      --neon-border: rgba(0, 212, 255, 0.28);
+      --neon-glow: rgba(0, 212, 255, 0.2);
+      --neon-text: #0891b2;
+
+      --mint: #3dffa8;
+      --mint-soft: rgba(61, 255, 168, 0.1);
+      --mint-border: rgba(61, 255, 168, 0.28);
+      --mint-text: #059669;
+
+      --lavender: #b8a4ff;
+      --lavender-soft: rgba(184, 164, 255, 0.12);
+      --lavender-border: rgba(184, 164, 255, 0.28);
+      --lavender-text: #7c3aed;
+
+      --aurora-gradient: linear-gradient(135deg, rgba(0, 212, 255, 0.12) 0%, rgba(184, 164, 255, 0.1) 48%, rgba(61, 255, 168, 0.08) 100%);
+      --aurora-line: linear-gradient(90deg, var(--neon) 0%, var(--lavender) 52%, var(--mint) 100%);
+      --aurora-surface: linear-gradient(145deg, rgba(255, 255, 255, 0.96) 0%, rgba(0, 212, 255, 0.04) 40%, rgba(184, 164, 255, 0.05) 100%);
+
+      --cyan-soft: var(--neon-soft);
+      --cyan-text: var(--neon-text);
+      --cyan-border: var(--neon-border);
+      --blue-soft: rgba(0, 212, 255, 0.06);
+      --blue-text: var(--neon-text);
+      --purple-soft: var(--lavender-soft);
+      --purple-text: var(--lavender-text);      --r-lg: 24px;
+      --r-xl: 32px;
+      --max: 960px;
+      --gap-section: var(--space-7);
+      --gap-card: var(--space-3);
+      --shadow-card: 0 1px 2px rgba(11, 18, 32, 0.04), 0 12px 40px rgba(11, 18, 32, 0.06);
+      --shadow-hover: 0 4px 8px rgba(11, 18, 32, 0.04), 0 20px 48px rgba(0, 212, 255, 0.08);
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Pretendard Variable", Pretendard, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.5;
+      letter-spacing: -0.02em;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .ambient {
+      position: fixed; inset: 0; z-index: -1; pointer-events: none; background: var(--bg);
+    }
+    .ambient::before {
+      content: "";
+      position: absolute; inset: 0;
+      background-image: radial-gradient(rgba(0, 212, 255, 0.05) 1px, transparent 1px);
+      background-size: var(--space-3) var(--space-3);
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 20%, transparent 75%);
+    }
+    .ambient::after {
+      content: "";
+      position: absolute; top: -20%; right: -10%;
+      width: 480px; height: 480px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 212, 255, 0.08) 0%, rgba(184, 164, 255, 0.05) 45%, transparent 70%);
+    }
+
+    .page {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: clamp(var(--space-5), 6vw, var(--space-8)) clamp(var(--space-4), 4vw, var(--space-5)) var(--space-9);
+    }
+
+    /* ── Screen sections ── */
+    .screen {
+      scroll-margin-top: var(--space-5);
+    }
+    .screen + .screen {
+      margin-top: clamp(var(--space-7), 8vw, var(--space-10));
+      padding-top: clamp(var(--space-7), 8vw, var(--space-10));
+      border-top: 1px solid var(--border);
+      position: relative;
+    }
+    .screen + .screen::before {
+      content: attr(data-num);
+      position: absolute;
+      top: -var(--space-3);
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--mono);
+      font-size: var(--fs-2xs);
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted-light);
+      background: var(--bg);
+      padding: 0 var(--space-3);
+    }
+
+    .section-label {
+      display: inline-flex; align-items: center; gap: var(--space-2);
+      font-family: var(--mono); font-size: var(--fs-2xs); font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted-light);
+      margin-bottom: var(--space-4); padding: var(--space-2) var(--space-3) var(--space-2) var(--space-2);
+      border-radius: var(--r-pill); border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.88); backdrop-filter: blur(8px);
+    }
+    .section-label .dot {
+      width: var(--space-2); height: var(--space-2); border-radius: 50%;
+      background: var(--neon); box-shadow: 0 0 0 var(--space-1) var(--neon-soft), 0 0 8px var(--neon-glow);
+    }
+
+    /* ═══ Screen 01 styles ═══ */
+    .page-header { margin-bottom: var(--gap-section); padding-bottom: var(--space-4); border-bottom: 1px solid var(--border); }
+    .project-header { display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-2); }
+    .logo-wrap { position: relative; flex-shrink: 0; }
+    .logo-wrap::before {
+      content: ""; position: absolute; inset: calc(-1 * var(--space-1)); border-radius: var(--space-3);
+      border: 1px solid var(--border);
+      background: var(--aurora-gradient); opacity: 0.9;
+    }
+    .project-header img {
+      position: relative; width: var(--space-6); height: var(--space-6); border-radius: var(--r-sm);
+      object-fit: contain; background: var(--bg); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+    .project-header h1 { font-size: clamp(1.75rem, 4vw, 2.25rem); font-weight: 800; letter-spacing: -0.04em; line-height: var(--lh-tight); }
+    .project-tagline { font-size: var(--fs-base); font-weight: 500; color: var(--muted); padding-left: var(--space-8); }
+    @media (max-width: 480px) { .project-tagline { padding-left: 0; } }
+
+    .hero-card {
+      position: relative; border: 1px solid var(--border); border-radius: var(--r-xl);
+      background: var(--aurora-surface); overflow: hidden; box-shadow: var(--shadow-card);
+      margin-bottom: var(--gap-card); transition: box-shadow 0.35s var(--ease), border-color 0.35s var(--ease);
+    }
+    .hero-card::before {
+      content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: var(--aurora-line); opacity: 0.75;
+    }
+    .hero-card::after {
+      content: ""; position: absolute; top: -40%; right: -20%;
+      width: 320px; height: 320px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%); pointer-events: none;
+    }
+    .hero-card:hover { box-shadow: var(--shadow-hover); border-color: var(--border-strong); }
+    .hero-card-inner {
+      position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5);
+      padding: clamp(var(--space-4), 4vw, var(--space-5)); align-items: center;
+    }
+    @media (min-width: 720px) { .hero-copy { padding-right: var(--space-5); border-right: 1px dashed var(--border); } }
+    @media (max-width: 720px) { .hero-card-inner { grid-template-columns: 1fr; gap: var(--space-4); } }
+    .hero-copy { display: flex; flex-direction: column; gap: var(--space-3); }
+    .hero-copy-label {
+      display: inline-flex; align-items: center; gap: var(--space-2);
+      font-family: var(--mono); font-size: var(--fs-2xs); font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted-light);
+    }
+    .hero-copy-label::before { content: ""; width: var(--space-3); height: 1px; background: var(--border-strong); }
+    .hero-pill {
+      display: inline-flex; align-items: center; gap: var(--space-2); width: fit-content;
+      padding: var(--space-2) var(--space-3); border-radius: var(--r-pill); border: 1px solid var(--border);
+      background: var(--bg); font-size: var(--fs-xs); font-weight: 600; color: var(--muted);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+    }
+    .hero-pill::before { content: ""; width: var(--space-1); height: var(--space-1); border-radius: 50%; background: var(--neon); box-shadow: 0 0 8px var(--neon-glow); }
+    .hero-headline { font-size: clamp(var(--fs-lg), 3vw, var(--fs-xl)); font-weight: 800; line-height: var(--lh-snug); letter-spacing: -0.03em; }
+    .hero-headline .accent { color: var(--neon-text); }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+    .hero-tags span {
+      font-size: var(--fs-xs); font-weight: 600; padding: var(--space-2) var(--space-2); border-radius: var(--r-sm);
+      background: var(--bg); border: 1px solid var(--border); color: var(--muted);
+    }
+    .hero-btns { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-1); }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: var(--space-2) var(--space-4); border-radius: var(--r-sm); font-size: var(--fs-xs); font-weight: 600;
+      border: 1px solid transparent;
+    }
+    .btn-primary { background: var(--fg); color: #fff; box-shadow: 0 4px 16px rgba(11, 18, 32, 0.2); }
+    .btn-secondary { background: var(--bg); color: var(--fg); border-color: var(--border-strong); }
+
+    .demo-wrap { position: relative; }
+    .demo-wrap::before {
+      content: ""; position: absolute; inset: calc(-1 * var(--space-1)); border-radius: calc(var(--r-md) + 8px);
+      background: var(--aurora-gradient); opacity: 0.65; z-index: 0;
+    }
+    .demo-card {
+      position: relative; z-index: 1; border: 1px solid var(--border); border-radius: var(--r-md);
+      background: var(--bg); overflow: hidden; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    }
+    .demo-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: var(--space-3) var(--space-3); border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, var(--bg) 0%, var(--bg-subtle) 100%);
+    }
+    .demo-brand .logo-n {
+      width: var(--space-4); height: var(--space-4); border-radius: var(--r-xs);
+      display: grid; place-items: center; font-size: var(--fs-2xs); font-weight: 800;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--neon) 100%); color: var(--white);
+    }
+    .demo-status {
+      display: inline-flex; align-items: center; gap: var(--space-1);
+      font-size: var(--fs-2xs); font-weight: 700; padding: var(--space-1) var(--space-2); border-radius: var(--r-pill);
+      background: var(--mint-soft); color: var(--mint-text); border: 1px solid var(--mint-border);
+    }
+    .demo-status::before { content: ""; width: var(--space-1); height: var(--space-1); border-radius: 50%; background: var(--mint); box-shadow: 0 0 8px rgba(61, 255, 168, 0.4); }
+    .demo-brand { display: flex; align-items: center; gap: var(--space-2); font-size: var(--fs-xs); font-weight: 700; }
+    .demo-body { padding: var(--space-3); }
+    .demo-output-label {
+      display: flex; justify-content: space-between; margin-bottom: var(--space-2);
+      font-family: var(--mono); font-size: var(--fs-2xs); font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted-light);
+    }
+    .banner-preview { border-radius: var(--r-sm); overflow: hidden; border: 1px solid var(--border); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); }
+    .banner-chrome { display: flex; align-items: center; gap: var(--space-1); padding: var(--space-2) var(--space-2); background: #0b1220; }
+    .banner-chrome span { width: var(--space-2); height: var(--space-2); border-radius: 50%; }
+    .banner-chrome span:nth-child(1) { background: rgba(255, 95, 95, 0.7); }
+    .banner-chrome span:nth-child(2) { background: rgba(255, 200, 80, 0.7); }
+    .banner-chrome span:nth-child(3) { background: rgba(61, 255, 168, 0.55); }
+    .banner-chrome .fn { font-size: var(--fs-2xs); color: rgba(255, 255, 255, 0.4); margin-left: var(--space-1); }
+    .banner-content {
+      aspect-ratio: 16 / 9; background: linear-gradient(160deg, #0b1220 0%, #1a2744 55%, #0f172a 100%);
+      padding: var(--space-3); display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden;
+    }
+    .banner-content::after {
+      content: ""; position: absolute; top: -30%; right: -20%;
+      width: 120px; height: 120px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 212, 255, 0.18) 0%, transparent 70%);
+    }
+    .banner-badge {
+      position: relative; display: inline-flex; width: fit-content;
+      padding: var(--space-1) var(--space-2); border-radius: var(--r-pill); border: 1px solid rgba(255, 255, 255, 0.15);
+      font-size: var(--fs-2xs); font-weight: 600; color: rgba(255, 255, 255, 0.7); margin-bottom: var(--space-2);
+    }
+    .banner-title { position: relative; font-size: var(--fs-xs); font-weight: 700; color: #fff; line-height: var(--lh-snug); }
+    .banner-title .accent { color: var(--neon); }
+    .banner-btns { position: relative; display: flex; gap: var(--space-2); margin-top: var(--space-2); }
+    .banner-btns span { padding: var(--space-1) var(--space-2); border-radius: var(--r-pill); font-size: var(--fs-2xs); font-weight: 700; }
+    .banner-btns .primary { background: #fff; color: var(--dark); }
+    .banner-btns .ghost { border: 1px solid rgba(255, 255, 255, 0.25); color: rgba(255, 255, 255, 0.7); }
+    .demo-input {
+      display: flex; align-items: center; gap: var(--space-2); margin-top: var(--space-3);
+      padding: var(--space-2) var(--space-3); border-radius: var(--r-sm); border: 1px solid var(--border);
+      background: var(--bg-subtle); font-size: var(--fs-xs);
+    }
+    .demo-input .prompt { flex: 1; font-weight: 500; color: var(--fg); }
+    .demo-input .send {
+      width: var(--space-4); height: var(--space-4); border-radius: var(--r-xs); background: linear-gradient(135deg, var(--neon), var(--accent)); color: #fff;
+      font-size: var(--fs-xs); display: grid; place-items: center; flex-shrink: 0;
+    }
+
+    .meta-row { display: grid; grid-template-columns: 1fr 1fr 2fr; gap: var(--gap-card); margin-bottom: var(--gap-card); }
+    @media (max-width: 640px) { .meta-row { grid-template-columns: 1fr; } }
+    .meta-card, .bottom-card {
+      position: relative; padding: var(--space-4) var(--space-4); border: 1px solid var(--border);
+      border-radius: var(--r-lg); background: var(--bg); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+      transition: box-shadow 0.3s var(--ease), border-color 0.3s var(--ease), transform 0.3s var(--ease); overflow: hidden;
+    }
+    .meta-card:hover, .bottom-card:hover { box-shadow: var(--shadow-hover); border-color: var(--border-strong); transform: translateY(-2px); }
+    .meta-card h2, .bottom-card h2 {
+      display: flex; align-items: center; gap: var(--space-2);
+      font-family: var(--mono); font-size: var(--fs-2xs); font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted-light); margin-bottom: var(--space-2);
+    }
+    .meta-card h2::before, .bottom-card h2::before {
+      content: ""; width: 0.25rem; height: 0.25rem; border-radius: 50%; background: var(--muted-light);
+    }
+    .meta-card:nth-child(1) h2::before { background: var(--neon); }
+    .meta-card:nth-child(2) h2::before { background: var(--lavender); }
+    .meta-card:nth-child(3) h2::before { background: var(--mint); }
+    .meta-card p { font-size: var(--fs-sm); font-weight: 700; line-height: var(--lh-normal); }
+    .meta-card p + p { margin-top: var(--space-1); }
+    .bottom-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap-card); }
+    @media (max-width: 640px) { .bottom-row { grid-template-columns: 1fr; } }
+    .bottom-card h2 { margin-bottom: var(--space-3); }
+    .contrib-list { display: flex; flex-direction: column; gap: var(--space-3); }
+    .contrib-item { display: grid; grid-template-columns: var(--space-10) 1fr var(--space-6); align-items: center; gap: var(--space-3); }
+    .contrib-item label { font-size: var(--fs-xs); font-weight: 600; }
+    .contrib-track { height: var(--space-1); border-radius: var(--r-pill); background: var(--bg-muted); overflow: hidden; }
+    .contrib-fill { height: 100%; border-radius: var(--r-pill); background: var(--aurora-line); }
+    .contrib-pct { font-family: var(--mono); font-size: var(--fs-xs); font-weight: 600; text-align: right; color: var(--muted); }
+    .stack-tags { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+    .stack-tag {
+      display: inline-flex; align-items: center; gap: var(--space-1);
+      padding: var(--space-2) var(--space-3); border-radius: var(--r-pill); font-size: var(--fs-xs); font-weight: 600;
+      border: 1px solid var(--border); background: var(--bg-subtle); color: var(--fg);
+    }
+    .stack-tag::before { content: ""; width: 0.25rem; height: 0.25rem; border-radius: 50%; background: var(--muted-light); }
+    .stack-tag.blue { background: var(--neon-soft); border-color: var(--neon-border); color: var(--neon-text); }
+    .stack-tag.blue::before { background: var(--neon); }
+    .stack-tag.purple { background: var(--lavender-soft); border-color: var(--lavender-border); color: var(--lavender-text); }
+    .stack-tag.purple::before { background: var(--lavender); }
+
+    /* ═══ Screen 02 styles ═══ */
+    .screen-header { margin-bottom: calc(var(--gap-section) + var(--space-2)); }
+    .screen-title { font-size: clamp(1.75rem, 4vw, 2.25rem); font-weight: 800; letter-spacing: -0.04em; line-height: var(--lh-tight); margin-bottom: var(--space-2); }
+    .screen-subtitle { font-size: var(--fs-base); font-weight: 600; color: var(--muted); margin-bottom: var(--space-2); line-height: 1.5; }
+    .screen-lead { font-size: var(--fs-sm); color: var(--muted); margin-bottom: var(--space-4); line-height: var(--lh-relaxed); }
+    .section-tags { display: flex; flex-wrap: wrap; gap: var(--space-2); list-style: none; }
+    .section-tags li {
+      font-family: var(--mono); font-size: var(--fs-2xs); font-weight: 600; letter-spacing: 0.06em;
+      text-transform: uppercase; padding: var(--space-1) var(--space-2); border-radius: var(--r-pill);
+      border: 1px solid var(--border); background: var(--bg); color: var(--muted);
+    }
+    .section-tags li:nth-child(1) { background: var(--neon-soft); border-color: var(--neon-border); color: var(--neon-text); }
+    .section-tags li:nth-child(2) { background: var(--lavender-soft); border-color: var(--lavender-border); color: var(--lavender-text); }
+    .section-tags li:nth-child(3) { background: var(--mint-soft); border-color: var(--mint-border); color: var(--mint-text); }
+
+    .spotlight {
+      display: grid; grid-template-columns: auto 1fr; gap: var(--space-4); align-items: center;
+      padding: var(--space-4) var(--space-5); margin-bottom: var(--gap-section);
+      border: 1px solid var(--border); border-radius: var(--r-xl); background: var(--bg); box-shadow: var(--shadow-card);
+    }
+    @media (max-width: 640px) {
+      .spotlight { grid-template-columns: 1fr; text-align: center; }
+      .spotlight-art { margin: 0 auto; }
+      .pain-chips { justify-content: center; }
+    }
+    .spotlight-art { width: 120px; flex-shrink: 0; }
+    .spotlight-art svg { width: 100%; height: auto; display: block; }
+    .spotlight-copy h2 { font-size: clamp(var(--fs-lg), 2.5vw, var(--fs-lg)); font-weight: 800; line-height: var(--lh-snug); margin-bottom: var(--space-2); }
+    .spotlight-copy p { font-size: var(--fs-sm); color: var(--muted); line-height: var(--lh-relaxed); margin-bottom: var(--space-3); }
+    .pain-chips { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+    .pain-chip { font-size: var(--fs-xs); font-weight: 600; padding: var(--space-2) var(--space-2); border-radius: var(--r-pill); border: 1px solid var(--border); background: var(--bg); color: var(--muted); }
+    .pain-chip--cyan { background: var(--neon-soft); border-color: var(--neon-border); color: var(--neon-text); }
+    .pain-chip--lavender { background: var(--lavender-soft); border-color: var(--lavender-border); color: var(--lavender-text); }
+    .pain-chip--mint { background: var(--mint-soft); border-color: var(--mint-border); color: var(--mint-text); }
+
+    .pain-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); }
+    @media (max-width: 768px) { .pain-grid { grid-template-columns: 1fr; } }
+    .pain-column { display: flex; flex-direction: column; gap: var(--space-3); }
+    .problem-card {
+      flex: 1; padding: var(--space-4); border: 1px solid var(--border); border-radius: var(--r-lg);
+      background: var(--bg); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02); transition: box-shadow 0.3s var(--ease);
+    }
+    .problem-card:hover { box-shadow: var(--shadow-hover); }
+    .pain-column--1 .problem-card { border-top: 2px solid var(--neon); }
+    .pain-column--2 .problem-card { border-top: 2px solid var(--lavender); }
+    .pain-column--3 .problem-card { border-top: 2px solid var(--mint); }
+    .problem-art { width: 72px; margin-bottom: var(--space-3); }
+    .problem-art svg { width: 100%; height: auto; display: block; }
+    .pain-tag {
+      display: inline-block; font-family: var(--mono); font-size: var(--fs-2xs); font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted-light); margin-bottom: var(--space-2);
+    }
+    .problem-card h3 { font-size: var(--fs-sm); font-weight: 800; margin-bottom: var(--space-2); }
+    .problem-card p { font-size: var(--fs-xs); color: var(--muted); line-height: var(--lh-normal); }
+
+    .flow-connector { display: flex; flex-direction: column; align-items: center; gap: var(--space-1); padding: var(--space-1) 0; }
+    .flow-connector .line { width: 1px; height: var(--space-2); background: var(--border-strong); }
+    .flow-connector .arrow {
+      width: var(--space-5); height: var(--space-5); border-radius: 50%;
+      display: grid; place-items: center; font-size: var(--fs-xs); font-weight: 700;
+      border: 1px solid var(--border); background: var(--bg); color: var(--muted);
+    }
+    .pain-column--1 .flow-connector .arrow { border-color: var(--cyan-border); color: var(--cyan-text); background: var(--cyan-soft); }
+    .pain-column--2 .flow-connector .arrow { border-color: var(--lavender-border); color: var(--lavender-text); background: var(--lavender-soft); }
+    .pain-column--3 .flow-connector .arrow { border-color: var(--mint-border); color: var(--mint-text); background: var(--mint-soft); }
+
+    /* Solution — capsule ribbon */
+    .solution-card {
+      position: relative;
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      min-height: var(--space-10);
+      border-radius: var(--r-pill);
+      border: 2px solid var(--fg);
+      background: var(--bg);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      overflow: hidden;
+      transition: box-shadow 0.3s var(--ease), transform 0.3s var(--ease);
+    }
+    .solution-card:hover {
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
+      transform: translateY(-1px);
+    }
+    .solution-card::after {
+      content: "";
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: var(--space-6);
+      height: var(--space-6);
+      border-radius: 50%;
+      border: 1px dashed var(--border-strong);
+      opacity: 0.35;
+      pointer-events: none;
+    }
+
+    .solution-icon {
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      width: 3.25rem;
+      margin: var(--space-2) 0 var(--space-2) var(--space-2);
+      border-radius: var(--r-pill);
+      background: linear-gradient(135deg, var(--fg), var(--accent));
+      color: #fff;
+      font-size: var(--fs-base);
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .solution-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: var(--space-3) var(--space-8) var(--space-3) var(--space-3);
+      min-width: 0;
+    }
+
+    .solution-label {
+      font-family: var(--mono);
+      font-size: var(--fs-2xs);
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted-light);
+      margin-bottom: var(--space-1);
+    }
+
+    .solution-card p {
+      font-size: var(--fs-xs);
+      font-weight: 700;
+      line-height: var(--lh-normal);
+      color: var(--fg);
+    }
+
+    .pain-column--1 .solution-card { border-color: var(--neon-text); box-shadow: 0 4px 20px rgba(0, 212, 255, 0.1); }
+    .pain-column--1 .solution-icon { background: linear-gradient(135deg, var(--neon-text), var(--neon)); }
+
+    .pain-column--2 .solution-card {
+      background: linear-gradient(135deg, #6d28d9 0%, var(--lavender-text) 100%);
+      border-color: var(--lavender-text);
+    }
+    .pain-column--2 .solution-card .solution-icon {
+      background: #fff;
+      color: var(--lavender-text);
+    }
+    .pain-column--2 .solution-card .solution-label { color: rgba(255, 255, 255, 0.5); }
+    .pain-column--2 .solution-card p { color: #fff; }
+    .pain-column--2 .solution-card::after { border-color: rgba(255, 255, 255, 0.25); }
+
+    .pain-column--3 .solution-card {
+      border-color: var(--mint-text);
+      background: linear-gradient(135deg, var(--bg) 0%, var(--mint-soft) 100%);
+    }
+    .pain-column--3 .solution-icon {
+      background: linear-gradient(135deg, var(--mint-text), var(--mint));
+      color: #fff;
+      border: none;
+    }
+
+    /* Metric — circular badge (not square box) */
+    .metric-spotlight {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: var(--space-1) 0 0;
+    }
+
+    .metric-hero {
+      position: relative;
+      margin-bottom: var(--space-3);
+    }
+
+    .metric-disc {
+      position: relative;
+      width: clamp(5.5rem, 14vw, 6.75rem);
+      height: clamp(5.5rem, 14vw, 6.75rem);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      z-index: 1;
+      transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+    }
+
+    .metric-disc::before {
+      content: "";
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      border: 1px solid var(--border-strong);
+      opacity: 0.35;
+    }
+
+    .metric-stem {
+      display: block;
+      width: 1px;
+      height: var(--space-4);
+      background: var(--border-strong);
+      margin: -var(--space-1) auto 0;
+    }
+
+    .metric-spotlight:hover .metric-disc { transform: scale(1.04); }
+
+    .pain-column--1 .metric-disc {
+      background: linear-gradient(135deg, var(--neon-text), var(--neon));
+      box-shadow: 0 8px 24px rgba(0, 212, 255, 0.25);
+    }
+    .pain-column--1 .metric-disc .metric-value { color: #fff; }
+
+    .pain-column--2 .metric-disc {
+      background: var(--bg);
+      border: 2px solid var(--lavender);
+      box-shadow: 0 8px 20px rgba(184, 164, 255, 0.2);
+    }
+    .pain-column--2 .metric-disc .metric-value { color: var(--lavender-text); }
+
+    .pain-column--3 .metric-disc {
+      background: var(--mint-soft);
+      border: 2px solid var(--mint);
+    }
+    .pain-column--3 .metric-disc .metric-value { color: var(--mint-text); }
+
+    .metric-value {
+      font-size: clamp(var(--space-4), 3vw, var(--space-5));
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+
+    .metric-label { font-size: var(--fs-xs); font-weight: 700; margin-bottom: var(--space-2); }
+    .metric-desc { font-size: var(--fs-xs); color: var(--muted); line-height: var(--lh-normal); margin-bottom: var(--space-3); max-width: 16rem; }
+    .metric-hypo {
+      display: inline-block; font-family: var(--mono); font-size: var(--fs-2xs); font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted-light);
+      padding: var(--space-1) var(--space-2); border-radius: var(--r-pill); border: 1px solid var(--border); background: var(--bg);
+    }
+
+    /* ═══ Screen 03 · Workspace UI ═══ */
+    .demo-layout { display: flex; flex-direction: column; gap: var(--gap-section); }
+
+    .demo-block {
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      background: var(--bg);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+    }
+
+    .demo-block-head {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: var(--space-4) var(--space-4);
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, var(--bg) 0%, var(--bg-subtle) 100%);
+    }
+
+    .demo-block-head h3 { font-size: var(--fs-base); font-weight: 800; letter-spacing: -0.02em; }
+
+    .live-pill {
+      display: inline-flex; align-items: center; gap: var(--space-2);
+      padding: var(--space-1) var(--space-2); border-radius: var(--r-pill);
+      font-family: var(--mono); font-size: var(--fs-2xs); font-weight: 600;
+      letter-spacing: 0.04em; text-transform: uppercase;
+      border: 1px solid var(--border-strong); background: var(--bg); color: var(--muted);
+    }
+
+    .live-pill::before {
+      content: ""; width: var(--space-1); height: var(--space-1); border-radius: 50%; background: var(--mint);
+      box-shadow: 0 0 8px rgba(61, 255, 168, 0.5);
+    }
+
+    .ws-stage {
+      position: relative;
+      padding: var(--space-4);
+      background: var(--bg-subtle);
+    }
+
+    .workspace-shell {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      min-height: 18.5rem;
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      background: var(--bg);
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .ws-sidebar {
+      width: var(--space-7);
+      flex-shrink: 0;
+      border-right: 1px solid var(--border);
+      background: var(--bg-subtle);
+      padding: var(--space-2) var(--space-2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .ws-logo {
+      width: var(--space-5); height: var(--space-5); border-radius: var(--space-2);
+      background: linear-gradient(135deg, var(--accent) 0%, var(--neon) 100%); color: #fff;
+      font-size: var(--fs-2xs); font-weight: 800;
+      display: grid; place-items: center; margin-bottom: var(--space-1);
+    }
+
+    .ws-nav {
+      width: var(--space-5); height: var(--space-5); border-radius: var(--space-2);
+      border: 1px solid transparent; color: var(--muted-light);
+      display: grid; place-items: center;
+      font-family: var(--mono); font-size: var(--fs-2xs); font-weight: 700;
+    }
+
+    .ws-nav.active {
+      background: var(--neon-soft); border-color: var(--neon-border); color: var(--neon-text);
+    }
+
+    .ws-main { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+
+    .ws-toolbar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: var(--space-2) var(--space-3); border-bottom: 1px solid var(--border);
+    }
+
+    .ws-tabs { display: flex; gap: var(--space-2); }
+    .ws-tab {
+      font-size: var(--fs-xs); font-weight: 600; color: var(--muted);
+      padding: var(--space-1) var(--space-2); border-radius: var(--r-xs);
+    }
+    .ws-tab.active { background: var(--neon-soft); color: var(--neon-text); }
+
+    .ws-tools { display: flex; gap: var(--space-2); }
+    .ws-tool {
+      font-size: var(--fs-2xs); font-weight: 600; color: var(--muted);
+      padding: var(--space-1) var(--space-2); border-radius: var(--r-xs); border: 1px solid var(--border);
+    }
+
+    .ws-body { flex: 1; display: grid; grid-template-columns: 1fr 7.5rem; min-height: 0; }
+
+    .ws-panel {
+      padding: var(--space-4);
+      border-right: 1px solid var(--border);
+      display: flex; flex-direction: column; gap: var(--space-3);
+      min-height: var(--space-12);
+    }
+
+    .ws-chat { flex: 1; display: flex; flex-direction: column; gap: var(--space-2); }
+
+    .ws-bubble-user {
+      align-self: flex-end; max-width: 88%;
+      padding: var(--space-2) var(--space-3); border-radius: var(--space-3) var(--space-3) 0.25rem var(--space-3);
+      background: var(--bg-subtle); border: 1px solid var(--border);
+      font-size: var(--fs-xs); font-weight: 600; line-height: var(--lh-normal);
+    }
+
+    .ws-input-bar {
+      margin-top: auto;
+      display: flex; align-items: center; gap: var(--space-2);
+      padding: var(--space-2) var(--space-2); border-radius: var(--r-pill);
+      border: 1px solid var(--border-strong); background: var(--bg);
+    }
+
+    .ws-input-bar span:first-child {
+      flex: 1; font-size: var(--fs-xs); color: var(--muted-light);
+    }
+
+    .ws-send {
+      padding: var(--space-1) var(--space-2); border-radius: var(--r-pill);
+      background: linear-gradient(135deg, var(--accent), var(--neon)); color: #fff;
+      font-size: var(--fs-2xs); font-weight: 700;
+    }
+
+    .ws-result {
+      padding: var(--space-2); background: var(--bg-subtle);
+      display: flex; flex-direction: column; gap: var(--space-2);
+    }
+
+    .ws-result-label {
+      font-family: var(--mono); font-size: var(--fs-2xs); font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted-light);
+      padding-bottom: var(--space-2); border-bottom: 1px solid var(--border);
+    }
+
+    .ws-result-thumb {
+      flex: 1; min-height: var(--space-10);
+      border-radius: var(--r-sm); border: 1px solid var(--border);
+      background: var(--bg);
+      display: grid; place-items: center;
+      font-size: var(--fs-2xs); font-weight: 600; color: var(--muted); text-align: center; line-height: 1.4;
+    }
+
+    .ws-result-thumb.dark { background: var(--dark); color: rgba(255, 255, 255, 0.75); border-color: transparent; }
+
+    .ws-download {
+      margin-top: auto; padding: var(--space-2) var(--space-2); border-radius: var(--r-xs);
+      background: linear-gradient(135deg, var(--accent), var(--neon)); color: #fff; font-size: var(--fs-2xs); font-weight: 700; text-align: center;
+    }
+
+    /* Image workspace */
+    .ws-img-prompt {
+      padding: var(--space-2) var(--space-3); border-radius: var(--r-pill);
+      border: 1px solid var(--border); background: var(--bg-subtle);
+      font-size: var(--fs-xs); font-weight: 600; color: var(--fg-soft);
+    }
+
+    .ws-gen-status {
+      display: flex; align-items: center; gap: var(--space-2);
+      font-size: var(--fs-xs); font-weight: 600; color: var(--muted);
+    }
+
+    .ws-gen-dots { display: flex; gap: var(--space-1); }
+    .ws-gen-dots span {
+      width: var(--space-1); height: var(--space-1); border-radius: 50%; background: var(--muted-light);
+    }
+
+    .ws-variant-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-2); flex: 1; }
+
+    .ws-variant {
+      border-radius: var(--r-sm); min-height: 5rem;
+      display: grid; place-items: center;
+      font-size: var(--fs-2xs); font-weight: 700; text-align: center; line-height: var(--lh-normal);
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .ws-variant.a { background: linear-gradient(160deg, #0b1220 0%, #1e3a5f 100%); }
+    .ws-variant.b { background: linear-gradient(160deg, #1a1c2c 0%, #312e81 100%); }
+
+    /* Floating callout boxes inside workspace */
+    .ws-callout {
+      position: absolute;
+      z-index: 3;
+      max-width: 13.5rem;
+      padding: var(--space-2) var(--space-3);
+      border-radius: var(--r-sm);
+      border: 1px solid var(--border-strong);
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .ws-callout::after {
+      content: "";
+      position: absolute;
+      width: var(--space-2); height: var(--space-2);
+      background: rgba(255, 255, 255, 0.94);
+      border: 1px solid var(--border-strong);
+      transform: rotate(45deg);
+    }
+
+    .ws-callout-zone {
+      display: block;
+      font-family: var(--mono); font-size: var(--fs-2xs); font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--muted-light); margin-bottom: var(--space-1);
+    }
+
+    .ws-callout strong {
+      display: block;
+      font-size: var(--fs-xs); font-weight: 800; line-height: var(--lh-snug);
+      margin-bottom: var(--space-1); letter-spacing: -0.01em;
+    }
+
+    .ws-callout p {
+      font-size: var(--fs-xs); color: var(--muted); line-height: var(--lh-relaxed);
+    }
+
+    /* Chat — sidebar callout */
+    .ws-callout--sidebar {
+      left: 3.25rem; top: 44%;
+      transform: translateY(-50%);
+    }
+    .ws-callout--sidebar::after {
+      left: -var(--space-1); top: 50%; margin-top: -var(--space-1);
+      border-right: none; border-top: none;
+    }
+
+    /* Chat — prompt callout */
+    .ws-callout--prompt {
+      left: 24%; bottom: 4.75rem;
+    }
+    .ws-callout--prompt::after {
+      left: 50%; bottom: -var(--space-1); margin-left: -var(--space-1);
+      border-left: none; border-top: none;
+    }
+
+    /* Image — workspace callout */
+    .ws-callout--workspace {
+      left: 19%; top: 42%;
+      transform: translateY(-50%);
+    }
+    .ws-callout--workspace::after {
+      left: -var(--space-1); top: 50%; margin-top: -var(--space-1);
+      border-right: none; border-top: none;
+    }
+
+    /* Interaction Flow */
+    .ix-flow {
+      padding: var(--space-4) var(--space-5);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      background: var(--bg);
+      box-shadow: var(--shadow-card);
+    }
+
+    .ix-flow-head {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: var(--space-4); gap: var(--space-3); flex-wrap: wrap;
+    }
+
+    .ix-flow-head h3 { font-size: var(--fs-sm); font-weight: 800; }
+
+    .ix-flow-badge {
+      font-family: var(--mono); font-size: var(--fs-2xs); font-weight: 600;
+      letter-spacing: 0.04em; text-transform: uppercase;
+      padding: var(--space-1) var(--space-2); border-radius: var(--r-pill);
+      border: 1px solid var(--border); color: var(--muted);
+    }
+
+    .ix-steps {
+      display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--space-2);
+      position: relative; list-style: none;
+    }
+
+    .ix-steps::before {
+      content: "";
+      position: absolute; top: var(--space-4); left: 10%; right: 10%;
+      height: 1px; background: var(--border-strong); z-index: 0;
+    }
+
+    .ix-step {
+      position: relative; z-index: 1;
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center; gap: var(--space-2);
+    }
+
+    .ix-step-icon {
+      width: var(--space-6); height: var(--space-6); border-radius: 50%;
+      border: 1px solid var(--border-strong); background: var(--bg);
+      display: grid; place-items: center; font-size: var(--fs-sm);
+    }
+
+    .ix-step:first-child .ix-step-icon {
+      background: linear-gradient(135deg, var(--neon-text), var(--neon));
+      border-color: transparent;
+      color: #fff;
+    }
+
+    .ix-step strong { font-size: var(--fs-xs); font-weight: 800; }
+    .ix-step span { font-size: var(--fs-2xs); color: var(--muted-light); line-height: var(--lh-snug); }
+
+    @media (max-width: 768px) {
+      .ws-body { grid-template-columns: 1fr; }
+      .ws-result { display: none; }
+      .ix-steps { grid-template-columns: repeat(3, 1fr); row-gap: var(--space-3); }
+      .ix-steps::before { display: none; }
+    }
+
+    @media (max-width: 640px) {
+      .ws-stage { padding: var(--space-3); }
+      .ws-callout {
+        position: static; transform: none; max-width: none; margin-top: var(--space-3);
+      }
+      .ws-callout::after { display: none; }
+      .workspace-shell { margin-bottom: 0; }
+    }
+
+    /* ═══ Screen 04 · Workflow & Integration ═══ */
+    .wf-layout { display: flex; flex-direction: column; gap: var(--gap-section); }
+
+    .wf-visual-row {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: var(--gap-card);
+    }
+
+    @media (max-width: 768px) {
+      .wf-visual-row { grid-template-columns: 1fr; }
+    }
+
+    .wf-panel {
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      background: var(--bg);
+      box-shadow: var(--shadow-card);
+      padding: var(--space-4) var(--space-5);
+    }
+
+    .wf-panel-head {
+      margin-bottom: var(--space-4);
+    }
+
+    .wf-panel-head h3 {
+      font-size: var(--fs-base);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-1);
+    }
+
+    .wf-panel-head p {
+      font-size: var(--fs-xs);
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .wf-pipeline {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-3);
+      margin-bottom: var(--space-4);
+    }
+
+    .wf-pipeline::before {
+      content: "";
+      position: absolute;
+      top: var(--space-5);
+      left: 12%;
+      right: 12%;
+      height: 1px;
+      background: var(--border-strong);
+      z-index: 0;
+    }
+
+    .wf-node {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: var(--space-2);
+    }
+
+    .wf-node-icon {
+      width: 3.25rem;
+      height: 3.25rem;
+      border-radius: var(--r-md);
+      border: 1px solid var(--border);
+      background: var(--bg-subtle);
+      display: grid;
+      place-items: center;
+      font-size: var(--fs-lg);
+    }
+
+    .wf-node:first-child .wf-node-icon {
+      background: linear-gradient(135deg, var(--neon-text), var(--neon));
+      border-color: transparent;
+      color: #fff;
+    }
+
+    .wf-node strong {
+      font-size: var(--fs-xs);
+      font-weight: 800;
+      line-height: var(--lh-snug);
+    }
+
+    .wf-node span {
+      font-size: var(--fs-2xs);
+      color: var(--muted-light);
+      line-height: var(--lh-snug);
+    }
+
+    .wf-status {
+      padding: var(--space-3) var(--space-3);
+      border-radius: var(--r-pill);
+      border: 1px solid var(--border);
+      background: var(--bg-subtle);
+      text-align: center;
+      font-size: var(--fs-xs);
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .wf-hub-visual {
+      position: relative;
+      min-height: 15rem;
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      background: var(--bg-subtle);
+      margin-bottom: var(--space-3);
+    }
+
+    .wf-hub-visual svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .wf-hub-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 3.75rem;
+      height: 3.75rem;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--fg) 0%, var(--accent) 100%);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--fs-xs);
+      font-weight: 800;
+      z-index: 2;
+      line-height: var(--lh-tight);
+    }
+
+    .wf-hub-center small {
+      font-size: var(--fs-2xs);
+      font-weight: 600;
+      opacity: 0.7;
+    }
+
+    .wf-hub-app {
+      position: absolute;
+      padding: var(--space-1) var(--space-2);
+      border-radius: var(--r-pill);
+      border: 1px solid var(--border);
+      background: var(--bg);
+      font-size: var(--fs-2xs);
+      font-weight: 700;
+      color: var(--fg-soft);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      z-index: 2;
+    }
+
+    .wf-app-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+    }
+
+    .wf-app-chip {
+      padding: var(--space-2) var(--space-2);
+      border-radius: var(--r-sm);
+      border: 1px solid var(--border);
+      background: var(--bg);
+      font-size: var(--fs-xs);
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .wf-spec-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--gap-card);
+    }
+
+    @media (max-width: 768px) {
+      .wf-spec-row { grid-template-columns: 1fr; }
+      .wf-pipeline { grid-template-columns: repeat(2, 1fr); row-gap: var(--space-4); }
+      .wf-pipeline::before { display: none; }
+    }
+
+    .wf-spec-card {
+      padding: var(--space-4) var(--space-4);
+      border-radius: var(--r-lg);
+      border: 1px solid var(--border);
+      background: var(--bg);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+    }
+
+    .wf-spec-card h4 {
+      font-size: var(--fs-xs);
+      font-weight: 800;
+      margin-bottom: var(--space-3);
+      letter-spacing: -0.01em;
+    }
+
+    .wf-spec-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .wf-spec-list li {
+      font-size: var(--fs-xs);
+      color: var(--muted);
+      line-height: 1.5;
+      padding-left: var(--space-3);
+      position: relative;
+    }
+
+    .wf-spec-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.45em;
+      width: 0.25rem;
+      height: 0.25rem;
+      border-radius: 50%;
+      background: var(--muted-light);
+    }
+
+    /* Automation Benefits — stadium metric bands */
+    .benefits-block {
+      padding: var(--space-5) var(--space-5);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      background: var(--bg);
+      box-shadow: var(--shadow-card);
+    }
+
+    .benefits-head {
+      margin-bottom: var(--space-4);
+    }
+
+    .benefits-head h3 {
+      font-size: var(--fs-base);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-2);
+    }
+
+    .benefits-head p {
+      font-size: var(--fs-xs);
+      color: var(--muted);
+      line-height: var(--lh-relaxed);
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-4);
+    }
+
+    @media (max-width: 904px) {
+      .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 520px) {
+      .kpi-grid { grid-template-columns: 1fr; }
+    }
+
+    .kpi-stat {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      padding: var(--space-1) 0;
+    }
+
+    .kpi-stat-label {
+      font-size: var(--fs-xs);
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+
+    .kpi-metric-value {
+      font-size: clamp(2rem, 4.5vw, var(--space-6));
+      font-weight: 800;
+      letter-spacing: -0.05em;
+      line-height: 1;
+      color: var(--fg);
+    }
+
+    .kpi-stat--1 .kpi-metric-value { color: var(--neon-text); }
+    .kpi-stat--2 .kpi-metric-value { color: var(--lavender-text); }
+    .kpi-stat--3 .kpi-metric-value { color: var(--mint-text); }
+    .kpi-stat--4 .kpi-metric-value { color: var(--accent); }
+
+    .kpi-stat-desc {
+      font-size: var(--fs-xs);
+      color: var(--muted);
+      line-height: var(--lh-normal);
+      min-height: var(--space-5);
+    }
+
+    .kpi-delta {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      padding: var(--space-1) var(--space-2);
+      border-radius: var(--r-pill);
+      font-family: var(--mono);
+      font-size: var(--fs-2xs);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      border: 1px solid var(--border-strong);
+      background: var(--bg);
+      color: var(--fg-soft);
+    }
+
+    .kpi-stat--1 .kpi-delta { background: var(--neon-soft); color: var(--neon-text); border-color: var(--neon-border); }
+    .kpi-stat--2 .kpi-delta { background: var(--lavender-soft); color: var(--lavender-text); border-color: var(--lavender-border); }
+    .kpi-stat--3 .kpi-delta { background: var(--mint-soft); color: var(--mint-text); border-color: var(--mint-border); }
+    .kpi-stat--4 .kpi-delta { border-style: dashed; color: var(--accent); border-color: var(--accent-soft); }
+
+    /* ═══ Screen 05 · Design System (capture palette) ═══ */
+    #screen-05 {
+      --ds-fg: #0b1220;
+      --ds-neon: #00d4ff;
+      --ds-neon-soft: rgba(0, 212, 255, 0.1);
+      --ds-neon-border: rgba(0, 212, 255, 0.28);
+      --ds-neon-glow: rgba(0, 212, 255, 0.2);
+      --ds-mint: #3dffa8;
+      --ds-lavender: #b8a4ff;
+      --ds-accent: #6366f1;
+      --ds-surface: #fafbfc;
+      --ds-muted: #64748b;
+      --ds-muted-light: #94a3b8;
+      --ds-border: rgba(11, 18, 32, 0.08);
+      --ds-aurora-line: linear-gradient(90deg, #00d4ff 0%, #b8a4ff 52%, #3dffa8 100%);
+      position: relative;
+      padding: clamp(var(--space-4), 4vw, var(--space-6));
+      border-radius: var(--r-xl);
+      background:
+        radial-gradient(rgba(0, 212, 255, 0.07) 1px, transparent 1px) 0 0 / 1.25rem 1.25rem,
+        linear-gradient(180deg, #f8fafc 0%, #fafbfc 55%, rgba(184, 164, 255, 0.05) 100%);
+    }
+
+    #screen-05 .section-label .dot {
+      background: var(--ds-neon);
+      box-shadow: 0 0 0 var(--space-1) var(--ds-neon-soft), 0 0 8px var(--ds-neon-glow);
+    }
+
+    .ds-layout { display: flex; flex-direction: column; gap: var(--gap-card); }
+
+    .ds-bento {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: var(--gap-card);
+    }
+
+    .ds-span-3 { grid-column: span 3; }
+    .ds-span-4 { grid-column: span 4; }
+    .ds-span-5 { grid-column: span 5; }
+    .ds-span-7 { grid-column: span 7; }
+    .ds-span-8 { grid-column: span 8; }
+    .ds-span-12 { grid-column: span 12; }
+
+    @media (max-width: 904px) {
+      .ds-bento { grid-template-columns: 1fr; }
+      .ds-span-3, .ds-span-4, .ds-span-5, .ds-span-7, .ds-span-8, .ds-span-12 { grid-column: span 1; }
+    }
+
+    .ds-panel {
+      position: relative;
+      overflow: hidden;
+      padding: var(--space-4) var(--space-4);
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      border-radius: var(--r-xl);
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.92) 0%, rgba(248, 250, 252, 0.78) 100%);
+      box-shadow: var(--shadow-card);
+      backdrop-filter: blur(12px);
+    }
+
+    .ds-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.22), rgba(99, 102, 241, 0.08), transparent 60%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .ds-panel > * { position: relative; z-index: 1; }
+
+    .ds-panel-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: var(--space-3);
+      margin-bottom: var(--space-2);
+      flex-wrap: wrap;
+    }
+
+    .ds-panel-head h3 {
+      font-size: var(--fs-sm);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .ds-panel-head span {
+      font-family: var(--mono);
+      font-size: var(--fs-2xs);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ds-muted-light, var(--muted-light));
+      padding: var(--space-1) var(--space-2);
+      border-radius: var(--r-pill);
+      border: 1px solid var(--ds-border, var(--border));
+      background: rgba(255, 255, 255, 0.7);
+    }
+
+    .ds-panel-desc {
+      font-size: var(--fs-xs);
+      color: var(--muted);
+      line-height: var(--lh-relaxed);
+      margin-bottom: var(--space-4);
+    }
+
+    .ds-type-stack { display: flex; flex-direction: column; gap: var(--space-3); }
+
+    .ds-type-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: var(--space-3);
+      padding-bottom: var(--space-3);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .ds-type-row:last-child { border-bottom: none; padding-bottom: 0; }
+
+    .ds-type-row em {
+      font-family: var(--mono);
+      font-size: var(--fs-2xs);
+      color: var(--muted-light);
+      font-style: normal;
+    }
+
+    .ds-type-display {
+      font-size: var(--fs-lg);
+      font-weight: 800;
+      line-height: var(--lh-snug);
+      letter-spacing: -0.03em;
+      margin-top: var(--space-1);
+    }
+
+    .ds-type-body { font-size: var(--fs-xs); font-weight: 500; color: var(--muted); margin-top: var(--space-1); }
+    .ds-type-mono { font-family: var(--mono); font-size: var(--fs-xs); color: var(--fg-soft); margin-top: var(--space-1); }
+
+    .ds-colors {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-2);
+      margin-bottom: var(--space-3);
+    }
+
+    @media (max-width: 640px) { .ds-colors { grid-template-columns: repeat(2, 1fr); } }
+
+    .ds-color-fill {
+      height: var(--space-6);
+      border-radius: var(--r-sm);
+      border: 1px solid var(--border);
+      margin-bottom: var(--space-2);
+    }
+
+    .ds-color strong { display: block; font-size: var(--fs-xs); font-weight: 700; margin-bottom: var(--space-1); }
+    .ds-color code { font-family: var(--mono); font-size: var(--fs-2xs); color: var(--muted-light); }
+
+    .ds-color.fg .ds-color-fill { background: #0b1220; }
+    .ds-color.neon .ds-color-fill { background: linear-gradient(135deg, #00d4ff, #00b8d9); }
+    .ds-color.mint .ds-color-fill { background: linear-gradient(135deg, #6bffb8, #3dffa8); }
+    .ds-color.lavender .ds-color-fill { background: linear-gradient(135deg, #d4c4ff, #b8a4ff); }
+    .ds-color.aurora .ds-color-fill { background: linear-gradient(90deg, #00d4ff 0%, #b8a4ff 52%, #3dffa8 100%); }
+    .ds-color.accent .ds-color-fill { background: linear-gradient(135deg, #6366f1, #4f46e5); }
+    .ds-color.surface .ds-color-fill { background: linear-gradient(180deg, #fff, #f1f5f9); border-bottom: 1px solid var(--ds-border, var(--border)); }
+    .ds-color.muted .ds-color-fill { background: #64748b; }
+
+    .ds-token-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+    }
+
+    .ds-token-strip code {
+      font-family: var(--mono);
+      font-size: var(--fs-2xs);
+      padding: var(--space-1) var(--space-2);
+      border-radius: var(--r-xs);
+      border: 1px solid var(--border);
+      background: var(--bg-subtle);
+      color: var(--muted);
+    }
+
+    .ds-btn-matrix {
+      display: grid;
+      grid-template-columns: var(--space-10) repeat(3, 1fr);
+      gap: var(--space-2);
+      align-items: center;
+      margin-bottom: var(--space-3);
+    }
+
+    .ds-matrix-label {
+      font-family: var(--mono);
+      font-size: var(--fs-2xs);
+      font-weight: 600;
+      color: var(--muted-light);
+      text-transform: uppercase;
+    }
+
+    .ds-matrix-col {
+      font-size: var(--fs-2xs);
+      font-weight: 700;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .ds-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-2) var(--space-3);
+      border-radius: var(--r-pill);
+      font-size: var(--fs-xs);
+      font-weight: 700;
+      border: 1px solid transparent;
+      width: 100%;
+    }
+
+    .ds-btn.primary { background: #0b1220; color: #fff; box-shadow: 0 4px 16px rgba(11, 18, 32, 0.15); }
+    .ds-btn.neon {
+      color: #0b1220;
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(99, 102, 241, 0.1));
+      border-color: rgba(0, 212, 255, 0.28);
+    }
+    .ds-btn.neon.is-hover { transform: translateY(-2px); box-shadow: 0 0 24px rgba(0, 212, 255, 0.2); border-color: #00d4ff; }
+    .ds-btn.neon.is-focus { outline: 2px solid #00d4ff; outline-offset: 2px; }
+    .ds-btn.ghost { background: transparent; color: var(--ds-muted, var(--muted)); border-color: var(--ds-border, var(--border)); }
+    .ds-btn.ghost.is-hover { color: #0b1220; border-color: rgba(0, 212, 255, 0.28); background: rgba(0, 212, 255, 0.1); transform: translateY(-2px); }
+    .ds-btn.is-hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(11, 18, 32, 0.22); }
+    .ds-btn.is-focus { outline: 2px solid #0b1220; outline-offset: 2px; }
+    .ds-btn.lg { padding: var(--space-2) var(--space-4); font-size: var(--fs-xs); }
+
+    .ds-size-row { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-bottom: var(--space-3); }
+
+    .ds-rules {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-2);
+    }
+
+    @media (max-width: 768px) { .ds-rules { grid-template-columns: 1fr; } }
+
+    .ds-rule {
+      padding: var(--space-3);
+      border-radius: var(--r-sm);
+      border: 1px solid var(--border);
+      background: var(--bg-subtle);
+    }
+
+    .ds-rule strong { display: block; font-size: var(--fs-xs); font-weight: 800; margin-bottom: var(--space-1); }
+    .ds-rule span { font-size: var(--fs-2xs); color: var(--muted); line-height: 1.5; }
+
+    .ds-type-list { list-style: none; display: flex; flex-direction: column; gap: var(--space-2); }
+
+    .ds-type-list li {
+      display: grid;
+      grid-template-columns: 4rem 1fr var(--space-10);
+      gap: var(--space-2);
+      align-items: baseline;
+      padding-bottom: var(--space-2);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .ds-type-list li:last-child { border-bottom: none; }
+
+    .ds-ts-name { font-family: var(--mono); font-size: var(--fs-2xs); color: var(--muted-light); text-transform: uppercase; }
+    .ds-ts-meta { font-family: var(--mono); font-size: var(--fs-2xs); color: var(--muted-light); text-align: right; }
+
+    .ds-spacing-row {
+      display: flex;
+      align-items: flex-end;
+      gap: var(--space-2);
+      margin-top: var(--space-1);
+      min-height: var(--space-7);
+    }
+
+    .ds-spacing-bar {
+      width: 100%;
+      min-width: var(--space-3);
+      background: linear-gradient(180deg, #00d4ff, #6366f1);
+      border-radius: 4px 4px 0 0;
+      opacity: 0.65;
+    }
+
+    .ds-spacing-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-2);
+    }
+    .ds-spacing-item span { font-family: var(--mono); font-size: var(--fs-2xs); color: var(--muted-light); }
+
+    .ds-spacing-note {
+      font-size: var(--fs-2xs);
+      color: var(--muted);
+      line-height: var(--lh-normal);
+      margin-top: var(--space-3);
+      margin-bottom: 0;
+    }
+
+    .ds-spacing-note code {
+      font-family: var(--mono);
+      font-size: var(--fs-2xs);
+      padding: var(--space-1) var(--space-1);
+      border-radius: 4px;
+      background: rgba(11, 18, 32, 0.04);
+      border: 1px solid var(--ds-border, var(--border));
+    }
+
+    .ds-radius-row, .ds-shadow-row { display: flex; gap: var(--space-3); flex-wrap: wrap; }
+
+    .ds-radius-swatch, .ds-shadow-swatch {
+      width: var(--space-7);
+      height: 2.25rem;
+      border: 1px solid var(--border);
+      background: var(--bg);
+    }
+
+    .ds-comp-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-3);
+    }
+
+    @media (max-width: 640px) { .ds-comp-grid { grid-template-columns: 1fr; } }
+
+    .ds-comp-cell label {
+      display: block;
+      font-family: var(--mono);
+      font-size: var(--fs-2xs);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--muted-light);
+      margin-bottom: var(--space-2);
+    }
+
+    .ds-input {
+      width: 100%;
+      padding: var(--space-2) var(--space-3);
+      border-radius: var(--r-sm);
+      border: 1px solid var(--border);
+      font-size: var(--fs-xs);
+      font-family: inherit;
+      background: var(--bg);
+    }
+
+    .ds-input.is-focus { border-color: #00d4ff; box-shadow: 0 0 0 var(--space-1) rgba(0, 212, 255, 0.1); }
+
+    .ds-chip-row { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+
+    .ds-chip {
+      padding: var(--space-1) var(--space-2);
+      border-radius: var(--r-pill);
+      font-size: var(--fs-xs);
+      font-weight: 600;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--muted);
+    }
+
+    .ds-chip.is-active { color: #0b1220; border-color: rgba(0, 212, 255, 0.28); background: rgba(0, 212, 255, 0.1); }
+
+    .ds-card-live {
+      padding: var(--space-3);
+      border-radius: var(--r-md);
+      border: 1px solid var(--ds-border, var(--border));
+      box-shadow: var(--shadow-card);
+      background: #fff;
+      transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.3s ease;
+    }
+
+    .ds-card-live:hover {
+      transform: translateY(-4px);
+      border-color: rgba(0, 212, 255, 0.28);
+      box-shadow: var(--shadow-card), 0 0 0 1px rgba(0, 212, 255, 0.1);
+    }
+
+    .ds-card-live strong { display: block; font-size: var(--fs-xs); margin-bottom: var(--space-1); }
+    .ds-card-live span { font-size: var(--fs-2xs); color: var(--muted); }
+
+    .ds-grid-viz {
+      padding: var(--space-3);
+      border-radius: var(--r-sm);
+      border: 1px solid var(--ds-border, var(--border));
+      background:
+        linear-gradient(90deg, rgba(99, 102, 241, 0.06) 1px, transparent 1px),
+        linear-gradient(rgba(99, 102, 241, 0.06) 1px, transparent 1px),
+        rgba(255, 255, 255, 0.5);
+      background-size: 8px 8px;
+    }
+
+    .ds-grid-blocks {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 8px;
+      height: 3.5rem;
+    }
+
+    .ds-grid-block {
+      border-radius: 8px;
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.12), rgba(99, 102, 241, 0.08));
+      border: 1px solid rgba(0, 212, 255, 0.2);
+      animation: ds-grid-pulse 3s ease-in-out infinite;
+    }
+
+    .ds-grid-block:nth-child(1) { grid-column: span 5; animation-delay: 0s; }
+    .ds-grid-block:nth-child(2) { grid-column: span 3; animation-delay: 0.4s; }
+    .ds-grid-block:nth-child(3) { grid-column: span 4; animation-delay: 0.8s; }
+    .ds-grid-block:nth-child(4) { grid-column: span 7; animation-delay: 1.2s; }
+    .ds-grid-block:nth-child(5) { grid-column: span 5; animation-delay: 1.6s; }
+
+    @keyframes ds-grid-pulse {
+      0%, 100% { opacity: 0.55; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.01); }
+    }
+
+    .ds-motion-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--gap-card);
+    }
+
+    @media (max-width: 768px) { .ds-motion-grid { grid-template-columns: 1fr; } }
+
+    .ds-motion-card {
+      padding: var(--space-3) var(--space-4);
+      border-radius: var(--r-lg);
+      border: 1px solid var(--ds-border, var(--border));
+      background: rgba(255, 255, 255, 0.6);
+    }
+
+    .ds-motion-card h4 { font-size: var(--fs-xs); font-weight: 800; margin-bottom: var(--space-1); }
+    .ds-motion-card p { font-size: var(--fs-xs); color: var(--muted); margin-bottom: var(--space-3); }
+
+    .ds-motion-track {
+      position: relative;
+      height: var(--space-6);
+      border-radius: var(--r-pill);
+      background: #f4f7fa;
+      border: 1px solid var(--ds-border, var(--border));
+      overflow: hidden;
+      margin-bottom: var(--space-2);
+    }
+
+    .ds-motion-dot {
+      position: absolute;
+      top: 50%;
+      left: 0.5rem;
+      width: var(--space-4);
+      height: var(--space-4);
+      margin-top: -var(--space-2);
+      border-radius: 50%;
+      background: linear-gradient(135deg, #00d4ff, #6366f1);
+      box-shadow: 0 2px 8px rgba(0, 212, 255, 0.35);
+    }
+
+    .ds-motion-card.ease-out .ds-motion-dot { animation: ds-motion-slide 2.4s cubic-bezier(0.16, 1, 0.3, 1) infinite; }
+    .ds-motion-card.spring .ds-motion-dot { animation: ds-motion-slide 2.4s cubic-bezier(0.34, 1.56, 0.64, 1) infinite; }
+    .ds-motion-card.linear .ds-motion-dot { animation: ds-motion-slide 2.4s linear infinite; }
+
+    @keyframes ds-motion-slide {
+      0%, 100% { left: 0.5rem; }
+      45%, 55% { left: calc(100% - 1.75rem); }
+    }
+
+    .ds-bezier code {
+      font-family: var(--mono);
+      font-size: var(--fs-2xs);
+      color: var(--muted-light);
+    }
+
+    .ds-resp-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--gap-card);
+    }
+
+    @media (max-width: 768px) { .ds-resp-grid { grid-template-columns: 1fr; } }
+
+    .ds-resp-card {
+      padding: var(--space-3) var(--space-4);
+      border-radius: var(--r-lg);
+      border: 1px solid var(--border);
+      background: var(--bg-subtle);
+    }
+
+    .ds-resp-card header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: var(--space-3);
+    }
+
+    .ds-resp-card header strong { font-size: var(--fs-xs); font-weight: 800; }
+    .ds-resp-card header span { font-family: var(--mono); font-size: var(--fs-2xs); color: var(--muted-light); }
+
+    .ds-wireframe {
+      display: grid;
+      gap: var(--space-1);
+      padding: var(--space-2);
+      border-radius: var(--r-sm);
+      border: 1px solid var(--border);
+      background: var(--bg);
+      min-height: 5.5rem;
+      margin-bottom: var(--space-2);
+    }
+
+    .ds-wireframe.is-desktop { grid-template-columns: var(--space-3) 1fr 0.85fr; grid-template-rows: 0.5rem 1fr; }
+    .ds-wireframe.is-tablet { grid-template-columns: 1fr 0.9fr; grid-template-rows: 0.5rem var(--space-2) 1fr; }
+    .ds-wireframe.is-mobile { grid-template-columns: 1fr; grid-template-rows: var(--space-2) var(--space-2) 1fr 0.75fr var(--space-2); }
+
+    .ds-wireframe [class^="rw-"] {
+      border-radius: 4px;
+      border: 1px solid transparent;
+    }
+
+    .ds-wireframe .rw-nav { background: rgba(79, 70, 229, 0.15); border-color: rgba(79, 70, 229, 0.25); }
+    .ds-wireframe .rw-toolbar { background: rgba(11, 18, 32, 0.06); border-color: rgba(11, 18, 32, 0.1); }
+    .ds-wireframe .rw-main { background: rgba(0, 212, 255, 0.1); border-color: rgba(0, 212, 255, 0.22); }
+    .ds-wireframe .rw-result { background: rgba(245, 158, 11, 0.1); border-color: rgba(245, 158, 11, 0.2); }
+    .ds-wireframe .rw-prompt { background: rgba(79, 70, 229, 0.08); border-color: rgba(79, 70, 229, 0.15); }
+
+    .ds-wireframe.is-desktop .rw-nav { grid-row: 1 / 3; }
+    .ds-wireframe.is-desktop .rw-toolbar { grid-column: 2 / 4; }
+    .ds-wireframe.is-desktop .rw-main { grid-column: 2; grid-row: 2; }
+    .ds-wireframe.is-desktop .rw-result { grid-column: 3; grid-row: 2; }
+    .ds-wireframe.is-tablet .rw-toolbar { grid-column: 1 / 3; }
+    .ds-wireframe.is-tablet .rw-nav { grid-column: 1 / 3; }
+    .ds-wireframe.is-tablet .rw-main { grid-column: 1; grid-row: 3; }
+    .ds-wireframe.is-tablet .rw-result { grid-column: 2; grid-row: 3; }
+
+    .ds-resp-card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-1);
+    }
+
+    .ds-resp-card li {
+      font-size: var(--fs-2xs);
+      color: var(--muted);
+      line-height: var(--lh-normal);
+      padding-left: var(--space-2);
+      position: relative;
+    }
+
+    .ds-resp-card li::before {
+      content: "·";
+      position: absolute;
+      left: 0;
+      color: var(--fg);
+      font-weight: 700;
+    }
+
+    .ds-bp-pills { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-3); }
+
+    .ds-bp-pill {
+      font-family: var(--mono);
+      font-size: var(--fs-2xs);
+      font-weight: 600;
+      padding: var(--space-1) var(--space-2);
+      border-radius: var(--r-pill);
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .ds-bp-pill.is-active { background: #0b1220; color: #fff; border-color: #0b1220; }
+
+    /* Interaction Examples */
+    .ds-ix-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--gap-card);
+      margin-bottom: var(--space-4);
+    }
+
+    @media (max-width: 768px) { .ds-ix-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 424px) { .ds-ix-grid { grid-template-columns: 1fr; } }
+
+    .ds-ix-card {
+      padding: var(--space-3) var(--space-4);
+      border-radius: var(--r-lg);
+      border: 1px solid var(--ds-border, var(--border));
+      background: rgba(255, 255, 255, 0.55);
+      text-align: center;
+      transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.3s ease, background 0.3s ease;
+    }
+
+    .ds-ix-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(0, 212, 255, 0.28);
+      background: rgba(0, 212, 255, 0.1);
+      box-shadow: 0 8px 24px rgba(0, 212, 255, 0.12);
+    }
+
+    .ds-ix-art {
+      width: 100%;
+      aspect-ratio: 1.2;
+      margin-bottom: var(--space-3);
+      border-radius: var(--r-md);
+      border: 1px solid var(--ds-border, var(--border));
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(0, 212, 255, 0.04));
+      display: grid;
+      place-items: center;
+      padding: var(--space-3);
+    }
+
+    .ds-ix-art svg { width: 100%; max-width: var(--space-10); height: auto; display: block; }
+
+    .ds-ix-card strong {
+      display: block;
+      font-size: var(--fs-xs);
+      font-weight: 800;
+      margin-bottom: var(--space-1);
+    }
+
+    .ds-ix-card span {
+      font-size: var(--fs-2xs);
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .ds-ix-demo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+      padding: var(--space-4);
+      border-radius: var(--r-lg);
+      border: 1px solid var(--ds-border, var(--border));
+      background: rgba(255, 255, 255, 0.45);
+      margin-bottom: var(--space-3);
+    }
+
+    .ds-ix-magnetic {
+      padding: var(--space-2) var(--space-4);
+      border-radius: var(--r-pill);
+      background: linear-gradient(135deg, #0b1220, #1e293b);
+      color: #fff;
+      font-size: var(--fs-xs);
+      font-weight: 700;
+      border: 1px solid rgba(0, 212, 255, 0.3);
+      box-shadow: 0 8px 24px rgba(11, 18, 32, 0.2);
+      transition: box-shadow 0.3s var(--ease);
+    }
+
+    .ds-ix-magnetic:hover {
+      box-shadow: 0 12px 32px rgba(0, 212, 255, 0.25), 0 0 0 1px rgba(0, 212, 255, 0.28);
+    }
+
+    .ds-ix-reveal {
+      padding: var(--space-3) var(--space-3);
+      border-radius: var(--r-sm);
+      border: 1px solid rgba(0, 212, 255, 0.28);
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(99, 102, 241, 0.06));
+      font-size: var(--fs-xs);
+      font-weight: 600;
+      text-align: center;
+      animation: ds-reveal-pop 2.5s var(--ease) infinite;
+    }
+
+    @keyframes ds-reveal-pop {
+      0%, 20% { opacity: 0; transform: translateY(12px) scale(0.96); }
+      35%, 75% { opacity: 1; transform: none; }
+      90%, 100% { opacity: 0; transform: translateY(-8px); }
+    }
+
+    .ds-ix-ring {
+      width: var(--space-7);
+      height: var(--space-7);
+      border-radius: 50%;
+      border: 2px solid #00d4ff;
+      animation: ds-glow-pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes ds-glow-pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(0, 212, 255, 0.35); }
+      50% { box-shadow: 0 0 0 8px rgba(0, 212, 255, 0); }
+    }
+
+    /* ═══ Screen 06 · Outcome & Learnings ═══ */
+    #screen-06 .screen-header { margin-bottom: clamp(var(--space-5), 5vw, var(--space-6)); }
+
+    .oc-layout {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(var(--space-5), 5vw, var(--space-8));
+    }
+
+    .oc-block-label {
+      font-family: var(--mono);
+      font-size: var(--fs-2xs);
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted-light);
+      margin-bottom: var(--space-4);
+    }
+
+    .oc-outcome-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--space-4);
+    }
+
+    @media (max-width: 904px) {
+      .oc-outcome-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 520px) {
+      .oc-outcome-grid { grid-template-columns: 1fr; }
+    }
+
+    .oc-outcome-card {
+      display: flex;
+      flex-direction: column;
+      padding: var(--space-4) var(--space-4) var(--space-5);
+      border-radius: var(--r-lg);
+      border: 1px solid var(--border);
+      background: var(--white);
+      box-shadow: var(--shadow-card);
+      min-height: 10.5rem;
+    }
+
+    .oc-outcome-icon {
+      width: var(--space-5);
+      height: var(--space-5);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      margin-bottom: var(--space-3);
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+    }
+
+    .oc-outcome-icon svg { width: var(--space-3); height: var(--space-3); display: block; }
+
+    .oc-outcome-card strong {
+      display: block;
+      font-size: var(--fs-sm);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-2);
+      line-height: var(--lh-snug);
+    }
+
+    .oc-outcome-card p {
+      font-size: var(--fs-xs);
+      color: var(--muted);
+      line-height: var(--lh-relaxed);
+    }
+
+    .oc-outcome-card p + p { margin-top: var(--space-1); }
+
+    .oc-learned {
+      padding: clamp(var(--space-5), 4.5vw, var(--space-7));
+      border-radius: var(--r-xl);
+      border: 1px solid var(--border);
+      background: #f8fafc;
+      box-shadow: var(--shadow-card);
+    }
+
+    .oc-learned h3 {
+      font-size: var(--fs-lg);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-4);
+    }
+
+    .oc-learned-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+
+    .oc-learned-list li {
+      font-size: var(--fs-xs);
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .oc-summary {
+      margin-top: var(--space-1);
+      padding: clamp(var(--space-6), 6vw, var(--space-8)) clamp(var(--space-4), 4vw, var(--space-5));
+      border-radius: clamp(var(--space-5), 4vw, var(--space-6)) clamp(var(--space-5), 4vw, var(--space-6)) var(--r-lg) var(--r-lg);
+      background: linear-gradient(160deg, #0b1220 0%, #152238 100%);
+      color: #fff;
+      text-align: center;
+    }
+
+    .oc-summary h3 {
+      font-size: clamp(var(--fs-lg), 2.5vw, var(--fs-lg));
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-3);
+    }
+
+    .oc-summary p {
+      font-size: var(--fs-xs);
+      line-height: 1.75;
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .oc-summary p + p { margin-top: var(--space-2); }
+
+    .oc-summary strong { color: #fff; font-weight: 700; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition-duration: 0.01ms !important; }
+      .meta-card:hover, .bottom-card:hover, .solution-card:hover, .metric-spotlight:hover .metric-disc, .ds-ix-card:hover { transform: none; }
+      .ds-motion-dot, .ds-grid-block, .ds-ix-reveal, .ds-ix-ring { animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="ambient" aria-hidden="true"></div>
+
+  <main class="page">
+
+    <!-- ══════════════════════════════════════
+         Screen 01 · Case Study Overview
+         ══════════════════════════════════════ -->
+    <section class="screen" id="screen-01">
+      <p class="section-label"><span class="dot" aria-hidden="true"></span> 01 · Case Study Overview</p>
+
+      <header class="page-header">
+        <div class="project-header">
+          <div class="logo-wrap">
+            <img src="assets/nexus-ai-logo.png" alt="" width="40" height="40" />
+          </div>
+          <h1>Nexus AI</h1>
+        </div>
+        <p class="project-tagline">All in one AI Workspace</p>
+      </header>
+
+      <div class="hero-card" aria-label="Hero Section Preview">
+        <div class="hero-card-inner">
+          <div class="hero-copy">
+            <span class="hero-copy-label">Hero Section</span>
+            <span class="hero-pill">All-in-one AI</span>
+            <h2 class="hero-headline">
+              AI 챗봇 · 이미지 생성<br />
+              <span class="accent">업무 자동화</span>
+            </h2>
+            <div class="hero-tags">
+              <span>Prompt → Image</span>
+              <span>Chat → Action</span>
+              <span>One Workspace</span>
+            </div>
+            <div class="hero-btns">
+              <span class="btn btn-primary">Get Started</span>
+              <span class="btn btn-secondary">Preview</span>
+            </div>
+          </div>
+          <div class="demo-wrap">
+            <div class="demo-card" aria-hidden="true">
+              <div class="demo-header">
+                <div class="demo-brand"><span class="logo-n">N</span> Nexus AI</div>
+                <span class="demo-status">Done</span>
+              </div>
+              <div class="demo-body">
+                <div class="demo-output-label"><span>Output</span><span>Nexus-Hero-Banner.png</span></div>
+                <div class="banner-preview">
+                  <div class="banner-chrome"><span></span><span></span><span></span><span class="fn">nexus-hero-banner.png</span></div>
+                  <div class="banner-content">
+                    <span class="banner-badge">AI Platform</span>
+                    <p class="banner-title">업무 자동화<br /><span class="accent">AI Workspace</span></p>
+                    <div class="banner-btns"><span class="primary">Start</span><span class="ghost">Learn</span></div>
+                  </div>
+                </div>
+                <div class="demo-input"><span class="prompt">미니멀 SaaS 히어로 배너</span><span class="send">↑</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="meta-row">
+        <article class="meta-card"><h2>Duration</h2><p>4 Weeks</p></article>
+        <article class="meta-card"><h2>Role</h2><p>UI/UX Design</p><p>Web Publishing</p></article>
+        <article class="meta-card"><h2>Goal</h2><p>3개 AI 기능을 하나의 연결된 경험으로 전달 · B2B 전환율 향상</p></article>
+      </div>
+
+      <div class="bottom-row">
+        <article class="bottom-card">
+          <h2>Contribution</h2>
+          <div class="contrib-list">
+            <div class="contrib-item">
+              <label>Design</label>
+              <div class="contrib-track" role="progressbar" aria-valuenow="100"><div class="contrib-fill" style="width:100%"></div></div>
+              <span class="contrib-pct">100%</span>
+            </div>
+            <div class="contrib-item">
+              <label>Publish</label>
+              <div class="contrib-track" role="progressbar" aria-valuenow="100"><div class="contrib-fill" style="width:100%"></div></div>
+              <span class="contrib-pct">100%</span>
+            </div>
+          </div>
+        </article>
+        <article class="bottom-card">
+          <h2>Stack</h2>
+          <div class="stack-tags">
+            <span class="stack-tag blue">Next.js 16</span>
+            <span class="stack-tag purple">React 19</span>
+            <span class="stack-tag">TypeScript</span>
+            <span class="stack-tag">Tailwind 4</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         Screen 02 · UX Challenge
+         ══════════════════════════════════════ -->
+    <section class="screen" id="screen-02" data-num="02 · UX Challenge">
+      <p class="section-label"><span class="dot" aria-hidden="true"></span> 02 · Problem &amp; Solution</p>
+
+      <header class="screen-header">
+        <h1 class="screen-title">UX Challenge</h1>
+        <p class="screen-subtitle">사용자 Pain Point → UX Strategy 매핑</p>
+        <p class="screen-lead">화면 설계 전, 실사용에서 반복된 마찰 3가지를 정의했습니다.</p>
+        <ul class="section-tags" aria-label="섹션 구성">
+          <li>Pain Points</li>
+          <li>Illustration</li>
+          <li>Metrics</li>
+        </ul>
+      </header>
+
+      <article class="spotlight">
+        <figure class="spotlight-art" aria-hidden="true">
+          <svg viewBox="0 0 200 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="100" cy="145" rx="72" ry="12" fill="#0b1220" fill-opacity="0.05"/>
+            <circle cx="100" cy="72" r="64" fill="url(#pv-spot-bg-02)"/>
+            <rect x="28" y="36" width="36" height="28" rx="8" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/>
+            <rect x="132" y="32" width="36" height="28" rx="8" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/>
+            <rect x="82" y="52" width="36" height="28" rx="8" fill="#fff" stroke="#6366f1" stroke-width="1.5"/>
+            <path d="M40 48h20M140 44h16M94 64h12" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M64 48h16M100 58v10M136 46h10" stroke="#ef4444" stroke-width="1.8" stroke-dasharray="4 3" stroke-linecap="round" opacity="0.65"/>
+            <circle cx="100" cy="108" r="18" fill="#f5c9a8"/>
+            <path d="M84 102c3-10 8-14 16-14s13 4 16 14" fill="#2d1f5c"/>
+            <path d="M92 106c1.5 1.5 3 1.5 4.5 0M103 106c1.5 1.5 3 1.5 4.5 0" stroke="#d4956a" stroke-width="1" stroke-linecap="round"/>
+            <path d="M96 112c2 2 6 2 8 0" stroke="#d4956a" stroke-width="1.2" stroke-linecap="round"/>
+            <defs><linearGradient id="pv-spot-bg-02" x1="40" y1="16" x2="160" y2="140" gradientUnits="userSpaceOnUse"><stop stop-color="#e8fbff"/><stop offset="0.5" stop-color="#f3eeff"/><stop offset="1" stop-color="#f0fff8"/></linearGradient></defs>
+          </svg>
+        </figure>
+        <div class="spotlight-copy">
+          <h2>여러 AI 툴 사이에서<br />작업 흐름이 끊깁니다</h2>
+          <p>Chat · Image · Auto를 오가며 Prompt 수정, 결과 비교, 히스토리 찾기 — 매번 맥락을 다시 잡아야 합니다.</p>
+          <div class="pain-chips">
+            <span class="pain-chip pain-chip--cyan">Prompt 재시작</span>
+            <span class="pain-chip pain-chip--lavender">비교 지연</span>
+            <span class="pain-chip pain-chip--mint">맥락 상실</span>
+          </div>
+        </div>
+      </article>
+
+      <div class="pain-grid" aria-label="Pain Point → Solution → Result">
+        <div class="pain-column pain-column--1">
+          <article class="problem-card">
+            <figure class="problem-art" aria-hidden="true">
+              <svg viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="56" fill="url(#sc1-bg-02)"/><rect x="22" y="28" width="26" height="20" rx="5" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/><rect x="72" y="28" width="26" height="20" rx="5" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/><rect x="47" y="52" width="26" height="20" rx="5" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/><path d="M48 38h12M60 48v4M85 48 L73 52" stroke="#ef4444" stroke-width="1.6" stroke-dasharray="3 3" stroke-linecap="round" opacity="0.7"/><circle cx="60" cy="90" r="12" fill="#f5c9a8"/><path d="M50 86c2-6 5-9 10-9s8 3 10 9" fill="#2d1f5c"/><defs><linearGradient id="sc1-bg-02" x1="20" y1="10" x2="100" y2="110" gradientUnits="userSpaceOnUse"><stop stop-color="#fef2f2"/><stop offset="1" stop-color="#f0f9ff"/></linearGradient></defs></svg>
+            </figure>
+            <span class="pain-tag">Pain 01</span>
+            <h3>동시 작업 관리</h3>
+            <p>탭·계정을 오갈 때 Prompt와 결과 연결이 끊겨요.</p>
+          </article>
+          <div class="flow-connector" aria-hidden="true"><span class="line"></span><span class="arrow">↓</span><span class="line"></span></div>
+          <article class="solution-card">
+            <div class="solution-icon" aria-hidden="true">→</div>
+            <div class="solution-body">
+              <span class="solution-label">Solution</span>
+              <p>→ 상태 관리로 Prompt와 결과 연결성 유지</p>
+            </div>
+          </article>
+          <div class="flow-connector" aria-hidden="true"><span class="line"></span><span class="arrow">↓</span><span class="line"></span></div>
+          <article class="metric-spotlight">
+            <div class="metric-hero">
+              <div class="metric-disc"><span class="metric-value">−35%</span></div>
+              <span class="metric-stem"></span>
+            </div>
+            <p class="metric-label">작업 전환 시간</p>
+            <p class="metric-desc">3탭 오감 → 1 Workspace 사이드 전환. 동시 작업 관리 Pain에 대응.</p>
+            <span class="metric-hypo">Hypothesis · path count</span>
+          </article>
+        </div>
+
+        <div class="pain-column pain-column--2">
+          <article class="problem-card">
+            <figure class="problem-art" aria-hidden="true">
+              <svg viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="56" fill="url(#sc2-bg-02)"/><rect x="20" y="36" width="32" height="48" rx="6" fill="#fff" stroke="#6366f1" stroke-width="1.5"/><path d="M28 50h16M28 58h12" stroke="#c7d2fe" stroke-width="2" stroke-linecap="round"/><rect x="56" y="32" width="8" height="56" rx="2" fill="#cbd5e1"/><rect x="68" y="36" width="32" height="48" rx="6" fill="#fff" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4 3"/><path d="M78 58a8 8 0 1 0 8-8" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" fill="none"/><defs><linearGradient id="sc2-bg-02" x1="20" y1="10" x2="100" y2="110" gradientUnits="userSpaceOnUse"><stop stop-color="#eef2ff"/><stop offset="1" stop-color="#fff7ed"/></linearGradient></defs></svg>
+            </figure>
+            <span class="pain-tag">Pain 02</span>
+            <h3>Prompt 반복 수정</h3>
+            <p>Export → 재편집 → 재생성. 작은 수정에도 전체 루프가 다시 돌아가요.</p>
+          </article>
+          <div class="flow-connector" aria-hidden="true"><span class="line"></span><span class="arrow">↓</span><span class="line"></span></div>
+          <article class="solution-card">
+            <div class="solution-icon" aria-hidden="true">→</div>
+            <div class="solution-body">
+              <span class="solution-label">Solution</span>
+              <p>→ 컴포넌트화로 반복 작업 최소화</p>
+            </div>
+          </article>
+          <div class="flow-connector" aria-hidden="true"><span class="line"></span><span class="arrow">↓</span><span class="line"></span></div>
+          <article class="metric-spotlight">
+            <div class="metric-hero">
+              <div class="metric-disc"><span class="metric-value">−30%</span></div>
+              <span class="metric-stem"></span>
+            </div>
+            <p class="metric-label">재생성 루프</p>
+            <p class="metric-desc">Export→재업로드 제거. 하단 Prompt + In-place Revise로 반복 수정 단축.</p>
+            <span class="metric-hypo">Hypothesis · loop length</span>
+          </article>
+        </div>
+
+        <div class="pain-column pain-column--3">
+          <article class="problem-card">
+            <figure class="problem-art" aria-hidden="true">
+              <svg viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="56" fill="url(#sc3-bg-02)"/><rect x="18" y="36" width="24" height="34" rx="5" fill="#fff" stroke="#cbd5e1" stroke-width="1.4"/><rect x="48" y="30" width="24" height="40" rx="5" fill="#fff" stroke="#6366f1" stroke-width="1.5"/><rect x="78" y="36" width="24" height="34" rx="5" fill="#fff" stroke="#cbd5e1" stroke-width="1.4"/><circle cx="42" cy="88" r="10" fill="#f5c9a8"/><path d="M58 88h20M74 84l6 4-6 4" stroke="#ef4444" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/><defs><linearGradient id="sc3-bg-02" x1="20" y1="10" x2="100" y2="110" gradientUnits="userSpaceOnUse"><stop stop-color="#faf5ff"/><stop offset="1" stop-color="#fef2f2"/></linearGradient></defs></svg>
+            </figure>
+            <span class="pain-tag">Pain 03</span>
+            <h3>비교 · 히스토리</h3>
+            <p>Variant를 파일로 비교하고, 어제 작업을 찾느라 판단이 늦어져요.</p>
+          </article>
+          <div class="flow-connector" aria-hidden="true"><span class="line"></span><span class="arrow">↓</span><span class="line"></span></div>
+          <article class="solution-card">
+            <div class="solution-icon" aria-hidden="true">→</div>
+            <div class="solution-body">
+              <span class="solution-label">Solution</span>
+              <p>→ Variant 구조 개선으로 작업 효율 향상</p>
+            </div>
+          </article>
+          <div class="flow-connector" aria-hidden="true"><span class="line"></span><span class="arrow">↓</span><span class="line"></span></div>
+          <article class="metric-spotlight">
+            <div class="metric-hero">
+              <div class="metric-disc"><span class="metric-value">~2×</span></div>
+              <span class="metric-stem"></span>
+            </div>
+            <p class="metric-label">비교 판단 속도</p>
+            <p class="metric-desc">파일 번갈아 열기 → Variant Card 나란히. Result Panel + History로 탐색 감소.</p>
+            <span class="metric-hypo">Hypothesis · scan time</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         Screen 03 · Workspace UI
+         ══════════════════════════════════════ -->
+    <section class="screen" id="screen-03" data-num="03 · Product Demo">
+      <p class="section-label"><span class="dot" aria-hidden="true"></span> 03 · Product Demo</p>
+
+      <header class="screen-header">
+        <h1 class="screen-title">Workspace UI</h1>
+        <p class="screen-subtitle">Chat · Image Gen · Live Interaction Sequence</p>
+      </header>
+
+      <div class="demo-layout">
+
+        <!-- AI Chatbot Workspace -->
+        <article class="demo-block" aria-label="AI Chatbot Workspace">
+          <header class="demo-block-head">
+            <h3>AI Chatbot Workspace</h3>
+            <span class="live-pill">Live</span>
+          </header>
+          <div class="ws-stage">
+            <div class="workspace-shell" role="application" aria-label="챗봇 워크스페이스 UI">
+              <nav class="ws-sidebar" aria-label="워크스페이스 내비게이션">
+                <div class="ws-logo" aria-hidden="true">N</div>
+                <div class="ws-nav active" aria-hidden="true" title="Chat">C</div>
+                <div class="ws-nav" aria-hidden="true" title="Image">I</div>
+                <div class="ws-nav" aria-hidden="true" title="Auto">A</div>
+                <div class="ws-nav" aria-hidden="true" title="Settings">S</div>
+              </nav>
+              <div class="ws-main">
+                <div class="ws-toolbar">
+                  <div class="ws-tabs">
+                    <span class="ws-tab active">Chat</span>
+                    <span class="ws-tab">History</span>
+                  </div>
+                  <div class="ws-tools">
+                    <span class="ws-tool">Export</span>
+                    <span class="ws-tool">Share</span>
+                  </div>
+                </div>
+                <div class="ws-body">
+                  <div class="ws-panel">
+                    <div class="ws-chat">
+                      <div class="ws-bubble-user">이번 달 고객 문의 TOP 5 정리해줘</div>
+                      <div class="ws-input-bar">
+                        <span>메시지 입력...</span>
+                        <span class="ws-send">Send</span>
+                      </div>
+                    </div>
+                  </div>
+                  <aside class="ws-result">
+                    <p class="ws-result-label">Result Panel</p>
+                    <div class="ws-result-thumb">TOP 5 Chart<br />Preview</div>
+                    <div class="ws-download">↓ Download</div>
+                  </aside>
+                </div>
+              </div>
+            </div>
+
+            <aside class="ws-callout ws-callout--sidebar" aria-label="Sidebar 배치 이유">
+              <span class="ws-callout-zone">Left · Sidebar</span>
+              <strong>왜 History를 왼쪽에?</strong>
+              <p>자주 쓰이지만 항상 펼칠 필요 없음. 좁은 사이드에 두면 캔버스를 가리지 않으면서 이전 Prompt·결과를 바로 복원.</p>
+            </aside>
+
+            <aside class="ws-callout ws-callout--prompt" aria-label="Prompt 하단 배치 이유">
+              <span class="ws-callout-zone">Center · Prompt</span>
+              <strong>왜 Prompt 입력창을 하단에?</strong>
+              <p>대화형 AI 사용 습관과 같고, 결과를 본 뒤 바로 수정 Prompt를 칠 수 있습니다. 상단 고정은 결과 영역을 밀어내 반복 수정 루프를 끊습니다.</p>
+            </aside>
+          </div>
+        </article>
+
+        <!-- Interaction Flow -->
+        <section class="ix-flow" aria-label="Interaction Flow">
+          <header class="ix-flow-head">
+            <h3>Interaction Flow</h3>
+            <span class="ix-flow-badge">Shared AI Generation Pattern</span>
+          </header>
+          <ol class="ix-steps">
+            <li class="ix-step">
+              <div class="ix-step-icon" aria-hidden="true">✎</div>
+              <strong>Prompt</strong>
+              <span>User Input</span>
+            </li>
+            <li class="ix-step">
+              <div class="ix-step-icon" aria-hidden="true">◎</div>
+              <strong>Thinking</strong>
+              <span>AI Processing</span>
+            </li>
+            <li class="ix-step">
+              <div class="ix-step-icon" aria-hidden="true">⚙</div>
+              <strong>Generating</strong>
+              <span>Progress Bar</span>
+            </li>
+            <li class="ix-step">
+              <div class="ix-step-icon" aria-hidden="true">▣</div>
+              <strong>Result</strong>
+              <span>Output Panel</span>
+            </li>
+            <li class="ix-step">
+              <div class="ix-step-icon" aria-hidden="true">↓</div>
+              <strong>Download</strong>
+              <span>Export Action</span>
+            </li>
+          </ol>
+        </section>
+
+        <!-- Image Generation Workspace -->
+        <article class="demo-block" aria-label="Image Generation Workspace">
+          <header class="demo-block-head">
+            <h3>Image Generation Workspace</h3>
+            <span class="live-pill">Live</span>
+          </header>
+          <div class="ws-stage">
+            <div class="workspace-shell" role="application" aria-label="이미지 생성 워크스페이스 UI">
+              <nav class="ws-sidebar" aria-label="워크스페이스 내비게이션">
+                <div class="ws-logo" aria-hidden="true">N</div>
+                <div class="ws-nav" aria-hidden="true" title="Chat">C</div>
+                <div class="ws-nav active" aria-hidden="true" title="Image">I</div>
+                <div class="ws-nav" aria-hidden="true" title="Auto">A</div>
+                <div class="ws-nav" aria-hidden="true" title="Settings">S</div>
+              </nav>
+              <div class="ws-main">
+                <div class="ws-toolbar">
+                  <div class="ws-tabs">
+                    <span class="ws-tab active">Studio</span>
+                    <span class="ws-tab">Gallery</span>
+                  </div>
+                  <div class="ws-tools">
+                    <span class="ws-tool">16:9</span>
+                    <span class="ws-tool">4K</span>
+                  </div>
+                </div>
+                <div class="ws-body">
+                  <div class="ws-panel">
+                    <div class="ws-img-prompt">"미니멀 SaaS 히어로 배너"</div>
+                    <div class="ws-gen-status">
+                      <span class="ws-gen-dots" aria-hidden="true"><span></span><span></span><span></span></span>
+                      Generating...
+                    </div>
+                    <div class="ws-variant-grid">
+                      <div class="ws-variant a">AI Workspace<br />Variant A</div>
+                      <div class="ws-variant b">SaaS Banner<br />Variant B</div>
+                    </div>
+                  </div>
+                  <aside class="ws-result">
+                    <p class="ws-result-label">Result Panel</p>
+                    <div class="ws-result-thumb dark">nexus-hero<br />banner.png</div>
+                    <div class="ws-result-thumb">Variant B<br />Preview</div>
+                    <div class="ws-download">↓ Download PNG</div>
+                  </aside>
+                </div>
+              </div>
+            </div>
+
+            <aside class="ws-callout ws-callout--workspace" aria-label="Workspace 구조 이유">
+              <span class="ws-callout-zone">Left · Workspace</span>
+              <strong>왜 Workspace 구조?</strong>
+              <p>Image·Chat·Auto를 한 공간에. 모드만 바꾸고 Prompt·결과·히스토리 맥락은 유지.</p>
+            </aside>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         Screen 04 · Workflow & Integration
+         ══════════════════════════════════════ -->
+    <section class="screen" id="screen-04" data-num="04 · Automation">
+      <p class="section-label"><span class="dot" aria-hidden="true"></span> 04 · Automation</p>
+
+      <header class="screen-header">
+        <h1 class="screen-title">Workflow &amp; Integration</h1>
+        <p class="screen-subtitle">Node Pipeline · Hub Topology · 50+ Apps</p>
+      </header>
+
+      <div class="wf-layout">
+
+        <div class="wf-visual-row">
+          <article class="wf-panel" aria-label="Marketing Report Pipeline">
+            <header class="wf-panel-head">
+              <h3>Marketing Report Pipeline</h3>
+              <p>4-step node cards · Active pulse · Connector animation</p>
+            </header>
+            <div class="wf-pipeline">
+              <div class="wf-node">
+                <div class="wf-node-icon" aria-hidden="true">⏰</div>
+                <strong>9:00 AM Trigger</strong>
+                <span>매일 09:00</span>
+              </div>
+              <div class="wf-node">
+                <div class="wf-node-icon" aria-hidden="true">📊</div>
+                <strong>Collect Sheets</strong>
+                <span>Sheets 수집</span>
+              </div>
+              <div class="wf-node">
+                <div class="wf-node-icon" aria-hidden="true">📄</div>
+                <strong>Generate Nexus AI</strong>
+                <span>Nexus AI 생성</span>
+              </div>
+              <div class="wf-node">
+                <div class="wf-node-icon" aria-hidden="true">💬</div>
+                <strong>Send Slack</strong>
+                <span>Slack 전송</span>
+              </div>
+            </div>
+            <p class="wf-status">✓ Auto-run complete · 09:00</p>
+          </article>
+
+          <article class="wf-panel" aria-label="Integration Hub">
+            <header class="wf-panel-head">
+              <h3>Integration Hub</h3>
+              <p>Radial layout · Nexus center · App nodes</p>
+            </header>
+            <div class="wf-hub-visual" aria-hidden="true">
+              <svg viewBox="0 0 300 280" fill="none">
+                <line x1="150" y1="140" x2="150" y2="30" stroke="rgba(0,0,0,0.1)" stroke-width="1"/>
+                <line x1="150" y1="140" x2="250" y2="60" stroke="rgba(0,0,0,0.1)" stroke-width="1"/>
+                <line x1="150" y1="140" x2="270" y2="140" stroke="rgba(0,0,0,0.1)" stroke-width="1"/>
+                <line x1="150" y1="140" x2="250" y2="220" stroke="rgba(0,0,0,0.1)" stroke-width="1"/>
+                <line x1="150" y1="140" x2="150" y2="250" stroke="rgba(0,0,0,0.1)" stroke-width="1"/>
+                <line x1="150" y1="140" x2="50" y2="220" stroke="rgba(0,0,0,0.1)" stroke-width="1"/>
+                <line x1="150" y1="140" x2="30" y2="140" stroke="rgba(0,0,0,0.1)" stroke-width="1"/>
+                <line x1="150" y1="140" x2="50" y2="60" stroke="rgba(0,0,0,0.1)" stroke-width="1"/>
+              </svg>
+              <div class="wf-hub-center">N<small>Hub</small></div>
+              <span class="wf-hub-app" style="top:6%;left:42%">Slack</span>
+              <span class="wf-hub-app" style="top:16%;right:8%">Notion</span>
+              <span class="wf-hub-app" style="top:42%;right:2%">Gmail</span>
+              <span class="wf-hub-app" style="bottom:18%;right:8%">Jira</span>
+              <span class="wf-hub-app" style="bottom:6%;left:42%">Figma</span>
+              <span class="wf-hub-app" style="bottom:18%;left:8%">Drive</span>
+              <span class="wf-hub-app" style="top:42%;left:2%">GitHub</span>
+              <span class="wf-hub-app" style="top:16%;left:8%">Linear</span>
+            </div>
+            <div class="wf-app-chips">
+              <span class="wf-app-chip">Slack</span>
+              <span class="wf-app-chip">Gmail</span>
+              <span class="wf-app-chip">Notion</span>
+              <span class="wf-app-chip">+46</span>
+            </div>
+          </article>
+        </div>
+
+        <div class="wf-spec-row">
+          <article class="wf-spec-card">
+            <h4>Node Pipeline</h4>
+            <ul class="wf-spec-list">
+              <li>4-step cards</li>
+              <li>Active pulse</li>
+              <li>Connector animation</li>
+            </ul>
+          </article>
+          <article class="wf-spec-card">
+            <h4>Hub Topology</h4>
+            <ul class="wf-spec-list">
+              <li>Radial layout</li>
+              <li>Nexus center</li>
+              <li>App nodes</li>
+            </ul>
+          </article>
+          <article class="wf-spec-card">
+            <h4>Status Feedback</h4>
+            <ul class="wf-spec-list">
+              <li>Idle → Running → Complete</li>
+              <li>3-state banner</li>
+            </ul>
+          </article>
+        </div>
+
+        <section class="benefits-block" aria-label="Automation Benefits">
+          <header class="benefits-head">
+            <h3>Automation Benefits</h3>
+            <p>워크플로우 자동화가 제공하는 핵심 가치 · KPI</p>
+          </header>
+          <div class="kpi-grid">
+            <article class="kpi-stat kpi-stat--1">
+              <strong class="kpi-stat-label">Time Saving</strong>
+              <span class="kpi-metric-value">4.2 h</span>
+              <p class="kpi-stat-desc">주간 보고서 자동화로 — 팀이 분석·전략에 집중</p>
+              <span class="kpi-delta">↑ 85% 절감</span>
+            </article>
+            <article class="kpi-stat kpi-stat--2">
+              <strong class="kpi-stat-label">AI Collaboration</strong>
+              <span class="kpi-metric-value">3.1×</span>
+              <p class="kpi-stat-desc">AI와 앱의 연동 — 협업 효율 극대화</p>
+              <span class="kpi-delta">↑ 210% 향상</span>
+            </article>
+            <article class="kpi-stat kpi-stat--3">
+              <strong class="kpi-stat-label">Productivity</strong>
+              <span class="kpi-metric-value">+47%</span>
+              <p class="kpi-stat-desc">자동화로 팀 전체 throughput</p>
+              <span class="kpi-delta">↑ QoQ 성장</span>
+            </article>
+            <article class="kpi-stat kpi-stat--4">
+              <strong class="kpi-stat-label">Reduce Repetitive Tasks</strong>
+              <span class="kpi-metric-value">−72%</span>
+              <p class="kpi-stat-desc">수동 입력·복사 작업 최소화</p>
+              <span class="kpi-delta">↓ 반복 작업</span>
+            </article>
+          </div>
+        </section>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         Screen 05 · Design System
+         ══════════════════════════════════════ -->
+    <section class="screen" id="screen-05" data-num="05 · Design System">
+      <p class="section-label"><span class="dot" aria-hidden="true"></span> 05 · Design Tokens &amp; Components</p>
+
+      <header class="screen-header">
+        <h1 class="screen-title">Design System</h1>
+        <p class="screen-subtitle">Component Thinking · Design Tokens · State Matrix · Responsive IA</p>
+        <p class="screen-lead">컴포넌트를 나열하지 않고 — Variant · State · Token · Rule까지 포함한 시스템 사고로 설계·구현을 맞췄습니다.</p>
+      </header>
+
+      <div class="ds-layout">
+
+        <div class="ds-bento">
+          <article class="ds-panel ds-span-4">
+            <header class="ds-panel-head"><h3>System Overview</h3><span>Foundation</span></header>
+            <p class="ds-panel-desc">8pt Grid · Semantic Tokens · Glass Surface · Premium Motion — Figma-ready 구조로 설계·구현 일치</p>
+            <div class="ds-type-stack">
+              <div class="ds-type-row"><span>Display<em>700</em></span></div>
+              <p class="ds-type-display">툴 전환 없이,<br />한곳에서 끝까지</p>
+              <div class="ds-type-row"><span>Body<em>500</em></span></div>
+              <p class="ds-type-body">Intent → Generation → Iteration → Export</p>
+              <div class="ds-type-row"><span>Data<em>Mono</em></span></div>
+              <p class="ds-type-mono">--grid-unit · --neon · --ease</p>
+            </div>
+          </article>
+          <article class="ds-panel ds-span-8">
+            <header class="ds-panel-head"><h3>Color Tokens</h3><span>Semantic Palette</span></header>
+            <p class="ds-panel-desc">Neon Cyan · Soft Lavender · Neon Mint — Aurora Gradient로 AI Workspace 분위기를 포인트만 강화</p>
+            <div class="ds-colors">
+              <div class="ds-color fg"><div class="ds-color-fill"></div><strong>Foreground</strong><code>#0b1220</code></div>
+              <div class="ds-color neon"><div class="ds-color-fill"></div><strong>Neon Cyan</strong><code>#00d4ff</code></div>
+              <div class="ds-color mint"><div class="ds-color-fill"></div><strong>Neon Mint</strong><code>#3dffa8</code></div>
+              <div class="ds-color lavender"><div class="ds-color-fill"></div><strong>Soft Lavender</strong><code>#b8a4ff</code></div>
+              <div class="ds-color aurora"><div class="ds-color-fill"></div><strong>Aurora</strong><code>gradient</code></div>
+              <div class="ds-color accent"><div class="ds-color-fill"></div><strong>Accent</strong><code>#6366f1</code></div>
+              <div class="ds-color surface"><div class="ds-color-fill"></div><strong>Surface</strong><code>#fafbfc</code></div>
+              <div class="ds-color muted"><div class="ds-color-fill"></div><strong>Muted</strong><code>#64748b</code></div>
+            </div>
+            <div class="ds-token-strip">
+              <code>--neon-soft</code><code>--mint-soft</code><code>--lavender-soft</code><code>--aurora-gradient</code><code>--glass</code>
+            </div>
+          </article>
+        </div>
+
+        <div class="ds-bento">
+          <article class="ds-panel ds-span-12">
+            <header class="ds-panel-head"><h3>Component Thinking</h3><span>Button Spec</span></header>
+            <p class="ds-panel-desc">Variant · State · Size를 토큰으로 정의하고, Figma Component Set과 1:1 대응</p>
+            <div class="ds-btn-matrix" role="grid" aria-label="Button variant and state matrix">
+              <span class="ds-matrix-label"></span>
+              <span class="ds-matrix-col">Default</span>
+              <span class="ds-matrix-col">Hover</span>
+              <span class="ds-matrix-col">Focus</span>
+              <span class="ds-matrix-label">Primary</span>
+              <span class="ds-btn primary">Primary</span>
+              <span class="ds-btn primary is-hover">Primary</span>
+              <span class="ds-btn primary is-focus">Primary</span>
+              <span class="ds-matrix-label">Neon</span>
+              <span class="ds-btn neon">Neon</span>
+              <span class="ds-btn neon is-hover">Neon</span>
+              <span class="ds-btn neon is-focus">Neon</span>
+              <span class="ds-matrix-label">Ghost</span>
+              <span class="ds-btn ghost">Ghost</span>
+              <span class="ds-btn ghost is-hover">Ghost</span>
+              <span class="ds-btn ghost is-focus">Ghost</span>
+            </div>
+            <div class="ds-size-row">
+              <span class="ds-btn primary">Small · 28px</span>
+              <span class="ds-btn primary lg">Medium · 40px</span>
+              <span class="ds-btn primary lg">Large · 44px</span>
+            </div>
+            <div class="ds-rules">
+              <div class="ds-rule"><strong>CTA Hierarchy</strong><span>페이지당 Primary 1개. Neon은 강조 액션, Ghost는 보조.</span></div>
+              <div class="ds-rule"><strong>Touch Target</strong><span>최소 44px 높이(lg). 모바일 CTA는 lg 기본.</span></div>
+              <div class="ds-rule"><strong>Focus Ring</strong><span>키보드 탐색 시 outline 2px. Hover와 분리.</span></div>
+            </div>
+            <div class="ds-token-strip" style="margin-top:var(--space-3)">
+              <code>variant: primary | neon | ghost</code><code>state: default | hover | focus | disabled</code><code>size: sm(28) | md(36) | lg(44)</code>
+            </div>
+          </article>
+        </div>
+
+        <div class="ds-bento">
+          <article class="ds-panel ds-span-5">
+            <header class="ds-panel-head"><h3>Typography Scale</h3><span>Type</span></header>
+            <ul class="ds-type-list">
+              <li><span class="ds-ts-name">Display</span><span style="font-size:var(--fs-sm);font-weight:800">Nexus AI</span><span class="ds-ts-meta">36–52 / 800</span></li>
+              <li><span class="ds-ts-name">Title</span><span style="font-size:var(--fs-sm);font-weight:700">Section Title</span><span class="ds-ts-meta">28–38 / 700</span></li>
+              <li><span class="ds-ts-name">Body</span><span style="font-size:var(--fs-sm);color:var(--muted)">Lead copy</span><span class="ds-ts-meta">15–17 / 500</span></li>
+              <li><span class="ds-ts-name">Label</span><span style="font-size:var(--fs-sm);font-weight:600">Kicker</span><span class="ds-ts-meta">11–13 / 600</span></li>
+              <li><span class="ds-ts-name">Mono</span><span style="font-family:var(--mono);font-size:var(--fs-2xs)">--token</span><span class="ds-ts-meta">10 / 500</span></li>
+            </ul>
+          </article>
+          <article class="ds-panel ds-span-3">
+            <header class="ds-panel-head"><h3>Spacing</h3><span>8pt Grid</span></header>
+            <div class="ds-spacing-row">
+              <div class="ds-spacing-item"><div class="ds-spacing-bar" style="height:8px"></div><span>8</span></div>
+              <div class="ds-spacing-item"><div class="ds-spacing-bar" style="height:16px"></div><span>16</span></div>
+              <div class="ds-spacing-item"><div class="ds-spacing-bar" style="height:24px"></div><span>24</span></div>
+              <div class="ds-spacing-item"><div class="ds-spacing-bar" style="height:32px"></div><span>32</span></div>
+            </div>
+            <p class="ds-spacing-note"><code>--grid-unit</code> 배수 · Figma Auto Layout 1:1</p>
+          </article>
+          <article class="ds-panel ds-span-4">
+            <header class="ds-panel-head"><h3>Radius · Shadow</h3><span>Elevation</span></header>
+            <div class="ds-radius-row">
+              <div><div class="ds-radius-swatch" style="border-radius:var(--space-2)"></div><code class="ds-ts-meta">--r-sm Input</code></div>
+              <div><div class="ds-radius-swatch" style="border-radius:var(--space-4)"></div><code class="ds-ts-meta">--r-md Card</code></div>
+            </div>
+            <div class="ds-shadow-row" style="margin-top:var(--space-3)">
+              <div><div class="ds-shadow-swatch" style="box-shadow:var(--shadow-card)"></div><code class="ds-ts-meta">L0 sm</code></div>
+              <div><div class="ds-shadow-swatch" style="box-shadow:var(--shadow-hover)"></div><code class="ds-ts-meta">L2 float</code></div>
+            </div>
+          </article>
+        </div>
+
+        <div class="ds-bento">
+          <article class="ds-panel ds-span-7">
+            <header class="ds-panel-head"><h3>Components</h3><span>Input · Chip · Card</span></header>
+            <p class="ds-panel-desc">Button과 동일한 토큰·State 규칙을 Input · Chip · Card에도 적용</p>
+            <div class="ds-comp-grid">
+              <div class="ds-comp-cell">
+                <label>Input · States</label>
+                <input class="ds-input" type="text" placeholder="Default" readonly />
+                <input class="ds-input is-focus" type="text" value="Focus state" readonly style="margin-top:var(--space-2)" />
+              </div>
+              <div class="ds-comp-cell">
+                <label>Chip · Variant</label>
+                <div class="ds-chip-row">
+                  <span class="ds-chip is-active">Active</span>
+                  <span class="ds-chip">Default</span>
+                  <span class="ds-chip" style="opacity:0.45">Disabled</span>
+                </div>
+              </div>
+              <div class="ds-comp-cell">
+                <label>Card · Elevation</label>
+                <div class="ds-card-live"><strong>L1 · shadow-card</strong><span>hover → translateY(-2px) + shadow-md</span></div>
+              </div>
+              <div class="ds-comp-cell">
+                <label>Component Rule</label>
+                <p style="font-size:var(--fs-sm);color:var(--muted);line-height:1.55;margin:0">모든 인터랙티브 요소는 <strong style="color:var(--fg)">default · hover · focus · disabled</strong> 4-state 필수. 토큰 없이 hex 직접 사용 금지.</p>
+              </div>
+            </div>
+          </article>
+          <article class="ds-panel ds-span-5">
+            <header class="ds-panel-head"><h3>Grid System</h3><span>Layout</span></header>
+            <p class="ds-panel-desc">12-col bento · 8pt gap — 섹션·카드 배치의 기준 그리드</p>
+            <div class="ds-grid-viz"><div class="ds-grid-blocks"><div class="ds-grid-block"></div><div class="ds-grid-block"></div><div class="ds-grid-block"></div><div class="ds-grid-block"></div><div class="ds-grid-block"></div></div></div>
+            <div class="ds-rule" style="margin-top:var(--space-3)"><strong>Color Token Rule</strong><span>Semantic only — <code>--fg</code>, <code>--neon</code>, <code>--accent</code>. Raw hex는 토큰 정의에만.</span></div>
+          </article>
+        </div>
+
+        <div class="ds-bento">
+          <article class="ds-panel ds-span-12">
+            <header class="ds-panel-head"><h3>Motion Principles</h3><span>Premium Ease</span></header>
+            <p class="ds-panel-desc">의미 있는 움직임만 — Reveal · Hover · Progress. reduced-motion 대응 포함</p>
+            <div class="ds-motion-grid">
+              <div class="ds-motion-card ease-out"><h4>Premium Ease</h4><p>Scroll Reveal · Section Transition</p><div class="ds-motion-track"><div class="ds-motion-dot"></div></div><div class="ds-bezier"><code>cubic-bezier(0.16, 1, 0.3, 1)</code></div></div>
+              <div class="ds-motion-card spring"><h4>Spring Feel</h4><p>CTA · Magnetic · Micro-interaction</p><div class="ds-motion-track"><div class="ds-motion-dot"></div></div><div class="ds-bezier"><code>cubic-bezier(0.34, 1.56, 0.64, 1)</code></div></div>
+              <div class="ds-motion-card linear"><h4>Linear Flow</h4><p>Progress · Pipeline · Status</p><div class="ds-motion-track"><div class="ds-motion-dot"></div></div><div class="ds-bezier"><code>linear · 2.4s loop</code></div></div>
+            </div>
+            <div class="ds-token-strip" style="margin-top:var(--space-3)"><code>--ease</code><code>--premium-ease-out</code><code>prefers-reduced-motion</code></div>
+          </article>
+        </div>
+
+        <div class="ds-bento">
+          <article class="ds-panel ds-span-12">
+            <header class="ds-panel-head"><h3>Responsive Layout</h3><span>Desktop · Tablet · Mobile</span></header>
+            <p class="ds-panel-desc">크기만 줄이는 게 아니라 — IA와 그리드 구조가 breakpoint마다 바뀌도록 설계했습니다.</p>
+            <div class="ds-resp-grid">
+              <article class="ds-resp-card">
+                <header><strong>Desktop</strong><span>≥1024px</span></header>
+                <div class="ds-wireframe is-desktop" aria-hidden="true"><div class="rw-nav"></div><div class="rw-toolbar"></div><div class="rw-main"></div><div class="rw-result"></div></div>
+                <ul><li>3-Zone split: Sidebar · Chat/Canvas · Result Panel</li><li>Hero 2-col: copy + mockup side-by-side</li><li>Result Panel 항상 노출</li></ul>
+              </article>
+              <article class="ds-resp-card">
+                <header><strong>Tablet</strong><span>768–1024px</span></header>
+                <div class="ds-wireframe is-tablet" aria-hidden="true"><div class="rw-toolbar"></div><div class="rw-nav"></div><div class="rw-main"></div><div class="rw-result"></div></div>
+                <ul><li>Sidebar → 상단 Icon Nav로 축소</li><li>Canvas + Result 2-col 유지</li><li>Bento · KPI 그리드 2-col</li></ul>
+              </article>
+              <article class="ds-resp-card">
+                <header><strong>Mobile</strong><span>&lt;768px</span></header>
+                <div class="ds-wireframe is-mobile" aria-hidden="true"><div class="rw-toolbar"></div><div class="rw-nav"></div><div class="rw-main"></div><div class="rw-result"></div><div class="rw-prompt"></div></div>
+                <ul><li>Single column stack</li><li>Prompt bar 하단 고정</li><li>Nav chapter rail 숨김</li></ul>
+              </article>
+            </div>
+            <div class="ds-bp-pills"><span class="ds-bp-pill">&lt;640 · sm</span><span class="ds-bp-pill">768 · md</span><span class="ds-bp-pill is-active">1024 · lg</span><span class="ds-bp-pill">1280+ · xl</span></div>
+          </article>
+        </div>
+
+        <div class="ds-bento">
+          <article class="ds-panel ds-span-12">
+            <header class="ds-panel-head"><h3>Interaction Examples</h3><span>Live Patterns</span></header>
+            <p class="ds-panel-desc">랜딩 페이지에서 실제 사용된 인터랙션 패턴 — Hover Lift · Neon Glow · Scroll Reveal · Reduced Motion</p>
+            <div class="ds-ix-grid">
+              <article class="ds-ix-card">
+                <div class="ds-ix-art" aria-hidden="true">
+                  <svg viewBox="0 0 80 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="18" y="28" width="36" height="24" rx="6" fill="rgba(0,212,255,0.08)" stroke="#00d4ff" stroke-width="1.5"/>
+                    <rect x="22" y="20" width="36" height="24" rx="6" fill="#fff" stroke="#0b1220" stroke-width="1.5"/>
+                    <path d="M14 52 L22 44 L18 44 L18 38 L26 38 L26 44 L22 44" stroke="#6366f1" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
+                    <circle cx="58" cy="24" r="8" stroke="#00d4ff" stroke-width="1" stroke-dasharray="2 2" fill="none"/>
+                    <path d="M58 16v16M50 24h16" stroke="#00d4ff" stroke-width="1" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <strong>Hero UX</strong>
+                <span>Focus point UX<br />Card · translateY(-2px)</span>
+              </article>
+              <article class="ds-ix-card">
+                <div class="ds-ix-art" aria-hidden="true">
+                  <svg viewBox="0 0 80 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="40" cy="36" r="22" stroke="rgba(0,212,255,0.35)" stroke-width="1.5" fill="none"/>
+                    <circle cx="40" cy="36" r="14" stroke="#00d4ff" stroke-width="1.5" fill="none"/>
+                    <rect x="28" y="28" width="24" height="16" rx="4" fill="#0b1220"/>
+                    <path d="M34 36h12M40 30v12" stroke="#00d4ff" stroke-width="1.2" stroke-linecap="round"/>
+                    <path d="M16 20l4 2M64 20l-4 2M16 52l4-2M64 52l-4-2" stroke="#b8a4ff" stroke-width="1" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <strong>Next-Gen</strong>
+                <span>Modern UI / GPT<br />Active tab · glow ring</span>
+              </article>
+              <article class="ds-ix-card">
+                <div class="ds-ix-art" aria-hidden="true">
+                  <svg viewBox="0 0 80 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="22" y="12" width="36" height="48" rx="6" fill="#fff" stroke="#0b1220" stroke-width="1.5"/>
+                    <rect x="26" y="18" width="28" height="6" rx="2" fill="rgba(0,212,255,0.15)"/>
+                    <rect x="26" y="28" width="28" height="6" rx="2" fill="rgba(184,164,255,0.2)" opacity="0.8"/>
+                    <rect x="26" y="38" width="28" height="6" rx="2" fill="#0b1220" opacity="0.85"/>
+                    <rect x="26" y="48" width="20" height="6" rx="2" fill="rgba(61,255,168,0.25)" opacity="0.7"/>
+                    <path d="M54 8v8M50 12h8" stroke="#6366f1" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M40 58v6M36 62h8" stroke="#00d4ff" stroke-width="1.2" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <strong>Scroll Reveal</strong>
+                <span>Smooth movement<br />opacity + translateY</span>
+              </article>
+              <article class="ds-ix-card">
+                <div class="ds-ix-art" aria-hidden="true">
+                  <svg viewBox="0 0 80 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="40" cy="36" r="20" stroke="#0b1220" stroke-width="1.5" fill="rgba(184,164,255,0.12)"/>
+                    <path d="M28 44c4-8 10-12 12-12s8 4 12 12" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                    <path d="M32 32c2-2 4-2 6 0M42 32c2-2 4-2 6 0" stroke="#0b1220" stroke-width="1.2" stroke-linecap="round"/>
+                    <path d="M24 48 L56 24" stroke="#3dffa8" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M20 36h8M52 36h8" stroke="#00d4ff" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <strong>Reduced Motion</strong>
+                <span>Minimal impact design<br />prefers-reduced-motion</span>
+              </article>
+            </div>
+            <div class="ds-ix-demo">
+              <button class="ds-ix-magnetic" type="button">Magnetic CTA</button>
+              <div class="ds-ix-reveal">Scroll Reveal</div>
+              <div class="ds-ix-ring" aria-hidden="true"></div>
+            </div>
+            <div class="ds-token-strip">
+              <code>Reveal.tsx</code><code>Magnetic.tsx</code><code>Parallax.tsx</code><code>ScrollFade.tsx</code><code>usePrefersReducedMotion</code>
+            </div>
+          </article>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         Screen 06 · Outcome & Learnings
+         ══════════════════════════════════════ -->
+    <section class="screen" id="screen-06" data-num="06 · Conclusion">
+      <p class="section-label"><span class="dot" aria-hidden="true"></span> 06 · Conclusion</p>
+
+      <header class="screen-header">
+        <h1 class="screen-title">Outcome &amp; Learnings</h1>
+        <p class="screen-subtitle">Project Result · Interaction · Reflection</p>
+      </header>
+
+      <div class="oc-layout">
+
+        <section aria-labelledby="oc-outcome-label">
+          <p class="oc-block-label" id="oc-outcome-label">Project Outcome</p>
+          <div class="oc-outcome-grid">
+            <article class="oc-outcome-card">
+              <div class="oc-outcome-icon" aria-hidden="true">
+                <svg viewBox="0 0 16 16" fill="none"><path d="M8 1l1.2 3.6L13 5.8l-2.8 2.1L11 12 8 10.2 5 12l.8-4.1L3 5.8l3.8-1.2L8 1z" stroke="#6366f1" stroke-width="1.2" stroke-linejoin="round"/><path d="M12 2l.6 1.8L14.4 4l-1.4 1 .4 1.8L12 6.2 10.6 6.8l.4-1.8L9.6 4l1.8-.2L12 2z" fill="#f59e0b" fill-opacity="0.85"/></svg>
+              </div>
+              <strong>AI First Experience</strong>
+              <p>Hero Live Demo · Prompt → Result</p>
+              <p>시퀀스로 AI 가치를 첫 화면에서 전달</p>
+            </article>
+            <article class="oc-outcome-card">
+              <div class="oc-outcome-icon" aria-hidden="true">
+                <svg viewBox="0 0 16 16" fill="none"><rect x="4.5" y="1.5" width="7" height="13" rx="1.5" stroke="#0b1220" stroke-width="1.2"/><circle cx="8" cy="12.5" r="0.75" fill="#0b1220"/></svg>
+              </div>
+              <strong>Responsive Experience</strong>
+              <p>Mobile First UI / GPT-Style Workspace</p>
+              <p>Desktop 3-Zone · Mobile Stack</p>
+            </article>
+            <article class="oc-outcome-card">
+              <div class="oc-outcome-icon" aria-hidden="true">
+                <svg viewBox="0 0 16 16" fill="none"><path d="M6 4.5h4v3H6v-3zM3 8.5h4v3H3v-3zM9 8.5h4v3H9v-3z" stroke="#059669" stroke-width="1.2" stroke-linejoin="round"/></svg>
+              </div>
+              <strong>Design System Structure</strong>
+              <p>Token · Component · State</p>
+              <p>System Thinking → Figma-Ready Structure</p>
+            </article>
+            <article class="oc-outcome-card">
+              <div class="oc-outcome-icon" aria-hidden="true">
+                <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="#64748b" stroke-width="1.2"/><circle cx="8" cy="8" r="2.5" stroke="#64748b" stroke-width="1.2"/></svg>
+              </div>
+              <strong>Interaction System</strong>
+              <p>Scroll Animation · Interaction · Motion</p>
+              <p>Premium Motion Language (Reduced Motion 대응)</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="oc-learned" aria-labelledby="oc-learned-title">
+          <h3 id="oc-learned-title">What I Learned</h3>
+          <ul class="oc-learned-list">
+            <li>복잡한 AI 기능은 '기능 나열'이 아닌 '하나의 여정'으로 설계해야 사용자가 올인원 가치를 이해한다.</li>
+            <li>정적 랜딩도 typeText · progress 시퀀스로 '살아있는 제품' 느낌을 줄 수 있으며, 이것이 B2B 전환에 효과적이다.</li>
+            <li>생성 이후의 수정 경험까지 고려해야 완성도 높은 AI 제품이 됩니다. Result Panel, Variant 비교, Export까지 한 화면에 두는 것이 핵심 설계 결정이었습니다.</li>
+            <li>AI UX에서는 기능보다 반복 수정 경험이 더 중요하다는 점을 배웠습니다. 생성만 잘 되는 것보다, 같은 맥락에서 고치고 비교하는 루프가 제품 가치를 결정합니다.</li>
+          </ul>
+        </section>
+
+        <section class="oc-summary" aria-labelledby="oc-summary-title">
+          <h3 id="oc-summary-title">Project Summary</h3>
+          <p>사용자 Pain Point 분석 → Workspace UX 설계 → Design Decision → 구현</p>
+          <p><strong>화면을 만든 것이 아니라, AI 작업 흐름을 재설계한 프로젝트</strong></p>
+        </section>
+
+      </div>
+    </section>
+
+  </main>
+</body>
+</html>
