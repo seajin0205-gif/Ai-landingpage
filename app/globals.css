@@ -1000,7 +1000,7 @@ body {
   background-size: 100% 100%;
   -webkit-background-clip: text;
   background-clip: text;
-  -webkit-text-stroke: 0.85px rgba(70, 108, 132, 0.42);
+  -webkit-text-stroke: 0.85px rgba(70, 108, 132, 0.42); /* clear glass rim */
 }
 
 /* ── Buttons ── */
