@@ -895,7 +895,7 @@ body {
   font-style: normal;
   font-weight: 700;
   font-size: clamp(1.9rem, 3.8vw + 0.62rem, 3.2rem);
-  line-height: 1.22;
+  line-height: 1.28;
   letter-spacing: -0.01em;
   word-break: keep-all;
   overflow-wrap: break-word;
@@ -904,7 +904,7 @@ body {
 @media (min-width: 1024px) {
   .hero-headline {
     font-size: clamp(2.2rem, 2.15vw + 1.05rem, 3.35rem);
-    line-height: 1.2;
+    line-height: 1.26;
     max-width: 13em;
     letter-spacing: -0.012em;
   }
@@ -943,7 +943,39 @@ body {
   }
 }
 
+.headline-glass-extrude {
+  position: absolute;
+  left: 0.055em;
+  top: 0.07em;
+  z-index: 0;
+  color: #123462;
+  -webkit-text-fill-color: #123462;
+  pointer-events: none;
+  user-select: none;
+  text-shadow:
+    0.35px 0.35px 0 #1a457a,
+    0.7px 0.7px 0 #163c6e,
+    1.05px 1.05px 0 #123462,
+    1.4px 1.4px 0 #0e2c56,
+    1.75px 1.75px 0 #0a244a,
+    2.2px 3.2px 8px rgba(16, 40, 80, 0.16);
+}
+
+.hero-headline-accent .headline-glass-extrude {
+  color: #1c2a72;
+  -webkit-text-fill-color: #1c2a72;
+  text-shadow:
+    0.35px 0.35px 0 #263896,
+    0.7px 0.7px 0 #223284,
+    1.05px 1.05px 0 #1c2a72,
+    1.4px 1.4px 0 #162260,
+    1.75px 1.75px 0 #121a52,
+    2.2px 3.2px 8px rgba(40, 32, 96, 0.18);
+}
+
 .headline-glass-face {
+  position: relative;
+  z-index: 1;
   display: inline-block;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -951,6 +983,8 @@ body {
   background-clip: text;
   -webkit-text-fill-color: transparent;
   paint-order: stroke fill;
+  text-shadow: none;
+  filter: none;
 }
 
 .hero-headline .headline-glass-face.text-gradient {
@@ -983,14 +1017,6 @@ body {
       #4f7bff 100%
     );
   -webkit-text-stroke: 1px rgba(255, 255, 255, 0.72);
-  text-shadow:
-    0.45px 0.45px 0 #1e4d86,
-    0.9px 0.9px 0 #1a457a,
-    1.35px 1.35px 0 #163c6e,
-    1.8px 1.8px 0 #123462,
-    2.25px 2.25px 0 #0e2c56,
-    2.7px 2.7px 0 #0a244a,
-    3.4px 5px 10px rgba(16, 40, 80, 0.18);
 }
 
 .hero-headline .headline-glass-face.text-gradient-accent {
@@ -1023,14 +1049,6 @@ body {
       #7c6bff 100%
     );
   -webkit-text-stroke: 1px rgba(255, 255, 255, 0.76);
-  text-shadow:
-    0.45px 0.45px 0 #2a3ea8,
-    0.9px 0.9px 0 #263896,
-    1.35px 1.35px 0 #223284,
-    1.8px 1.8px 0 #1c2a72,
-    2.25px 2.25px 0 #162260,
-    2.7px 2.7px 0 #121a52,
-    3.4px 5px 10px rgba(40, 32, 96, 0.2);
 }
 
 /* ── Buttons ── */

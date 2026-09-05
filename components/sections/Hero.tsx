@@ -23,6 +23,9 @@ function HeadlineLine({
 }) {
   return (
     <span className={`headline-gradient-line${accent ? " hero-headline-accent" : ""}`}>
+      <span className="headline-glass-extrude" aria-hidden="true">
+        {children}
+      </span>
       <span
         className={
           accent
