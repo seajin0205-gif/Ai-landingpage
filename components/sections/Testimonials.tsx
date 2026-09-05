@@ -66,7 +66,7 @@ export function Testimonials() {
         <div className="testimonials-section-header max-w-2xl">
           <NarrativeStep step="05" label="Why Nexus" />
           <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:leading-tight">
-            왜 좋은지
+            Why it works
           </h2>
           <p className="mt-6 text-base leading-[1.8] text-muted">
             실제 팀의 생산성 변화와 검증된 성과로 Nexus의 가치를 확인하세요.

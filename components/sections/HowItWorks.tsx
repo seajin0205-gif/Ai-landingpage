@@ -44,7 +44,7 @@ export function HowItWorks() {
         <Reveal variant="fade-up">
           <NarrativeStep step="04" label="How It Works" />
           <h2 className="mt-2 text-center text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:text-left">
-            어떻게 사용하는지
+            How to use it
           </h2>
           <p className="mx-auto mt-4 max-w-lg text-center text-base leading-[1.75] text-muted lg:mx-0 lg:text-left">
             대화로 시작해, 생성하고, 자동화까지 — 네 단계면 충분합니다.

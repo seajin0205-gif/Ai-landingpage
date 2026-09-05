@@ -56,7 +56,7 @@ export function Features() {
         <div className="features-section-header max-w-2xl">
           <NarrativeStep step="03" label="Capabilities" />
           <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:leading-tight">
-            무엇을 할 수 있는지
+            What you can do
           </h2>
           <p className="mt-6 text-base leading-[1.8] text-muted">
             챗봇 · 이미지 · 자동화 — 세 가지 핵심 역량이 하나의 플랫폼에 있습니다.

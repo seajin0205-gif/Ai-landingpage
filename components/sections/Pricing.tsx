@@ -64,7 +64,7 @@ export function Pricing() {
         <Reveal variant="fade-up">
           <NarrativeStep step="06" label="Get Started" />
           <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:leading-tight">
-            지금 시작하세요
+            Start now
           </h2>
           <p className="mt-4 text-base leading-relaxed text-muted">
             14일 무료 체험 · 신용카드 불필요. 팀 규모에 맞는 플랜을 선택하세요.

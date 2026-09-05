@@ -16,7 +16,7 @@ export function WorkspaceDemo() {
             <div className="max-w-xl">
               <NarrativeStep step="02" label="Real Product" />
               <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:leading-tight">
-                실제 Nexus 워크스페이스
+                The real Nexus workspace
               </h2>
             </div>
             <p className="max-w-md text-base leading-relaxed text-muted lg:text-right">
