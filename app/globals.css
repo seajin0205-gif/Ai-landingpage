@@ -921,6 +921,7 @@ body {
   word-break: keep-all;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
+  isolation: isolate;
 }
 
 .headline-gradient-line + .headline-gradient-line {
@@ -941,10 +942,6 @@ body {
   .hero-headline-accent + .hero-headline-accent {
     margin-top: 0.04rem;
   }
-}
-
-.headline-gradient-line {
-  isolation: isolate;
 }
 
 .headline-glass-extrude {
@@ -979,8 +976,6 @@ body {
   display: inline-block;
   color: transparent;
   -webkit-text-fill-color: transparent;
-  -webkit-background-clip: text;
-  background-clip: text;
   paint-order: stroke fill;
   text-shadow: none;
   filter: none;
@@ -1013,6 +1008,8 @@ body {
     );
   background-repeat: no-repeat;
   background-size: 100% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-stroke: 1px rgba(255, 255, 255, 0.7);
 }
 
@@ -1046,6 +1043,8 @@ body {
     );
   background-repeat: no-repeat;
   background-size: 100% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-stroke: 1px rgba(255, 255, 255, 0.74);
 }
 
