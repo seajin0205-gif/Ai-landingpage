@@ -35,7 +35,7 @@ const plans = [
       "우선 지원",
     ],
     highlighted: true,
-    ctaHref: "#cta",
+    ctaHref: "mailto:sales@nexus.ai",
     ctaLabel: "Pro 무료 체험",
   },
   {
