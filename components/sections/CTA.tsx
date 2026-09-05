@@ -47,7 +47,7 @@ export function CTA() {
                 무료 체험 시작하기
               </Button>
               <Button
-                href="mailto:sales@nexus.ai"
+                href="#pricing"
                 variant="secondary"
                 size="lg"
                 className="cta-secondary-btn"
