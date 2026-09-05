@@ -920,6 +920,8 @@ body {
   word-break: keep-all;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
+  filter: drop-shadow(0 1px 1px rgba(12, 26, 46, 0.08))
+    drop-shadow(0 6px 16px rgba(12, 26, 46, 0.1));
 }
 
 .headline-gradient-line + .headline-gradient-line {
@@ -950,6 +952,8 @@ body {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 1px 1px rgba(79, 107, 255, 0.14))
+    drop-shadow(0 6px 18px rgba(0, 229, 255, 0.2));
 }
 
 /* ── Buttons ── */
