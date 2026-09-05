@@ -32,7 +32,7 @@ const testimonials: {
   {
     quote:
       "챗봇·이미지·자동화가 하나의 플랫폼에 있어서 도구를 오가며 작업할 필요가 없어졌습니다. 도입 후 2주 만에 효과를 느꼈어요.",
-    name: "한유진",
+    name: "이채원",
     role: "프로덕트 리드, Arcline",
     avatar: "product",
     rating: 3,
