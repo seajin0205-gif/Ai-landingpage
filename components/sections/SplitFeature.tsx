@@ -38,7 +38,7 @@ function CollabVisual() {
   const members = [
     { name: "김서연", role: "마케팅", color: "from-neon-cyan/30 to-accent-violet/20" },
     { name: "박준혁", role: "운영", color: "from-accent-violet/30 to-accent-lime/20" },
-    { name: "이지은", role: "프로덕트", color: "from-accent-lime/30 to-neon-cyan/20" },
+    { name: "이채원", role: "프로덕트", color: "from-accent-lime/30 to-neon-cyan/20" },
   ];
 
   return (
