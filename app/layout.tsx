@@ -30,31 +30,10 @@ export default function RootLayout({
     >
       <head>
         <link
-          rel="preload"
-          as="style"
-          crossOrigin="anonymous"
-          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
-        />
-        <link
-          id="pretendard-font"
           rel="stylesheet"
           crossOrigin="anonymous"
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
-          media="print"
         />
-        <script
-          dangerouslySetInnerHTML={{
-            __html:
-              "(()=>{const l=document.getElementById('pretendard-font');if(!l)return;const a=()=>{l.media='all'};l.addEventListener('load',a);if(l.sheet)a();})();",
-          }}
-        />
-        <noscript>
-          <link
-            rel="stylesheet"
-            crossOrigin="anonymous"
-            href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
-          />
-        </noscript>
       </head>
       <body className="min-h-full flex flex-col bg-background text-foreground">
         {children}
