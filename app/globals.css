@@ -3157,20 +3157,20 @@ body {
   max-width: 28rem;
   list-style: none;
   padding: 0;
-  margin: 1.25rem 0 0;
+  margin: 0.85rem 0 0;
 }
 
 @media (min-width: 640px) {
   .hero-impact-strip {
     gap: 12px;
     max-width: 32rem;
-    margin-top: 1.5rem;
+    margin-top: 1rem;
   }
 }
 
 @media (min-width: 1024px) {
   .hero-impact-strip {
-    margin-top: 1.75rem;
+    margin-top: 1.15rem;
   }
 }
 
