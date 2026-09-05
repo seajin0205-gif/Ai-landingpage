@@ -966,67 +966,64 @@ body {
   background-color: #0c1a2e;
   background-image:
     linear-gradient(
-      115deg,
-      rgba(255, 255, 255, 0.82) 0%,
-      rgba(255, 255, 255, 0.18) 14%,
-      transparent 28%
+      112deg,
+      rgba(255, 255, 255, 0.55) 0%,
+      rgba(210, 232, 248, 0.16) 12%,
+      transparent 24%
     ),
     linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0.95) 0%,
-      rgba(232, 244, 255, 0.42) 12%,
-      transparent 28%
+      rgba(255, 255, 255, 0.42) 0%,
+      rgba(190, 220, 240, 0.12) 10%,
+      transparent 22%
     ),
     linear-gradient(
       180deg,
-      transparent 62%,
-      rgba(255, 255, 255, 0.16) 82%,
+      transparent 72%,
+      rgba(255, 255, 255, 0.14) 88%,
       transparent 100%
     ),
     linear-gradient(
-      168deg,
-      #f7fbff 0%,
-      #c5dbeb 14%,
-      #7ea0bc 30%,
-      #3a5f82 48%,
-      #13253c 70%,
-      #0c1a2e 86%,
-      #245078 100%
+      172deg,
+      #4d6f8d 0%,
+      #2a4d6c 22%,
+      #16324f 48%,
+      #0c1a2e 78%,
+      #1a4568 100%
     );
-  -webkit-text-stroke: 0.95px rgba(255, 255, 255, 0.5);
+  -webkit-text-stroke: 0.9px rgba(255, 255, 255, 0.48);
 }
 
 .hero-headline .headline-glass-face.text-gradient-accent {
   background-color: #4f6bff;
   background-image:
     linear-gradient(
-      115deg,
-      rgba(255, 255, 255, 0.9) 0%,
-      rgba(200, 255, 255, 0.28) 16%,
-      transparent 30%
+      112deg,
+      rgba(255, 255, 255, 0.62) 0%,
+      rgba(180, 255, 255, 0.2) 14%,
+      transparent 26%
     ),
     linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0.96) 0%,
-      rgba(180, 255, 255, 0.4) 12%,
-      transparent 30%
+      rgba(255, 255, 255, 0.5) 0%,
+      rgba(160, 245, 255, 0.16) 12%,
+      transparent 24%
     ),
     linear-gradient(
       180deg,
-      transparent 60%,
-      rgba(255, 255, 255, 0.2) 80%,
+      transparent 70%,
+      rgba(255, 255, 255, 0.18) 86%,
       transparent 100%
     ),
     linear-gradient(
       162deg,
-      #ffffff 0%,
-      #b8ffff 10%,
-      #00e5ff 30%,
-      #4f6bff 60%,
-      #5a38b8 84%,
-      #9a8cff 100%
+      #7af4ff 0%,
+      #00e5ff 28%,
+      #4f6bff 62%,
+      #6a4fd6 86%,
+      #8b7cff 100%
     );
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.56);
+  -webkit-text-stroke: 0.95px rgba(255, 255, 255, 0.52);
 }
 
 /* ── Buttons ── */
