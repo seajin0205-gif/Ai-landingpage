@@ -920,11 +920,6 @@ body {
   word-break: keep-all;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
-  filter:
-    drop-shadow(0 1px 0 rgba(255, 255, 255, 0.55))
-    drop-shadow(0 1px 1px rgba(12, 26, 46, 0.28))
-    drop-shadow(0 4px 8px rgba(12, 26, 46, 0.18))
-    drop-shadow(0 12px 22px rgba(12, 26, 46, 0.16));
 }
 
 .headline-gradient-line + .headline-gradient-line {
@@ -947,20 +942,34 @@ body {
   }
 }
 
+.hero-headline .text-gradient {
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.94) 0%,
+    rgba(214, 230, 246, 0.55) 14%,
+    #1a3352 42%,
+    #0c1a2e 72%,
+    #16324f 100%
+  );
+  -webkit-text-stroke: 0.6px rgba(255, 255, 255, 0.28);
+}
+
 .hero-headline-accent {
   position: relative;
-  background-image: linear-gradient(135deg, #00e5ff 0%, #4f6bff 42%, #7c6bff 100%);
+  background-image: linear-gradient(
+    165deg,
+    rgba(255, 255, 255, 0.96) 0%,
+    #b8fbff 12%,
+    #00e5ff 34%,
+    #4f6bff 68%,
+    #7c6bff 100%
+  );
   background-size: 100% 100%;
   background-position: 0% 50%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter:
-    drop-shadow(0 1px 0 rgba(255, 255, 255, 0.45))
-    drop-shadow(0 1px 2px rgba(0, 180, 255, 0.45))
-    drop-shadow(0 5px 10px rgba(79, 107, 255, 0.32))
-    drop-shadow(0 14px 28px rgba(0, 229, 255, 0.34))
-    drop-shadow(0 22px 40px rgba(124, 107, 255, 0.22));
+  -webkit-text-stroke: 0.6px rgba(255, 255, 255, 0.38);
 }
 
 /* ── Buttons ── */
