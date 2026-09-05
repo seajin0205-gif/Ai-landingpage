@@ -55,7 +55,7 @@ export function Hero() {
 
             <Reveal variant="fade-up" delay={80}>
               <h1 className="headline-display hero-headline mx-auto mt-8 max-w-full lg:mx-0">
-                <span className="headline-gradient-line text-gradient">툴을 옮길 필요 없이,</span>
+                <span className="headline-gradient-line text-gradient">화면 전환 없이,</span>
                 <span className="headline-gradient-line text-gradient">대화·이미지·자동화를</span>
                 <span className="headline-gradient-line hero-headline-accent text-gradient-accent">
                   AI Workspace에서
