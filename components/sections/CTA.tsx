@@ -30,10 +30,10 @@ export function CTA() {
               className="cta-headline mt-10 text-foreground"
             >
               <span className="cta-headline-line text-gradient">
-                업무의 새로운 패러다임을
+                한 단계 더 높이,
               </span>
               <span className="cta-headline-line cta-headline-accent text-neon-cyan">
-                열어보세요.
+                지금 도전하세요.
               </span>
             </h2>
 
