@@ -1,18 +1,6 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Hahmlet, Syne } from "next/font/google";
+import { Geist_Mono } from "next/font/google";
 import "./globals.css";
-
-const syne = Syne({
-  variable: "--font-syne",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const hahmlet = Hahmlet({
-  variable: "--font-hahmlet",
-  subsets: ["latin"],
-  display: "swap",
-});
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -38,7 +26,7 @@ export default function RootLayout({
   return (
     <html
       lang="ko"
-      className={`${syne.variable} ${hahmlet.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistMono.variable} h-full antialiased`}
     >
       <head>
         <link
