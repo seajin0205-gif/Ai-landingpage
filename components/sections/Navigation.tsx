@@ -37,7 +37,7 @@ export function Navigation() {
       >
         <Link href="/" className="group flex items-center gap-2">
           <NexusLogoMark variant="header" />
-          <span className="text-base font-bold leading-none tracking-tight text-foreground">
+          <span className="nav-wordmark text-base font-bold leading-none text-foreground">
             Nexus AI
           </span>
           <span className="hidden items-center gap-2 rounded-full border border-white/90 bg-white/70 px-6 py-2 text-sm font-bold tracking-[0.08em] text-muted shadow-sm backdrop-blur-sm sm:inline-flex">

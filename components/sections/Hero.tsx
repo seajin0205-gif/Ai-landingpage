@@ -54,7 +54,7 @@ export function Hero() {
             </Reveal>
 
             <Reveal variant="fade-up" delay={80}>
-              <h1 className="headline-display hero-headline mx-auto mt-8 max-w-full font-extrabold tracking-tight break-keep lg:mx-0">
+              <h1 className="headline-display hero-headline mx-auto mt-8 max-w-full lg:mx-0">
                 <span className="headline-gradient-line text-gradient">툴을 오갈 필요 없이,</span>
                 <span className="headline-gradient-line text-gradient">대화·이미지·자동화를</span>
                 <span className="headline-gradient-line hero-headline-accent text-gradient-accent">
@@ -75,14 +75,14 @@ export function Hero() {
             </Reveal>
 
             <Reveal variant="fade-up" delay={200}>
-              <p className="mx-auto mt-8 max-w-xl text-lg leading-[1.85] text-muted sm:text-xl sm:leading-[1.85] lg:mx-0">
+              <p className="hero-lead mx-auto mt-8 max-w-xl text-lg leading-[1.8] text-muted sm:text-xl sm:leading-[1.8] lg:mx-0">
                 생성과 수정, 반복 작업까지 끊기지 않습니다.
                 프롬프트 한 줄로 시작해 팀 업무 자동화까지 같은 맥락에서 이어집니다.
               </p>
             </Reveal>
 
             <Reveal variant="fade-up" delay={260}>
-              <p className="mt-8 text-base text-muted">
+              <p className="hero-social-proof mt-8 text-base text-muted">
                 <span className="font-bold text-foreground">500+개 팀</span>
                 이 여러 AI 툴 대신{" "}
                 <span className="hero-brand-inline">Nexus AI</span>

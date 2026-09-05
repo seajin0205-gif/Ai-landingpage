@@ -49,8 +49,10 @@
   --color-accent-mint: var(--accent-mint);
   --color-neon-cyan: var(--neon-cyan);
   --color-neon-lime: var(--neon-lime);
-  --font-sans: var(--font-pretendard), var(--font-geist-sans);
+  --font-sans: "Pretendard Variable", Pretendard, var(--font-ibm-plex-kr), var(--font-outfit), system-ui, sans-serif;
   --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-outfit), var(--font-ibm-plex-kr), sans-serif;
+  --font-korean-display: var(--font-ibm-plex-kr), "Pretendard Variable", Pretendard, sans-serif;
 }
 
 html {
@@ -856,7 +858,7 @@ body {
 /* ── Typography ── */
 
 .text-gradient {
-  background: linear-gradient(135deg, #0a1628 0%, #1a4a7a 48%, #0c1a2e 100%);
+  background: linear-gradient(180deg, #0c1a2e 0%, #16324f 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -877,7 +879,9 @@ body {
 }
 
 .headline-display {
-  font-style: italic;
+  font-family: var(--font-korean-display);
+  font-style: normal;
+  font-weight: 700;
   letter-spacing: -0.02em;
   overflow: visible;
 }
@@ -885,18 +889,24 @@ body {
 .hero-headline {
   overflow: visible;
   max-width: 100%;
-  padding-right: 0.35em;
+  padding-right: 0.2em;
   box-sizing: border-box;
-  font-size: clamp(1.875rem, 3.6vw + 0.75rem, 3.125rem);
-  line-height: 1.14;
-  letter-spacing: -0.035em;
+  font-family: var(--font-korean-display);
+  font-style: normal;
+  font-weight: 700;
+  font-size: clamp(2.05rem, 4.2vw + 0.7rem, 3.5rem);
+  line-height: 1.28;
+  letter-spacing: -0.018em;
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 @media (min-width: 1024px) {
   .hero-headline {
-    font-size: clamp(2.125rem, 2.2vw + 1.25rem, 3.25rem);
-    line-height: 1.12;
-    max-width: 11.5em;
+    font-size: clamp(2.4rem, 2.5vw + 1.15rem, 3.7rem);
+    line-height: 1.26;
+    max-width: 12em;
+    letter-spacing: -0.02em;
   }
 }
 
@@ -2896,6 +2906,7 @@ body {
 
 .hero-section {
   isolation: isolate;
+  font-family: var(--font-korean-display);
 }
 
 .hero-aurora-layer {
@@ -3052,10 +3063,12 @@ body {
 }
 
 .hero-brand-wordmark {
-  font-size: clamp(1.375rem, 2.8vw, 1.75rem);
-  font-weight: 800;
-  letter-spacing: -0.045em;
-  line-height: 1;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.8vw, 1.875rem);
+  font-weight: 700;
+  font-variation-settings: "wght" 700;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
   background: linear-gradient(135deg, #0c1a2e 0%, #00c8ff 38%, #4f6bff 72%, #7c6bff 100%);
   -webkit-background-clip: text;
   background-clip: text;
@@ -3063,10 +3076,11 @@ body {
 }
 
 .hero-brand-tagline {
-  font-size: 0.8125rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-family: var(--font-korean-display);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-transform: none;
   color: var(--muted);
 }
 
@@ -3085,8 +3099,9 @@ body {
 }
 
 .hero-brand-pill-label {
+  font-family: var(--font-display);
   font-size: 0.8125rem;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--foreground);
 }
@@ -3098,9 +3113,10 @@ body {
 }
 
 .hero-brand-pill-meta {
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--muted);
 }
@@ -3158,10 +3174,11 @@ body {
 }
 
 .hero-impact-value {
-  font-size: 1.125rem;
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  line-height: 1.1;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
   background: linear-gradient(135deg, #00e5ff 0%, #4f6bff 55%, #7c6bff 100%);
   -webkit-background-clip: text;
   background-clip: text;
@@ -3175,10 +3192,32 @@ body {
 }
 
 .hero-impact-label {
-  font-size: 0.6875rem;
-  font-weight: 600;
-  line-height: 1.35;
+  font-family: var(--font-korean-display);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
   color: var(--muted);
+}
+
+.hero-lead {
+  font-family: var(--font-korean-display);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  word-break: keep-all;
+}
+
+.hero-social-proof {
+  font-family: var(--font-korean-display);
+  letter-spacing: -0.01em;
+  word-break: keep-all;
+}
+
+.nav-wordmark {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-variation-settings: "wght" 700;
+  letter-spacing: -0.03em;
 }
 
 .hero-demo-stage {
@@ -3188,6 +3227,7 @@ body {
 }
 
 .hero-live-badge {
+  font-family: var(--font-display);
   position: absolute;
   top: 0;
   left: 50%;
