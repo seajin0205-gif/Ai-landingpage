@@ -58,7 +58,7 @@ export function Hero() {
                 <span className="headline-gradient-line text-gradient">툴을 오갈 필요 없이,</span>
                 <span className="headline-gradient-line text-gradient">대화·이미지·자동화를</span>
                 <span className="headline-gradient-line hero-headline-accent text-gradient-accent">
-                  한 Workspace에서 끝까지
+                  AI Workspace에서 한번에
                 </span>
               </h1>
             </Reveal>
