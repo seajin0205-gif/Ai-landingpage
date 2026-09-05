@@ -1,17 +1,16 @@
 import type { Metadata } from "next";
-import { Geist_Mono, IBM_Plex_Sans_KR, Outfit } from "next/font/google";
+import { Geist_Mono, Hahmlet, Syne } from "next/font/google";
 import "./globals.css";
 
-const outfit = Outfit({
-  variable: "--font-outfit",
+const syne = Syne({
+  variable: "--font-syne",
   subsets: ["latin"],
   display: "swap",
 });
 
-const ibmPlexSansKr = IBM_Plex_Sans_KR({
-  variable: "--font-ibm-plex-kr",
+const hahmlet = Hahmlet({
+  variable: "--font-hahmlet",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -39,7 +38,7 @@ export default function RootLayout({
   return (
     <html
       lang="ko"
-      className={`${outfit.variable} ${ibmPlexSansKr.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${syne.variable} ${hahmlet.variable} ${geistMono.variable} h-full antialiased`}
     >
       <head>
         <link

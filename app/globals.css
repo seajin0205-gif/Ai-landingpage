@@ -49,10 +49,10 @@
   --color-accent-mint: var(--accent-mint);
   --color-neon-cyan: var(--neon-cyan);
   --color-neon-lime: var(--neon-lime);
-  --font-sans: "Pretendard Variable", Pretendard, var(--font-ibm-plex-kr), var(--font-outfit), system-ui, sans-serif;
+  --font-sans: "Pretendard Variable", Pretendard, var(--font-hahmlet), var(--font-syne), system-ui, sans-serif;
   --font-mono: var(--font-geist-mono);
-  --font-display: var(--font-outfit), var(--font-ibm-plex-kr), sans-serif;
-  --font-korean-display: var(--font-ibm-plex-kr), "Pretendard Variable", Pretendard, sans-serif;
+  --font-display: var(--font-syne), var(--font-hahmlet), sans-serif;
+  --font-korean-display: var(--font-hahmlet), "Pretendard Variable", Pretendard, serif;
 }
 
 html {
@@ -882,7 +882,7 @@ body {
   font-family: var(--font-korean-display);
   font-style: normal;
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
   overflow: visible;
 }
 
@@ -894,19 +894,19 @@ body {
   font-family: var(--font-korean-display);
   font-style: normal;
   font-weight: 700;
-  font-size: clamp(2.05rem, 4.2vw + 0.7rem, 3.5rem);
-  line-height: 1.28;
-  letter-spacing: -0.018em;
+  font-size: clamp(2.15rem, 4.4vw + 0.7rem, 3.65rem);
+  line-height: 1.34;
+  letter-spacing: -0.03em;
   word-break: keep-all;
   overflow-wrap: break-word;
 }
 
 @media (min-width: 1024px) {
   .hero-headline {
-    font-size: clamp(2.4rem, 2.5vw + 1.15rem, 3.7rem);
-    line-height: 1.26;
-    max-width: 12em;
-    letter-spacing: -0.02em;
+    font-size: clamp(2.55rem, 2.7vw + 1.15rem, 3.9rem);
+    line-height: 1.32;
+    max-width: 11.5em;
+    letter-spacing: -0.032em;
   }
 }
 
@@ -2906,7 +2906,6 @@ body {
 
 .hero-section {
   isolation: isolate;
-  font-family: var(--font-korean-display);
 }
 
 .hero-aurora-layer {
@@ -3064,11 +3063,11 @@ body {
 
 .hero-brand-wordmark {
   font-family: var(--font-display);
-  font-size: clamp(1.5rem, 2.8vw, 1.875rem);
-  font-weight: 700;
-  font-variation-settings: "wght" 700;
-  letter-spacing: -0.03em;
-  line-height: 1.05;
+  font-size: clamp(1.55rem, 2.9vw, 2rem);
+  font-weight: 800;
+  font-variation-settings: "wght" 800;
+  letter-spacing: -0.045em;
+  line-height: 1.02;
   background: linear-gradient(135deg, #0c1a2e 0%, #00c8ff 38%, #4f6bff 72%, #7c6bff 100%);
   -webkit-background-clip: text;
   background-clip: text;
@@ -3077,9 +3076,9 @@ body {
 
 .hero-brand-tagline {
   font-family: var(--font-korean-display);
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   font-weight: 500;
-  letter-spacing: 0.01em;
+  letter-spacing: -0.01em;
   text-transform: none;
   color: var(--muted);
 }
@@ -3175,10 +3174,10 @@ body {
 
 .hero-impact-value {
   font-family: var(--font-display);
-  font-size: 1.2rem;
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1.15;
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
   background: linear-gradient(135deg, #00e5ff 0%, #4f6bff 55%, #7c6bff 100%);
   -webkit-background-clip: text;
   background-clip: text;
@@ -3203,21 +3202,27 @@ body {
 .hero-lead {
   font-family: var(--font-korean-display);
   font-weight: 500;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
   word-break: keep-all;
 }
 
 .hero-social-proof {
   font-family: var(--font-korean-display);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.012em;
   word-break: keep-all;
+}
+
+.hero-feature-title {
+  font-family: var(--font-korean-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 .nav-wordmark {
   font-family: var(--font-display);
-  font-weight: 700;
-  font-variation-settings: "wght" 700;
-  letter-spacing: -0.03em;
+  font-weight: 800;
+  font-variation-settings: "wght" 800;
+  letter-spacing: -0.04em;
 }
 
 .hero-demo-stage {

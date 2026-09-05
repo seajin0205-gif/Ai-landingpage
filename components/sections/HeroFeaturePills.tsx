@@ -37,7 +37,7 @@ export function HeroFeaturePills() {
                 <div className="icon-box mt-6 mb-4 h-12 w-12 rounded-xl border border-white/90 bg-white/70 text-neon-cyan shadow-sm">
                   <FeatureIcon name={tab.icon} />
                 </div>
-                <h3 className="text-base font-bold tracking-tight text-foreground sm:text-lg">
+                <h3 className="hero-feature-title text-base text-foreground sm:text-lg">
                   {tab.title}
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted sm:text-base">{tab.desc}</p>
