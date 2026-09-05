@@ -1733,8 +1733,8 @@ body {
   flex-direction: column;
   gap: 8px;
   font-size: clamp(40px, 7vw, 96px);
-  font-weight: 500;
-  font-variation-settings: "wght" 500;
+  font-weight: 600;
+  font-variation-settings: "wght" 600;
   line-height: 1.08;
   letter-spacing: -0.035em;
 }
