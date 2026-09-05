@@ -915,10 +915,9 @@ body {
   display: block;
   width: fit-content;
   max-width: 100%;
-  padding-right: 0.1em;
-  padding-bottom: 0.08em;
+  padding-right: 0.08em;
+  padding-bottom: 0.04em;
   overflow: visible;
-  isolation: isolate;
   word-break: keep-all;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
@@ -947,44 +946,13 @@ body {
 }
 
 .hero-headline,
-.hero-headline .headline-glass-face,
-.hero-headline .headline-glass-depth {
+.hero-headline .headline-glass-face {
   filter: none !important;
   text-shadow: none !important;
   box-shadow: none !important;
 }
 
-.headline-glass-depth {
-  position: absolute;
-  left: 0.028em;
-  top: 0.048em;
-  z-index: 0;
-  background-image: linear-gradient(
-    168deg,
-    #6d8aa6 0%,
-    #2a425c 48%,
-    #081018 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 0;
-  pointer-events: none;
-  user-select: none;
-}
-
-.hero-headline-accent .headline-glass-depth {
-  background-image: linear-gradient(
-    165deg,
-    #2cb8d0 0%,
-    #3550c8 52%,
-    #24145a 100%
-  );
-}
-
 .headline-glass-face {
-  position: relative;
-  z-index: 1;
   display: inline-block;
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -998,44 +966,67 @@ body {
   background-color: #0c1a2e;
   background-image:
     linear-gradient(
+      115deg,
+      rgba(255, 255, 255, 0.82) 0%,
+      rgba(255, 255, 255, 0.18) 14%,
+      transparent 28%
+    ),
+    linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0.96) 0%,
-      rgba(236, 246, 255, 0.58) 10%,
-      rgba(255, 255, 255, 0.1) 22%,
-      transparent 38%
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(232, 244, 255, 0.42) 12%,
+      transparent 28%
+    ),
+    linear-gradient(
+      180deg,
+      transparent 62%,
+      rgba(255, 255, 255, 0.16) 82%,
+      transparent 100%
     ),
     linear-gradient(
       168deg,
-      #f4f8fd 0%,
-      #b7cfe3 16%,
-      #6d8eae 34%,
-      #2a4d70 52%,
-      #10233a 74%,
-      #1a4a74 100%
+      #f7fbff 0%,
+      #c5dbeb 14%,
+      #7ea0bc 30%,
+      #3a5f82 48%,
+      #13253c 70%,
+      #0c1a2e 86%,
+      #245078 100%
     );
-  -webkit-text-stroke: 0.85px rgba(255, 255, 255, 0.46);
+  -webkit-text-stroke: 0.95px rgba(255, 255, 255, 0.5);
 }
 
 .hero-headline .headline-glass-face.text-gradient-accent {
   background-color: #4f6bff;
   background-image:
     linear-gradient(
+      115deg,
+      rgba(255, 255, 255, 0.9) 0%,
+      rgba(200, 255, 255, 0.28) 16%,
+      transparent 30%
+    ),
+    linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0.97) 0%,
-      rgba(190, 255, 255, 0.52) 11%,
-      rgba(255, 255, 255, 0.08) 24%,
-      transparent 40%
+      rgba(255, 255, 255, 0.96) 0%,
+      rgba(180, 255, 255, 0.4) 12%,
+      transparent 30%
+    ),
+    linear-gradient(
+      180deg,
+      transparent 60%,
+      rgba(255, 255, 255, 0.2) 80%,
+      transparent 100%
     ),
     linear-gradient(
       162deg,
       #ffffff 0%,
-      #9cffff 12%,
-      #00e5ff 32%,
-      #4f6bff 64%,
-      #5a38b8 86%,
-      #8b7cff 100%
+      #b8ffff 10%,
+      #00e5ff 30%,
+      #4f6bff 60%,
+      #5a38b8 84%,
+      #9a8cff 100%
     );
-  -webkit-text-stroke: 0.9px rgba(255, 255, 255, 0.52);
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.56);
 }
 
 /* ── Buttons ── */
