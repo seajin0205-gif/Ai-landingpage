@@ -1,6 +1,5 @@
 import { Reveal } from "@/components/motion/Reveal";
 import { Button } from "@/components/ui/Button";
-import { GlassTitle } from "@/components/ui/GlassTitle";
 
 const trustBadges = [
   { icon: "✓", label: "14일 무료" },
@@ -26,12 +25,17 @@ export function CTA() {
               <span>500+ 팀이 Nexus AI를 선택했습니다</span>
             </div>
 
-            <GlassTitle
-              as="h2"
+            <h2
               id="cta-heading"
-              className="cta-headline mt-10"
-              lines={["업무의 다음 챕터,", "지금 시작하세요"]}
-            />
+              className="cta-headline mt-10 text-foreground"
+            >
+              <span className="cta-headline-line text-gradient">
+                업무의 다음 챕터,
+              </span>
+              <span className="cta-headline-line cta-headline-accent text-neon-cyan">
+                지금 시작하세요
+              </span>
+            </h2>
 
             <p className="cta-subline mx-auto mt-8 max-w-2xl text-muted">
               챗봇 · 이미지 · 자동화를 한 플랫폼에서. 설정은 5분, 팀 전체가 바로

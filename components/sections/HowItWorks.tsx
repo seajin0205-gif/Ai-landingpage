@@ -1,7 +1,6 @@
 import { Reveal } from "@/components/motion/Reveal";
 import { Section } from "@/components/layout/Section";
 import { NarrativeStep } from "@/components/layout/NarrativeStep";
-import { GlassTitle } from "@/components/ui/GlassTitle";
 
 const steps = [
   {
@@ -44,11 +43,9 @@ export function HowItWorks() {
       <div className="mx-auto mb-14 max-w-2xl text-center lg:mb-20 lg:text-left">
         <Reveal variant="fade-up">
           <NarrativeStep step="04" label="How It Works" />
-          <GlassTitle
-            as="h2"
-            className="mt-2 text-center text-3xl font-bold tracking-tight sm:text-4xl lg:text-left"
-            lines={["How to use it"]}
-          />
+          <h2 className="mt-2 text-center text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-left">
+            How to use it
+          </h2>
           <p className="mx-auto mt-4 max-w-lg text-center text-base leading-[1.75] text-muted lg:mx-0 lg:text-left">
             대화로 시작해, 생성하고, 자동화까지 — 네 단계면 충분합니다.
           </p>

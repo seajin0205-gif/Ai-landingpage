@@ -3,7 +3,6 @@ import { Section, sectionGridGap } from "@/components/layout/Section";
 import { NarrativeStep } from "@/components/layout/NarrativeStep";
 import { Button } from "@/components/ui/Button";
 import { CheckIcon } from "@/components/ui/Icons";
-import { GlassTitle } from "@/components/ui/GlassTitle";
 
 const plans = [
   {
@@ -64,11 +63,9 @@ export function Pricing() {
       <div className="mb-14 grid gap-6 lg:mb-16 lg:grid-cols-[minmax(0,340px)_1fr] lg:items-end">
         <Reveal variant="fade-up">
           <NarrativeStep step="06" label="Get Started" />
-          <GlassTitle
-            as="h2"
-            className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl lg:leading-tight"
-            lines={["Start now"]}
-          />
+          <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:leading-tight">
+            Start now
+          </h2>
           <p className="mt-4 text-base leading-relaxed text-muted">
             14일 무료 체험 · 신용카드 불필요. 팀 규모에 맞는 플랜을 선택하세요.
           </p>

@@ -5,7 +5,6 @@ import {
   type PersonIllustrationVariant,
   personIllustrations,
 } from "@/components/ui/PersonIllustrations";
-import { GlassTitle } from "@/components/ui/GlassTitle";
 
 const testimonials: {
   quote: string;
@@ -66,11 +65,9 @@ export function Testimonials() {
       <Reveal variant="fade-up">
         <div className="testimonials-section-header max-w-2xl">
           <NarrativeStep step="05" label="Why Nexus" />
-          <GlassTitle
-            as="h2"
-            className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl lg:leading-tight"
-            lines={["Why it works"]}
-          />
+          <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:leading-tight">
+            Why it works
+          </h2>
           <p className="mt-6 text-base leading-[1.8] text-muted">
             실제 팀의 생산성 변화와 검증된 성과로 Nexus의 가치를 확인하세요.
           </p>
