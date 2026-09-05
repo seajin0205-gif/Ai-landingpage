@@ -67,7 +67,7 @@ export function Hero() {
             </Reveal>
 
             <Reveal variant="fade-up" delay={140}>
-              <ul className="hero-impact-strip mx-auto mt-14 lg:mx-0 lg:mt-16" aria-label="핵심 가치">
+              <ul className="hero-impact-strip mx-auto lg:mx-0" aria-label="핵심 가치">
                 {impactHighlights.map((item) => (
                   <li key={item.label} className="hero-impact-item">
                     <span className="hero-impact-value">{item.value}</span>
