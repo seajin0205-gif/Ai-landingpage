@@ -41,7 +41,7 @@ export function FAQ() {
         </div>
       </Reveal>
 
-      <div className="mx-auto max-w-3xl space-y-4">
+      <div className="mx-auto mt-12 max-w-3xl space-y-4">
         {faqs.map((item, i) => {
           const isOpen = openIndex === i;
           return (
