@@ -65,7 +65,7 @@ export function Testimonials() {
       <Reveal variant="fade-up">
         <div className="testimonials-section-header max-w-2xl">
           <NarrativeStep step="05" label="Why Nexus" />
-          <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:leading-tight">
+          <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:leading-tight">
             Why it works
           </h2>
           <p className="mt-6 text-base leading-[1.8] text-muted">

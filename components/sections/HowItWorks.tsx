@@ -43,7 +43,7 @@ export function HowItWorks() {
       <div className="mx-auto mb-14 max-w-2xl text-center lg:mb-20 lg:text-left">
         <Reveal variant="fade-up">
           <NarrativeStep step="04" label="How It Works" />
-          <h2 className="mt-2 text-center text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:text-left">
+          <h2 className="mt-2 text-center text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-left">
             How to use it
           </h2>
           <p className="mx-auto mt-4 max-w-lg text-center text-base leading-[1.75] text-muted lg:mx-0 lg:text-left">

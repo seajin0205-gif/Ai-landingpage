@@ -55,7 +55,7 @@ export function Features() {
       <Reveal variant="fade-up">
         <div className="features-section-header max-w-2xl">
           <NarrativeStep step="03" label="Capabilities" />
-          <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:leading-tight">
+          <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:leading-tight">
             What you can do
           </h2>
           <p className="mt-6 text-base leading-[1.8] text-muted">

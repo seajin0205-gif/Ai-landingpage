@@ -63,7 +63,7 @@ export function Pricing() {
       <div className="mb-14 grid gap-6 lg:mb-16 lg:grid-cols-[minmax(0,340px)_1fr] lg:items-end">
         <Reveal variant="fade-up">
           <NarrativeStep step="06" label="Get Started" />
-          <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:leading-tight">
+          <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:leading-tight">
             Start now
           </h2>
           <p className="mt-4 text-base leading-relaxed text-muted">
