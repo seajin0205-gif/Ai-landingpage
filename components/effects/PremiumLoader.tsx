@@ -9,28 +9,13 @@ export function PremiumLoader() {
   const [phase, setPhase] = useState<LoaderPhase>("loading");
 
   useEffect(() => {
-    const minDuration = 320;
-    const started = performance.now();
+    const exitTimer = window.setTimeout(() => setPhase("exit"), 80);
+    const doneTimer = window.setTimeout(() => setPhase("done"), 220);
 
-    const complete = () => {
-      const elapsed = performance.now() - started;
-      const wait = Math.max(0, minDuration - elapsed);
-
-      const exitTimer = window.setTimeout(() => setPhase("exit"), wait);
-      const doneTimer = window.setTimeout(() => setPhase("done"), wait + 360);
-
-      return () => {
-        window.clearTimeout(exitTimer);
-        window.clearTimeout(doneTimer);
-      };
+    return () => {
+      window.clearTimeout(exitTimer);
+      window.clearTimeout(doneTimer);
     };
-
-    if (document.readyState === "complete") {
-      return complete();
-    }
-
-    window.addEventListener("load", complete, { once: true });
-    return () => window.removeEventListener("load", complete);
   }, []);
 
   if (phase === "done") return null;
