@@ -12,7 +12,7 @@ export function WorkspaceDemo() {
     <>
       <Section id="workspace-demo" bordered className="section-rhythm-product pb-0">
         <Reveal>
-          <div className="mb-10 flex flex-col gap-4 sm:mb-12 lg:flex-row lg:items-end lg:justify-between">
+          <div className="mb-4 flex flex-col gap-4 sm:mb-5 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-xl">
               <NarrativeStep step="02" label="Real Product" />
               <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:leading-tight">
