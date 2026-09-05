@@ -14,6 +14,31 @@ const impactHighlights = [
   { value: "Live", label: "AI 즉시 체험" },
 ];
 
+function HeadlineLine({
+  children,
+  accent = false,
+}: {
+  children: string;
+  accent?: boolean;
+}) {
+  return (
+    <span className={`headline-gradient-line${accent ? " hero-headline-accent" : ""}`}>
+      <span className="headline-glass-depth" aria-hidden="true">
+        {children}
+      </span>
+      <span
+        className={
+          accent
+            ? "headline-glass-face text-gradient-accent"
+            : "headline-glass-face text-gradient"
+        }
+      >
+        {children}
+      </span>
+    </span>
+  );
+}
+
 export function Hero() {
   return (
     <section className="hero-section relative overflow-visible pt-28 pb-16 sm:pt-36 sm:pb-24 lg:flex lg:min-h-[calc(100vh-4.5rem)] lg:items-center lg:pt-32 lg:pb-20">
@@ -55,14 +80,10 @@ export function Hero() {
 
             <Reveal variant="fade-up" delay={80}>
               <h1 className="headline-display hero-headline mx-auto mt-8 max-w-full lg:mx-0">
-                <span className="headline-gradient-line text-gradient">툴을 옮길 필요 없이,</span>
-                <span className="headline-gradient-line text-gradient">대화·이미지·자동화를</span>
-                <span className="headline-gradient-line hero-headline-accent text-gradient-accent">
-                  AI Workspace에서
-                </span>
-                <span className="headline-gradient-line hero-headline-accent text-gradient-accent">
-                  한번에
-                </span>
+                <HeadlineLine>툴을 옮길 필요 없이,</HeadlineLine>
+                <HeadlineLine>대화·이미지·자동화를</HeadlineLine>
+                <HeadlineLine accent>AI Workspace에서</HeadlineLine>
+                <HeadlineLine accent>한번에</HeadlineLine>
               </h1>
             </Reveal>
 
