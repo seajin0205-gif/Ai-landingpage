@@ -951,17 +951,17 @@ body {
 
 .headline-glass-extrude {
   position: absolute;
-  left: 0.02em;
-  top: 0.028em;
+  left: 0.022em;
+  top: 0.03em;
   z-index: 0;
-  color: #081018;
-  -webkit-text-fill-color: #081018;
+  color: #6d8aa3;
+  -webkit-text-fill-color: #6d8aa3;
   pointer-events: none;
   user-select: none;
   text-shadow:
-    0.3px 0.3px 0 #16324f,
-    0.6px 0.6px 0 #0c1a2e,
-    0.9px 0.9px 0 #081018;
+    0.28px 0.28px 0 #7a96ad,
+    0.56px 0.56px 0 #65839c,
+    0.84px 0.84px 0 #547289;
 }
 
 .headline-glass-face {
@@ -977,23 +977,30 @@ body {
   text-rendering: geometricPrecision;
   background:
     linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.4) 0%,
-      rgba(255, 255, 255, 0.08) 12%,
-      transparent 24%
+      115deg,
+      rgba(255, 255, 255, 0.82) 0%,
+      rgba(255, 255, 255, 0.18) 16%,
+      transparent 30%
     ),
     linear-gradient(
-      172deg,
-      #2f6f96 0%,
-      #1a4d72 28%,
-      #0c1a2e 70%,
-      #10243c 100%
+      180deg,
+      rgba(255, 255, 255, 0.78) 0%,
+      rgba(232, 246, 255, 0.22) 14%,
+      transparent 32%
+    ),
+    linear-gradient(
+      168deg,
+      #f7fcff 0%,
+      #d4eaf6 18%,
+      #9cc4d8 46%,
+      #7aa9c2 72%,
+      #b7d6e8 100%
     );
   background-repeat: no-repeat;
   background-size: 100% 100%;
   -webkit-background-clip: text;
   background-clip: text;
-  -webkit-text-stroke: 0.55px rgba(255, 255, 255, 0.32);
+  -webkit-text-stroke: 0.85px rgba(70, 108, 132, 0.42);
 }
 
 /* ── Buttons ── */
