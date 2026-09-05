@@ -3,6 +3,7 @@ import { Section } from "@/components/layout/Section";
 import { NarrativeStep } from "@/components/layout/NarrativeStep";
 import { FeatureIcon } from "@/components/ui/Icons";
 import { MetricBadge } from "@/components/ui/MetricBadge";
+import { GlassTitle } from "@/components/ui/GlassTitle";
 
 const featureCards = [
   {
@@ -55,9 +56,11 @@ export function Features() {
       <Reveal variant="fade-up">
         <div className="features-section-header max-w-2xl">
           <NarrativeStep step="03" label="Capabilities" />
-          <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:leading-tight">
-            What you can do
-          </h2>
+          <GlassTitle
+            as="h2"
+            className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl lg:leading-tight"
+            lines={["What you can do"]}
+          />
           <p className="mt-6 text-base leading-[1.8] text-muted">
             챗봇 · 이미지 · 자동화 — 세 가지 핵심 역량이 하나의 플랫폼에 있습니다.
           </p>

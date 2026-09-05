@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/Button";
 import { HeroImageDemo } from "@/components/effects/HeroImageDemo";
 import { HeroFeaturePills } from "@/components/sections/HeroFeaturePills";
 import { NexusLogoMark } from "@/components/ui/NexusLogo";
+import { GlassTitle } from "@/components/ui/GlassTitle";
 
 const trustTags = ["신용카드 불필요", "14일 무료", "한국어 완벽 지원"];
 
@@ -13,25 +14,6 @@ const impactHighlights = [
   { value: "Zero", label: "맥락 단절" },
   { value: "Live", label: "AI 즉시 체험" },
 ];
-
-function HeadlineLine({
-  children,
-  accent = false,
-}: {
-  children: string;
-  accent?: boolean;
-}) {
-  return (
-    <span className={`headline-gradient-line${accent ? " hero-headline-accent" : ""}`}>
-      <span className="headline-glass-extrude" aria-hidden="true">
-        {children}
-      </span>
-      <span className={`headline-glass-face${accent ? " is-accent" : ""}`}>
-        {children}
-      </span>
-    </span>
-  );
-}
 
 export function Hero() {
   return (
@@ -73,12 +55,16 @@ export function Hero() {
             </Reveal>
 
             <Reveal variant="fade-up" delay={80}>
-              <h1 className="headline-display hero-headline mx-auto mt-8 max-w-full lg:mx-0">
-                <HeadlineLine>툴을 옮길 필요 없이,</HeadlineLine>
-                <HeadlineLine>대화·이미지·자동화를</HeadlineLine>
-                <HeadlineLine accent>AI Workspace에서</HeadlineLine>
-                <HeadlineLine accent>한번에</HeadlineLine>
-              </h1>
+              <GlassTitle
+                as="h1"
+                className="headline-display hero-headline mx-auto mt-8 max-w-full lg:mx-0"
+                lines={[
+                  "툴을 옮길 필요 없이,",
+                  "대화·이미지·자동화를",
+                  "AI Workspace에서",
+                  "한번에",
+                ]}
+              />
             </Reveal>
 
             <Reveal variant="fade-up" delay={140}>

@@ -1,3 +1,5 @@
+import { GlassTitle } from "@/components/ui/GlassTitle";
+
 type SectionHeaderProps = {
   label: string;
   title: string;
@@ -28,9 +30,11 @@ export function SectionHeader({
           {label}
         </p>
       </div>
-      <h2 className="mt-6 text-3xl font-extrabold tracking-tight text-gradient sm:text-4xl lg:text-5xl lg:leading-tight">
-        {title}
-      </h2>
+      <GlassTitle
+        as="h2"
+        className="mt-6 text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl lg:leading-tight"
+        lines={[title]}
+      />
       {description && (
         <p className="mt-6 text-lg leading-[1.8] text-muted sm:text-xl">
           {description}
