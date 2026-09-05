@@ -26,13 +26,7 @@ function HeadlineLine({
       <span className="headline-glass-extrude" aria-hidden="true">
         {children}
       </span>
-      <span
-        className={
-          accent
-            ? "headline-glass-face text-gradient-accent"
-            : "headline-glass-face text-gradient"
-        }
-      >
+      <span className={`headline-glass-face${accent ? " is-accent" : ""}`}>
         {children}
       </span>
     </span>
