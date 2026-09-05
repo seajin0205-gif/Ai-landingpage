@@ -1,5 +1,4 @@
 import { AuroraBackground } from "@/components/effects/AuroraBackground";
-import { PremiumLoader } from "@/components/effects/PremiumLoader";
 import { Navigation } from "@/components/sections/Navigation";
 import { Hero } from "@/components/sections/Hero";
 import { WorkspaceDemo } from "@/components/sections/WorkspaceDemo";
@@ -17,7 +16,6 @@ import { Footer } from "@/components/sections/Footer";
 export default function Home() {
   return (
     <AuroraBackground>
-      <PremiumLoader />
       <Navigation />
       <main className="landing-narrative">
         {/* 1. AI가 생성된다 */}
