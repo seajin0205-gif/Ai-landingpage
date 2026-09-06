@@ -7,8 +7,8 @@ import { Features } from "@/components/sections/Features";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { Statistics } from "@/components/sections/Statistics";
-import { SplitFeature } from "@/components/sections/SplitFeature";
-import { LogoCloud } from "@/components/sections/LogoCloud";
+import { TeamSecurity } from "@/components/sections/TeamSecurity";
+import { Integrations } from "@/components/sections/Integrations";
 import { Pricing } from "@/components/sections/Pricing";
 import { FAQ } from "@/components/sections/FAQ";
 import { CTA } from "@/components/sections/CTA";
@@ -36,8 +36,8 @@ export default function Home() {
         <div className="narrative-block narrative-block-proof">
           <Testimonials />
           <Statistics />
-          <SplitFeature />
-          <LogoCloud />
+          <TeamSecurity />
+          <Integrations />
         </div>
 
         {/* 6. 지금 시작 */}

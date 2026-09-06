@@ -4,7 +4,7 @@ import { IntegrationHub } from "@/components/effects/IntegrationHub";
 
 const partners = ["Enterprise A", "Company B", "Startup C", "Team D", "Org E", "Studio F"];
 
-export function LogoCloud() {
+export function Integrations() {
   return (
     <section id="integrations" className="integration-section section-rhythm-proof-trust border-y border-white/70 bg-white/20 py-10 backdrop-blur-sm sm:py-12">
       <Container>

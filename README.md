@@ -16,7 +16,7 @@ npm run dev
 ```
 app/                 # Next.js App Router (페이지, 레이아웃, 글로벌 스타일)
 components/
-  sections/          # 랜딩 섹션 (Hero, Features, Pricing 등)
+  sections/          # 랜딩 섹션 (Hero, Features, Pricing, Integrations 등)
   effects/           # 데모 UI, 배경, 차트
   layout/            # 공통 레이아웃
   motion/            # 스크롤/모션 훅

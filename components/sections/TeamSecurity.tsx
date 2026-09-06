@@ -110,7 +110,7 @@ function SecurityVisual() {
   );
 }
 
-export function SplitFeature() {
+export function TeamSecurity() {
   return (
     <Section id="team-security" className="section-rhythm-proof-alt">
       <div className="mb-14 lg:mb-20">

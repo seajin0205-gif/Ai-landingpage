@@ -3,7 +3,7 @@ import { Container } from "@/components/layout/Container";
 import { Parallax } from "@/components/motion/Parallax";
 import { Button } from "@/components/ui/Button";
 import { HeroImageDemo } from "@/components/effects/HeroImageDemo";
-import { HeroFeaturePills } from "@/components/sections/HeroFeaturePills";
+import { HeroFeatureCards } from "@/components/sections/HeroFeatureCards";
 import { NexusLogoMark } from "@/components/ui/NexusLogo";
 
 const trustTags = ["신용카드 불필요", "14일 무료", "한국어 완벽 지원"];
@@ -136,7 +136,7 @@ export function Hero() {
           </Parallax>
         </div>
 
-        <HeroFeaturePills />
+        <HeroFeatureCards />
       </Container>
     </section>
   );

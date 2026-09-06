@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { HeroBannerResultPreview } from "@/components/effects/DemoResultPreviews";
+import { isDemoFrozen, useCancellableWait } from "@/components/effects/useCancellableWait";
 
 const PROMPT = "미니멀 SaaS 히어로 배너 만들어줘";
 
@@ -14,21 +15,10 @@ export function HeroImageDemo() {
   const [phase, setPhase] = useState<Phase>("typing");
   const [progress, setProgress] = useState(0);
   const [resultKey, setResultKey] = useState(0);
-  const timersRef = useRef<Set<ReturnType<typeof setTimeout>>>(new Set());
+  const createWait = useCancellableWait();
 
   useEffect(() => {
-    let cancelled = false;
-
-    const schedule = (fn: () => void, ms: number) => {
-      const id = setTimeout(() => {
-        timersRef.current.delete(id);
-        if (!cancelled) fn();
-      }, ms);
-      timersRef.current.add(id);
-    };
-
-    const wait = (ms: number) =>
-      new Promise<void>((resolve) => schedule(() => resolve(), ms));
+    const { wait, isCancelled, cancel } = createWait();
 
     const runSequence = async () => {
       setPhase("typing");
@@ -36,27 +26,27 @@ export function HeroImageDemo() {
       setProgress(0);
 
       for (let i = 1; i <= PROMPT.length; i += 1) {
-        if (cancelled) return;
+        if (isCancelled()) return;
         setInputText(PROMPT.slice(0, i));
         await wait(42);
       }
       await wait(380);
-      if (cancelled) return;
+      if (isCancelled()) return;
 
       setInputText(PROMPT);
       setPhase("generating");
       for (let p = 0; p <= 100; p += 4) {
-        if (cancelled) return;
+        if (isCancelled()) return;
         setProgress(p);
         await wait(38);
       }
-      if (cancelled) return;
+      if (isCancelled()) return;
 
       resultCounter += 1;
       setResultKey(resultCounter);
       setPhase("result");
       await wait(700);
-      if (cancelled) return;
+      if (isCancelled()) return;
 
       setPhase("done");
       await wait(2800);
@@ -64,21 +54,17 @@ export function HeroImageDemo() {
 
     const loop = async () => {
       await wait(500);
-      while (!cancelled) {
+      while (!isCancelled()) {
         await runSequence();
-        if (cancelled) return;
+        if (isCancelled()) return;
         await wait(700);
       }
     };
 
-    if (!(globalThis as { __NEXUS_DEMO_FREEZE?: boolean }).__NEXUS_DEMO_FREEZE) loop();
+    if (!isDemoFrozen()) loop();
 
-    return () => {
-      cancelled = true;
-      timersRef.current.forEach(clearTimeout);
-      timersRef.current.clear();
-    };
-  }, []);
+    return cancel;
+  }, [createWait]);
 
   const isTyping = phase === "typing";
   const isGenerating = phase === "generating";
