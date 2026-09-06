@@ -10,7 +10,7 @@ const featureCards = [
     label: "AI 챗봇",
     title: "팀 지식을 이해하는 대화형 어시스턴트",
     description:
-      "사내 문서, 고객 데이터, 업무 맥뽽을 연결해 답변·요약·분석을 한곳에서 처리합니다.",
+      "사내 문서, 고객 데이터, 업무 맥락을 연결해 답변·요약·분석을 한곳에서 처리합니다.",
     icon: "chatbot" as const,
     surface: "card-surface-glass",
     accent: "text-neon-cyan",
