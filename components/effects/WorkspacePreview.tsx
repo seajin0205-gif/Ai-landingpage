@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { ResultPreviewByType } from "@/components/effects/DemoResultPreviews";
+import { useCancellableWait } from "@/components/effects/useCancellableWait";
 
 const DEMOS = [
   {
@@ -40,14 +41,6 @@ type HistoryItem = {
   type: (typeof DEMOS)[number]["type"];
 };
 
-const WORKSPACE_NAV: { id: NavId; label: string }[] = [
-  { id: "chat", label: "Chat" },
-  { id: "image", label: "Image" },
-  { id: "automation", label: "Automation" },
-  { id: "workflow", label: "Workflow" },
-  { id: "history", label: "History" },
-];
-
 let resultCounter = 0;
 
 function ResultIcon({ type }: { type: ActiveResult["type"] }) {
@@ -75,120 +68,40 @@ function ResultIcon({ type }: { type: ActiveResult["type"] }) {
   );
 }
 
-function NavIcon({ id }: { id: NavId }) {
-  if (id === "image") {
-    return (
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
-        <rect x="2" y="3" width="12" height="10" rx="1.5" stroke="currentColor" strokeWidth="1.5" />
-        <circle cx="5.5" cy="6.5" r="1.2" stroke="currentColor" strokeWidth="1.2" />
-      </svg>
-    );
-  }
-  if (id === "automation") {
-    return (
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
-        <circle cx="8" cy="8" r="6" stroke="currentColor" strokeWidth="1.5" />
-        <path d="M8 5v6M5 8h6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-      </svg>
-    );
-  }
-  if (id === "workflow") {
-    return (
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
-        <rect x="2" y="2" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.3" />
-        <rect x="9" y="2" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.3" />
-        <rect x="2" y="9" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.3" />
-        <path d="M7 4.5h2M4.5 7v2M11.5 7v2M7 11.5h2" stroke="currentColor" strokeWidth="1.2" />
-      </svg>
-    );
-  }
-  if (id === "history") {
-    return (
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
-        <path d="M3 4h10v9H3V4z" stroke="currentColor" strokeWidth="1.5" />
-        <path d="M5 2v2M11 2v2M3 7h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-      </svg>
-    );
-  }
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
-      <path d="M3 4.5c0-1 1-2 2.5-2h5c1.5 0 2.5 1 2.5 2v7c0 1-1 2-2.5 2h-5c-1.5 0-2.5-1-2.5-2v-7z" stroke="currentColor" strokeWidth="1.5" />
-    </svg>
-  );
-}
-
 function navFromDemo(type: (typeof DEMOS)[number]["type"]): NavId {
   if (type === "image") return "image";
   if (type === "calendar") return "automation";
   return "chat";
 }
 
-export function FloatingDashboard({
-  showFloaters = true,
-  preview = false,
-  staticSnapshot = false,
-  workspaceLayout = false,
-}: {
-  showFloaters?: boolean;
-  preview?: boolean;
-  staticSnapshot?: boolean;
-  workspaceLayout?: boolean;
-}) {
-  const imageDemo = DEMOS[1];
-  const [inputText, setInputText] = useState(staticSnapshot ? imageDemo.prompt : "");
-  const [phase, setPhase] = useState<Phase>(staticSnapshot ? "hold" : "result");
-  const [activeResult, setActiveResult] = useState<ActiveResult | null>(
-    staticSnapshot
-      ? {
-          key: 1000,
-          prompt: imageDemo.prompt,
-          response: imageDemo.response,
-          detail: imageDemo.detail,
-          type: imageDemo.type,
-        }
-      : {
-          key: 999,
-          prompt: DEMOS[0].prompt,
-          response: DEMOS[0].response,
-          detail: DEMOS[0].detail,
-          type: DEMOS[0].type,
-        },
-  );
+export function WorkspacePreview() {
+  const [inputText, setInputText] = useState("");
+  const [phase, setPhase] = useState<Phase>("result");
+  const [activeResult, setActiveResult] = useState<ActiveResult | null>({
+    key: 999,
+    prompt: DEMOS[0].prompt,
+    response: DEMOS[0].response,
+    detail: DEMOS[0].detail,
+    type: DEMOS[0].type,
+  });
   const [streamedResponse, setStreamedResponse] = useState("");
-  const [sidebarType, setSidebarType] = useState<(typeof DEMOS)[number]["type"]>(
-    staticSnapshot ? "image" : "report",
-  );
+  const [sidebarType, setSidebarType] = useState<(typeof DEMOS)[number]["type"]>("report");
   const [imageProgress, setImageProgress] = useState(0);
-  const [flowStep, setFlowStep] = useState(staticSnapshot ? 3 : -1);
-  const [historyItems, setHistoryItems] = useState<HistoryItem[]>(
-    staticSnapshot
-      ? [{ prompt: imageDemo.prompt, type: "image" }]
-      : [{ prompt: DEMOS[0].prompt, type: "report" }],
-  );
-  const timersRef = useRef<Set<ReturnType<typeof setTimeout>>>(new Set());
+  const [flowStep, setFlowStep] = useState(-1);
+  const [historyItems, setHistoryItems] = useState<HistoryItem[]>([
+    { prompt: DEMOS[0].prompt, type: "report" },
+  ]);
+  const createWait = useCancellableWait();
 
   useEffect(() => {
-    if (staticSnapshot) return;
-
-    let cancelled = false;
-
-    const schedule = (fn: () => void, ms: number) => {
-      const id = setTimeout(() => {
-        timersRef.current.delete(id);
-        if (!cancelled) fn();
-      }, ms);
-      timersRef.current.add(id);
-    };
-
-    const wait = (ms: number) =>
-      new Promise<void>((resolve) => schedule(() => resolve(), ms));
+    const { wait, isCancelled, cancel } = createWait();
 
     const typePrompt = async (prompt: string) => {
       setActiveResult(null);
       setPhase("typing");
       setInputText("");
       for (let i = 1; i <= prompt.length; i += 1) {
-        if (cancelled) return;
+        if (isCancelled()) return;
         setInputText(prompt.slice(0, i));
         await wait(40);
       }
@@ -199,11 +112,11 @@ export function FloatingDashboard({
       setImageProgress(0);
       setStreamedResponse("");
       await typePrompt(demo.prompt);
-      if (cancelled) return;
+      if (isCancelled()) return;
 
       setPhase("sending");
       await wait(280);
-      if (cancelled) return;
+      if (isCancelled()) return;
 
       setInputText("");
       setPhase("thinking");
@@ -211,22 +124,22 @@ export function FloatingDashboard({
 
       if (demo.type === "image") {
         for (let p = 0; p <= 100; p += 5) {
-          if (cancelled) return;
+          if (isCancelled()) return;
           setImageProgress(p);
           await wait(40);
         }
       } else {
         await wait(850);
       }
-      if (cancelled) return;
+      if (isCancelled()) return;
 
       setPhase("streaming");
       for (let i = 1; i <= demo.response.length; i += 1) {
-        if (cancelled) return;
+        if (isCancelled()) return;
         setStreamedResponse(demo.response.slice(0, i));
         await wait(28);
       }
-      if (cancelled) return;
+      if (isCancelled()) return;
 
       resultCounter += 1;
       const result: ActiveResult = {
@@ -245,7 +158,7 @@ export function FloatingDashboard({
       });
 
       for (let s = 0; s < 3; s += 1) {
-        if (cancelled) return;
+        if (isCancelled()) return;
         setFlowStep(s);
         await wait(400);
       }
@@ -253,7 +166,7 @@ export function FloatingDashboard({
 
       setPhase("hold");
       await wait(3500);
-      if (cancelled) return;
+      if (isCancelled()) return;
 
       setPhase("idle");
       setStreamedResponse("");
@@ -263,21 +176,17 @@ export function FloatingDashboard({
     const loop = async () => {
       await wait(500);
       let index = 0;
-      while (!cancelled) {
+      while (!isCancelled()) {
         await runDemo(DEMOS[index % DEMOS.length]);
         index += 1;
         await wait(600);
       }
     };
 
-    if (!(globalThis as { __NEXUS_DEMO_FREEZE?: boolean }).__NEXUS_DEMO_FREEZE) loop();
+    loop();
 
-    return () => {
-      cancelled = true;
-      timersRef.current.forEach(clearTimeout);
-      timersRef.current.clear();
-    };
-  }, [staticSnapshot]);
+    return cancel;
+  }, [createWait]);
 
   const isThinking = phase === "thinking";
   const isStreaming = phase === "streaming";
@@ -307,7 +216,7 @@ export function FloatingDashboard({
 
   const mainContent = (
     <>
-            <div className={`mb-4 ${preview ? "" : "h-[280px]"}`}>
+      <div className="mb-4">
         {activeNav === "history" && phase === "hold" ? (
           <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-4">
             <p className="text-xs font-bold tracking-wide text-muted uppercase">Recent Sessions</p>
@@ -406,7 +315,7 @@ export function FloatingDashboard({
   );
 
   const previewPanel = (
-    <div className={preview ? "dashboard-preview-side shrink-0" : "p-6 sm:p-4"}>
+    <div className="dashboard-preview-side shrink-0">
       <p className="mb-3 text-xs font-bold tracking-wide text-muted uppercase">생성물 미리보기</p>
       <div className="dashboard-preview-preview-frame relative overflow-hidden rounded-xl">
         {showResult || isStreaming ? (
@@ -437,152 +346,34 @@ export function FloatingDashboard({
   );
 
   return (
-    <div className={preview ? "dashboard-preview-fixed" : "relative mx-auto w-full max-w-xl lg:max-w-none"}>
-      {!preview && (
-        <div
-          className="absolute inset-0 -z-10 rounded-3xl bg-gradient-to-br from-neon-cyan/15 via-accent-violet/10 to-accent-lime/10 blur-3xl"
-          aria-hidden
-        />
-      )}
-
-      {showFloaters && (
-        <>
-          <div className="absolute -top-4 right-0 z-20 hidden sm:block lg:-right-8 lg:top-2">
-            <div className="glass-card card-interactive shadow-premium min-w-[120px] rounded-2xl px-6 py-4">
-              <p className="text-xs font-semibold tracking-wide text-muted uppercase">이미지 생성</p>
-              <p className="mt-1 text-lg font-bold text-accent-violet">
-                {isThinking || isStreaming
-                  ? "생성 중..."
-                  : showResult
-                    ? "완료!"
-                    : imageProgress > 0
-                      ? `${imageProgress}%`
-                      : "3.2초"}
-              </p>
-            </div>
-          </div>
-
-          <div className="absolute -bottom-6 -left-3 z-20 hidden sm:block lg:-left-10">
-            <div className="card-surface card-surface-gradient card-interactive flex items-center gap-3 rounded-2xl px-4 py-3">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-lime opacity-50" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-accent-lime" />
-              </span>
-              <p className="text-sm font-semibold text-foreground">자동화 12건 실행 중</p>
-            </div>
-          </div>
-        </>
-      )}
-
-      <div
-        className={
-          preview
-            ? "dashboard-preview-card relative overflow-hidden rounded-2xl border border-white/90 bg-white/95 backdrop-blur-2xl"
-            : "shadow-float relative overflow-hidden rounded-2xl border border-white/90 bg-white/60 backdrop-blur-2xl lg:rounded-3xl"
-        }
-      >
-        <div
-          className={
-            preview
-              ? "dashboard-preview-header flex items-center justify-between border-b border-slate-200/70 bg-white/60 px-6 py-4"
-              : "flex items-center justify-between border-b border-slate-200/70 bg-white/60 px-6 py-4"
-          }
-        >
+    <div className="dashboard-preview-fixed">
+      <div className="dashboard-preview-card relative overflow-hidden rounded-2xl border border-white/90 bg-white/95 backdrop-blur-2xl">
+        <div className="dashboard-preview-header flex items-center justify-between border-b border-slate-200/70 bg-white/60 px-6 py-4">
           <div className="flex items-center gap-2">
             <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-neon-cyan/30 to-accent-violet/25 text-sm font-bold">
               N
             </span>
             <div>
               <p className="text-base font-bold text-foreground">Nexus AI Workspace</p>
-              {workspaceLayout && (
-                <p className="text-xs font-medium text-muted-foreground">app.nexus.ai/workspace</p>
-              )}
             </div>
           </div>
-          {!workspaceLayout && (
-            <div className="flex gap-2">
-              {["챗봇", "이미지", "자동화"].map((tab, i) => (
-                <span
-                  key={tab}
-                  className={`rounded-lg px-2 py-1 text-xs font-semibold ${
-                    i === 0 ? "bg-neon-cyan/15 text-neon-cyan" : "text-muted-foreground"
-                  }`}
-                >
-                  {tab}
-                </span>
-              ))}
-            </div>
-          )}
-          {workspaceLayout && (
-            <span className="hidden items-center gap-2 rounded-full border border-slate-200/80 bg-white/80 px-3 py-1 text-xs font-semibold text-muted-foreground sm:flex">
-              <span className="h-2 w-2 rounded-full bg-accent-lime" />
-              Live Demo
-            </span>
-          )}
+          <div className="flex gap-2">
+            {["챗봇", "이미지", "자동화"].map((tab, i) => (
+              <span
+                key={tab}
+                className={`rounded-lg px-2 py-1 text-xs font-semibold ${
+                  i === 0 ? "bg-neon-cyan/15 text-neon-cyan" : "text-muted-foreground"
+                }`}
+              >
+                {tab}
+              </span>
+            ))}
+          </div>
         </div>
 
-        <div
-          className={`flex min-h-0 ${
-            preview
-              ? "dashboard-preview-body shrink-0"
-              : workspaceLayout
-                ? "min-h-[480px]"
-                : ""
-          }`}
-        >
-          {workspaceLayout && (
-            <aside
-              className={`workspace-sidebar shrink-0 flex-col border-r border-slate-200/70 bg-white/50 ${
-                preview
-                  ? "dashboard-preview-sidebar flex"
-                  : "hidden w-[168px] md:flex lg:w-[192px]"
-              }`}
-            >
-              <nav className="flex flex-col gap-1 p-3">
-                {WORKSPACE_NAV.map((item) => (
-                  <span
-                    key={item.id}
-                    className={`workspace-nav-item flex items-center gap-2 rounded-xl px-3 py-2 text-xs font-semibold transition-all duration-300 ${
-                      activeNav === item.id
-                        ? "workspace-nav-item-active bg-neon-cyan/10 text-neon-cyan shadow-[inset_0_0_0_1px_rgba(0,212,255,0.2)]"
-                        : "text-muted-foreground"
-                    }`}
-                  >
-                    <NavIcon id={item.id} />
-                    {item.label}
-                  </span>
-                ))}
-              </nav>
-              <div className="mt-auto border-t border-slate-200/60 p-3">
-                <p className="mb-2 text-xs font-bold tracking-wide text-muted uppercase">Recent</p>
-                <ul className="space-y-2">
-                  {historyItems.slice(0, 3).map((item) => (
-                    <li
-                      key={item.prompt}
-                      className="truncate rounded-lg bg-slate-50/90 px-2 py-2 text-xs font-medium text-muted-foreground"
-                    >
-                      {item.prompt}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </aside>
-          )}
-
-          <div
-            className={
-              preview
-                ? "dashboard-preview-grid grid-pattern grid shrink-0 gap-0"
-                : "grid-pattern grid min-w-0 flex-1 gap-0 sm:grid-cols-[1fr_168px]"
-            }
-          >
-            <div
-              className={
-                preview
-                  ? "dashboard-preview-main border-r border-slate-200/60"
-                  : "border-b border-slate-200/60 sm:border-r sm:border-b-0 p-6 sm:p-6"
-              }
-            >
+        <div className="dashboard-preview-body flex min-h-0 shrink-0">
+          <div className="dashboard-preview-grid grid-pattern grid shrink-0 gap-0">
+            <div className="dashboard-preview-main border-r border-slate-200/60">
               <p className="mb-3 text-xs font-bold tracking-wide text-muted uppercase">{mainPanelLabel}</p>
               {mainContent}
             </div>
@@ -590,7 +381,7 @@ export function FloatingDashboard({
           </div>
         </div>
 
-        <div className={preview ? "dashboard-preview-footer border-t border-slate-200/70 bg-white/60 px-6 py-4" : "border-t border-slate-200/70 bg-white/60 px-6 py-4"}>
+        <div className="dashboard-preview-footer border-t border-slate-200/70 bg-white/60 px-6 py-4">
           <div className="flex items-center gap-3">
             <span className="text-xs font-bold text-accent-lime">● Automation</span>
             <div className="flex flex-1 items-center gap-2 overflow-hidden">

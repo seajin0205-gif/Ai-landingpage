@@ -22,7 +22,10 @@
 
 # misc
 .DS_Store
+Thumbs.db
 *.pem
+*.local
+.cursor/
 
 # debug
 npm-debug.log*
@@ -39,3 +42,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local temp / extracted packages
+.tmp_pillow/
+.tmp_*/

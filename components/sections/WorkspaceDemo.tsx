@@ -5,7 +5,7 @@ import { Section } from "@/components/layout/Section";
 import { NarrativeStep } from "@/components/layout/NarrativeStep";
 import { ScrollFade } from "@/components/motion/ScrollFade";
 import { BrowserMockup } from "@/components/effects/BrowserMockup";
-import { FloatingDashboard } from "@/components/effects/FloatingDashboard";
+import { WorkspacePreview } from "@/components/effects/WorkspacePreview";
 
 export function WorkspaceDemo() {
   return (
@@ -34,7 +34,7 @@ export function WorkspaceDemo() {
             <ScrollFade offset={64} className="workspace-demo-scrollfade">
               <BrowserMockup className="workspace-demo-browser">
                 <div className="workspace-demo-body">
-                  <FloatingDashboard showFloaters={false} preview />
+                  <WorkspacePreview />
                 </div>
               </BrowserMockup>
             </ScrollFade>
