@@ -12,9 +12,10 @@ export function useCountUp(
   useEffect(() => {
     if (!active) return;
 
+    const safeDuration = Math.max(duration, 1);
     let frame = requestAnimationFrame((start) => {
       const tick = (now: number) => {
-        const progress = Math.min(1, (now - start) / duration);
+        const progress = Math.min(1, (now - start) / safeDuration);
         const eased = 1 - Math.pow(1 - progress, 3);
         setValue(Math.round(target * eased));
         if (progress < 1) frame = requestAnimationFrame(tick);
@@ -29,11 +30,13 @@ export function useCountUp(
 }
 
 function normalizePoints(data: number[], width: number, height: number, pad = 4) {
+  if (data.length === 0) return [];
   const min = Math.min(...data);
   const max = Math.max(...data);
   const range = max - min || 1;
+  const lastIndex = Math.max(data.length - 1, 1);
   return data.map((v, i) => ({
-    x: pad + (i / (data.length - 1)) * (width - pad * 2),
+    x: pad + (i / lastIndex) * (width - pad * 2),
     y: pad + (1 - (v - min) / range) * (height - pad * 2),
   }));
 }
@@ -58,6 +61,9 @@ export function Sparkline({
   const pad = LINE_CHART_PAD;
   const pts = normalizePoints(data, w, h, pad);
   const path = pts.map((p, i) => `${i === 0 ? "M" : "L"}${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(" ");
+  const lastPoint = pts[pts.length - 1];
+
+  if (!lastPoint) return null;
 
   return (
     <svg
@@ -78,7 +84,7 @@ export function Sparkline({
         />
       ))}
       <path d={path} fill="none" stroke={color} strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round" />
-      <circle cx={pts[pts.length - 1].x} cy={pts[pts.length - 1].y} r="3" fill={color} className="stat-chart-dot" />
+      <circle cx={lastPoint.x} cy={lastPoint.y} r="3" fill={color} className="stat-chart-dot" />
     </svg>
   );
 }
@@ -101,7 +107,12 @@ export function MiniLineChart({
   const pad = LINE_CHART_PAD;
   const pts = normalizePoints(data, w, h, pad);
   const line = pts.map((p, i) => `${i === 0 ? "M" : "L"}${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(" ");
-  const area = `${line} L${pts[pts.length - 1].x},${h - pad} L${pts[0].x},${h - pad} Z`;
+  const lastPoint = pts[pts.length - 1];
+  const firstPoint = pts[0];
+
+  if (!lastPoint || !firstPoint) return null;
+
+  const area = `${line} L${lastPoint.x},${h - pad} L${firstPoint.x},${h - pad} Z`;
 
   return (
     <svg
@@ -184,7 +195,7 @@ export function TinyBarSparkline({
   active: boolean;
   className?: string;
 }) {
-  const max = Math.max(...data);
+  const max = Math.max(...data, 1);
   return (
     <div className={`stat-bar-sparkline flex items-end gap-1 ${className}`}>
       {data.map((v, i) => (

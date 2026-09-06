@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { HeroBannerResultPreview } from "@/components/effects/DemoResultPreviews";
-import { isDemoFrozen, useCancellableWait } from "@/components/effects/useCancellableWait";
+import { useCancellableWait } from "@/components/effects/useCancellableWait";
 
 const PROMPT = "미니멀 SaaS 히어로 배너 만들어줘";
 
@@ -61,7 +61,7 @@ export function HeroImageDemo() {
       }
     };
 
-    if (!isDemoFrozen()) loop();
+    loop();
 
     return cancel;
   }, [createWait]);

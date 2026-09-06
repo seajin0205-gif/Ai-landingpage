@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { ResultPreviewByType } from "@/components/effects/DemoResultPreviews";
-import { isDemoFrozen, useCancellableWait } from "@/components/effects/useCancellableWait";
+import { useCancellableWait } from "@/components/effects/useCancellableWait";
 
 const DEMOS = [
   {
@@ -183,7 +183,7 @@ export function WorkspacePreview() {
       }
     };
 
-    if (!isDemoFrozen()) loop();
+    loop();
 
     return cancel;
   }, [createWait]);

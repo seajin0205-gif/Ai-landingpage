@@ -11,26 +11,27 @@ export function PremiumLoader() {
   useEffect(() => {
     const minDuration = 320;
     const started = performance.now();
+    let exitTimer = 0;
+    let doneTimer = 0;
 
     const complete = () => {
       const elapsed = performance.now() - started;
       const wait = Math.max(0, minDuration - elapsed);
-
-      const exitTimer = window.setTimeout(() => setPhase("exit"), wait);
-      const doneTimer = window.setTimeout(() => setPhase("done"), wait + 360);
-
-      return () => {
-        window.clearTimeout(exitTimer);
-        window.clearTimeout(doneTimer);
-      };
+      exitTimer = window.setTimeout(() => setPhase("exit"), wait);
+      doneTimer = window.setTimeout(() => setPhase("done"), wait + 360);
     };
 
     if (document.readyState === "complete") {
-      return complete();
+      complete();
+    } else {
+      window.addEventListener("load", complete, { once: true });
     }
 
-    window.addEventListener("load", complete, { once: true });
-    return () => window.removeEventListener("load", complete);
+    return () => {
+      window.removeEventListener("load", complete);
+      window.clearTimeout(exitTimer);
+      window.clearTimeout(doneTimer);
+    };
   }, []);
 
   if (phase === "done") return null;

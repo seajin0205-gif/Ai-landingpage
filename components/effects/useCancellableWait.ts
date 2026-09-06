@@ -2,14 +2,6 @@
 
 import { useCallback, useRef } from "react";
 
-type DemoFreeze = {
-  __NEXUS_DEMO_FREEZE?: boolean;
-};
-
-export function isDemoFrozen() {
-  return Boolean((globalThis as DemoFreeze).__NEXUS_DEMO_FREEZE);
-}
-
 export function useCancellableWait() {
   const timersRef = useRef<Set<ReturnType<typeof setTimeout>>>(new Set());
 
