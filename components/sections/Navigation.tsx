@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/Button";
-import { NexusLogo, NexusLogoMark } from "@/components/ui/NexusLogo";
+import { NexusLogoMark } from "@/components/ui/NexusLogo";
 
 const navLinks = [
   { href: "#workspace-demo", label: "제품" },
