@@ -7,11 +7,11 @@ import { Button } from "@/components/ui/Button";
 import { NexusLogoMark } from "@/components/ui/NexusLogo";
 
 const navLinks = [
-  { href: "#workspace-demo", label: "제품" },
-  { href: "#features", label: "기능" },
-  { href: "#how-it-works", label: "사용법" },
-  { href: "#testimonials", label: "후기" },
-  { href: "#pricing", label: "시작" },
+  { href: "#workspace-demo", label: "Product" },
+  { href: "#features", label: "Features" },
+  { href: "#how-it-works", label: "How it works" },
+  { href: "#testimonials", label: "Stories" },
+  { href: "#pricing", label: "Start" },
 ];
 
 export function Navigation() {
@@ -35,13 +35,13 @@ export function Navigation() {
             : "glass-strong shadow-premium"
         }`}
       >
-        <Link href="/" className="group flex items-center gap-2">
+        <Link href="/en" className="group flex items-center gap-2">
           <NexusLogoMark variant="header" />
           <span className="nav-wordmark text-base font-bold leading-none text-foreground">
             Nexus AI
           </span>
           <span className="hidden items-center gap-2 rounded-full border border-white/90 bg-white/70 px-6 py-2 text-sm font-bold tracking-[0.08em] text-muted shadow-sm backdrop-blur-sm sm:inline-flex">
-            챗봇 · 이미지 · 자동화
+            Chat · Image · Auto
           </span>
         </Link>
 
@@ -60,24 +60,24 @@ export function Navigation() {
 
         <div className="flex items-center gap-2 sm:gap-3">
           <Link
-            href="/en"
-            hrefLang="en"
-            lang="en"
+            href="/"
+            hrefLang="ko"
+            lang="ko"
             className="nav-link hidden rounded-lg px-3 py-2 text-xs font-bold tracking-[0.12em] text-muted hover:text-foreground sm:inline-flex"
           >
-            EN
+            KO
           </Link>
           <Button variant="ghost" href="#" className="hidden sm:inline-flex">
-            로그인
+            Log in
           </Button>
           <Button href="#cta" className="h-10 px-4 text-sm sm:h-10 sm:px-6">
-            시작하기
+            Get started
           </Button>
 
           <button
             type="button"
             className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/80 bg-white/60 shadow-sm transition-colors hover:bg-white/90 lg:hidden"
-            aria-label={menuOpen ? "메뉴 닫기" : "메뉴 열기"}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
             aria-controls="mobile-navigation"
             onClick={() => setMenuOpen((open) => !open)}
@@ -107,13 +107,13 @@ export function Navigation() {
               </Link>
             ))}
             <Link
-              href="/en"
-              hrefLang="en"
-              lang="en"
+              href="/"
+              hrefLang="ko"
+              lang="ko"
               className="rounded-xl px-4 py-3 text-sm font-semibold text-muted transition-colors hover:bg-white/70 hover:text-foreground"
               onClick={() => setMenuOpen(false)}
             >
-              English
+              한국어
             </Link>
           </div>
         </Container>

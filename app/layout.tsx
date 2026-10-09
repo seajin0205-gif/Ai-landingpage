@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist_Mono } from "next/font/google";
+import { DocumentLang } from "@/components/DocumentLang";
 import "./globals.css";
 
 const geistMono = Geist_Mono({
@@ -36,6 +37,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col bg-background text-foreground">
+        <DocumentLang />
         {children}
       </body>
     </html>

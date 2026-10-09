@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nexus AI — Portfolio</title>
+  <title>Nexus AI — AI Workspace</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -12,7 +12,7 @@
     crossorigin="anonymous"
     href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
   />
-  <link rel="stylesheet" href="grid-system.css" />
+  <link rel="stylesheet" href="../grid-system.css" />
   <style>
     :root {
       --grid-unit: var(--space-2);
@@ -210,12 +210,14 @@
       display: inline-flex;
       align-items: center;
       gap: var(--space-2);
-      padding: var(--space-2) var(--space-3);
+      flex-shrink: 0;
+      white-space: nowrap;
+      padding: var(--space-2);
       border-radius: var(--r-pill);
       font-family: var(--mono);
       font-size: var(--fs-2xs);
       font-weight: 500;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.02em;
       text-transform: uppercase;
       color: var(--muted);
       text-decoration: none;
@@ -1047,6 +1049,468 @@
       .lens-chip { grid-column: span 1 !important; }
     }
 
+    .overview-brief {
+      max-width: 40rem;
+    }
+    .overview-brief p {
+      margin: 0;
+      font-size: var(--fs-base);
+      font-weight: 500;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .role-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--space-3);
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .role-grid .lens-chip {
+      grid-column: auto;
+      min-height: 100%;
+    }
+    .role-grid .lens-chip em {
+      letter-spacing: 0;
+      text-transform: none;
+      line-height: 1.45;
+    }
+    @media (max-width: 904px) {
+      .role-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 560px) {
+      .role-grid { grid-template-columns: 1fr; }
+    }
+
+    .sys-color.ice .sys-color-fill {
+      background: linear-gradient(180deg, #ffffff 0%, #e7f7ff 100%);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .think-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-3);
+    }
+    .think-card {
+      padding: var(--space-4) var(--space-5);
+      border-radius: var(--r-lg);
+      border: 1px solid var(--border);
+      background: var(--bg-elevated);
+    }
+    .think-card h3 {
+      font-size: var(--fs-sm);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-2);
+    }
+    .think-card p {
+      margin: 0;
+      font-size: var(--fs-sm);
+      font-weight: 500;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .think-goals { grid-column: 1 / -1; }
+    .think-goals ul {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: var(--space-2);
+      list-style: none;
+      padding: 0;
+      margin: var(--space-3) 0 0;
+    }
+    .think-goals li {
+      padding: var(--space-3);
+      border-radius: var(--r-md);
+      border: 1px solid rgba(0, 212, 255, 0.22);
+      background: linear-gradient(145deg, var(--bg-elevated) 0%, rgba(0, 212, 255, 0.05) 100%);
+      font-size: var(--fs-xs);
+      font-weight: 600;
+      line-height: 1.45;
+      color: var(--fg);
+    }
+    @media (max-width: 904px) {
+      .think-goals ul { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .think-grid { grid-template-columns: 1fr; }
+      .think-goals ul { grid-template-columns: 1fr; }
+    }
+
+    .flow-track {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .flow-step {
+      padding: var(--space-4);
+      border-radius: var(--r-lg);
+      border: 1px solid rgba(0, 212, 255, 0.22);
+      background: linear-gradient(145deg, var(--bg-elevated) 0%, rgba(0, 212, 255, 0.05) 100%);
+    }
+    .flow-index {
+      font-family: var(--mono);
+      font-size: var(--fs-2xs);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--neon);
+    }
+    .flow-step h3 {
+      margin: var(--space-2) 0;
+      font-size: var(--fs-sm);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .flow-step p {
+      margin: 0;
+      font-size: var(--fs-xs);
+      font-weight: 500;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .flow-join {
+      position: relative;
+      width: 1px;
+      height: var(--space-5);
+      margin: 0 auto;
+      background: var(--neon);
+    }
+    .flow-join::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      transform: translate(-50%, 2px);
+      border-width: 5px 4px 0;
+      border-style: solid;
+      border-color: var(--neon) transparent transparent;
+    }
+    .flow-swatches,
+    .flow-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-1);
+      margin-top: var(--space-3);
+    }
+    .flow-swatches i {
+      width: var(--space-4);
+      height: var(--space-4);
+      border-radius: var(--r-xs);
+      border: 1px solid var(--border);
+    }
+    .flow-swatches i.ice { background: linear-gradient(180deg, #fff, #e7f7ff); }
+    .flow-swatches i.neon { background: #00d4ff; }
+    .flow-swatches i.mint { background: #3dffa8; }
+    .flow-swatches i.lav { background: #b8a4ff; }
+    .flow-pills span {
+      padding: 2px var(--space-2);
+      border-radius: var(--r-pill);
+      border: 1px solid var(--border);
+      background: var(--bg-elevated);
+      font-family: var(--mono);
+      font-size: var(--fs-2xs);
+      font-weight: 600;
+    }
+    .flow-cols {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 4px;
+      height: var(--space-5);
+      margin-top: var(--space-3);
+    }
+    .flow-cols i {
+      display: block;
+      border-radius: 3px;
+      background: rgba(0, 212, 255, 0.22);
+    }
+    .flow-cols i.dim { background: rgba(184, 164, 255, 0.4); }
+    @media (min-width: 1024px) {
+      .flow-track {
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+        align-items: stretch;
+      }
+      .flow-join {
+        width: var(--space-5);
+        height: 1px;
+        align-self: center;
+        margin: 0;
+      }
+      .flow-join::after {
+        top: 50%;
+        right: 0;
+        bottom: auto;
+        left: auto;
+        transform: translate(2px, -50%);
+        border-width: 4px 0 4px 5px;
+        border-color: transparent transparent transparent var(--neon);
+      }
+    }
+
+    .ux-devices {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-3);
+    }
+    .ux-device {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      padding: var(--space-4);
+      border-radius: var(--r-lg);
+      border: 1px solid var(--border);
+      background: var(--bg-elevated);
+    }
+    .ux-device header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: var(--space-2);
+    }
+    .ux-device header strong {
+      font-size: var(--fs-sm);
+      font-weight: 700;
+    }
+    .ux-device header span {
+      font-family: var(--mono);
+      font-size: var(--fs-2xs);
+      color: var(--muted-light);
+    }
+    .ux-frame {
+      display: grid;
+      gap: 4px;
+      min-height: 9.5rem;
+      padding: var(--space-2);
+      border-radius: var(--r-md);
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, #ffffff 0%, #e7f7ff 100%);
+    }
+    .ux-bar,
+    .ux-hero,
+    .ux-cards {
+      display: flex;
+      gap: 4px;
+      min-height: 0;
+    }
+    .ux-bar { align-items: center; height: 14px; }
+    .ux-chip {
+      height: 8px;
+      border-radius: 99px;
+      background: rgba(11, 18, 32, 0.12);
+    }
+    .ux-chip.logo { width: 28px; }
+    .ux-chip.links { flex: 1; background: rgba(0, 212, 255, 0.28); }
+    .ux-chip.cta { width: 22px; background: #00d4ff; }
+    .ux-chip.menu {
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      background: rgba(11, 18, 32, 0.55);
+    }
+    .ux-hero { flex: 1; }
+    .ux-copy,
+    .ux-demo,
+    .ux-card {
+      border-radius: 4px;
+      border: 1px solid rgba(0, 212, 255, 0.2);
+      background: rgba(255, 255, 255, 0.85);
+    }
+    .ux-copy {
+      display: flex;
+      flex: 1.15;
+      flex-direction: column;
+      gap: 4px;
+      padding: 6px;
+    }
+    .ux-copy b {
+      display: block;
+      height: 6px;
+      border-radius: 99px;
+      background: rgba(11, 18, 32, 0.72);
+    }
+    .ux-copy b.sub { width: 70%; height: 4px; background: rgba(11, 18, 32, 0.28); }
+    .ux-copy b.act { width: 46%; height: 8px; margin-top: auto; background: #00d4ff; }
+    .ux-demo {
+      flex: 0.85;
+      background: linear-gradient(145deg, rgba(0, 212, 255, 0.2), rgba(184, 164, 255, 0.28));
+    }
+    .ux-cards { height: 22px; }
+    .ux-card { flex: 1; }
+    .ux-frame.is-tablet .ux-hero,
+    .ux-frame.is-mobile .ux-hero { flex-direction: column; }
+    .ux-frame.is-tablet .ux-chip.menu,
+    .ux-frame.is-mobile .ux-chip.menu { margin-left: auto; }
+    .ux-frame.is-mobile .ux-cards { flex-direction: column; height: 36px; }
+    .ux-frame.is-mobile .ux-copy b.act { width: 100%; }
+    .ux-topics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-3);
+      list-style: none;
+      padding: 0;
+      margin: var(--space-5) 0 0;
+    }
+    .ux-topics li,
+    .ix-live li {
+      padding: var(--space-3) var(--space-4);
+      border-radius: var(--r-md);
+      border: 1px solid rgba(0, 212, 255, 0.22);
+      background: var(--bg-elevated);
+    }
+    .ux-topics strong,
+    .ix-live strong {
+      display: block;
+      margin-bottom: var(--space-1);
+      font-size: var(--fs-xs);
+      font-weight: 700;
+    }
+    .ux-topics span,
+    .ix-live span {
+      font-size: var(--fs-xs);
+      font-weight: 500;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .ix-live {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-3);
+      list-style: none;
+      padding: 0;
+      margin: var(--space-5) 0 0;
+    }
+    .ix-live-cta { margin-top: var(--space-4); }
+    @media (max-width: 904px) {
+      .ux-devices, .ux-topics { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .ux-devices, .ux-topics, .ix-live { grid-template-columns: 1fr; }
+    }
+
+    .tech-overview {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(16rem, 0.7fr);
+      gap: var(--space-4);
+      align-items: start;
+    }
+    .tech-list,
+    .focus-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: var(--space-2);
+    }
+    .tech-list li,
+    .focus-list li {
+      padding: var(--space-3) var(--space-4);
+      border-radius: var(--r-md);
+      border: 1px solid rgba(0, 212, 255, 0.22);
+      background: var(--bg-elevated);
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      line-height: 1.45;
+    }
+    .tech-list strong {
+      display: block;
+      margin-bottom: var(--space-1);
+      font-size: var(--fs-xs);
+      font-weight: 700;
+    }
+    .tech-list span {
+      font-size: var(--fs-xs);
+      font-weight: 500;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .tech-side {
+      padding: var(--space-4);
+      border-radius: var(--r-lg);
+      border: 1px solid var(--border);
+      background: var(--bg-elevated);
+    }
+    .tech-kicker {
+      margin: 0 0 var(--space-2);
+      font-family: var(--mono);
+      font-size: var(--fs-2xs);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--neon);
+    }
+    .tech-focus {
+      margin: 0;
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      line-height: 1.55;
+    }
+    .close-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      margin-top: var(--space-5);
+    }
+    @media (max-width: 800px) {
+      .tech-overview { grid-template-columns: 1fr; }
+    }
+
+    .ui-spec {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    .ui-spec-label {
+      font-family: var(--mono);
+      font-size: var(--fs-2xs);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted-light);
+    }
+    .ui-mini-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-1);
+      padding: var(--space-1);
+      border-radius: var(--r-pill);
+      border: 1px solid var(--border);
+      background: var(--bg-elevated);
+      width: fit-content;
+    }
+    .ui-mini-nav span {
+      padding: var(--space-2) var(--space-3);
+      border-radius: var(--r-pill);
+      font-size: var(--fs-2xs);
+      font-weight: 600;
+      color: var(--muted);
+    }
+    .ui-mini-nav span.is-active {
+      color: var(--fg);
+      background: var(--bg-subtle);
+    }
+    .ui-ai {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+    .ui-ai-result {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-2);
+      padding: var(--space-2) var(--space-3);
+      border-radius: var(--r-md);
+      border: 1px solid var(--border);
+      background: var(--bg-subtle);
+      font-size: var(--fs-xs);
+      font-weight: 600;
+    }
+
     /* ── Section dimension tags ── */
     .section-dimensions {
       display: flex;
@@ -1312,7 +1776,8 @@
       }
       .overview-meta { grid-column: 1; grid-row: 1; align-self: center; }
       .mockup-stage { grid-column: 2; grid-row: 1; }
-      .portfolio-lens { grid-column: 1 / -1; grid-row: 2; }
+      .overview-brief { grid-column: 1 / -1; grid-row: 2; }
+      .portfolio-lens { grid-column: 1 / -1; grid-row: 3; }
     }
 
     @media (min-width: 1024px) {
@@ -1457,6 +1922,16 @@
       border-radius: 50%;
       background: var(--neon);
     }
+    .hero-vp-list strong {
+      color: var(--fg);
+      font-weight: 700;
+    }
+    .hero-vp-list a {
+      color: var(--fg);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .hero-vp-list a:hover { color: var(--accent); }
 
     @media (max-width: 480px) {
       .hero-vp { padding: var(--space-3) var(--space-4); }
@@ -1525,6 +2000,26 @@
       letter-spacing: -0.05em;
       line-height: 1.05;
       color: var(--fg);
+    }
+    .project-title-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+    .project-subtitle {
+      font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      color: var(--fg);
+    }
+    .project-role {
+      margin-top: var(--space-2);
+      font-size: var(--fs-xs);
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--muted);
     }
 
     .project-tagline {
@@ -5211,35 +5706,51 @@
 </head>
 <body>
 
-  <a class="skip-link" href="#main-content">본문으로 건너뛰기</a>
+  <a class="skip-link" href="#main-content">Skip to content</a>
 
   <div class="aurora" aria-hidden="true"></div>
 
-  <nav class="site-nav" aria-label="포트폴리오 내비게이션">
+  <nav class="site-nav" aria-label="Portfolio navigation">
     <a class="nav-brand" href="#overview">
-      <img src="assets/nexus-ai-logo.png" alt="" width="28" height="28" />
+      <img src="../assets/nexus-ai-logo.png" alt="" width="28" height="28" />
       Nexus AI
     </a>
     <ol class="nav-chapters" role="list">
-      <li><a href="#overview" data-section="overview"><span class="ch-num">01</span> Nexus AI</a></li>
-      <li><a href="#strategy" data-section="strategy"><span class="ch-num">02</span> UX Challenge</a></li>
-      <li><a href="#features-1" data-section="features-1"><span class="ch-num">03</span> Workspace UI</a></li>
-      <li><a href="#features-2" data-section="features-2"><span class="ch-num">04</span> Workflow</a></li>
-      <li><a href="#design-system" data-section="design-system"><span class="ch-num">05</span> Tokens</a></li>
-      <li><a href="#conclusion" data-section="conclusion"><span class="ch-num">06</span> Outcome</a></li>
+      <li><a href="#overview" data-section="overview"><span class="ch-num">01</span> Overview</a></li>
+      <li><a href="#role" data-section="role"><span class="ch-num">02</span> Role</a></li>
+      <li><a href="#design-direction" data-section="design-direction"><span class="ch-num">03</span> Design</a></li>
+      <li><a href="#thinking" data-section="thinking"><span class="ch-num">04</span> Thinking</a></li>
+      <li><a href="#ui-system" data-section="ui-system"><span class="ch-num">05</span> System</a></li>
+      <li><a href="#frontend" data-section="frontend"><span class="ch-num">06</span> Build</a></li>
+      <li><a href="#design-to-code" data-section="design-to-code"><span class="ch-num">07</span> Code</a></li>
+      <li><a href="#responsive" data-section="responsive"><span class="ch-num">08</span> Layout</a></li>
+      <li><a href="#interaction" data-section="interaction"><span class="ch-num">09</span> Motion</a></li>
+      <li><a href="#strategy" data-section="strategy"><span class="ch-num">10</span> Challenge</a></li>
+      <li><a href="#features-1" data-section="features-1"><span class="ch-num">11</span> Workspace</a></li>
+      <li><a href="#features-2" data-section="features-2"><span class="ch-num">12</span> Workflow</a></li>
+      <li><a href="#design-system" data-section="design-system"><span class="ch-num">13</span> Tokens</a></li>
+      <li><a href="#conclusion" data-section="conclusion"><span class="ch-num">14</span> Outcome</a></li>
     </ol>
-    <span class="nav-mobile-ch" id="nav-mobile-ch" aria-live="polite"><em>01</em> / 06</span>
-    <a class="nav-cta" href="en/index.html" hreflang="en" lang="en">EN</a>
-    <a class="nav-cta" href="http://localhost:3000" target="_blank" rel="noopener noreferrer">Live Site →</a>
+    <span class="nav-mobile-ch" id="nav-mobile-ch" aria-live="polite"><em>01</em> / 14</span>
+    <a class="nav-cta" href="../index.html" hreflang="ko" lang="ko">KO</a>
+    <a class="nav-cta" href="http://localhost:3000/en" target="_blank" rel="noopener noreferrer">Live Site →</a>
   </nav>
 
   <aside class="chapter-rail" aria-hidden="true">
-    <a href="#overview" class="rail-dot is-active" data-section="overview" title="01 Nexus AI"></a>
-    <a href="#strategy" class="rail-dot" data-section="strategy" title="02 UX Challenge"></a>
-    <a href="#features-1" class="rail-dot" data-section="features-1" title="03 Workspace UI"></a>
-    <a href="#features-2" class="rail-dot" data-section="features-2" title="04 Workflow & Integration"></a>
-    <a href="#design-system" class="rail-dot" data-section="design-system" title="05 Design Tokens & Components"></a>
-    <a href="#conclusion" class="rail-dot" data-section="conclusion" title="06 Outcome & Learnings"></a>
+    <a href="#overview" class="rail-dot is-active" data-section="overview" title="01 Overview"></a>
+    <a href="#role" class="rail-dot" data-section="role" title="02 My Role"></a>
+    <a href="#design-direction" class="rail-dot" data-section="design-direction" title="03 Design System"></a>
+    <a href="#thinking" class="rail-dot" data-section="thinking" title="04 Product Thinking"></a>
+    <a href="#ui-system" class="rail-dot" data-section="ui-system" title="05 UI System"></a>
+    <a href="#frontend" class="rail-dot" data-section="frontend" title="06 Frontend"></a>
+    <a href="#design-to-code" class="rail-dot" data-section="design-to-code" title="07 From Design to Code"></a>
+    <a href="#responsive" class="rail-dot" data-section="responsive" title="08 Responsive Design"></a>
+    <a href="#interaction" class="rail-dot" data-section="interaction" title="09 Interaction"></a>
+    <a href="#strategy" class="rail-dot" data-section="strategy" title="10 UX Challenge"></a>
+    <a href="#features-1" class="rail-dot" data-section="features-1" title="11 Workspace UI"></a>
+    <a href="#features-2" class="rail-dot" data-section="features-2" title="12 Workflow"></a>
+    <a href="#design-system" class="rail-dot" data-section="design-system" title="13 Design Tokens"></a>
+    <a href="#conclusion" class="rail-dot" data-section="conclusion" title="14 Outcome"></a>
   </aside>
 
   <main id="main-content" class="page">
@@ -5248,51 +5759,57 @@
     <section class="portfolio-section overview" id="overview" aria-labelledby="overview-title">
       <div class="overview-meta reveal is-visible">
         <header>
-          <p class="hero-eyebrow"><span class="live-dot" aria-hidden="true"></span> 01 · Nexus AI</p>
+          <p class="hero-eyebrow"><span class="live-dot" aria-hidden="true"></span> 01 · Overview</p>
           <div class="project-title">
-            <img src="assets/nexus-ai-logo.png" alt="" width="48" height="48" aria-hidden="true" />
-            <h1 id="overview-title">Nexus AI</h1>
+            <img src="../assets/nexus-ai-logo.png" alt="" width="48" height="48" aria-hidden="true" />
+            <div class="project-title-copy">
+              <h1 id="overview-title">Nexus AI</h1>
+              <p class="project-subtitle">AI Workspace</p>
+            </div>
           </div>
+          <p class="project-role">Product Design · UI/UX · Frontend Development</p>
           <p class="project-tagline">
-            흩어진 AI 작업을 <strong>하나의 Workspace</strong>로 이어 — Problem 정의부터 Design System까지의 설계·구현 Case Study
+            Designing a focused AI workspace that brings everyday tasks into one streamlined digital environment.
           </p>
           <div class="hero-actions">
-            <a class="hero-cta primary" href="http://localhost:3000" target="_blank" rel="noopener noreferrer">Live Site →</a>
+            <a class="hero-cta primary" href="http://localhost:3000/en" target="_blank" rel="noopener noreferrer">View Live Site</a>
+            <a class="hero-cta ghost" href="https://github.com/seajin0205-gif/Ai-landingpage" target="_blank" rel="noopener noreferrer">View GitHub</a>
             <a class="hero-cta ghost" href="#strategy">UX Challenge ↓</a>
           </div>
         </header>
 
-        <aside class="hero-vp" aria-label="핵심 Value Proposition">
-          <span class="hero-vp-label">Value Proposition</span>
-          <p class="hero-vp-lead">생성·수정·비교를 같은 화면에서 — AI 작업의 맥락이 끊기지 않습니다.</p>
+        <aside class="hero-vp" aria-label="Project snapshot">
+          <span class="hero-vp-label">At a glance</span>
           <ul class="hero-vp-list">
-            <li>Chat · Image · Auto를 한 Workspace에서 관리</li>
-            <li>Prompt → Result → Revise 루프를 화면 전환 없이 반복</li>
-            <li>결과 Variant를 나란히 비교하고 바로 Export</li>
+            <li><strong>What I built</strong> An AI workspace for everyday tasks</li>
+            <li><strong>My role</strong> Product Design · UI/UX · Frontend</li>
+            <li><strong>Focus</strong> From layout to a working interface</li>
+            <li><strong>How I built it</strong> Next.js · React · TypeScript · Tailwind</li>
+            <li><strong>Live result</strong> <a href="http://localhost:3000/en" target="_blank" rel="noopener noreferrer">Open the product</a></li>
           </ul>
         </aside>
       </div>
 
-      <div class="portfolio-lens reveal reveal-delay-1" aria-label="포트폴리오 프레이밍">
+      <div class="portfolio-lens reveal reveal-delay-1" aria-label="Portfolio framing">
         <div class="portfolio-lens-head">
           <span class="portfolio-lens-badge">Case Study Lens</span>
-          <p>예쁜 랜딩이 아니라 — <strong>UX 사고 · 문제 해결 · 설계 근거 · 시스템 설계</strong>가 읽히는 Design Engineer 포트폴리오입니다.</p>
+          <p>Not a pretty landing page — a design-engineer portfolio where <strong>UX thinking, problem solving, design rationale, and systems design</strong> are readable.</p>
         </div>
         <ul class="portfolio-lens-grid">
           <li class="lens-chip" data-accent="cyan"><span>UX Story</span><em>Problem → Result</em></li>
-          <li class="lens-chip" data-accent="lavender"><span>Before / After</span><em>구조 변화 근거</em></li>
+          <li class="lens-chip" data-accent="lavender"><span>Before / After</span><em>Why the structure changed</em></li>
           <li class="lens-chip" data-accent="mint"><span>Design Rationale</span><em>Why this UI</em></li>
           <li class="lens-chip" data-accent="cyan"><span>Component System</span><em>Variant · State · Rule</em></li>
           <li class="lens-chip" data-accent="lavender"><span>Responsive IA</span><em>Desktop · Tablet · Mobile</em></li>
           <li class="lens-chip" data-accent="mint"><span>State Design</span><em>default · focus · disabled</em></li>
-          <li class="lens-chip" data-accent="cyan"><span>KPI Hypothesis</span><em>측정 가능한 가설</em></li>
+          <li class="lens-chip" data-accent="cyan"><span>Layout decisions</span><em>Why the structure changed</em></li>
           <li class="lens-chip" data-accent="lavender"><span>Design System</span><em>Token · Motion · Grid</em></li>
         </ul>
       </div>
 
-      <figure class="mockup-stage reveal reveal-delay-1 is-visible" aria-label="랜딩 페이지 AI Demo">
+      <figure class="mockup-stage reveal reveal-delay-1 is-visible" aria-label="Landing page AI demo">
         <span class="mockup-live-badge"><span class="live-dot" aria-hidden="true"></span> Live AI Demo</span>
-        <div class="browser-frame" role="img" aria-label="Nexus AI 랜딩 페이지 브라우저 미리보기">
+        <div class="browser-frame" role="img" aria-label="Nexus AI landing page browser preview">
           <div class="browser-chrome" aria-hidden="true">
             <div class="browser-dots">
               <span></span><span></span><span></span>
@@ -5322,7 +5839,7 @@
                     <div class="banner-content">
                       <span class="banner-badge">AI Platform</span>
                       <p class="banner-title">
-                        업무 자동화<br />
+                        Automate the work<br />
                         <span class="accent">AI Workspace</span>
                       </p>
                       <div class="banner-btns">
@@ -5332,22 +5849,22 @@
                     </div>
                   </div>
                   <div class="demo-input">
-                    <span class="prompt">미니멀 SaaS 히어로 배너</span>
+                    <span class="prompt">Minimal SaaS hero banner</span>
                     <span class="send">↑</span>
                   </div>
                 </div>
               </div>
               <div class="hero-mockup-left">
                 <p class="hero-step">Hero Section</p>
-                <div class="hero-pill">통합 AI Workspace</div>
+                <div class="hero-pill">Unified AI workspace</div>
                 <h2 class="hero-headline">
-                  툴을 오갈 필요 없이,<br />
-                  <span class="accent">한곳에서 끝까지</span>
+                  No tool hopping,<br />
+                  <span class="accent">Finish in one place</span>
                 </h2>
                 <div class="hero-keywords">
-                  <span>생성 → 수정</span>
-                  <span>흐름 유지</span>
-                  <span>빠른 비교</span>
+                  <span>Create → revise</span>
+                  <span>Keep the flow</span>
+                  <span>Compare fast</span>
                 </div>
                 <div class="hero-ctas">
                   <span class="btn-primary">Get Started</span>
@@ -5370,26 +5887,314 @@
           </article>
         </div>
 
-        <figcaption class="mockup-caption">대표 Demo · Prompt → Result → Revise</figcaption>
+        <figcaption class="mockup-caption">Featured demo · Prompt → Result → Revise</figcaption>
       </figure>
+
+      <div class="overview-brief reveal">
+        <p>Nexus AI is a concept AI workspace designed to bring multiple AI-powered workflows into a single focused interface. Chat, image, and automation stay on that screen, so a task can move from prompt to result without switching tools.</p>
+      </div>
+    </section>
+
+    <section class="portfolio-section section-tone-gray" id="role" aria-labelledby="role-title">
+      <header class="narrative-header reveal">
+        <p class="narrative-kicker">02 · My Role</p>
+        <h2 class="narrative-title" id="role-title">My Role</h2>
+        <p class="narrative-lead">I owned the product direction, the interface, and the responsive build.</p>
+      </header>
+      <ul class="role-grid">
+        <li class="lens-chip" data-accent="cyan">
+          <span>Product Design</span>
+          <em>Defined one workspace for chat, image, and automation.</em>
+        </li>
+        <li class="lens-chip" data-accent="lavender">
+          <span>UI/UX Design</span>
+          <em>Placed prompt, result, and history in one revise flow.</em>
+        </li>
+        <li class="lens-chip" data-accent="mint">
+          <span>Frontend Development</span>
+          <em>Built the interface in Next.js, React, and TypeScript.</em>
+        </li>
+        <li class="lens-chip" data-accent="cyan">
+          <span>Responsive Implementation</span>
+          <em>Carried the layout from the desktop split to a narrow screen.</em>
+        </li>
+      </ul>
+    </section>
+
+    <section class="portfolio-section" id="design-direction" aria-labelledby="direction-title">
+      <header class="narrative-header reveal">
+        <p class="narrative-kicker">03 · Design System</p>
+        <h2 class="narrative-title" id="direction-title">Design system</h2>
+        <p class="narrative-lead">AI products often rely on dark, highly technical visual language. Nexus AI takes a lighter and more approachable direction, using cool gradients, clean typography and controlled contrast to create a focused workspace.</p>
+        <ul class="section-dimensions" aria-label="Visual system">
+          <li>Clean futuristic</li>
+          <li>Strong typography</li>
+          <li>High contrast</li>
+          <li>Minimal, expressive</li>
+        </ul>
+      </header>
+      <div class="sys-colors reveal" aria-label="Color foundation">
+        <div class="sys-color ice"><div class="sys-color-fill"></div><div class="sys-color-meta"><strong>Ice blue</strong><code>White foundation</code></div></div>
+        <div class="sys-color neon"><div class="sys-color-fill"></div><div class="sys-color-meta"><strong>Electric blue</strong><code>#00d4ff</code></div></div>
+        <div class="sys-color mint"><div class="sys-color-fill"></div><div class="sys-color-meta"><strong>Neon mint</strong><code>#3dffa8</code></div></div>
+        <div class="sys-color lavender"><div class="sys-color-fill"></div><div class="sys-color-meta"><strong>Digital lavender</strong><code>#b8a4ff</code></div></div>
+      </div>
+    </section>
+
+    <section class="portfolio-section section-tone-gray" id="thinking" aria-labelledby="thinking-title">
+      <header class="narrative-header reveal">
+        <p class="narrative-kicker">04 · Product Thinking</p>
+        <h2 class="narrative-title" id="thinking-title">UX / Product thinking</h2>
+      </header>
+      <div class="think-grid reveal">
+        <article class="think-card">
+          <h3>Problem</h3>
+          <p>AI tools can become fragmented when users move between multiple tasks, interfaces and services.</p>
+        </article>
+        <article class="think-card">
+          <h3>Approach</h3>
+          <p>Nexus AI explores a unified workspace where different AI workflows can be accessed within a consistent interface.</p>
+        </article>
+        <article class="think-card think-goals">
+          <h3>Design goal</h3>
+          <ul>
+            <li>Reduce visual complexity</li>
+            <li>Create a clear information hierarchy</li>
+            <li>Keep primary actions immediately visible</li>
+            <li>Make the interface feel approachable rather than overly technical</li>
+            <li>Create a scalable foundation for future AI features</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="portfolio-section" id="ui-system" aria-labelledby="ui-system-title">
+      <header class="narrative-header reveal">
+        <p class="narrative-kicker">05 · UI System</p>
+        <h2 class="narrative-title" id="ui-system-title">UI system</h2>
+        <p class="narrative-lead">Reusable pieces, not one-off screens. The same type, color, controls, and states are used again across the product.</p>
+      </header>
+      <div class="sys-showcase reveal">
+        <div class="sys-bento">
+          <div class="sys-panel sys-span-4">
+            <div class="sys-panel-head"><h3>Typography</h3><span>Scale</span></div>
+            <div class="ui-spec">
+              <p style="margin:0;font-size:1.75rem;font-weight:800;letter-spacing:-0.04em;line-height:1.1">Nexus AI</p>
+              <p style="margin:0;font-size:var(--fs-sm);font-weight:500;color:var(--muted)">Body copy for the workspace.</p>
+              <p class="ui-spec-label">Label · Mono</p>
+            </div>
+          </div>
+          <div class="sys-panel sys-span-8">
+            <div class="sys-panel-head"><h3>Color system</h3><span>Foundation</span></div>
+            <div class="sys-colors">
+              <div class="sys-color ice"><div class="sys-color-fill"></div><div class="sys-color-meta"><strong>Ice blue</strong><code>Foundation</code></div></div>
+              <div class="sys-color neon"><div class="sys-color-fill"></div><div class="sys-color-meta"><strong>Electric blue</strong><code>#00d4ff</code></div></div>
+              <div class="sys-color mint"><div class="sys-color-fill"></div><div class="sys-color-meta"><strong>Neon mint</strong><code>#3dffa8</code></div></div>
+              <div class="sys-color lavender"><div class="sys-color-fill"></div><div class="sys-color-meta"><strong>Lavender</strong><code>#b8a4ff</code></div></div>
+            </div>
+          </div>
+          <div class="sys-panel sys-span-4">
+            <div class="sys-panel-head"><h3>Buttons</h3><span>States</span></div>
+            <div class="ui-spec">
+              <button class="sys-btn primary sm" type="button">Primary</button>
+              <button class="sys-btn ghost sm" type="button">Ghost</button>
+              <button class="sys-btn primary sm is-disabled" type="button" disabled>Disabled</button>
+            </div>
+          </div>
+          <div class="sys-panel sys-span-4">
+            <div class="sys-panel-head"><h3>Cards</h3><span>Surface</span></div>
+            <div class="sys-card-live">
+              <strong>Workspace card</strong>
+              <span>Shared radius, border, and elevation.</span>
+            </div>
+          </div>
+          <div class="sys-panel sys-span-4">
+            <div class="sys-panel-head"><h3>Input fields</h3><span>States</span></div>
+            <div class="ui-spec">
+              <input class="sys-input" type="text" placeholder="Default" aria-label="Default input" />
+              <input class="sys-input" type="text" value="Focus" aria-label="Focus input" style="border-color:var(--neon);box-shadow:0 0 0 4px var(--neon-soft)" />
+            </div>
+          </div>
+          <div class="sys-panel sys-span-4">
+            <div class="sys-panel-head"><h3>Navigation</h3><span>Wayfinding</span></div>
+            <div class="ui-mini-nav" aria-hidden="true">
+              <span class="is-active">Product</span>
+              <span>Features</span>
+              <span>Pricing</span>
+            </div>
+          </div>
+          <div class="sys-panel sys-span-4">
+            <div class="sys-panel-head"><h3>AI interaction</h3><span>Prompt</span></div>
+            <div class="ui-ai">
+              <input class="sys-input" type="text" value="Minimal SaaS hero banner" aria-label="Prompt" readonly />
+              <div class="ui-ai-result"><span>Result ready</span><span class="sys-chip is-active">Done</span></div>
+            </div>
+          </div>
+          <div class="sys-panel sys-span-4">
+            <div class="sys-panel-head"><h3>Spacing · Radius</h3><span>Tokens</span></div>
+            <div class="sys-spacing-row">
+              <div class="sys-spacing-item"><div class="sys-spacing-bar" style="height:8px"></div><span>8</span></div>
+              <div class="sys-spacing-item"><div class="sys-spacing-bar" style="height:16px"></div><span>16</span></div>
+              <div class="sys-spacing-item"><div class="sys-spacing-bar" style="height:24px"></div><span>24</span></div>
+            </div>
+            <div class="radius-row" style="margin-top:var(--space-3)">
+              <div class="radius-item"><div class="radius-swatch" style="border-radius:var(--r-sm)"></div><span class="token-meta"><code>--r-sm</code></span></div>
+              <div class="radius-item"><div class="radius-swatch" style="border-radius:var(--r-md)"></div><span class="token-meta"><code>--r-md</code></span></div>
+              <div class="radius-item"><div class="radius-swatch" style="border-radius:var(--r-pill)"></div><span class="token-meta"><code>--r-pill</code></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="portfolio-section" id="frontend" aria-labelledby="frontend-title">
+      <header class="narrative-header reveal">
+        <p class="narrative-kicker">06 · Frontend</p>
+        <h2 class="narrative-title" id="frontend-title">Frontend implementation</h2>
+        <p class="narrative-lead">The interface was translated from the visual design into a responsive frontend. Pages are composed from shared React components and CSS variables.</p>
+      </header>
+      <ul class="role-grid reveal">
+        <li class="lens-chip" data-accent="cyan"><span>Component-based UI</span><em>Hero, navigation, features, and pricing are separate section components.</em></li>
+        <li class="lens-chip" data-accent="lavender"><span>Reusable components</span><em>Button, Container, and Section are shared. Button also renders as a link.</em></li>
+        <li class="lens-chip" data-accent="mint"><span>Responsive layout</span><em>Container width and padding change at sm, lg, and xl.</em></li>
+        <li class="lens-chip" data-accent="cyan"><span>Design tokens</span><em>Color, type, and the 8pt spacing scale are CSS variables.</em></li>
+        <li class="lens-chip" data-accent="lavender"><span>Interactive states</span><em>Buttons use hover and focus-visible. Reduced motion turns animation off.</em></li>
+        <li class="lens-chip" data-accent="mint"><span>Maintainable structure</span><em>UI, layout, sections, and motion live in separate folders.</em></li>
+        <li class="lens-chip" data-accent="cyan"><span>Semantic HTML</span><em>The landing uses header, nav, section, button, and link elements.</em></li>
+        <li class="lens-chip" data-accent="lavender"><span>Breakpoints</span><em>Landing layout uses sm, lg, and xl. This study reflows at 768 and 1024.</em></li>
+      </ul>
+    </section>
+
+    <section class="portfolio-section section-tone-gray" id="design-to-code" aria-labelledby="design-to-code-title">
+      <header class="narrative-header reveal">
+        <p class="narrative-kicker">07 · From Design to Code</p>
+        <h2 class="narrative-title" id="design-to-code-title">From Design to Code</h2>
+        <p class="narrative-lead">Visual design decisions become a reusable frontend system: shared components, breakpoints, and interaction states.</p>
+      </header>
+      <ol class="flow-track reveal">
+        <li class="flow-step">
+          <span class="flow-index">01</span>
+          <h3>Design</h3>
+          <p>A light field, one electric-blue action, and mint and lavender accents.</p>
+          <div class="flow-swatches" aria-hidden="true"><i class="ice"></i><i class="neon"></i><i class="mint"></i><i class="lav"></i></div>
+        </li>
+        <li class="flow-join" aria-hidden="true"></li>
+        <li class="flow-step">
+          <span class="flow-index">02</span>
+          <h3>Component Architecture</h3>
+          <p>Button, Container, and Section carry those decisions. Pages are composed from them.</p>
+          <div class="flow-pills" aria-hidden="true"><span>Button</span><span>Container</span><span>Section</span></div>
+        </li>
+        <li class="flow-join" aria-hidden="true"></li>
+        <li class="flow-step">
+          <span class="flow-index">03</span>
+          <h3>Responsive Implementation</h3>
+          <p>The same components change structure at sm, md, and lg.</p>
+          <div class="flow-cols" aria-hidden="true"><i></i><i class="dim"></i></div>
+        </li>
+        <li class="flow-join" aria-hidden="true"></li>
+        <li class="flow-step">
+          <span class="flow-index">04</span>
+          <h3>Interactive Experience</h3>
+          <p>Hover, focus, scroll reveal, and reduced motion are states of those components.</p>
+          <div class="flow-pills" aria-hidden="true"><span>hover</span><span>focus</span><span>reveal</span></div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="portfolio-section" id="responsive" aria-labelledby="responsive-title">
+      <header class="narrative-header reveal">
+        <p class="narrative-kicker">08 · Responsive Design</p>
+        <h2 class="narrative-title" id="responsive-title">The layout changes with the screen</h2>
+        <p class="narrative-lead">Desktop, tablet, and mobile keep the same story. The structure around that story changes.</p>
+      </header>
+      <div class="ux-devices reveal">
+        <article class="ux-device">
+          <header><strong>Desktop</strong><span>≥1024</span></header>
+          <div class="ux-frame is-desktop" aria-hidden="true">
+            <div class="ux-bar"><i class="ux-chip logo"></i><i class="ux-chip links"></i><i class="ux-chip cta"></i></div>
+            <div class="ux-hero"><div class="ux-copy"><b></b><b class="sub"></b><b class="act"></b></div><div class="ux-demo"></div></div>
+            <div class="ux-cards"><i class="ux-card"></i><i class="ux-card"></i><i class="ux-card"></i></div>
+          </div>
+          <ul class="resp-rules">
+            <li>Hero is two columns: copy on the left, demo on the right.</li>
+            <li>Navigation links stay in the bar.</li>
+            <li>The headline uses the larger clamp.</li>
+          </ul>
+        </article>
+        <article class="ux-device">
+          <header><strong>Tablet</strong><span>768–1023</span></header>
+          <div class="ux-frame is-tablet" aria-hidden="true">
+            <div class="ux-bar"><i class="ux-chip logo"></i><i class="ux-chip menu"></i><i class="ux-chip cta"></i></div>
+            <div class="ux-hero"><div class="ux-copy"><b></b><b class="sub"></b><b class="act"></b></div><div class="ux-demo"></div></div>
+            <div class="ux-cards"><i class="ux-card"></i><i class="ux-card"></i><i class="ux-card"></i></div>
+          </div>
+          <ul class="resp-rules">
+            <li>Hero stays one column and centered.</li>
+            <li>Links move into a menu panel. Feature cards sit in a row of three.</li>
+            <li>Process steps open into two columns.</li>
+          </ul>
+        </article>
+        <article class="ux-device">
+          <header><strong>Mobile</strong><span>&lt;768</span></header>
+          <div class="ux-frame is-mobile" aria-hidden="true">
+            <div class="ux-bar"><i class="ux-chip logo"></i><i class="ux-chip menu"></i><i class="ux-chip cta"></i></div>
+            <div class="ux-hero"><div class="ux-copy"><b></b><b class="sub"></b><b class="act"></b></div><div class="ux-demo"></div></div>
+            <div class="ux-cards"><i class="ux-card"></i><i class="ux-card"></i></div>
+          </div>
+          <ul class="resp-rules">
+            <li>Copy, actions, and the demo stack.</li>
+            <li>Feature cards return to one column. The primary action is full width below 640.</li>
+            <li>Headline and lead use the smaller sizes.</li>
+          </ul>
+        </article>
+      </div>
+      <ul class="ux-topics reveal">
+        <li><strong>Responsive layout</strong><span>Hero, features, pricing, and the process each change their own columns.</span></li>
+        <li><strong>Breakpoint behavior</strong><span>sm 640, md 768, and lg 1024 switch the structure. xl widens the container padding.</span></li>
+        <li><strong>Content hierarchy</strong><span>Headline, lead, and actions stay first. The demo sits beside them on desktop and below them on smaller screens.</span></li>
+        <li><strong>Navigation adaptation</strong><span>Links are visible from lg. Below that, a menu button opens the same destinations.</span></li>
+        <li><strong>Component resizing</strong><span>Buttons form a row from sm. Cards share a row from md. The nav bar grows from 56px to 64px at sm.</span></li>
+        <li><strong>Typography scaling</strong><span>The hero headline is a clamp, and a larger clamp from lg. The lead steps up at sm. Section titles step up at sm.</span></li>
+      </ul>
+    </section>
+
+    <section class="portfolio-section" id="interaction" aria-labelledby="interaction-title">
+      <header class="narrative-header reveal">
+        <p class="narrative-kicker">09 · Interaction</p>
+        <h2 class="narrative-title" id="interaction-title">Interaction on the live page</h2>
+        <p class="narrative-lead">Hover, scroll, and the menu are implemented on the English landing. Open it and try them there.</p>
+        <div class="ix-live-cta">
+          <a class="hero-cta primary" href="http://localhost:3000/en" target="_blank" rel="noopener noreferrer">Live Demo →</a>
+        </div>
+      </header>
+      <ul class="ix-live reveal">
+        <li><strong>Hover states</strong><span>Nav links draw an underline. Primary buttons lift and brighten. Cards lift 2px.</span></li>
+        <li><strong>Button interactions</strong><span>Buttons show a cyan focus ring and scale slightly on press. The hero “Start for free” button also follows the pointer.</span></li>
+        <li><strong>Card transitions</strong><span>Feature, testimonial, and pricing cards share the hover lift and shadow.</span></li>
+        <li><strong>Navigation transitions</strong><span>After 16px of scroll the bar picks up a softer white surface. Below lg, the menu button opens the same links.</span></li>
+        <li><strong>Gradient effects</strong><span>The page field uses the aurora gradient. Headlines use a text gradient. The image demo fills a progress bar while it runs.</span></li>
+        <li><strong>Scroll interaction</strong><span>Sections enter with Reveal. The hero demo uses Parallax. The workspace demo uses ScrollFade.</span></li>
+        <li><strong>Micro-interactions</strong><span>The magnetic button eases toward the pointer. Reduced motion turns these motions off.</span></li>
+      </ul>
     </section>
 
     <!-- Section 02: UX Challenge -->
     <section class="portfolio-section section-tone-gray" id="strategy" aria-labelledby="strategy-title">
       <div class="strategy-layout">
         <header class="narrative-header reveal">
-          <p class="narrative-kicker">02 · UX Challenge</p>
-          <h2 class="narrative-title" id="strategy-title">실제 AI 사용에서 막히는<br />지점을 먼저 정의했어요</h2>
-          <p class="narrative-lead">화면 설계 전, 실사용에서 반복된 마찰 3가지를 정의했습니다.</p>
-          <ul class="section-dimensions" aria-label="이 섹션에서 보여주는 역량">
+          <p class="narrative-kicker">10 · UX Challenge</p>
+          <h2 class="narrative-title" id="strategy-title">Where a split AI workflow<br />gets stuck</h2>
+          <p class="narrative-lead">The concept treats a split-tool workflow as the design problem: restarting a prompt, comparing results across tools, and losing context.</p>
+          <ul class="section-dimensions" aria-label="Skills this section shows">
             <li>Pain Points</li>
             <li>Illustration</li>
             <li>Before → After</li>
-            <li>Metrics</li>
+            <li>Layout decisions</li>
           </ul>
         </header>
 
-        <div class="pain-visual reveal reveal-delay-1" aria-label="Pain Point 비주얼">
+        <div class="pain-visual reveal reveal-delay-1" aria-label="Pain point visual">
 
           <article class="pain-spotlight">
             <figure class="pain-spotlight-art" aria-hidden="true">
@@ -5409,12 +6214,12 @@
               </svg>
             </figure>
             <div class="pain-spotlight-copy">
-              <h3>여러 AI 툴 사이에서<br />작업 흐름이 끊깁니다</h3>
-              <p>Chat · Image · Auto를 오가며 Prompt 수정, 결과 비교, 히스토리 찾기 — 매번 맥락을 다시 잡아야 합니다.</p>
+              <h3>The work breaks when you<br />jump between AI tools</h3>
+              <p>Moving across Chat, Image, and Auto to edit prompts, compare results, and find history means rebuilding the context every time.</p>
               <div class="pain-chips">
-                <span class="pain-chip pain-chip--cyan">Prompt 재시작</span>
-                <span class="pain-chip pain-chip--lavender">비교 지연</span>
-                <span class="pain-chip pain-chip--mint">맥락 상실</span>
+                <span class="pain-chip pain-chip--cyan">Restart the prompt</span>
+                <span class="pain-chip pain-chip--lavender">Slow comparison</span>
+                <span class="pain-chip pain-chip--mint">Lost context</span>
               </div>
             </div>
           </article>
@@ -5424,10 +6229,10 @@
               <svg viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="56" fill="url(#sc1-bg)"/><rect x="22" y="28" width="26" height="20" rx="5" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/><rect x="72" y="28" width="26" height="20" rx="5" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/><rect x="47" y="52" width="26" height="20" rx="5" fill="#fff" stroke="#cbd5e1" stroke-width="1.5"/><path d="M48 38h12M60 48v4M85 48 L73 52" stroke="#ef4444" stroke-width="1.6" stroke-dasharray="3 3" stroke-linecap="round" opacity="0.7"/><circle cx="60" cy="90" r="12" fill="#f5c9a8"/><path d="M50 86c2-6 5-9 10-9s8 3 10 9" fill="#2d1f5c"/><defs><linearGradient id="sc1-bg" x1="20" y1="10" x2="100" y2="110" gradientUnits="userSpaceOnUse"><stop stop-color="#fef2f2"/><stop offset="1" stop-color="#f0f9ff"/></linearGradient></defs></svg>
             </figure>
             <span class="pain-tile-tag">Pain 01</span>
-            <h3>동시 작업 관리</h3>
-            <p class="pain-tile-hook">탭·계정을 오갈 때 Prompt와 결과 연결이 끊겨요.</p>
+            <h3>Parallel work</h3>
+            <p class="pain-tile-hook">Switching tabs and accounts breaks the link between a prompt and its result.</p>
             <div class="pain-tile-foot">
-              <span class="pain-chip pain-chip--fix">→ Workspace로 통합</span>
+              <span class="pain-chip pain-chip--fix">→ Unify in one Workspace</span>
             </div>
           </article>
 
@@ -5436,10 +6241,10 @@
               <svg viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="56" fill="url(#sc2-bg)"/><rect x="20" y="36" width="32" height="48" rx="6" fill="#fff" stroke="#6366f1" stroke-width="1.5"/><path d="M28 50h16M28 58h12" stroke="#c7d2fe" stroke-width="2" stroke-linecap="round"/><rect x="56" y="32" width="8" height="56" rx="2" fill="#cbd5e1"/><rect x="68" y="36" width="32" height="48" rx="6" fill="#fff" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4 3"/><path d="M78 58a8 8 0 1 0 8-8" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" fill="none"/><defs><linearGradient id="sc2-bg" x1="20" y1="10" x2="100" y2="110" gradientUnits="userSpaceOnUse"><stop stop-color="#eef2ff"/><stop offset="1" stop-color="#fff7ed"/></linearGradient></defs></svg>
             </figure>
             <span class="pain-tile-tag">Pain 02</span>
-            <h3>Prompt 반복 수정</h3>
-            <p class="pain-tile-hook">Export → 재편집 → 재생성. 작은 수정에도 전체 루프가 다시 돌아가요.</p>
+            <h3>Repeated prompt edits</h3>
+            <p class="pain-tile-hook">Export, re-edit, regenerate. Even a small change restarts the whole loop.</p>
             <div class="pain-tile-foot">
-              <span class="pain-chip pain-chip--fix">→ 한 화면 Revise 루프</span>
+              <span class="pain-chip pain-chip--fix">→ Revise on one screen</span>
             </div>
           </article>
 
@@ -5448,8 +6253,8 @@
               <svg viewBox="0 0 120 120" fill="none"><circle cx="60" cy="60" r="56" fill="url(#sc3-bg)"/><rect x="18" y="36" width="24" height="34" rx="5" fill="#fff" stroke="#cbd5e1" stroke-width="1.4"/><rect x="48" y="30" width="24" height="40" rx="5" fill="#fff" stroke="#6366f1" stroke-width="1.5"/><rect x="78" y="36" width="24" height="34" rx="5" fill="#fff" stroke="#cbd5e1" stroke-width="1.4"/><circle cx="42" cy="88" r="10" fill="#f5c9a8"/><path d="M58 88h20M74 84l6 4-6 4" stroke="#ef4444" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/><defs><linearGradient id="sc3-bg" x1="20" y1="10" x2="100" y2="110" gradientUnits="userSpaceOnUse"><stop stop-color="#faf5ff"/><stop offset="1" stop-color="#fef2f2"/></linearGradient></defs></svg>
             </figure>
             <span class="pain-tile-tag">Pain 03</span>
-            <h3>비교 · 히스토리</h3>
-            <p class="pain-tile-hook">Variant를 파일로 비교하고, 어제 작업을 찾느라 판단이 늦어져요.</p>
+            <h3>Compare and history</h3>
+            <p class="pain-tile-hook">Comparing variants as files, and hunting for yesterday’s work, slows the decision.</p>
             <div class="pain-tile-foot">
               <span class="pain-chip pain-chip--fix">→ Result Panel + History</span>
             </div>
@@ -5458,7 +6263,7 @@
           <div class="journey-panel reveal reveal-delay-2">
             <header class="journey-panel-head">
               <h3 id="ba-title">Before → After</h3>
-              <p>무엇이 바뀌었는지 — 그림으로 보는 3가지 전환</p>
+              <p>What changed — three shifts, shown as pictures</p>
             </header>
             <div class="journey-grid">
               <article class="journey-card">
@@ -5471,7 +6276,7 @@
                     <svg viewBox="0 0 80 64" fill="none"><rect x="8" y="10" width="16" height="44" rx="4" fill="#eef2ff" stroke="#6366f1"/><rect x="28" y="14" width="44" height="36" rx="6" fill="#fff" stroke="#00d4ff" stroke-width="1.5"/><path d="M36 28h28M36 36h20" stroke="#cbd5e1" stroke-width="1.5" stroke-linecap="round"/></svg>
                   </div>
                 </figure>
-                <p class="journey-caption">동시 작업<em>흩어진 탭 → 단일 Workspace</em></p>
+                <p class="journey-caption">Parallel work<em>Scattered tabs → one Workspace</em></p>
               </article>
               <article class="journey-card">
                 <figure class="journey-scene" aria-hidden="true">
@@ -5483,7 +6288,7 @@
                     <svg viewBox="0 0 80 64" fill="none"><rect x="10" y="8" width="60" height="36" rx="6" fill="#fff" stroke="#6366f1" stroke-width="1.5"/><rect x="10" y="48" width="60" height="10" rx="5" fill="#0b1220"/><path d="M18 54h36" stroke="#fff" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/></svg>
                   </div>
                 </figure>
-                <p class="journey-caption">Prompt 수정<em>Export 루프 → In-place Revise</em></p>
+                <p class="journey-caption">Prompt edits<em>Export loop → in-place revise</em></p>
               </article>
               <article class="journey-card">
                 <figure class="journey-scene" aria-hidden="true">
@@ -5495,31 +6300,31 @@
                     <svg viewBox="0 0 80 64" fill="none"><rect x="8" y="12" width="36" height="40" rx="5" fill="#fff" stroke="#cbd5e1"/><rect x="48" y="12" width="24" height="40" rx="5" fill="#fff" stroke="#00d4ff" stroke-width="1.5"/><rect x="52" y="20" width="16" height="12" rx="2" fill="#ecfeff"/><rect x="52" y="36" width="16" height="12" rx="2" fill="#ecfeff"/></svg>
                   </div>
                 </figure>
-                <p class="journey-caption">비교 · 히스토리<em>파일 탐색 → Variant 나란히</em></p>
+                <p class="journey-caption">Compare and history<em>File hunting → variants side by side</em></p>
               </article>
             </div>
-            <p class="journey-note"><strong>왜 바꿨나:</strong> “툴 전환 → 맥락 상실 → 재시작” 루프를 끊기 위해 IA와 레이아웃을 재설계했습니다.</p>
+            <p class="journey-note"><strong>Why it changed:</strong> I redesigned the IA and layout to break the “switch tools → lose context → start over” loop.</p>
           </div>
         </div>
 
-        <div class="kpi-strip reveal reveal-delay-2" aria-label="UX 가설 KPI 요약">
+        <div class="kpi-strip reveal reveal-delay-2" aria-label="Layout decisions">
           <article class="kpi-strip-item">
-            <p class="kpi-strip-metric">−35%</p>
-            <p class="kpi-strip-label">작업 전환 시간</p>
-            <p class="kpi-strip-desc">3탭 오감 → 1 Workspace 사이드 전환. 동시 작업 관리 Pain에 대응.</p>
-            <span class="kpi-strip-hypo">Hypothesis · path count</span>
+            <p class="kpi-strip-metric">One view</p>
+            <p class="kpi-strip-label">Task switching</p>
+            <p class="kpi-strip-desc">Chat, Image, and Auto share one Workspace sidebar, so the task does not move across separate tools.</p>
+            <span class="kpi-strip-hypo">Layout decision</span>
           </article>
           <article class="kpi-strip-item">
-            <p class="kpi-strip-metric">−30%</p>
-            <p class="kpi-strip-label">재생성 루프</p>
-            <p class="kpi-strip-desc">Export→재업로드 제거. 하단 Prompt + In-place Revise로 반복 수정 단축.</p>
-            <span class="kpi-strip-hypo">Hypothesis · loop length</span>
+            <p class="kpi-strip-metric">In place</p>
+            <p class="kpi-strip-label">Revise loop</p>
+            <p class="kpi-strip-desc">The prompt stays on the same screen as the result, so a revision does not start from an export.</p>
+            <span class="kpi-strip-hypo">Layout decision</span>
           </article>
           <article class="kpi-strip-item">
-            <p class="kpi-strip-metric">~2×</p>
-            <p class="kpi-strip-label">비교 판단 속도</p>
-            <p class="kpi-strip-desc">파일 번갈아 열기 → Variant Card 나란히. Result Panel + History로 탐색 감소.</p>
-            <span class="kpi-strip-hypo">Hypothesis · scan time</span>
+            <p class="kpi-strip-metric">One row</p>
+            <p class="kpi-strip-label">Comparison</p>
+            <p class="kpi-strip-desc">Variant cards and the result panel keep options in one view, next to the work that produced them.</p>
+            <span class="kpi-strip-hypo">Layout decision</span>
           </article>
         </div>
       </div>
@@ -5528,10 +6333,10 @@
     <!-- Section 03: Workspace UI -->
     <section class="portfolio-section" id="features-1" aria-labelledby="demo-title">
       <header class="narrative-header reveal">
-        <p class="narrative-kicker">03 · Workspace UI</p>
-        <h2 class="narrative-title" id="demo-title">하나의 Workspace,<br />실제로 어떻게 쓰이는지</h2>
-        <p class="narrative-lead">문제를 정의한 뒤, Chat과 Image 두 시나리오에서 “왜 이 레이아웃인가”를 검증했습니다.</p>
-        <ul class="section-dimensions" aria-label="이 섹션에서 보여주는 역량">
+        <p class="narrative-kicker">11 · Workspace UI</p>
+        <h2 class="narrative-title" id="demo-title">One Workspace,<br />and how it is actually used</h2>
+        <p class="narrative-lead">Chat and Image use the same structure: input, the result, and the next action stay in one view.</p>
+        <ul class="section-dimensions" aria-label="Skills this section shows">
           <li>Live Demo</li>
           <li>Layout Rationale</li>
           <li>Before / After</li>
@@ -5539,35 +6344,35 @@
         </ul>
       </header>
 
-      <div class="ux-story reveal reveal-delay-1" aria-label="Demo 섹션 UX Story">
+      <div class="ux-story reveal reveal-delay-1" aria-label="Demo section UX story">
         <div class="ux-story-step" data-step="problem">
           <span class="ux-story-label">Problem</span>
-          <p>대화와 결과물이 <strong>다른 화면</strong>에 있어 비교·수정이 끊김</p>
+          <p>Chat and the output live on <strong>different screens</strong>, so compare and revise keep breaking</p>
         </div>
         <div class="ux-story-step" data-step="insight">
           <span class="ux-story-label">Insight</span>
-          <p>사용자는 채팅 로그보다 <strong>결과 옆에서 판단</strong>할 때 더 빠르게 결정</p>
+          <p>The result stays <strong>beside the conversation</strong>, so compare and revise remain on that screen</p>
         </div>
         <div class="ux-story-step" data-step="decision">
           <span class="ux-story-label">Decision</span>
-          <p>왼쪽 입력·대화 / 오른쪽 <strong>Result Panel</strong> 고정 스플릿</p>
+          <p>Input and conversation on the left, a fixed <strong>Result Panel</strong> on the right</p>
         </div>
         <div class="ux-story-step" data-step="result">
           <span class="ux-story-label">Result</span>
-          <p>생성 직후 비교·다운로드까지 <strong>한 Workspace</strong>에서 완료</p>
+          <p>Compare and download, right after generation, finish in <strong>one Workspace</strong></p>
         </div>
       </div>
 
       <div class="demo-layout reveal reveal-delay-1" id="demo-root">
         <!-- Chat Demo -->
-        <article class="demo-block" aria-label="AI Chatbot Workspace 데모">
+        <article class="demo-block" aria-label="AI chatbot workspace demo">
           <header class="demo-block-label">
             <h3>AI Chatbot Workspace</h3>
             <span class="live-pill" role="status" aria-live="polite"><span class="pulse-dot" aria-hidden="true"></span> Live</span>
           </header>
           <div class="demo-annotated">
-          <div class="workspace-shell" role="application" aria-label="챗봇 워크스페이스 UI">
-            <nav class="ws-sidebar" aria-label="워크스페이스 내비게이션">
+          <div class="workspace-shell" role="application" aria-label="Chatbot workspace UI">
+            <nav class="ws-sidebar" aria-label="Workspace navigation">
               <div class="ws-logo" aria-hidden="true">N</div>
               <div class="ws-nav-item active" aria-hidden="true" title="Chat"><i data-lucide="message-circle"></i></div>
               <div class="ws-nav-item" aria-hidden="true" title="Image"><i data-lucide="image"></i></div>
@@ -5587,8 +6392,8 @@
               </div>
               <div class="ws-body">
                 <div class="ws-panel">
-                  <div class="chat-area" id="chat-demo" aria-label="채팅 데모 영역" aria-live="polite">
-                    <div class="bubble-user" id="chat-user" role="log">이번 달 고객 문의 TOP 5 정리해줘</div>
+                  <div class="chat-area" id="chat-demo" aria-label="Chat demo" aria-live="polite">
+                    <div class="bubble-user" id="chat-user" role="log">Summarize this month's top 5 customer questions</div>
                     <div class="bubble-ai-wrap">
                       <div class="bubble-thinking" id="chat-thinking" role="status" aria-live="polite">
                         <div class="thinking-dots" aria-hidden="true"><span></span><span></span><span></span></div>
@@ -5599,8 +6404,8 @@
                         <p id="chat-reply"></p>
                       </div>
                     </div>
-                    <div class="chat-input-bar" id="chat-input" role="group" aria-label="메시지 입력">
-                      <span class="input-text" id="chat-typed" aria-label="입력 중"></span>
+                    <div class="chat-input-bar" id="chat-input" role="group" aria-label="Message input">
+                      <span class="input-text" id="chat-typed" aria-label="Typing"></span>
                       <span class="send-btn" role="button" aria-hidden="true">Send</span>
                     </div>
                   </div>
@@ -5613,28 +6418,28 @@
               </div>
             </div>
           </div>
-          <div class="demo-rationale-rail" aria-label="UI 배치 이유">
+          <div class="demo-rationale-rail" aria-label="Why the UI is placed this way">
             <div class="demo-rationale-item" data-zone="sidebar">
               <span class="demo-rationale-zone">Left · Sidebar</span>
-              <strong>왜 History를 왼쪽에?</strong>
-              <span>자주 쓰이지만 항상 펼칠 필요 없음. 좁은 사이드에 두면 캔버스를 가리지 않으면서 이전 Prompt·결과를 바로 복원.</span>
+              <strong>Why is History on the left?</strong>
+              <span>Used often, but it does not need to stay open. A narrow side restores the last prompt and result without covering the canvas.</span>
             </div>
             <div class="demo-rationale-item" data-zone="center">
               <span class="demo-rationale-zone">Center · Chat</span>
-              <strong>왜 Prompt를 하단에?</strong>
-              <span>대화형 AI 습관과 같고, 결과를 본 뒤 바로 수정 Prompt를 칠 수 있음. 반복 수정 루프가 끊기지 않음.</span>
+              <strong>Why is the prompt at the bottom?</strong>
+              <span>It matches how people use chat AI, and they can type a revision right after seeing the result. The revise loop does not break.</span>
             </div>
             <div class="demo-rationale-item" data-zone="result">
               <span class="demo-rationale-zone">Right · Preview</span>
-              <strong>왜 Preview를 오른쪽에?</strong>
-              <span>입력(좌) → 판단(우) 흐름. 대화와 결과를 나란히 두어 Export 없이 비교·다운로드.</span>
+              <strong>Why is Preview on the right?</strong>
+              <span>Input on the left, judgment on the right. Conversation and result sit side by side, so you compare and download without a separate export step.</span>
             </div>
           </div>
           </div>
         </article>
 
         <!-- Interaction Flow -->
-        <section class="ix-flow" aria-label="사용자 사고 흐름">
+        <section class="ix-flow" aria-label="How the user thinks">
           <header class="ix-flow-header">
             <h3>User Journey Flow</h3>
             <span>Intent → Export</span>
@@ -5643,40 +6448,40 @@
             <li class="ix-step active">
               <div class="ix-step-icon" aria-hidden="true"><i data-lucide="message-circle"></i></div>
               <strong>User Intent</strong>
-              <span>목표·요구 입력</span>
+              <span>Enter the goal</span>
             </li>
             <li class="ix-step">
               <div class="ix-step-icon" aria-hidden="true"><i data-lucide="brain"></i></div>
               <strong>AI Planning</strong>
-              <span>방향·옵션 제안</span>
+              <span>Suggest a direction</span>
             </li>
             <li class="ix-step">
               <div class="ix-step-icon" aria-hidden="true"><i data-lucide="sparkles"></i></div>
               <strong>Generation</strong>
-              <span>결과물 생성</span>
+              <span>Generate the output</span>
             </li>
             <li class="ix-step">
               <div class="ix-step-icon" aria-hidden="true"><i data-lucide="refresh-cw"></i></div>
               <strong>Iteration</strong>
-              <span>비교·수정 반복</span>
+              <span>Compare and revise</span>
             </li>
             <li class="ix-step done">
               <div class="ix-step-icon" aria-hidden="true"><i data-lucide="download"></i></div>
               <strong>Export</strong>
-              <span>내보내기·공유</span>
+              <span>Export and share</span>
             </li>
           </ol>
         </section>
 
         <!-- Image Demo -->
-        <article class="demo-block" aria-label="이미지 생성 Workspace 데모">
+        <article class="demo-block" aria-label="Image generation workspace demo">
           <header class="demo-block-label">
             <h3>Image Generation Workspace</h3>
             <span class="live-pill" role="status"><span class="pulse-dot" aria-hidden="true"></span> Live</span>
           </header>
           <div class="demo-annotated">
-          <div class="workspace-shell" role="application" aria-label="이미지 생성 워크스페이스 UI">
-            <nav class="ws-sidebar" aria-label="워크스페이스 내비게이션">
+          <div class="workspace-shell" role="application" aria-label="Image generation workspace UI">
+            <nav class="ws-sidebar" aria-label="Workspace navigation">
               <div class="ws-logo" aria-hidden="true">N</div>
               <div class="ws-nav-item" aria-hidden="true" title="Chat"><i data-lucide="message-circle"></i></div>
               <div class="ws-nav-item active" aria-hidden="true" title="Image"><i data-lucide="image"></i></div>
@@ -5697,7 +6502,7 @@
               <div class="ws-body">
                 <div class="ws-panel">
                   <div id="image-demo">
-                    <div class="img-prompt-bar" id="img-prompt">"미니멀 SaaS 히어로 배너"</div>
+                    <div class="img-prompt-bar" id="img-prompt">"Minimal SaaS hero banner"</div>
                     <div class="img-progress"><div class="img-progress-fill"></div></div>
                     <div class="img-gen-state">
                       <div class="thinking-dots"><span></span><span></span><span></span></div>
@@ -5718,21 +6523,21 @@
               </div>
             </div>
           </div>
-          <div class="demo-rationale-rail" aria-label="UI 배치 이유">
+          <div class="demo-rationale-rail" aria-label="Why the UI is placed this way">
             <div class="demo-rationale-item" data-zone="sidebar">
               <span class="demo-rationale-zone">Left · Workspace</span>
-              <strong>왜 Workspace 구조?</strong>
-              <span>Image·Chat·Auto를 한 공간에. 모드만 바꾸고 Prompt·결과·히스토리 맥락은 유지.</span>
+              <strong>Why a Workspace structure?</strong>
+              <span>Image, Chat, and Auto share one space. Only the mode changes. Prompt, result, and history stay in context.</span>
             </div>
             <div class="demo-rationale-item" data-zone="center">
               <span class="demo-rationale-zone">Center · Variant Cards</span>
-              <strong>왜 Card Layout?</strong>
-              <span>리스트는 스크롤 비교가 느림. 동일 크기 카드 그리드로 A/B 차이를 수평 스캔으로 빠르게 판단.</span>
+              <strong>Why a card layout?</strong>
+              <span>Same-size cards put each variant on one row, so comparison stays in the Workspace view.</span>
             </div>
             <div class="demo-rationale-item" data-zone="result">
               <span class="demo-rationale-zone">Right · Export</span>
-              <strong>왜 Export를 결과 옆에?</strong>
-              <span>판단은 Preview 직후. 결과 패널에 Download를 두면 “선택 → 내보내기”가 한 동작으로 끝남.</span>
+              <strong>Why is Export next to the result?</strong>
+              <span>The decision happens right after preview. Download on the result panel makes “choose → export” one move.</span>
             </div>
           </div>
           </div>
@@ -5743,27 +6548,27 @@
           <div class="spec-panel">
             <h4>Chat — Why this UI</h4>
             <dl class="spec-rows">
-              <div class="spec-row"><dt>Workspace</dt><dd>Chat·Image·Auto를 사이드바로 — 탭 전환 없이 모드만 바꿈</dd></div>
-              <div class="spec-row"><dt>Prompt 하단</dt><dd>결과 확인 후 바로 수정. Thumb zone + Revise loop 유지</dd></div>
-              <div class="spec-row"><dt>History 탭</dt><dd>이전 Prompt 복원 — 빈 입력부터 다시 쓰는 비용 제거</dd></div>
-              <div class="spec-row"><dt>Result Panel</dt><dd>대화 옆 Preview — Export 없이 비교·다운로드</dd></div>
+              <div class="spec-row"><dt>Workspace</dt><dd>Chat, Image, and Auto in the sidebar — change mode without switching tabs</dd></div>
+              <div class="spec-row"><dt>Bottom prompt</dt><dd>Revise right after seeing the result. The thumb zone and the revise loop stay intact</dd></div>
+              <div class="spec-row"><dt>History tab</dt><dd>A previous prompt can be opened again from the same Workspace</dd></div>
+              <div class="spec-row"><dt>Result Panel</dt><dd>Preview beside the conversation — compare and download without a separate export</dd></div>
             </dl>
           </div>
           <div class="spec-panel">
             <h4>Image — Why this UI</h4>
             <dl class="spec-rows">
-              <div class="spec-row"><dt>Prompt 바</dt><dd>자연어 Intent 입력 — 설정 폼보다 진입 장벽 낮음</dd></div>
-              <div class="spec-row"><dt>Variant Cards</dt><dd>동일 크기 그리드 — 리스트보다 A/B 스캔이 빠름</dd></div>
-              <div class="spec-row"><dt>Progress</dt><dd>생성 중 피드백 — 대기 불확실성으로 인한 이탈 방지</dd></div>
-              <div class="spec-row"><dt>Result + Export</dt><dd>판단 직후 Download — 시선·클릭 왕복 최소화</dd></div>
+              <div class="spec-row"><dt>Prompt bar</dt><dd>Natural-language intent — a lower barrier than a settings form</dd></div>
+              <div class="spec-row"><dt>Variant Cards</dt><dd>Same-size cards sit in one row inside the Workspace</dd></div>
+              <div class="spec-row"><dt>Progress</dt><dd>A progress state is visible while the image generates</dd></div>
+              <div class="spec-row"><dt>Result + Export</dt><dd>Download sits on the result panel, next to the preview</dd></div>
             </dl>
           </div>
         </div>
 
         <div class="journey-panel journey-panel--demo reveal reveal-delay-1" aria-labelledby="demo-ba-title">
           <header class="journey-panel-head">
-            <h3 id="demo-ba-title">레이아웃 Before → After</h3>
-            <p>스플릿 뷰 — 입력 · 판단 · Export 동선을 한 화면으로</p>
+            <h3 id="demo-ba-title">Layout before → after</h3>
+            <p>Split view — input, judgment, and export on one screen</p>
           </header>
           <div class="journey-grid journey-grid--single">
             <article class="journey-card journey-card--wide">
@@ -5776,45 +6581,45 @@
                   <svg viewBox="0 0 80 72" fill="none"><rect x="6" y="10" width="14" height="52" rx="3" fill="#eef2ff" stroke="#6366f1"/><rect x="24" y="14" width="34" height="44" rx="5" fill="#fff" stroke="#cbd5e1"/><rect x="62" y="14" width="12" height="44" rx="3" fill="#fff" stroke="#00d4ff" stroke-width="1.5"/><rect x="26" y="52" width="30" height="8" rx="4" fill="#0b1220"/></svg>
                 </div>
               </figure>
-              <p class="journey-caption">Workspace 3-Zone Split<em>세로 스택 · 스크롤 왕복 → 좌 History · 중 입력 · 우 Preview + Export</em></p>
+              <p class="journey-caption">Workspace 3-zone split<em>Vertical stack and scroll travel → History left, input center, preview and export right</em></p>
             </article>
           </div>
         </div>
 
         <div class="why-ui reveal reveal-delay-1" aria-labelledby="why-ui-title">
           <div class="why-ui-header">
-            <h3 id="why-ui-title">주요 UI, 왜 이렇게 배치했나</h3>
-            <p>“예뻐서”가 아니라, 손과 시선의 이동을 줄이기 위한 사용성 결정입니다.</p>
+            <h3 id="why-ui-title">Why the main UI is placed this way</h3>
+            <p>Each placement keeps the next action near the work it belongs to.</p>
           </div>
           <div class="why-ui-grid">
             <article class="why-ui-card">
-              <p class="why-ui-q">왜 Workspace 구조인가?</p>
-              <p class="why-ui-a">Chat·Image·Auto를 별도 앱처럼 두면 작업 상태가 툴마다 끊깁니다. 하나의 Workspace로 묶어야 Prompt·결과·히스토리가 같은 맥락에 남습니다.</p>
+              <p class="why-ui-q">Why a Workspace structure?</p>
+              <p class="why-ui-a">If Chat, Image, and Auto behave like separate apps, work state breaks at every tool. One Workspace keeps the prompt, result, and history in the same context.</p>
               <span class="why-ui-tag">Context continuity</span>
             </article>
             <article class="why-ui-card">
-              <p class="why-ui-q">왜 Prompt 입력창을 하단에?</p>
-              <p class="why-ui-a">대화형 AI 사용 습관과 같고, 결과를 본 뒤 바로 수정 Prompt를 칠 수 있습니다. 상단 고정은 결과 영역을 밀어내 반복 수정 루프를 끊습니다.</p>
+              <p class="why-ui-q">Why is the prompt field at the bottom?</p>
+              <p class="why-ui-a">It matches chat habits, and you can revise right after seeing the result. Pinning it to the top pushes the result away and breaks the revise loop.</p>
               <span class="why-ui-tag">Thumb zone · Revise loop</span>
             </article>
             <article class="why-ui-card">
-              <p class="why-ui-q">왜 Preview를 오른쪽에?</p>
-              <p class="why-ui-a">LTR 읽기 흐름에서 입력(좌) → 판단(우)이 자연스럽습니다. 대화와 결과를 나란히 두면 Export 없이 Variant를 비교할 수 있습니다.</p>
+              <p class="why-ui-q">Why is Preview on the right?</p>
+              <p class="why-ui-a">In a left-to-right reading flow, input then judgment is natural. Side by side, you can compare variants without exporting.</p>
               <span class="why-ui-tag">F-pattern · Compare</span>
             </article>
             <article class="why-ui-card">
-              <p class="why-ui-q">왜 History를 왼쪽(사이드)에?</p>
-              <p class="why-ui-a">이전 작업은 자주 쓰이지만 항상 펼쳐둘 필요는 없습니다. 좁은 사이드에 두면 메인 캔버스를 가리지 않으면서, 필요할 때 Prompt·결과를 바로 복원할 수 있습니다.</p>
+              <p class="why-ui-q">Why is History on the left side?</p>
+              <p class="why-ui-a">Past work is used often, but it does not need to stay expanded. A narrow side keeps the canvas clear and restores a prompt or result when you need it.</p>
               <span class="why-ui-tag">Progressive access</span>
             </article>
             <article class="why-ui-card">
-              <p class="why-ui-q">왜 Variant에 Card Layout인가?</p>
-              <p class="why-ui-a">리스트는 스크롤 비교가 느립니다. 동일 크기의 카드 그리드는 시선이 수평으로 이동해 A/B 차이를 더 빨리 판단하게 합니다.</p>
+              <p class="why-ui-q">Why cards for variants?</p>
+              <p class="why-ui-a">A same-size card grid puts the variants on one row, in the same view as the prompt.</p>
               <span class="why-ui-tag">Scanability</span>
             </article>
             <article class="why-ui-card">
-              <p class="why-ui-q">왜 Export를 결과 패널에 붙였나?</p>
-              <p class="why-ui-a">결정은 Preview를 본 직후에 이뤄집니다. 툴바에만 두면 시선·클릭이 다시 위로 갑니다. 결과 옆에 두면 “선택 → 내보내기”가 한 동작으로 끝납니다.</p>
+              <p class="why-ui-q">Why attach Export to the result panel?</p>
+              <p class="why-ui-a">The decision happens right after preview. A toolbar-only action sends the eye back up. Next to the result, “choose → export” is one move.</p>
               <span class="why-ui-tag">Proximity</span>
             </article>
           </div>
@@ -5825,32 +6630,32 @@
     <!-- Section 04: Workflow & Integration -->
     <section class="portfolio-section section-tone-blue" id="features-2" aria-labelledby="workflow-title">
       <header class="narrative-header reveal">
-        <p class="narrative-kicker">04 · Workflow & Integration</p>
-        <h2 class="narrative-title" id="workflow-title">Intent부터 Export까지,<br />한 줄로 이어지는 여정</h2>
-        <p class="narrative-lead">UI를 먼저 그린 게 아니라, 사용자의 사고 순서에 Workspace 정보를 맞춰 배치했습니다.</p>
-        <ul class="section-dimensions" aria-label="이 섹션에서 보여주는 역량">
+        <p class="narrative-kicker">12 · Workflow & Integration</p>
+        <h2 class="narrative-title" id="workflow-title">From intent to export,<br />one continuous journey</h2>
+        <p class="narrative-lead">The screen follows one order: intent, planning, generation, iteration, and export.</p>
+        <ul class="section-dimensions" aria-label="Skills this section shows">
           <li>User Journey</li>
           <li>Information Architecture</li>
-          <li>KPI Hypothesis</li>
+          <li>Layout decisions</li>
         </ul>
       </header>
 
-      <div class="ux-story reveal reveal-delay-1" aria-label="Workflow 섹션 UX Story">
+      <div class="ux-story reveal reveal-delay-1" aria-label="Workflow section UX story">
         <div class="ux-story-step" data-step="problem">
           <span class="ux-story-label">Problem</span>
-          <p>기능은 많은데 <strong>다음 행동이 안 보여</strong> 작업이 중간에 끊김</p>
+          <p>There are many features, but the <strong>next action is unclear</strong>, so work stops halfway</p>
         </div>
         <div class="ux-story-step" data-step="insight">
           <span class="ux-story-label">Insight</span>
-          <p>사용자는 메뉴가 아니라 <strong>Intent → 결과 → 수정 → Export</strong> 순으로 생각함</p>
+          <p>The interface is ordered as <strong>intent → result → revise → export</strong></p>
         </div>
         <div class="ux-story-step" data-step="decision">
           <span class="ux-story-label">Decision</span>
-          <p>5단계 Journey를 IA의 뼈대로 두고 화면을 역설계</p>
+          <p>The five-step journey is the IA backbone, and the screens were designed backward from it</p>
         </div>
         <div class="ux-story-step" data-step="result">
           <span class="ux-story-label">Result</span>
-          <p>모드 전환 없이 한 흐름으로 끝까지 도달</p>
+          <p>Reach the end in one flow, without switching modes</p>
         </div>
       </div>
 
@@ -5869,7 +6674,7 @@
             <defs><linearGradient id="wf-bridge-bg" x1="10" y1="8" x2="86" y2="88" gradientUnits="userSpaceOnUse"><stop stop-color="#ecfdf5"/><stop offset="1" stop-color="#e0f2fe"/></linearGradient></defs>
           </svg>
         </div>
-        <p class="story-bridge-text">Chat·Image 데모는 각각 다른 UI지만, 뒤에는 같은 <strong>Intent → Planning → Generation → Iteration → Export</strong> 사고 모델이 있습니다.</p>
+        <p class="story-bridge-text">The Chat and Image demos look different, but both sit on the same thinking model: <strong>Intent → Planning → Generation → Iteration → Export</strong>.</p>
       </div>
 
       <div class="section-stack reveal reveal-delay-1">
@@ -5884,30 +6689,30 @@
             <div class="wf-node">
               <div class="wf-icon icon-box icon-box--sm" aria-hidden="true"><i data-lucide="message-circle"></i></div>
               <p class="wf-label">User Intent</p>
-              <p class="wf-sub">목표·요구 정의</p>
+              <p class="wf-sub">Define the goal</p>
             </div>
             <div class="wf-node">
               <div class="wf-icon icon-box icon-box--sm" aria-hidden="true"><i data-lucide="brain"></i></div>
               <p class="wf-label">AI Planning</p>
-              <p class="wf-sub">방향·옵션 제안</p>
+              <p class="wf-sub">Suggest a direction</p>
             </div>
             <div class="wf-node">
               <div class="wf-icon icon-box icon-box--sm" aria-hidden="true"><i data-lucide="sparkles"></i></div>
               <p class="wf-label">Generation</p>
-              <p class="wf-sub">결과물 생성</p>
+              <p class="wf-sub">Generate the output</p>
             </div>
             <div class="wf-node">
               <div class="wf-icon icon-box icon-box--sm" aria-hidden="true"><i data-lucide="refresh-cw"></i></div>
               <p class="wf-label">Iteration</p>
-              <p class="wf-sub">비교·수정 반복</p>
+              <p class="wf-sub">Compare and revise</p>
             </div>
             <div class="wf-node">
               <div class="wf-icon icon-box icon-box--sm" aria-hidden="true"><i data-lucide="download"></i></div>
               <p class="wf-label">Export</p>
-              <p class="wf-sub">내보내기·공유</p>
+              <p class="wf-sub">Export and share</p>
             </div>
           </div>
-          <div class="wf-status-bar">✓ Intent → Export 흐름 완료 · 같은 Workspace 유지</div>
+          <div class="wf-status-bar">✓ Intent → Export complete · same Workspace</div>
         </div>
 
         <div class="hub-panel">
@@ -5926,7 +6731,7 @@
             <div class="hub-center">N<span>Hub</span></div>
             <span class="hub-app" style="top:6%;left:42%">Slack</span>
             <span class="hub-app" style="top:16%;right:8%">Notion</span>
-            <span class="hub-app" style="top:42%;right:2%">Gmail</span>
+            <span class="hub-app" style="top:42%;right:2%">OpenAI</span>
             <span class="hub-app" style="bottom:18%;right:8%">Jira</span>
             <span class="hub-app" style="bottom:6%;left:42%">Figma</span>
             <span class="hub-app" style="bottom:18%;left:8%">Drive</span>
@@ -5935,9 +6740,9 @@
           </div>
           <div class="app-chips">
             <span class="app-chip">Slack</span>
-            <span class="app-chip">Gmail</span>
             <span class="app-chip">Notion</span>
-            <span class="app-chip">+46</span>
+            <span class="app-chip">GitHub</span>
+            <span class="app-chip">Linear</span>
           </div>
         </div>
       </div>
@@ -5945,113 +6750,113 @@
       <div class="wf-spec-grid">
         <div class="wf-spec-item">
           <strong>Intent Mapping</strong>
-          <span>목표를 자연어로 받고 History에 남겨, 이전 작업을 다시 찾을 수 있게 함</span>
+          <span>Take the goal in natural language and keep it in History, so past work can be found again</span>
         </div>
         <div class="wf-spec-item">
           <strong>AI-assisted Planning</strong>
-          <span>옵션을 AI가 제안하고 사용자는 선택·결정 — 통제권은 사용자에게</span>
+          <span>AI suggests options and the person chooses — control stays with them</span>
         </div>
         <div class="wf-spec-item">
           <strong>Iterative Refinement</strong>
-          <span>생성 → 비교 → Prompt 수정 반복을 같은 Workspace에서 끝내도록 설계</span>
+          <span>Designed so generate, compare, and revise finish in the same Workspace</span>
         </div>
       </div>
 
       <div class="benefits-section">
         <div class="benefits-header">
-          <h3>UX 가설 기반 KPI</h3>
-          <p>실측 A/B가 아닌, 과제 시나리오·클릭 경로 분석으로 잡은 개선 가설입니다. 숫자는 과장하지 않은 현실적 범위로 잡았습니다.</p>
+          <h3>Layout decisions in the Workspace</h3>
+          <p>Each card records what the interface changes, and which part of the screen carries that job.</p>
         </div>
         <div class="kpi-grid kpi-grid--hypo">
           <div class="kpi-card">
             <span class="icon-box" aria-hidden="true"><i data-lucide="shuffle"></i></span>
             <div class="kpi-impact">
-              <span class="kpi-metric">−35%</span>
-              <span class="kpi-metric-sub">작업 전환 시간</span>
+              <span class="kpi-metric">One view</span>
+              <span class="kpi-metric-sub">Task switching</span>
             </div>
             <div class="kpi-compare">
-              <span>3탭 전환</span>
+              <span>3-tab switch</span>
               <i data-lucide="arrow-right"></i>
               <span class="kpi-compare-after">1 Workspace</span>
             </div>
-            <strong>작업 전환 속도</strong>
-            <p>Chat → Image → Auto를 사이드 전환만으로 이어, 탭·로그인 재진입을 줄임</p>
-            <span class="kpi-hypo">Hypothesis · path count</span>
+            <strong>One Workspace</strong>
+            <p>Chat, Image, and Auto continue from the sidebar in the same Workspace.</p>
+            <span class="kpi-hypo">Layout decision</span>
           </div>
           <div class="kpi-card">
             <span class="icon-box" aria-hidden="true"><i data-lucide="keyboard"></i></span>
             <div class="kpi-impact">
-              <span class="kpi-metric">−20%</span>
-              <span class="kpi-metric-sub">Prompt 작성 시간</span>
+              <span class="kpi-metric">History</span>
+              <span class="kpi-metric-sub">Previous prompt</span>
             </div>
             <div class="kpi-compare">
-              <span>빈 입력부터</span>
+              <span>Blank field</span>
               <i data-lucide="arrow-right"></i>
-              <span class="kpi-compare-after">History 복원</span>
+              <span class="kpi-compare-after">History tab</span>
             </div>
-            <strong>Prompt 작성 시간</strong>
-            <p>이전 Prompt를 History에서 불러와 수정만 하도록 경로를 짧게 만듦</p>
-            <span class="kpi-hypo">Hypothesis · task time</span>
+            <strong>History keeps the prompt</strong>
+            <p>The History tab sits in the Workspace so a previous prompt can be opened again.</p>
+            <span class="kpi-hypo">Layout decision</span>
           </div>
           <div class="kpi-card">
             <span class="icon-box" aria-hidden="true"><i data-lucide="mouse-pointer-click"></i></span>
             <div class="kpi-impact">
-              <span class="kpi-metric">−4 clicks</span>
-              <span class="kpi-metric-sub">핵심 과업당</span>
+              <span class="kpi-metric">Beside it</span>
+              <span class="kpi-metric-sub">Next action</span>
             </div>
             <div class="kpi-compare">
-              <span>~11 clicks</span>
+              <span>Scattered actions</span>
               <i data-lucide="arrow-right"></i>
-              <span class="kpi-compare-after">~7 clicks</span>
+              <span class="kpi-compare-after">By the result</span>
             </div>
-            <strong>클릭 횟수 감소</strong>
-            <p>Export·비교·수정을 Result Panel 근처에 모아 왕복 클릭을 줄임</p>
-            <span class="kpi-hypo">Hypothesis · click path</span>
+            <strong>Actions sit with the result</strong>
+            <p>Export, compare, and revise are placed on the result panel.</p>
+            <span class="kpi-hypo">Layout decision</span>
           </div>
           <div class="kpi-card">
             <span class="icon-box" aria-hidden="true"><i data-lucide="refresh-cw"></i></span>
             <div class="kpi-impact">
-              <span class="kpi-metric">−30%</span>
-              <span class="kpi-metric-sub">재생성 루프</span>
+              <span class="kpi-metric">In place</span>
+              <span class="kpi-metric-sub">Revise loop</span>
             </div>
             <div class="kpi-compare">
-              <span>Export→재업로드</span>
+              <span>Export then re-upload</span>
               <i data-lucide="arrow-right"></i>
-              <span class="kpi-compare-after">In-place revise</span>
+              <span class="kpi-compare-after">Revise on screen</span>
             </div>
-            <strong>재생성 과정 단축</strong>
-            <p>같은 화면 Prompt → Result → Revise로 파일 왕복을 제거</p>
-            <span class="kpi-hypo">Hypothesis · loop length</span>
+            <strong>Revise on the same screen</strong>
+            <p>Prompt, result, and revise stay together in the Workspace.</p>
+            <span class="kpi-hypo">Layout decision</span>
           </div>
           <div class="kpi-card">
             <span class="icon-box" aria-hidden="true"><i data-lucide="columns-2"></i></span>
             <div class="kpi-impact">
-              <span class="kpi-metric">~2×</span>
-              <span class="kpi-metric-sub">비교 판단 속도</span>
+              <span class="kpi-metric">One row</span>
+              <span class="kpi-metric-sub">Variants</span>
             </div>
             <div class="kpi-compare">
-              <span>파일 번갈아 열기</span>
+              <span>One file at a time</span>
               <i data-lucide="arrow-right"></i>
-              <span class="kpi-compare-after">카드 나란히</span>
+              <span class="kpi-compare-after">Cards in a row</span>
             </div>
-            <strong>결과 비교 효율</strong>
-            <p>Variant 카드 그리드로 시선 이동만으로 A/B 차이를 확인</p>
-            <span class="kpi-hypo">Hypothesis · scan time</span>
+            <strong>Variants share a row</strong>
+            <p>Same-size cards keep the options in the Workspace view.</p>
+            <span class="kpi-hypo">Layout decision</span>
           </div>
           <div class="kpi-card">
             <span class="icon-box" aria-hidden="true"><i data-lucide="compass"></i></span>
             <div class="kpi-impact">
-              <span class="kpi-metric">−25%</span>
-              <span class="kpi-metric-sub">탐색 시간</span>
+              <span class="kpi-metric">Fixed IA</span>
+              <span class="kpi-metric-sub">Next step</span>
             </div>
             <div class="kpi-compare">
-              <span>메뉴 탐색</span>
+              <span>Open menus</span>
               <i data-lucide="arrow-right"></i>
-              <span class="kpi-compare-after">고정 IA</span>
+              <span class="kpi-compare-after">Sidebar + History</span>
             </div>
-            <strong>Workspace 탐색 시간</strong>
-            <p>사이드바 모드 + History로 “다음에 어디 가지?” 결정을 줄임</p>
-            <span class="kpi-hypo">Hypothesis · findability</span>
+            <strong>The next step stays visible</strong>
+            <p>Sidebar modes and History mark where the work continues.</p>
+            <span class="kpi-hypo">Layout decision</span>
           </div>
         </div>
       </div>
@@ -6061,10 +6866,10 @@
     <!-- Section 05: Design Tokens & Components -->
     <section class="portfolio-section section-tone-gray" id="design-system" aria-labelledby="ds-title">
       <header class="narrative-header reveal">
-        <p class="narrative-kicker">05 · Design Tokens & Components</p>
+        <p class="narrative-kicker">13 · Design Tokens & Components</p>
         <h2 class="narrative-title" id="ds-title">Design System</h2>
-        <p class="narrative-lead">컴포넌트를 나열하지 않고 — Variant · State · Token · Rule까지 포함한 시스템 사고로 설계·구현을 맞췄습니다.</p>
-        <ul class="section-dimensions" aria-label="이 섹션에서 보여주는 역량">
+        <p class="narrative-lead">Not a component dump — design and implementation stay aligned as a system of variants, states, tokens, and rules.</p>
+        <ul class="section-dimensions" aria-label="Skills this section shows">
           <li>Component Thinking</li>
           <li>Design Tokens</li>
           <li>State Matrix</li>
@@ -6081,11 +6886,11 @@
               <h3>System Overview</h3>
               <span>Foundation</span>
             </div>
-            <p class="sys-panel-desc">8pt Grid · Semantic Tokens · Glass Surface · Premium Motion — Figma-ready 구조로 설계·구현 일치</p>
+            <p class="sys-panel-desc">8pt spacing, color, and type are CSS variables. The landing components read those same values.</p>
             <div class="sys-type-stack">
               <div class="sys-type-item">
                 <div class="sys-type-label"><span>Display</span><em>700</em></div>
-                <p class="sys-type-display">툴 전환 없이,<br />한곳에서 끝까지</p>
+                <p class="sys-type-display">No tool hopping,<br />finish in one place</p>
               </div>
               <div class="sys-type-item">
                 <div class="sys-type-label"><span>Body</span><em>500</em></div>
@@ -6103,7 +6908,7 @@
               <h3>Color Tokens</h3>
               <span>Semantic Palette</span>
             </div>
-            <p class="sys-panel-desc">Neon Cyan · Soft Lavender · Neon Mint — Aurora Gradient로 AI Workspace 분위기를 포인트만 강화</p>
+            <p class="sys-panel-desc">Neon cyan, soft lavender, neon mint — the aurora gradient only strengthens the AI Workspace mood</p>
             <div class="sys-colors">
               <div class="sys-color fg"><div class="sys-color-fill"></div><div class="sys-color-meta"><strong>Foreground</strong><code>#0b1220</code></div></div>
               <div class="sys-color neon"><div class="sys-color-fill"></div><div class="sys-color-meta"><strong>Neon Cyan</strong><code>#00d4ff</code></div></div>
@@ -6126,7 +6931,7 @@
               <h3>Component Thinking</h3>
               <span>Button Spec</span>
             </div>
-            <p class="sys-panel-desc">Variant · State · Size를 토큰으로 정의하고, Figma Component Set과 1:1 대응</p>
+            <p class="sys-panel-desc">Variants, states, and sizes are the shared Button component in the React UI.</p>
             <div class="comp-thinking">
               <div class="comp-spec-block">
                 <div class="comp-spec-head">
@@ -6167,15 +6972,15 @@
               <div class="comp-rules">
                 <div class="comp-rule">
                   <strong>CTA Hierarchy</strong>
-                  <span>페이지당 Primary 1개. Neon은 강조 액션, Ghost는 보조.</span>
+                  <span>One primary per page. Neon is the emphasis action, ghost is secondary.</span>
                 </div>
                 <div class="comp-rule">
                   <strong>Touch Target</strong>
-                  <span>최소 44px 높이(lg). 모바일 CTA는 lg 기본.</span>
+                  <span>Minimum 44px height (lg). Mobile CTAs default to lg.</span>
                 </div>
                 <div class="comp-rule">
                   <strong>Focus Ring</strong>
-                  <span>키보드 탐색 시 --neon outline 2px. Hover와 분리.</span>
+                  <span>A 2px --neon outline on keyboard focus, separate from hover.</span>
                 </div>
               </div>
             </div>
@@ -6211,7 +7016,7 @@
               <div class="sys-spacing-item"><div class="sys-spacing-bar" style="height:24px"></div><span>24</span></div>
               <div class="sys-spacing-item"><div class="sys-spacing-bar" style="height:32px"></div><span>32</span></div>
             </div>
-            <p class="token-meta" style="margin-top:var(--space-2)"><code>--grid-unit</code> 배수 · Figma Auto Layout 1:1</p>
+            <p class="token-meta" style="margin-top:var(--space-2)"><code>--grid-unit</code> multiples · the spacing scale used in the layout</p>
           </div>
           <div class="sys-panel sys-span-4">
             <div class="sys-panel-head">
@@ -6236,7 +7041,7 @@
               <h3>Components</h3>
               <span>Input · Chip · Card</span>
             </div>
-            <p class="sys-panel-desc">Button과 동일한 토큰·State 규칙을 Input · Chip · Card에도 적용</p>
+            <p class="sys-panel-desc">The same token and state rules as Button, applied to Input, Chip, and Card</p>
             <div class="sys-comp-grid">
               <div class="sys-comp-cell">
                 <label>Input · States</label>
@@ -6264,7 +7069,7 @@
               </div>
               <div class="sys-comp-cell">
                 <label>Component Rule</label>
-                <p style="font-size:var(--fs-sm);color:var(--muted);line-height:1.55;margin:0">모든 인터랙티브 요소는 <strong style="color:var(--fg)">default · hover · focus · disabled</strong> 4-state 필수. 토큰 없이 hex 직접 사용 금지.</p>
+                <p style="font-size:var(--fs-sm);color:var(--muted);line-height:1.55;margin:0">Every interactive element needs the four states <strong style="color:var(--fg)">default, hover, focus, and disabled</strong>. No raw hex outside a token.</p>
               </div>
             </div>
           </div>
@@ -6274,7 +7079,7 @@
               <h3>Grid System</h3>
               <span>Layout</span>
             </div>
-            <p class="sys-panel-desc">12-col bento · 8pt gap — 섹션·카드 배치의 기준 그리드</p>
+            <p class="sys-panel-desc">12-column bento, 8pt gaps — the grid sections and cards are placed on</p>
             <div class="sys-grid-viz">
               <div class="sys-grid-blocks">
                 <div class="sys-grid-block"></div>
@@ -6287,7 +7092,7 @@
             <div class="comp-rules" style="margin-top:var(--space-3);grid-template-columns:1fr">
               <div class="comp-rule">
                 <strong>Color Token Rule</strong>
-                <span>Semantic only — <code>--fg</code>, <code>--neon</code>, <code>--accent</code>. Raw hex는 토큰 정의에만.</span>
+                <span>Semantic only — <code>--fg</code>, <code>--neon</code>, <code>--accent</code>. Raw hex belongs only in token definitions.</span>
               </div>
             </div>
           </div>
@@ -6300,7 +7105,7 @@
               <h3>Motion Principles</h3>
               <span>Premium Ease</span>
             </div>
-            <p class="sys-panel-desc">의미 있는 움직임만 — Reveal · Hover · Progress. reduced-motion 대응 포함</p>
+            <p class="sys-panel-desc">Only meaningful motion — reveal, hover, progress. Includes a reduced-motion path.</p>
             <div class="sys-motion-grid">
               <div class="sys-motion-card ease-out">
                 <h4>Premium Ease</h4>
@@ -6334,7 +7139,7 @@
               <h3>Responsive Layout</h3>
               <span>Desktop · Tablet · Mobile</span>
             </div>
-            <p class="sys-panel-desc">크기만 줄이는 게 아니라 — IA와 그리드 구조가 breakpoint마다 바뀌도록 설계했습니다.</p>
+            <p class="sys-panel-desc">Not just shrinking — the IA and grid change at each breakpoint.</p>
             <div class="resp-layout-grid" id="sys-responsive-demo">
               <article class="resp-layout-card">
                 <header>
@@ -6355,7 +7160,7 @@
                 <ul class="resp-rules">
                   <li>3-Zone split: Sidebar · Chat/Canvas · Result Panel</li>
                   <li>Hero 2-col: copy + mockup side-by-side</li>
-                  <li>Result Panel 항상 노출 — 비교·Export 동선 유지</li>
+                  <li>Result panel always visible — the compare and export path stays</li>
                 </ul>
               </article>
               <article class="resp-layout-card">
@@ -6375,9 +7180,9 @@
                   <span class="lg-result">Result</span>
                 </div>
                 <ul class="resp-rules">
-                  <li>Sidebar → 상단 Icon Nav로 축소</li>
-                  <li>Canvas + Result 2-col 유지 (비교 루프 보존)</li>
-                  <li>Bento · KPI 그리드 2-col로 재배치</li>
+                  <li>Sidebar collapses to a top icon nav</li>
+                  <li>Canvas and result stay 2-column (the compare loop is preserved)</li>
+                  <li>Bento and KPI grids reflow to 2 columns</li>
                 </ul>
               </article>
               <article class="resp-layout-card">
@@ -6398,8 +7203,8 @@
                 </div>
                 <ul class="resp-rules">
                   <li>Single column stack: Toolbar → Chat → Result</li>
-                  <li>Prompt bar 하단 고정 — Thumb zone 유지</li>
-                  <li>Nav chapter rail 숨김 · 섹션 1-col</li>
+                  <li>Prompt bar stays fixed at the bottom — the thumb zone is preserved</li>
+                  <li>Chapter rail hides, sections become one column</li>
                 </ul>
               </article>
             </div>
@@ -6409,7 +7214,7 @@
               <span class="sys-bp-pill is-active">1024 · lg</span>
               <span class="sys-bp-pill">1280+ · xl</span>
             </div>
-            <p class="ba-note" style="margin-top:var(--space-3)"><strong>설계 원칙:</strong> Mobile-first로 작성하되, Desktop에서만 3-Zone split. Tablet은 비교 UX를 위해 2-col을 유지하고, Mobile에서만 stack.</p>
+            <p class="ba-note" style="margin-top:var(--space-3)"><strong>Design principle:</strong> Written mobile-first, but the 3-zone split is desktop only. Tablet keeps 2 columns so comparison survives. Only mobile stacks.</p>
           </div>
         </div>
 
@@ -6420,7 +7225,7 @@
               <h3>Interaction Examples</h3>
               <span>Live Patterns</span>
             </div>
-            <p class="sys-panel-desc">랜딩 페이지에서 실제 사용된 인터랙션 패턴 — Hover Glow · Scroll Reveal · Magnetic CTA · Focus Ring</p>
+            <p class="sys-panel-desc">Interaction patterns actually used on the landing page — hover glow, scroll reveal, magnetic CTA, focus ring</p>
             <div class="sys-ix-playground">
               <div class="sys-ix-item">
                 <div class="sys-ix-icon"><i data-lucide="mouse-pointer-2"></i></div>
@@ -6462,53 +7267,53 @@
     <!-- Section 06: Outcome & Learnings -->
     <section class="portfolio-section section-tone-white" id="conclusion" aria-labelledby="conclusion-title">
       <header class="narrative-header reveal">
-        <p class="narrative-kicker">06 · Outcome & Learnings</p>
-        <h2 class="narrative-title" id="conclusion-title">이 경험에서<br />배운 것들</h2>
-        <p class="narrative-lead">화면을 만든 것이 아니라, AI 작업 흐름을 재설계한 프로젝트였습니다.</p>
-        <ul class="section-dimensions" aria-label="이 섹션에서 보여주는 역량">
+        <p class="narrative-kicker">14 · Outcome & Learnings</p>
+        <h2 class="narrative-title" id="conclusion-title">What this work<br />taught me</h2>
+        <p class="narrative-lead">This was not a project that made screens. It redesigned the flow of AI work.</p>
+        <ul class="section-dimensions" aria-label="Skills this section shows">
           <li>Retrospective</li>
           <li>Design Engineer Lens</li>
           <li>Outcome</li>
         </ul>
       </header>
 
-      <div class="de-checklist reveal reveal-delay-1" aria-label="Design Engineer 역량 체크리스트">
+      <div class="de-checklist reveal reveal-delay-1" aria-label="Design Engineer skills checklist">
         <article class="de-check-item">
-          <strong>UX 사고가 드러나는가</strong>
-          <span>각 섹션에 Problem → Insight → Decision → Result 구조를 두어, 관찰에서 선택까지의 논리가 읽히도록 구성했습니다.</span>
+          <strong>Does the UX thinking show?</strong>
+          <span>Each section uses Problem → Insight → Decision → Result, so the logic from observation to choice is readable.</span>
           <em>UX Story · Narrative</em>
         </article>
         <article class="de-check-item">
-          <strong>문제 해결 과정이 있는가</strong>
-          <span>Pain Point 3종을 정의하고 Before → Problem → After로 구조 변경 근거를 짝지었습니다.</span>
+          <strong>Is there a problem-solving process?</strong>
+          <span>Three pain points, paired with before → problem → after so the reason for each structural change is explicit.</span>
           <em>Before / After</em>
         </article>
         <article class="de-check-item">
-          <strong>설계 근거가 있는가</strong>
-          <span>Workspace · Prompt · Preview · History 배치마다 Why this UI 카드로 usability 근거를 명시했습니다.</span>
+          <strong>Is there a design rationale?</strong>
+          <span>Every placement of Workspace, prompt, preview, and history has a “why this UI” card with a usability reason.</span>
           <em>Design Rationale</em>
         </article>
         <article class="de-check-item">
-          <strong>시스템 사고가 있는가</strong>
-          <span>Button Variant × State × Size, Foundation Token, Component Rule을 Figma Component Set과 1:1 대응했습니다.</span>
+          <strong>Is there systems thinking?</strong>
+          <span>Button variants, states, and sizes, plus color and spacing tokens, are shared React components and CSS variables.</span>
           <em>Component · DS</em>
         </article>
         <article class="de-check-item">
-          <strong>반응형 IA가 있는가</strong>
-          <span>Desktop 3-Zone · Tablet 2-col · Mobile stack — 크기 축소가 아닌 레이아웃 구조 변화로 설계했습니다.</span>
+          <strong>Is there a responsive IA?</strong>
+          <span>Desktop 3-zone, tablet 2-column, mobile stack — a change of layout structure, not just a shrink.</span>
           <em>Responsive</em>
         </article>
         <article class="de-check-item">
-          <strong>상태 설계 · 가설 KPI가 있는가</strong>
-          <span>4-state 필수 규칙과 Hypothesis 라벨 KPI로 측정 가능한 UX 가설을 제시했습니다.</span>
-          <em>State · KPI</em>
+          <strong>Are the interface states defined?</strong>
+          <span>Buttons include hover, focus-visible, and a reduced-motion path. The specimen also shows a disabled state.</span>
+          <em>State · Motion</em>
         </article>
       </div>
 
       <div class="reveal reveal-delay-1">
       <div class="narrative-split reverse" style="margin-bottom: var(--space-5);">
         <div class="narrative-split-copy">
-          <p>분산된 AI 기능을 <strong>Intent → Export</strong> 하나의 흐름으로 재구성했고, Hero Live Demo와 Result Panel로 '생성 이후 수정' 경험을 전면에 배치했습니다.</p>
+          <p>Scattered AI features were rebuilt into one <strong>intent → export</strong> flow, and the hero live demo plus result panel put the “revise after you generate” experience up front.</p>
         </div>
         <figure class="narrative-split-illus" aria-hidden="true">
           <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -6529,66 +7334,108 @@
       <div class="outcome-grid">
         <div class="outcome-card">
           <span class="outcome-icon icon-box icon-box--lg" aria-hidden="true"><i data-lucide="link-2"></i></span>
-          <strong>단일 Workspace 경험 설계</strong>
-          <p>분산된 AI 기능을 Intent → Export 하나의 흐름으로 재구성. 사용자가 올인원 가치를 스스로 체감하도록 설계했습니다.</p>
+          <strong>A single Workspace experience</strong>
+          <p>Chat, image, and automation are composed as one Workspace flow, from the prompt through export.</p>
         </div>
         <div class="outcome-card">
           <span class="outcome-icon icon-box" aria-hidden="true"><i data-lucide="refresh-cw"></i></span>
-          <strong>Iteration 중심 AI UX</strong>
-          <p>Hero Live Demo와 Result Panel로 '생성 이후 수정' 경험을 전면에 배치. 기능 나열이 아닌 작업 루프로 가치를 전달했습니다.</p>
+          <strong>Iteration-first AI UX</strong>
+          <p>The hero live demo and the result panel keep generation and revision in the same view.</p>
         </div>
         <div class="outcome-card">
           <span class="outcome-icon icon-box" aria-hidden="true"><i data-lucide="book-open"></i></span>
-          <strong>스크롤 내러티브</strong>
-          <p>6-Step Flow로 Problem → Demo → Workflow → Design System 순 점진 공개. 정보 과부하 없이 설득하도록 구성했습니다.</p>
+          <strong>A scroll narrative</strong>
+          <p>A 6-step flow reveals problem, demo, workflow, then design system. Persuasion without information overload.</p>
         </div>
         <div class="outcome-card">
           <span class="outcome-icon icon-box" aria-hidden="true"><i data-lucide="accessibility"></i></span>
-          <strong>접근성과 인터랙션 균형</strong>
-          <p>Live Demo·Parallax 등 프리미엄 인터랙션과 reduced-motion 대응을 병행. 체험 품질과 포용성을 함께 고려했습니다.</p>
+          <strong>Accessibility and interaction in balance</strong>
+          <p>Premium interaction such as the live demo and parallax, alongside reduced-motion support. Experience quality and inclusion together.</p>
         </div>
       </div>
 
       <div class="learned-block">
-        <h3>돌아보며</h3>
+        <h3>Looking back</h3>
         <div class="learned-timeline">
           <div class="learned-timeline-item">
             <figure class="learned-timeline-illus" aria-hidden="true">
               <svg viewBox="0 0 72 72" fill="none"><circle cx="36" cy="36" r="34" fill="#eef2ff"/><path d="M24 36h24M36 24v24" stroke="#6366f1" stroke-width="2" stroke-linecap="round" opacity="0.3"/><path d="M28 40c2-8 6-12 8-12s6 4 8 12" stroke="#6366f1" stroke-width="1.5" fill="none"/><circle cx="36" cy="28" r="6" fill="#6366f1" fill-opacity="0.15"/></svg>
             </figure>
-            <p>AI UX에서는 기능보다 <strong>반복 수정 경험</strong>이 더 중요하다는 점을 배웠습니다. 생성만 잘 되는 것보다, 같은 맥락에서 고치고 비교하는 루프가 제품 가치를 결정합니다.</p>
+            <p>In AI UX I learned that the <strong>revise loop</strong> matters more than the feature. A product’s value is decided by fixing and comparing in the same context, not by generation alone.</p>
           </div>
           <div class="learned-timeline-item">
             <figure class="learned-timeline-illus" aria-hidden="true">
               <svg viewBox="0 0 72 72" fill="none"><circle cx="36" cy="36" r="34" fill="#ecfeff"/><rect x="20" y="24" width="32" height="24" rx="5" fill="#fff" stroke="#00d4ff" stroke-width="1.2"/><path d="M28 32h16M28 38h12" stroke="#cbd5e1" stroke-width="1.5" stroke-linecap="round"/></svg>
             </figure>
-            <p>하나의 Workspace 안에서 작업 흐름을 유지하는 것이 사용자 경험을 크게 향상시킨다는 것을 확인했습니다. UI 통합은 '기능 합치기'가 아니라 <strong>'맥락 유지'</strong>가 목적입니다.</p>
+            <p>The Workspace keeps the prompt, the result, and history in one context. The layout holds that context on the screen.</p>
           </div>
           <div class="learned-timeline-item">
             <figure class="learned-timeline-illus" aria-hidden="true">
               <svg viewBox="0 0 72 72" fill="none"><circle cx="36" cy="36" r="34" fill="#f0fdf4"/><path d="M36 20v32M36 52l-10 8M36 52l10 8" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="36" cy="20" r="4" fill="#059669" fill-opacity="0.2"/></svg>
             </figure>
-            <p>UI보다 <strong>사용자의 작업 흐름을 먼저 설계</strong>하는 것이 중요했습니다. Intent → Planning → Generation → Iteration → Export 순서가 모든 화면 구조의 기준이 되었습니다.</p>
+            <p>It mattered more to <strong>design the user’s work flow first</strong> than the UI. Intent → Planning → Generation → Iteration → Export became the standard for every screen.</p>
           </div>
           <div class="learned-timeline-item">
             <figure class="learned-timeline-illus" aria-hidden="true">
               <svg viewBox="0 0 72 72" fill="none"><circle cx="36" cy="36" r="34" fill="#faf5ff"/><rect x="18" y="26" width="16" height="20" rx="3" fill="#fff" stroke="#cbd5e1"/><rect x="38" y="26" width="16" height="20" rx="3" fill="#fff" stroke="#6366f1" stroke-width="1.2"/><path d="M34 36h4" stroke="#6366f1" stroke-width="1.5" stroke-linecap="round"/></svg>
             </figure>
-            <p>생성 이후의 수정 경험까지 고려해야 완성도 높은 AI 제품이 됩니다. Result Panel, Variant 비교, Export까지 한 화면에 두는 것이 핵심 설계 결정이었습니다.</p>
+            <p>A finished AI product has to include what happens after generation. Putting the result panel, variant comparison, and export on one screen was the core design decision.</p>
           </div>
         </div>
       </div>
 
       <div class="conclusion-block">
-        <h3>한 줄 요약</h3>
+        <h3>In one line</h3>
         <p class="conclusion-summary">
-          사용자 Pain Point 분석 → Workspace UX 설계 → Design System → 구현<br />
-          <strong>화면을 만든 것이 아니라, AI 작업 흐름을 재설계한 프로젝트</strong>
+          Pain-point analysis → Workspace UX → design system → implementation<br />
+          <strong>Not a project that made screens — a project that redesigned the AI work flow</strong>
         </p>
-        <a class="live-link" href="http://localhost:3000" target="_blank" rel="noopener noreferrer" aria-label="Nexus AI 라이브 사이트 새 탭에서 열기">
+        <a class="live-link" href="http://localhost:3000/en" target="_blank" rel="noopener noreferrer" aria-label="Open the Nexus AI live site in a new tab">
           Live Site →
         </a>
       </div>
+      </div>
+    </section>
+
+    <section class="portfolio-section section-tone-gray" id="technical" aria-labelledby="technical-title">
+      <header class="narrative-header reveal">
+        <p class="narrative-kicker">Technical Overview</p>
+        <h2 class="narrative-title" id="technical-title">Technical Overview</h2>
+        <p class="narrative-lead">The landing is built from the libraries in the repository. Each one has a job in the interface.</p>
+      </header>
+      <div class="tech-overview reveal">
+        <div>
+          <p class="tech-kicker">Built with</p>
+          <ul class="tech-list">
+            <li><strong>Next.js 16</strong><span>App Router pages, including the English landing at /en.</span></li>
+            <li><strong>React 19</strong><span>Section UI and shared components: Button, Container, and Section.</span></li>
+            <li><strong>TypeScript</strong><span>Typed props for button variants, sizes, and layout elements.</span></li>
+            <li><strong>Tailwind CSS 4</strong><span>Layout, spacing, and the sm, lg, and xl breakpoints.</span></li>
+            <li><strong>CSS</strong><span>Color, type, and motion variables, plus hover, focus, and reduced-motion states.</span></li>
+          </ul>
+        </div>
+        <aside class="tech-side">
+          <p class="tech-kicker">Focus</p>
+          <p class="tech-focus">Responsive UI · Component Architecture · Interaction · Design-to-Code</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="portfolio-section" id="focus" aria-labelledby="focus-title">
+      <header class="narrative-header reveal">
+        <p class="narrative-kicker">Reflection</p>
+        <h2 class="narrative-title" id="focus-title">What I focused on</h2>
+      </header>
+      <ul class="focus-list reveal">
+        <li>Translating a visual concept into a functional interface</li>
+        <li>Creating a scalable UI structure</li>
+        <li>Maintaining visual consistency across responsive layouts</li>
+        <li>Balancing futuristic aesthetics with usability</li>
+        <li>Connecting product design decisions with frontend implementation</li>
+      </ul>
+      <div class="close-cta reveal">
+        <a class="hero-cta primary" href="http://localhost:3000/en" target="_blank" rel="noopener noreferrer">View Live Site</a>
+        <a class="hero-cta ghost" href="https://github.com/seajin0205-gif/Ai-landingpage" target="_blank" rel="noopener noreferrer">View GitHub</a>
       </div>
     </section>
   </main>
@@ -6607,8 +7454,8 @@
      * Chat loop + CSS animations pause when sections leave the viewport.
      */
     (function () {
-      const CHAT_PROMPT = "이번 달 고객 문의 TOP 5 정리해줘";
-      const CHAT_REPLY = "분석 완료.\n\n1. 배송 — 32%\n2. 환불 — 21%\n3. 사용법 — 18%\n4. 교환 — 15%\n5. 기타 — 14%";
+      const CHAT_PROMPT = "Summarize this month's top 5 customer questions";
+      const CHAT_REPLY = "Analysis ready.\n\nShipping questions come up most often, then refunds, how to use the product, exchanges, and other requests.";
 
       const typed = document.getElementById("chat-typed");
       const inputBar = document.getElementById("chat-input");
@@ -6759,10 +7606,10 @@
 
     /** Scroll reveal + chapter nav sync */
     (function () {
-      const sections = ["overview", "strategy", "features-1", "features-2", "design-system", "conclusion"];
+      const sections = ["overview", "role", "design-direction", "thinking", "ui-system", "frontend", "design-to-code", "responsive", "interaction", "strategy", "features-1", "features-2", "design-system", "conclusion"];
       const navLinks = document.querySelectorAll(".nav-chapters a, .rail-dot");
       const mobileCh = document.getElementById("nav-mobile-ch");
-      const chMap = { overview: "01", strategy: "02", "features-1": "03", "features-2": "04", "design-system": "05", conclusion: "06" };
+      const chMap = { overview: "01", role: "02", "design-direction": "03", thinking: "04", "ui-system": "05", frontend: "06", "design-to-code": "07", responsive: "08", interaction: "09", strategy: "10", "features-1": "11", "features-2": "12", "design-system": "13", conclusion: "14" };
       const reveals = document.querySelectorAll(".reveal:not(.is-visible)");
       const scrollHint = document.querySelector(".scroll-hint");
 
@@ -6795,7 +7642,7 @@
               link.classList.toggle("is-active", link.dataset.section === id);
             });
             if (mobileCh && chMap[id]) {
-              mobileCh.innerHTML = "<em>" + chMap[id] + "</em> / 06";
+              mobileCh.innerHTML = "<em>" + chMap[id] + "</em> / 14";
             }
           });
         },
