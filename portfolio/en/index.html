@@ -1047,6 +1047,46 @@
       .lens-chip { grid-column: span 1 !important; }
     }
 
+    .overview-brief {
+      max-width: 40rem;
+    }
+    .overview-brief p {
+      margin: 0;
+      font-size: var(--fs-base);
+      font-weight: 500;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .role-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: var(--space-3);
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .role-grid .lens-chip {
+      grid-column: auto;
+      min-height: 100%;
+    }
+    .role-grid .lens-chip em {
+      letter-spacing: 0;
+      text-transform: none;
+      line-height: 1.45;
+    }
+    @media (max-width: 904px) {
+      .role-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 560px) {
+      .role-grid { grid-template-columns: 1fr; }
+    }
+
+    .sys-color.ice .sys-color-fill {
+      background: linear-gradient(180deg, #ffffff 0%, #e7f7ff 100%);
+      border-bottom: 1px solid var(--border);
+    }
+
     /* ── Section dimension tags ── */
     .section-dimensions {
       display: flex;
@@ -1312,7 +1352,8 @@
       }
       .overview-meta { grid-column: 1; grid-row: 1; align-self: center; }
       .mockup-stage { grid-column: 2; grid-row: 1; }
-      .portfolio-lens { grid-column: 1 / -1; grid-row: 2; }
+      .overview-brief { grid-column: 1 / -1; grid-row: 2; }
+      .portfolio-lens { grid-column: 1 / -1; grid-row: 3; }
     }
 
     @media (min-width: 1024px) {
@@ -5251,25 +5292,29 @@
       Nexus AI
     </a>
     <ol class="nav-chapters" role="list">
-      <li><a href="#overview" data-section="overview"><span class="ch-num">01</span> Nexus AI</a></li>
-      <li><a href="#strategy" data-section="strategy"><span class="ch-num">02</span> UX Challenge</a></li>
-      <li><a href="#features-1" data-section="features-1"><span class="ch-num">03</span> Workspace UI</a></li>
-      <li><a href="#features-2" data-section="features-2"><span class="ch-num">04</span> Workflow</a></li>
-      <li><a href="#design-system" data-section="design-system"><span class="ch-num">05</span> Tokens</a></li>
-      <li><a href="#conclusion" data-section="conclusion"><span class="ch-num">06</span> Outcome</a></li>
+      <li><a href="#overview" data-section="overview"><span class="ch-num">01</span> Overview</a></li>
+      <li><a href="#role" data-section="role"><span class="ch-num">02</span> Role</a></li>
+      <li><a href="#design-direction" data-section="design-direction"><span class="ch-num">03</span> Design</a></li>
+      <li><a href="#strategy" data-section="strategy"><span class="ch-num">04</span> Challenge</a></li>
+      <li><a href="#features-1" data-section="features-1"><span class="ch-num">05</span> Workspace</a></li>
+      <li><a href="#features-2" data-section="features-2"><span class="ch-num">06</span> Workflow</a></li>
+      <li><a href="#design-system" data-section="design-system"><span class="ch-num">07</span> Tokens</a></li>
+      <li><a href="#conclusion" data-section="conclusion"><span class="ch-num">08</span> Outcome</a></li>
     </ol>
-    <span class="nav-mobile-ch" id="nav-mobile-ch" aria-live="polite"><em>01</em> / 06</span>
+    <span class="nav-mobile-ch" id="nav-mobile-ch" aria-live="polite"><em>01</em> / 08</span>
     <a class="nav-cta" href="../index.html" hreflang="ko" lang="ko">KO</a>
     <a class="nav-cta" href="http://localhost:3000/en" target="_blank" rel="noopener noreferrer">Live Site →</a>
   </nav>
 
   <aside class="chapter-rail" aria-hidden="true">
-    <a href="#overview" class="rail-dot is-active" data-section="overview" title="01 Nexus AI"></a>
-    <a href="#strategy" class="rail-dot" data-section="strategy" title="02 UX Challenge"></a>
-    <a href="#features-1" class="rail-dot" data-section="features-1" title="03 Workspace UI"></a>
-    <a href="#features-2" class="rail-dot" data-section="features-2" title="04 Workflow & Integration"></a>
-    <a href="#design-system" class="rail-dot" data-section="design-system" title="05 Design Tokens & Components"></a>
-    <a href="#conclusion" class="rail-dot" data-section="conclusion" title="06 Outcome & Learnings"></a>
+    <a href="#overview" class="rail-dot is-active" data-section="overview" title="01 Overview"></a>
+    <a href="#role" class="rail-dot" data-section="role" title="02 My Role"></a>
+    <a href="#design-direction" class="rail-dot" data-section="design-direction" title="03 Design System"></a>
+    <a href="#strategy" class="rail-dot" data-section="strategy" title="04 UX Challenge"></a>
+    <a href="#features-1" class="rail-dot" data-section="features-1" title="05 Workspace UI"></a>
+    <a href="#features-2" class="rail-dot" data-section="features-2" title="06 Workflow"></a>
+    <a href="#design-system" class="rail-dot" data-section="design-system" title="07 Design Tokens"></a>
+    <a href="#conclusion" class="rail-dot" data-section="conclusion" title="08 Outcome"></a>
   </aside>
 
   <main id="main-content" class="page">
@@ -5278,7 +5323,7 @@
     <section class="portfolio-section overview" id="overview" aria-labelledby="overview-title">
       <div class="overview-meta reveal is-visible">
         <header>
-          <p class="hero-eyebrow"><span class="live-dot" aria-hidden="true"></span> 01 · Nexus AI</p>
+          <p class="hero-eyebrow"><span class="live-dot" aria-hidden="true"></span> 01 · Overview</p>
           <div class="project-title">
             <img src="../assets/nexus-ai-logo.png" alt="" width="48" height="48" aria-hidden="true" />
             <div class="project-title-copy">
@@ -5407,13 +5452,63 @@
 
         <figcaption class="mockup-caption">Featured demo · Prompt → Result → Revise</figcaption>
       </figure>
+
+      <div class="overview-brief reveal">
+        <p>Nexus AI is a concept AI workspace designed to bring multiple AI-powered workflows into a single focused interface. Chat, image, and automation stay on that screen, so a task can move from prompt to result without switching tools.</p>
+      </div>
+    </section>
+
+    <section class="portfolio-section section-tone-gray" id="role" aria-labelledby="role-title">
+      <header class="narrative-header reveal">
+        <p class="narrative-kicker">02 · My Role</p>
+        <h2 class="narrative-title" id="role-title">My Role</h2>
+        <p class="narrative-lead">I owned the product direction, the interface, and the responsive build.</p>
+      </header>
+      <ul class="role-grid">
+        <li class="lens-chip" data-accent="cyan">
+          <span>Product Design</span>
+          <em>Defined one workspace for chat, image, and automation.</em>
+        </li>
+        <li class="lens-chip" data-accent="lavender">
+          <span>UI/UX Design</span>
+          <em>Placed prompt, result, and history in one revise flow.</em>
+        </li>
+        <li class="lens-chip" data-accent="mint">
+          <span>Frontend Development</span>
+          <em>Built the interface in Next.js, React, and TypeScript.</em>
+        </li>
+        <li class="lens-chip" data-accent="cyan">
+          <span>Responsive Implementation</span>
+          <em>Carried the layout from the desktop split to a narrow screen.</em>
+        </li>
+      </ul>
+    </section>
+
+    <section class="portfolio-section" id="design-direction" aria-labelledby="direction-title">
+      <header class="narrative-header reveal">
+        <p class="narrative-kicker">03 · Design System</p>
+        <h2 class="narrative-title" id="direction-title">Design system</h2>
+        <p class="narrative-lead">AI products often rely on dark, highly technical visual language. Nexus AI takes a lighter and more approachable direction, using cool gradients, clean typography and controlled contrast to create a focused workspace.</p>
+        <ul class="section-dimensions" aria-label="Visual system">
+          <li>Clean futuristic</li>
+          <li>Strong typography</li>
+          <li>High contrast</li>
+          <li>Minimal, expressive</li>
+        </ul>
+      </header>
+      <div class="sys-colors reveal" aria-label="Color foundation">
+        <div class="sys-color ice"><div class="sys-color-fill"></div><div class="sys-color-meta"><strong>Ice blue</strong><code>White foundation</code></div></div>
+        <div class="sys-color neon"><div class="sys-color-fill"></div><div class="sys-color-meta"><strong>Electric blue</strong><code>#00d4ff</code></div></div>
+        <div class="sys-color mint"><div class="sys-color-fill"></div><div class="sys-color-meta"><strong>Neon mint</strong><code>#3dffa8</code></div></div>
+        <div class="sys-color lavender"><div class="sys-color-fill"></div><div class="sys-color-meta"><strong>Digital lavender</strong><code>#b8a4ff</code></div></div>
+      </div>
     </section>
 
     <!-- Section 02: UX Challenge -->
     <section class="portfolio-section section-tone-gray" id="strategy" aria-labelledby="strategy-title">
       <div class="strategy-layout">
         <header class="narrative-header reveal">
-          <p class="narrative-kicker">02 · UX Challenge</p>
+          <p class="narrative-kicker">04 · UX Challenge</p>
           <h2 class="narrative-title" id="strategy-title">Name the points where<br />real AI use gets stuck</h2>
           <p class="narrative-lead">Before designing screens, I defined three frictions that kept showing up in real use.</p>
           <ul class="section-dimensions" aria-label="Skills this section shows">
@@ -5563,7 +5658,7 @@
     <!-- Section 03: Workspace UI -->
     <section class="portfolio-section" id="features-1" aria-labelledby="demo-title">
       <header class="narrative-header reveal">
-        <p class="narrative-kicker">03 · Workspace UI</p>
+        <p class="narrative-kicker">05 · Workspace UI</p>
         <h2 class="narrative-title" id="demo-title">One Workspace,<br />and how it is actually used</h2>
         <p class="narrative-lead">After defining the problem, I tested “why this layout” in two scenarios: Chat and Image.</p>
         <ul class="section-dimensions" aria-label="Skills this section shows">
@@ -5860,7 +5955,7 @@
     <!-- Section 04: Workflow & Integration -->
     <section class="portfolio-section section-tone-blue" id="features-2" aria-labelledby="workflow-title">
       <header class="narrative-header reveal">
-        <p class="narrative-kicker">04 · Workflow & Integration</p>
+        <p class="narrative-kicker">06 · Workflow & Integration</p>
         <h2 class="narrative-title" id="workflow-title">From intent to export,<br />one continuous journey</h2>
         <p class="narrative-lead">I did not draw the UI first. I placed Workspace information in the order people think.</p>
         <ul class="section-dimensions" aria-label="Skills this section shows">
@@ -6096,7 +6191,7 @@
     <!-- Section 05: Design Tokens & Components -->
     <section class="portfolio-section section-tone-gray" id="design-system" aria-labelledby="ds-title">
       <header class="narrative-header reveal">
-        <p class="narrative-kicker">05 · Design Tokens & Components</p>
+        <p class="narrative-kicker">07 · Design Tokens & Components</p>
         <h2 class="narrative-title" id="ds-title">Design System</h2>
         <p class="narrative-lead">Not a component dump — design and implementation stay aligned as a system of variants, states, tokens, and rules.</p>
         <ul class="section-dimensions" aria-label="Skills this section shows">
@@ -6497,7 +6592,7 @@
     <!-- Section 06: Outcome & Learnings -->
     <section class="portfolio-section section-tone-white" id="conclusion" aria-labelledby="conclusion-title">
       <header class="narrative-header reveal">
-        <p class="narrative-kicker">06 · Outcome & Learnings</p>
+        <p class="narrative-kicker">08 · Outcome & Learnings</p>
         <h2 class="narrative-title" id="conclusion-title">What this work<br />taught me</h2>
         <p class="narrative-lead">This was not a project that made screens. It redesigned the flow of AI work.</p>
         <ul class="section-dimensions" aria-label="Skills this section shows">
@@ -6794,10 +6889,10 @@
 
     /** Scroll reveal + chapter nav sync */
     (function () {
-      const sections = ["overview", "strategy", "features-1", "features-2", "design-system", "conclusion"];
+      const sections = ["overview", "role", "design-direction", "strategy", "features-1", "features-2", "design-system", "conclusion"];
       const navLinks = document.querySelectorAll(".nav-chapters a, .rail-dot");
       const mobileCh = document.getElementById("nav-mobile-ch");
-      const chMap = { overview: "01", strategy: "02", "features-1": "03", "features-2": "04", "design-system": "05", conclusion: "06" };
+      const chMap = { overview: "01", role: "02", "design-direction": "03", strategy: "04", "features-1": "05", "features-2": "06", "design-system": "07", conclusion: "08" };
       const reveals = document.querySelectorAll(".reveal:not(.is-visible)");
       const scrollHint = document.querySelector(".scroll-hint");
 
@@ -6830,7 +6925,7 @@
               link.classList.toggle("is-active", link.dataset.section === id);
             });
             if (mobileCh && chMap[id]) {
-              mobileCh.innerHTML = "<em>" + chMap[id] + "</em> / 06";
+              mobileCh.innerHTML = "<em>" + chMap[id] + "</em> / 08";
             }
           });
         },
