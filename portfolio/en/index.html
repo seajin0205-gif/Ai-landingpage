@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nexus AI — Case Study</title>
+  <title>Nexus AI — AI Workspace</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -1457,6 +1457,16 @@
       border-radius: 50%;
       background: var(--neon);
     }
+    .hero-vp-list strong {
+      color: var(--fg);
+      font-weight: 700;
+    }
+    .hero-vp-list a {
+      color: var(--fg);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .hero-vp-list a:hover { color: var(--accent); }
 
     @media (max-width: 480px) {
       .hero-vp { padding: var(--space-3) var(--space-4); }
@@ -1525,6 +1535,26 @@
       letter-spacing: -0.05em;
       line-height: 1.05;
       color: var(--fg);
+    }
+    .project-title-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+    .project-subtitle {
+      font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      color: var(--fg);
+    }
+    .project-role {
+      margin-top: var(--space-2);
+      font-size: var(--fs-xs);
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--muted);
     }
 
     .project-tagline {
@@ -5251,10 +5281,14 @@
           <p class="hero-eyebrow"><span class="live-dot" aria-hidden="true"></span> 01 · Nexus AI</p>
           <div class="project-title">
             <img src="../assets/nexus-ai-logo.png" alt="" width="48" height="48" aria-hidden="true" />
-            <h1 id="overview-title">Nexus AI</h1>
+            <div class="project-title-copy">
+              <h1 id="overview-title">Nexus AI</h1>
+              <p class="project-subtitle">AI Workspace</p>
+            </div>
           </div>
+          <p class="project-role">Product Design · UI/UX · Frontend Development</p>
           <p class="project-tagline">
-            Connect scattered AI work in <strong>one Workspace</strong> — a case study from the problem through the design system
+            Designing a focused AI workspace that brings everyday tasks into one streamlined digital environment.
           </p>
           <div class="hero-actions">
             <a class="hero-cta primary" href="http://localhost:3000/en" target="_blank" rel="noopener noreferrer">Live Site →</a>
@@ -5262,13 +5296,14 @@
           </div>
         </header>
 
-        <aside class="hero-vp" aria-label="Core value proposition">
-          <span class="hero-vp-label">Value Proposition</span>
-          <p class="hero-vp-lead">Create, revise, and compare on the same screen — AI work never loses its context.</p>
+        <aside class="hero-vp" aria-label="Project snapshot">
+          <span class="hero-vp-label">At a glance</span>
           <ul class="hero-vp-list">
-            <li>Manage Chat, Image, and Auto in one Workspace</li>
-            <li>Repeat Prompt → Result → Revise without switching screens</li>
-            <li>Compare result variants side by side, then export</li>
+            <li><strong>What I built</strong> An AI workspace for everyday tasks</li>
+            <li><strong>My role</strong> Product Design · UI/UX · Frontend</li>
+            <li><strong>Focus</strong> From layout to a working interface</li>
+            <li><strong>How I built it</strong> Next.js · React · TypeScript · Tailwind</li>
+            <li><strong>Live result</strong> <a href="http://localhost:3000/en" target="_blank" rel="noopener noreferrer">Open the product</a></li>
           </ul>
         </aside>
       </div>
