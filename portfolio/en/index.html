@@ -212,12 +212,12 @@
       gap: var(--space-2);
       flex-shrink: 0;
       white-space: nowrap;
-      padding: var(--space-2) var(--space-3);
+      padding: var(--space-2);
       border-radius: var(--r-pill);
       font-family: var(--mono);
       font-size: var(--fs-2xs);
       font-weight: 500;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.02em;
       text-transform: uppercase;
       color: var(--muted);
       text-decoration: none;
@@ -1138,6 +1138,258 @@
     @media (max-width: 640px) {
       .think-grid { grid-template-columns: 1fr; }
       .think-goals ul { grid-template-columns: 1fr; }
+    }
+
+    .flow-track {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .flow-step {
+      padding: var(--space-4);
+      border-radius: var(--r-lg);
+      border: 1px solid rgba(0, 212, 255, 0.22);
+      background: linear-gradient(145deg, var(--bg-elevated) 0%, rgba(0, 212, 255, 0.05) 100%);
+    }
+    .flow-index {
+      font-family: var(--mono);
+      font-size: var(--fs-2xs);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--neon);
+    }
+    .flow-step h3 {
+      margin: var(--space-2) 0;
+      font-size: var(--fs-sm);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .flow-step p {
+      margin: 0;
+      font-size: var(--fs-xs);
+      font-weight: 500;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .flow-join {
+      position: relative;
+      width: 1px;
+      height: var(--space-5);
+      margin: 0 auto;
+      background: var(--neon);
+    }
+    .flow-join::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      transform: translate(-50%, 2px);
+      border-width: 5px 4px 0;
+      border-style: solid;
+      border-color: var(--neon) transparent transparent;
+    }
+    .flow-swatches,
+    .flow-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-1);
+      margin-top: var(--space-3);
+    }
+    .flow-swatches i {
+      width: var(--space-4);
+      height: var(--space-4);
+      border-radius: var(--r-xs);
+      border: 1px solid var(--border);
+    }
+    .flow-swatches i.ice { background: linear-gradient(180deg, #fff, #e7f7ff); }
+    .flow-swatches i.neon { background: #00d4ff; }
+    .flow-swatches i.mint { background: #3dffa8; }
+    .flow-swatches i.lav { background: #b8a4ff; }
+    .flow-pills span {
+      padding: 2px var(--space-2);
+      border-radius: var(--r-pill);
+      border: 1px solid var(--border);
+      background: var(--bg-elevated);
+      font-family: var(--mono);
+      font-size: var(--fs-2xs);
+      font-weight: 600;
+    }
+    .flow-cols {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 4px;
+      height: var(--space-5);
+      margin-top: var(--space-3);
+    }
+    .flow-cols i {
+      display: block;
+      border-radius: 3px;
+      background: rgba(0, 212, 255, 0.22);
+    }
+    .flow-cols i.dim { background: rgba(184, 164, 255, 0.4); }
+    @media (min-width: 1024px) {
+      .flow-track {
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+        align-items: stretch;
+      }
+      .flow-join {
+        width: var(--space-5);
+        height: 1px;
+        align-self: center;
+        margin: 0;
+      }
+      .flow-join::after {
+        top: 50%;
+        right: 0;
+        bottom: auto;
+        left: auto;
+        transform: translate(2px, -50%);
+        border-width: 4px 0 4px 5px;
+        border-color: transparent transparent transparent var(--neon);
+      }
+    }
+
+    .ux-devices {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-3);
+    }
+    .ux-device {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      padding: var(--space-4);
+      border-radius: var(--r-lg);
+      border: 1px solid var(--border);
+      background: var(--bg-elevated);
+    }
+    .ux-device header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: var(--space-2);
+    }
+    .ux-device header strong {
+      font-size: var(--fs-sm);
+      font-weight: 700;
+    }
+    .ux-device header span {
+      font-family: var(--mono);
+      font-size: var(--fs-2xs);
+      color: var(--muted-light);
+    }
+    .ux-frame {
+      display: grid;
+      gap: 4px;
+      min-height: 9.5rem;
+      padding: var(--space-2);
+      border-radius: var(--r-md);
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, #ffffff 0%, #e7f7ff 100%);
+    }
+    .ux-bar,
+    .ux-hero,
+    .ux-cards {
+      display: flex;
+      gap: 4px;
+      min-height: 0;
+    }
+    .ux-bar { align-items: center; height: 14px; }
+    .ux-chip {
+      height: 8px;
+      border-radius: 99px;
+      background: rgba(11, 18, 32, 0.12);
+    }
+    .ux-chip.logo { width: 28px; }
+    .ux-chip.links { flex: 1; background: rgba(0, 212, 255, 0.28); }
+    .ux-chip.cta { width: 22px; background: #00d4ff; }
+    .ux-chip.menu {
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      background: rgba(11, 18, 32, 0.55);
+    }
+    .ux-hero { flex: 1; }
+    .ux-copy,
+    .ux-demo,
+    .ux-card {
+      border-radius: 4px;
+      border: 1px solid rgba(0, 212, 255, 0.2);
+      background: rgba(255, 255, 255, 0.85);
+    }
+    .ux-copy {
+      display: flex;
+      flex: 1.15;
+      flex-direction: column;
+      gap: 4px;
+      padding: 6px;
+    }
+    .ux-copy b {
+      display: block;
+      height: 6px;
+      border-radius: 99px;
+      background: rgba(11, 18, 32, 0.72);
+    }
+    .ux-copy b.sub { width: 70%; height: 4px; background: rgba(11, 18, 32, 0.28); }
+    .ux-copy b.act { width: 46%; height: 8px; margin-top: auto; background: #00d4ff; }
+    .ux-demo {
+      flex: 0.85;
+      background: linear-gradient(145deg, rgba(0, 212, 255, 0.2), rgba(184, 164, 255, 0.28));
+    }
+    .ux-cards { height: 22px; }
+    .ux-card { flex: 1; }
+    .ux-frame.is-tablet .ux-hero,
+    .ux-frame.is-mobile .ux-hero { flex-direction: column; }
+    .ux-frame.is-tablet .ux-chip.menu,
+    .ux-frame.is-mobile .ux-chip.menu { margin-left: auto; }
+    .ux-frame.is-mobile .ux-cards { flex-direction: column; height: 36px; }
+    .ux-frame.is-mobile .ux-copy b.act { width: 100%; }
+    .ux-topics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-3);
+      list-style: none;
+      padding: 0;
+      margin: var(--space-5) 0 0;
+    }
+    .ux-topics li,
+    .ix-live li {
+      padding: var(--space-3) var(--space-4);
+      border-radius: var(--r-md);
+      border: 1px solid rgba(0, 212, 255, 0.22);
+      background: var(--bg-elevated);
+    }
+    .ux-topics strong,
+    .ix-live strong {
+      display: block;
+      margin-bottom: var(--space-1);
+      font-size: var(--fs-xs);
+      font-weight: 700;
+    }
+    .ux-topics span,
+    .ix-live span {
+      font-size: var(--fs-xs);
+      font-weight: 500;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .ix-live {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-3);
+      list-style: none;
+      padding: 0;
+      margin: var(--space-5) 0 0;
+    }
+    .ix-live-cta { margin-top: var(--space-4); }
+    @media (max-width: 904px) {
+      .ux-devices, .ux-topics { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .ux-devices, .ux-topics, .ix-live { grid-template-columns: 1fr; }
     }
 
     .ui-spec {
@@ -5403,13 +5655,16 @@
       <li><a href="#thinking" data-section="thinking"><span class="ch-num">04</span> Thinking</a></li>
       <li><a href="#ui-system" data-section="ui-system"><span class="ch-num">05</span> System</a></li>
       <li><a href="#frontend" data-section="frontend"><span class="ch-num">06</span> Build</a></li>
-      <li><a href="#strategy" data-section="strategy"><span class="ch-num">07</span> Challenge</a></li>
-      <li><a href="#features-1" data-section="features-1"><span class="ch-num">08</span> Workspace</a></li>
-      <li><a href="#features-2" data-section="features-2"><span class="ch-num">09</span> Workflow</a></li>
-      <li><a href="#design-system" data-section="design-system"><span class="ch-num">10</span> Tokens</a></li>
-      <li><a href="#conclusion" data-section="conclusion"><span class="ch-num">11</span> Outcome</a></li>
+      <li><a href="#design-to-code" data-section="design-to-code"><span class="ch-num">07</span> Code</a></li>
+      <li><a href="#responsive" data-section="responsive"><span class="ch-num">08</span> Layout</a></li>
+      <li><a href="#interaction" data-section="interaction"><span class="ch-num">09</span> Motion</a></li>
+      <li><a href="#strategy" data-section="strategy"><span class="ch-num">10</span> Challenge</a></li>
+      <li><a href="#features-1" data-section="features-1"><span class="ch-num">11</span> Workspace</a></li>
+      <li><a href="#features-2" data-section="features-2"><span class="ch-num">12</span> Workflow</a></li>
+      <li><a href="#design-system" data-section="design-system"><span class="ch-num">13</span> Tokens</a></li>
+      <li><a href="#conclusion" data-section="conclusion"><span class="ch-num">14</span> Outcome</a></li>
     </ol>
-    <span class="nav-mobile-ch" id="nav-mobile-ch" aria-live="polite"><em>01</em> / 11</span>
+    <span class="nav-mobile-ch" id="nav-mobile-ch" aria-live="polite"><em>01</em> / 14</span>
     <a class="nav-cta" href="../index.html" hreflang="ko" lang="ko">KO</a>
     <a class="nav-cta" href="http://localhost:3000/en" target="_blank" rel="noopener noreferrer">Live Site →</a>
   </nav>
@@ -5421,11 +5676,14 @@
     <a href="#thinking" class="rail-dot" data-section="thinking" title="04 Product Thinking"></a>
     <a href="#ui-system" class="rail-dot" data-section="ui-system" title="05 UI System"></a>
     <a href="#frontend" class="rail-dot" data-section="frontend" title="06 Frontend"></a>
-    <a href="#strategy" class="rail-dot" data-section="strategy" title="07 UX Challenge"></a>
-    <a href="#features-1" class="rail-dot" data-section="features-1" title="08 Workspace UI"></a>
-    <a href="#features-2" class="rail-dot" data-section="features-2" title="09 Workflow"></a>
-    <a href="#design-system" class="rail-dot" data-section="design-system" title="10 Design Tokens"></a>
-    <a href="#conclusion" class="rail-dot" data-section="conclusion" title="11 Outcome"></a>
+    <a href="#design-to-code" class="rail-dot" data-section="design-to-code" title="07 From Design to Code"></a>
+    <a href="#responsive" class="rail-dot" data-section="responsive" title="08 Responsive Design"></a>
+    <a href="#interaction" class="rail-dot" data-section="interaction" title="09 Interaction"></a>
+    <a href="#strategy" class="rail-dot" data-section="strategy" title="10 UX Challenge"></a>
+    <a href="#features-1" class="rail-dot" data-section="features-1" title="11 Workspace UI"></a>
+    <a href="#features-2" class="rail-dot" data-section="features-2" title="12 Workflow"></a>
+    <a href="#design-system" class="rail-dot" data-section="design-system" title="13 Design Tokens"></a>
+    <a href="#conclusion" class="rail-dot" data-section="conclusion" title="14 Outcome"></a>
   </aside>
 
   <main id="main-content" class="page">
@@ -5739,11 +5997,125 @@
       </ul>
     </section>
 
+    <section class="portfolio-section section-tone-gray" id="design-to-code" aria-labelledby="design-to-code-title">
+      <header class="narrative-header reveal">
+        <p class="narrative-kicker">07 · From Design to Code</p>
+        <h2 class="narrative-title" id="design-to-code-title">From Design to Code</h2>
+        <p class="narrative-lead">Visual design decisions become a reusable frontend system: shared components, breakpoints, and interaction states.</p>
+      </header>
+      <ol class="flow-track reveal">
+        <li class="flow-step">
+          <span class="flow-index">01</span>
+          <h3>Design</h3>
+          <p>A light field, one electric-blue action, and mint and lavender accents.</p>
+          <div class="flow-swatches" aria-hidden="true"><i class="ice"></i><i class="neon"></i><i class="mint"></i><i class="lav"></i></div>
+        </li>
+        <li class="flow-join" aria-hidden="true"></li>
+        <li class="flow-step">
+          <span class="flow-index">02</span>
+          <h3>Component Architecture</h3>
+          <p>Button, Container, and Section carry those decisions. Pages are composed from them.</p>
+          <div class="flow-pills" aria-hidden="true"><span>Button</span><span>Container</span><span>Section</span></div>
+        </li>
+        <li class="flow-join" aria-hidden="true"></li>
+        <li class="flow-step">
+          <span class="flow-index">03</span>
+          <h3>Responsive Implementation</h3>
+          <p>The same components change structure at sm, md, and lg.</p>
+          <div class="flow-cols" aria-hidden="true"><i></i><i class="dim"></i></div>
+        </li>
+        <li class="flow-join" aria-hidden="true"></li>
+        <li class="flow-step">
+          <span class="flow-index">04</span>
+          <h3>Interactive Experience</h3>
+          <p>Hover, focus, scroll reveal, and reduced motion are states of those components.</p>
+          <div class="flow-pills" aria-hidden="true"><span>hover</span><span>focus</span><span>reveal</span></div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="portfolio-section" id="responsive" aria-labelledby="responsive-title">
+      <header class="narrative-header reveal">
+        <p class="narrative-kicker">08 · Responsive Design</p>
+        <h2 class="narrative-title" id="responsive-title">The layout changes with the screen</h2>
+        <p class="narrative-lead">Desktop, tablet, and mobile keep the same story. The structure around that story changes.</p>
+      </header>
+      <div class="ux-devices reveal">
+        <article class="ux-device">
+          <header><strong>Desktop</strong><span>≥1024</span></header>
+          <div class="ux-frame is-desktop" aria-hidden="true">
+            <div class="ux-bar"><i class="ux-chip logo"></i><i class="ux-chip links"></i><i class="ux-chip cta"></i></div>
+            <div class="ux-hero"><div class="ux-copy"><b></b><b class="sub"></b><b class="act"></b></div><div class="ux-demo"></div></div>
+            <div class="ux-cards"><i class="ux-card"></i><i class="ux-card"></i><i class="ux-card"></i></div>
+          </div>
+          <ul class="resp-rules">
+            <li>Hero is two columns: copy on the left, demo on the right.</li>
+            <li>Navigation links stay in the bar.</li>
+            <li>The headline uses the larger clamp.</li>
+          </ul>
+        </article>
+        <article class="ux-device">
+          <header><strong>Tablet</strong><span>768–1023</span></header>
+          <div class="ux-frame is-tablet" aria-hidden="true">
+            <div class="ux-bar"><i class="ux-chip logo"></i><i class="ux-chip menu"></i><i class="ux-chip cta"></i></div>
+            <div class="ux-hero"><div class="ux-copy"><b></b><b class="sub"></b><b class="act"></b></div><div class="ux-demo"></div></div>
+            <div class="ux-cards"><i class="ux-card"></i><i class="ux-card"></i><i class="ux-card"></i></div>
+          </div>
+          <ul class="resp-rules">
+            <li>Hero stays one column and centered.</li>
+            <li>Links move into a menu panel. Feature cards sit in a row of three.</li>
+            <li>Process steps open into two columns.</li>
+          </ul>
+        </article>
+        <article class="ux-device">
+          <header><strong>Mobile</strong><span>&lt;768</span></header>
+          <div class="ux-frame is-mobile" aria-hidden="true">
+            <div class="ux-bar"><i class="ux-chip logo"></i><i class="ux-chip menu"></i><i class="ux-chip cta"></i></div>
+            <div class="ux-hero"><div class="ux-copy"><b></b><b class="sub"></b><b class="act"></b></div><div class="ux-demo"></div></div>
+            <div class="ux-cards"><i class="ux-card"></i><i class="ux-card"></i></div>
+          </div>
+          <ul class="resp-rules">
+            <li>Copy, actions, and the demo stack.</li>
+            <li>Feature cards return to one column. The primary action is full width below 640.</li>
+            <li>Headline and lead use the smaller sizes.</li>
+          </ul>
+        </article>
+      </div>
+      <ul class="ux-topics reveal">
+        <li><strong>Responsive layout</strong><span>Hero, features, pricing, and the process each change their own columns.</span></li>
+        <li><strong>Breakpoint behavior</strong><span>sm 640, md 768, and lg 1024 switch the structure. xl widens the container padding.</span></li>
+        <li><strong>Content hierarchy</strong><span>Headline, lead, and actions stay first. The demo sits beside them on desktop and below them on smaller screens.</span></li>
+        <li><strong>Navigation adaptation</strong><span>Links are visible from lg. Below that, a menu button opens the same destinations.</span></li>
+        <li><strong>Component resizing</strong><span>Buttons form a row from sm. Cards share a row from md. The nav bar grows from 56px to 64px at sm.</span></li>
+        <li><strong>Typography scaling</strong><span>The hero headline is a clamp, and a larger clamp from lg. The lead steps up at sm. Section titles step up at sm.</span></li>
+      </ul>
+    </section>
+
+    <section class="portfolio-section" id="interaction" aria-labelledby="interaction-title">
+      <header class="narrative-header reveal">
+        <p class="narrative-kicker">09 · Interaction</p>
+        <h2 class="narrative-title" id="interaction-title">Interaction on the live page</h2>
+        <p class="narrative-lead">Hover, scroll, and the menu are implemented on the English landing. Open it and try them there.</p>
+        <div class="ix-live-cta">
+          <a class="hero-cta primary" href="http://localhost:3000/en" target="_blank" rel="noopener noreferrer">Live Demo →</a>
+        </div>
+      </header>
+      <ul class="ix-live reveal">
+        <li><strong>Hover states</strong><span>Nav links draw an underline. Primary buttons lift and brighten. Cards lift 2px.</span></li>
+        <li><strong>Button interactions</strong><span>Buttons show a cyan focus ring and scale slightly on press. The hero “Start for free” button also follows the pointer.</span></li>
+        <li><strong>Card transitions</strong><span>Feature, testimonial, and pricing cards share the hover lift and shadow.</span></li>
+        <li><strong>Navigation transitions</strong><span>After 16px of scroll the bar picks up a softer white surface. Below lg, the menu button opens the same links.</span></li>
+        <li><strong>Gradient effects</strong><span>The page field uses the aurora gradient. Headlines use a text gradient. The image demo fills a progress bar while it runs.</span></li>
+        <li><strong>Scroll interaction</strong><span>Sections enter with Reveal. The hero demo uses Parallax. The workspace demo uses ScrollFade.</span></li>
+        <li><strong>Micro-interactions</strong><span>The magnetic button eases toward the pointer. Reduced motion turns these motions off.</span></li>
+      </ul>
+    </section>
+
     <!-- Section 02: UX Challenge -->
     <section class="portfolio-section section-tone-gray" id="strategy" aria-labelledby="strategy-title">
       <div class="strategy-layout">
         <header class="narrative-header reveal">
-          <p class="narrative-kicker">07 · UX Challenge</p>
+          <p class="narrative-kicker">10 · UX Challenge</p>
           <h2 class="narrative-title" id="strategy-title">Name the points where<br />real AI use gets stuck</h2>
           <p class="narrative-lead">Before designing screens, I defined three frictions that kept showing up in real use.</p>
           <ul class="section-dimensions" aria-label="Skills this section shows">
@@ -5893,7 +6265,7 @@
     <!-- Section 03: Workspace UI -->
     <section class="portfolio-section" id="features-1" aria-labelledby="demo-title">
       <header class="narrative-header reveal">
-        <p class="narrative-kicker">08 · Workspace UI</p>
+        <p class="narrative-kicker">11 · Workspace UI</p>
         <h2 class="narrative-title" id="demo-title">One Workspace,<br />and how it is actually used</h2>
         <p class="narrative-lead">After defining the problem, I tested “why this layout” in two scenarios: Chat and Image.</p>
         <ul class="section-dimensions" aria-label="Skills this section shows">
@@ -6190,7 +6562,7 @@
     <!-- Section 04: Workflow & Integration -->
     <section class="portfolio-section section-tone-blue" id="features-2" aria-labelledby="workflow-title">
       <header class="narrative-header reveal">
-        <p class="narrative-kicker">09 · Workflow & Integration</p>
+        <p class="narrative-kicker">12 · Workflow & Integration</p>
         <h2 class="narrative-title" id="workflow-title">From intent to export,<br />one continuous journey</h2>
         <p class="narrative-lead">I did not draw the UI first. I placed Workspace information in the order people think.</p>
         <ul class="section-dimensions" aria-label="Skills this section shows">
@@ -6426,7 +6798,7 @@
     <!-- Section 05: Design Tokens & Components -->
     <section class="portfolio-section section-tone-gray" id="design-system" aria-labelledby="ds-title">
       <header class="narrative-header reveal">
-        <p class="narrative-kicker">10 · Design Tokens & Components</p>
+        <p class="narrative-kicker">13 · Design Tokens & Components</p>
         <h2 class="narrative-title" id="ds-title">Design System</h2>
         <p class="narrative-lead">Not a component dump — design and implementation stay aligned as a system of variants, states, tokens, and rules.</p>
         <ul class="section-dimensions" aria-label="Skills this section shows">
@@ -6827,7 +7199,7 @@
     <!-- Section 06: Outcome & Learnings -->
     <section class="portfolio-section section-tone-white" id="conclusion" aria-labelledby="conclusion-title">
       <header class="narrative-header reveal">
-        <p class="narrative-kicker">11 · Outcome & Learnings</p>
+        <p class="narrative-kicker">14 · Outcome & Learnings</p>
         <h2 class="narrative-title" id="conclusion-title">What this work<br />taught me</h2>
         <p class="narrative-lead">This was not a project that made screens. It redesigned the flow of AI work.</p>
         <ul class="section-dimensions" aria-label="Skills this section shows">
@@ -7124,10 +7496,10 @@
 
     /** Scroll reveal + chapter nav sync */
     (function () {
-      const sections = ["overview", "role", "design-direction", "thinking", "ui-system", "frontend", "strategy", "features-1", "features-2", "design-system", "conclusion"];
+      const sections = ["overview", "role", "design-direction", "thinking", "ui-system", "frontend", "design-to-code", "responsive", "interaction", "strategy", "features-1", "features-2", "design-system", "conclusion"];
       const navLinks = document.querySelectorAll(".nav-chapters a, .rail-dot");
       const mobileCh = document.getElementById("nav-mobile-ch");
-      const chMap = { overview: "01", role: "02", "design-direction": "03", thinking: "04", "ui-system": "05", frontend: "06", strategy: "07", "features-1": "08", "features-2": "09", "design-system": "10", conclusion: "11" };
+      const chMap = { overview: "01", role: "02", "design-direction": "03", thinking: "04", "ui-system": "05", frontend: "06", "design-to-code": "07", responsive: "08", interaction: "09", strategy: "10", "features-1": "11", "features-2": "12", "design-system": "13", conclusion: "14" };
       const reveals = document.querySelectorAll(".reveal:not(.is-visible)");
       const scrollHint = document.querySelector(".scroll-hint");
 
@@ -7160,7 +7532,7 @@
               link.classList.toggle("is-active", link.dataset.section === id);
             });
             if (mobileCh && chMap[id]) {
-              mobileCh.innerHTML = "<em>" + chMap[id] + "</em> / 11";
+              mobileCh.innerHTML = "<em>" + chMap[id] + "</em> / 14";
             }
           });
         },
