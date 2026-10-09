@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nexus AI — AI Workspace</title>
+  <title>Nexus AI — Case Study</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -1305,7 +1305,7 @@
     }
     @media (min-width: 1024px) {
       .overview {
-        grid-template-columns: minmax(22rem, 34rem) minmax(0, 1.45fr);
+        grid-template-columns: minmax(20rem, 28rem) minmax(0, 1.6fr);
         gap: clamp(var(--space-5), 3.5vw, var(--space-7));
         min-height: calc(100vh - var(--nav-h) - 4rem);
         align-items: center;
@@ -1405,83 +1405,70 @@
       border-bottom: 1px solid var(--border);
     }
 
-    .project-title-copy {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      min-width: 0;
-    }
-    .project-subtitle {
-      font-size: clamp(1.05rem, 1.6vw, 1.35rem);
-      font-weight: 650;
-      letter-spacing: -0.03em;
-      line-height: 1.2;
-      color: var(--fg);
-    }
-    .project-role {
-      margin-top: var(--space-3);
-      font-size: var(--fs-xs);
-      font-weight: 600;
-      letter-spacing: -0.01em;
-      color: var(--muted);
-    }
-
-    /* First-screen snapshot — five facts, short enough to scan */
-    .hero-facts {
-      display: flex;
-      flex-direction: column;
-      margin: 0;
-      padding: var(--space-1) var(--space-4);
+    /* Hero value proposition — first-10-seconds clarity */
+    .hero-vp {
+      padding: var(--space-4) var(--space-5);
       border-radius: var(--r-lg);
       background: linear-gradient(145deg, var(--bg-elevated) 0%, rgba(0, 212, 255, 0.05) 100%);
       border: 1px solid rgba(0, 212, 255, 0.22);
-      box-shadow: var(--shadow-card);
+      box-shadow: var(--shadow-card), 0 0 0 1px rgba(0, 212, 255, 0.06);
     }
-    .hero-facts div {
-      display: grid;
-      grid-template-columns: 8.75rem minmax(0, 1fr);
-      gap: var(--space-3);
-      align-items: baseline;
-      padding: 0.7rem 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .hero-facts div:last-child { border-bottom: none; }
-    .hero-facts dt {
+    .hero-vp-label {
+      display: block;
       font-family: var(--mono);
       font-size: var(--fs-2xs);
       font-weight: 600;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--muted-light);
-      white-space: nowrap;
+      margin-bottom: var(--space-2);
     }
-    .hero-facts dd {
-      margin: 0;
-      font-size: var(--fs-xs);
-      font-weight: 600;
+    .hero-vp-lead {
+      font-size: var(--fs-sm);
+      font-weight: 700;
       color: var(--fg);
-      line-height: 1.45;
+      line-height: 1.5;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-3);
     }
-    .hero-facts a {
-      color: inherit;
-      text-decoration: none;
+    .hero-vp-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
     }
-    .hero-facts a:hover { color: var(--accent); }
+    .hero-vp-list li {
+      position: relative;
+      padding-left: var(--space-3);
+      font-size: var(--fs-xs);
+      font-weight: 500;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .hero-vp-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.45em;
+      width: var(--space-2);
+      height: var(--space-2);
+      border-radius: 50%;
+      background: var(--neon);
+    }
 
     @media (max-width: 480px) {
-      .hero-facts { padding: var(--space-1) var(--space-3); }
-      .hero-facts div { grid-template-columns: 1fr; gap: 2px; }
+      .hero-vp { padding: var(--space-3) var(--space-4); }
       .hero-mockup-grid { grid-template-columns: 1fr; }
       .hero-demo-card { transform: none; }
       .hero-mockup-left { opacity: 1; }
     }
 
-    .mockup-meta--slim,
-    .mockup-meta.mockup-meta--slim {
+    .mockup-meta--slim {
       grid-template-columns: 1fr;
     }
     .mockup-meta--slim .mockup-meta-card {
-      min-height: 0;
       padding: var(--space-3) var(--space-4);
     }
 
@@ -5261,52 +5248,35 @@
     <section class="portfolio-section overview" id="overview" aria-labelledby="overview-title">
       <div class="overview-meta reveal is-visible">
         <header>
-          <p class="hero-eyebrow"><span class="live-dot" aria-hidden="true"></span> Design Engineer</p>
+          <p class="hero-eyebrow"><span class="live-dot" aria-hidden="true"></span> 01 · Nexus AI</p>
           <div class="project-title">
             <img src="../assets/nexus-ai-logo.png" alt="" width="48" height="48" aria-hidden="true" />
-            <div class="project-title-copy">
-              <h1 id="overview-title">Nexus AI</h1>
-              <p class="project-subtitle">AI Workspace</p>
-            </div>
+            <h1 id="overview-title">Nexus AI</h1>
           </div>
-          <p class="project-role">Product Design · UI/UX · Frontend Development</p>
           <p class="project-tagline">
-            Designing a focused AI workspace that brings everyday tasks into one streamlined digital environment.
+            Connect scattered AI work in <strong>one Workspace</strong> — a case study from the problem through the design system
           </p>
           <div class="hero-actions">
-            <a class="hero-cta primary" href="http://localhost:3000/en" target="_blank" rel="noopener noreferrer">Live result →</a>
-            <a class="hero-cta ghost" href="#strategy">Case study ↓</a>
+            <a class="hero-cta primary" href="http://localhost:3000/en" target="_blank" rel="noopener noreferrer">Live Site →</a>
+            <a class="hero-cta ghost" href="#strategy">UX Challenge ↓</a>
           </div>
         </header>
 
-        <dl class="hero-facts" aria-label="Project snapshot">
-          <div>
-            <dt>What I built</dt>
-            <dd>An AI workspace for everyday tasks</dd>
-          </div>
-          <div>
-            <dt>My role</dt>
-            <dd>Product Design · UI/UX · Frontend</dd>
-          </div>
-          <div>
-            <dt>Focus</dt>
-            <dd>From layout to a working interface</dd>
-          </div>
-          <div>
-            <dt>How I built it</dt>
-            <dd>React · Next.js · TypeScript · CSS</dd>
-          </div>
-          <div>
-            <dt>Live result</dt>
-            <dd><a href="http://localhost:3000/en" target="_blank" rel="noopener noreferrer">Open the product →</a></dd>
-          </div>
-        </dl>
+        <aside class="hero-vp" aria-label="Core value proposition">
+          <span class="hero-vp-label">Value Proposition</span>
+          <p class="hero-vp-lead">Create, revise, and compare on the same screen — AI work never loses its context.</p>
+          <ul class="hero-vp-list">
+            <li>Manage Chat, Image, and Auto in one Workspace</li>
+            <li>Repeat Prompt → Result → Revise without switching screens</li>
+            <li>Compare result variants side by side, then export</li>
+          </ul>
+        </aside>
       </div>
 
       <div class="portfolio-lens reveal reveal-delay-1" aria-label="Portfolio framing">
         <div class="portfolio-lens-head">
           <span class="portfolio-lens-badge">Case Study Lens</span>
-          <p>Design and frontend, from the problem through the system that ships.</p>
+          <p>Not a pretty landing page — a design-engineer portfolio where <strong>UX thinking, problem solving, design rationale, and systems design</strong> are readable.</p>
         </div>
         <ul class="portfolio-lens-grid">
           <li class="lens-chip" data-accent="cyan"><span>UX Story</span><em>Problem → Result</em></li>
@@ -5392,10 +5362,10 @@
           <article class="mockup-meta-card tech-stack">
             <h3>Built with</h3>
             <div class="tech-tags">
-              <span class="tech-tag primary">React</span>
-              <span class="tech-tag primary">Next.js</span>
+              <span class="tech-tag primary">Next.js 16</span>
+              <span class="tech-tag primary">React 19</span>
               <span class="tech-tag">TypeScript</span>
-              <span class="tech-tag">CSS</span>
+              <span class="tech-tag">Tailwind 4</span>
             </div>
           </article>
         </div>
