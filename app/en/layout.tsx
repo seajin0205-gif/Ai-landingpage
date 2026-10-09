@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { SetDocumentLang } from "@/components/en/SetDocumentLang";
 
 export const metadata: Metadata = {
   title: "Nexus AI — AI chatbot, image generation, and workflow automation",
@@ -12,10 +11,5 @@ export default function EnglishLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <>
-      <SetDocumentLang lang="en" />
-      {children}
-    </>
-  );
+  return children;
 }
