@@ -1392,6 +1392,73 @@
       .ux-devices, .ux-topics, .ix-live { grid-template-columns: 1fr; }
     }
 
+    .tech-overview {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(16rem, 0.7fr);
+      gap: var(--space-4);
+      align-items: start;
+    }
+    .tech-list,
+    .focus-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: var(--space-2);
+    }
+    .tech-list li,
+    .focus-list li {
+      padding: var(--space-3) var(--space-4);
+      border-radius: var(--r-md);
+      border: 1px solid rgba(0, 212, 255, 0.22);
+      background: var(--bg-elevated);
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      line-height: 1.45;
+    }
+    .tech-list strong {
+      display: block;
+      margin-bottom: var(--space-1);
+      font-size: var(--fs-xs);
+      font-weight: 700;
+    }
+    .tech-list span {
+      font-size: var(--fs-xs);
+      font-weight: 500;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .tech-side {
+      padding: var(--space-4);
+      border-radius: var(--r-lg);
+      border: 1px solid var(--border);
+      background: var(--bg-elevated);
+    }
+    .tech-kicker {
+      margin: 0 0 var(--space-2);
+      font-family: var(--mono);
+      font-size: var(--fs-2xs);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--neon);
+    }
+    .tech-focus {
+      margin: 0;
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      line-height: 1.55;
+    }
+    .close-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      margin-top: var(--space-5);
+    }
+    @media (max-width: 800px) {
+      .tech-overview { grid-template-columns: 1fr; }
+    }
+
     .ui-spec {
       display: flex;
       flex-direction: column;
@@ -5705,7 +5772,8 @@
             Designing a focused AI workspace that brings everyday tasks into one streamlined digital environment.
           </p>
           <div class="hero-actions">
-            <a class="hero-cta primary" href="http://localhost:3000/en" target="_blank" rel="noopener noreferrer">Live Site →</a>
+            <a class="hero-cta primary" href="http://localhost:3000/en" target="_blank" rel="noopener noreferrer">View Live Site</a>
+            <a class="hero-cta ghost" href="https://github.com/seajin0205-gif/Ai-landingpage" target="_blank" rel="noopener noreferrer">View GitHub</a>
             <a class="hero-cta ghost" href="#strategy">UX Challenge ↓</a>
           </div>
         </header>
@@ -7326,6 +7394,48 @@
           Live Site →
         </a>
       </div>
+      </div>
+    </section>
+
+    <section class="portfolio-section section-tone-gray" id="technical" aria-labelledby="technical-title">
+      <header class="narrative-header reveal">
+        <p class="narrative-kicker">Technical Overview</p>
+        <h2 class="narrative-title" id="technical-title">Technical Overview</h2>
+        <p class="narrative-lead">The landing is built from the libraries in the repository. Each one has a job in the interface.</p>
+      </header>
+      <div class="tech-overview reveal">
+        <div>
+          <p class="tech-kicker">Built with</p>
+          <ul class="tech-list">
+            <li><strong>Next.js 16</strong><span>App Router pages, including the English landing at /en.</span></li>
+            <li><strong>React 19</strong><span>Section UI and shared components: Button, Container, and Section.</span></li>
+            <li><strong>TypeScript</strong><span>Typed props for button variants, sizes, and layout elements.</span></li>
+            <li><strong>Tailwind CSS 4</strong><span>Layout, spacing, and the sm, lg, and xl breakpoints.</span></li>
+            <li><strong>CSS</strong><span>Color, type, and motion variables, plus hover, focus, and reduced-motion states.</span></li>
+          </ul>
+        </div>
+        <aside class="tech-side">
+          <p class="tech-kicker">Focus</p>
+          <p class="tech-focus">Responsive UI · Component Architecture · Interaction · Design-to-Code</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="portfolio-section" id="focus" aria-labelledby="focus-title">
+      <header class="narrative-header reveal">
+        <p class="narrative-kicker">Reflection</p>
+        <h2 class="narrative-title" id="focus-title">What I focused on</h2>
+      </header>
+      <ul class="focus-list reveal">
+        <li>Translating a visual concept into a functional interface</li>
+        <li>Creating a scalable UI structure</li>
+        <li>Maintaining visual consistency across responsive layouts</li>
+        <li>Balancing futuristic aesthetics with usability</li>
+        <li>Connecting product design decisions with frontend implementation</li>
+      </ul>
+      <div class="close-cta reveal">
+        <a class="hero-cta primary" href="http://localhost:3000/en" target="_blank" rel="noopener noreferrer">View Live Site</a>
+        <a class="hero-cta ghost" href="https://github.com/seajin0205-gif/Ai-landingpage" target="_blank" rel="noopener noreferrer">View GitHub</a>
       </div>
     </section>
   </main>
