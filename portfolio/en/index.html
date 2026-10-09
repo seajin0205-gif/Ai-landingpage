@@ -5802,7 +5802,7 @@
           <li class="lens-chip" data-accent="cyan"><span>Component System</span><em>Variant · State · Rule</em></li>
           <li class="lens-chip" data-accent="lavender"><span>Responsive IA</span><em>Desktop · Tablet · Mobile</em></li>
           <li class="lens-chip" data-accent="mint"><span>State Design</span><em>default · focus · disabled</em></li>
-          <li class="lens-chip" data-accent="cyan"><span>KPI Hypothesis</span><em>A measurable hypothesis</em></li>
+          <li class="lens-chip" data-accent="cyan"><span>Layout decisions</span><em>Why the structure changed</em></li>
           <li class="lens-chip" data-accent="lavender"><span>Design System</span><em>Token · Motion · Grid</em></li>
         </ul>
       </div>
@@ -6184,13 +6184,13 @@
       <div class="strategy-layout">
         <header class="narrative-header reveal">
           <p class="narrative-kicker">10 · UX Challenge</p>
-          <h2 class="narrative-title" id="strategy-title">Name the points where<br />real AI use gets stuck</h2>
-          <p class="narrative-lead">Before designing screens, I defined three frictions that kept showing up in real use.</p>
+          <h2 class="narrative-title" id="strategy-title">Where a split AI workflow<br />gets stuck</h2>
+          <p class="narrative-lead">The concept treats a split-tool workflow as the design problem: restarting a prompt, comparing results across tools, and losing context.</p>
           <ul class="section-dimensions" aria-label="Skills this section shows">
             <li>Pain Points</li>
             <li>Illustration</li>
             <li>Before → After</li>
-            <li>Metrics</li>
+            <li>Layout decisions</li>
           </ul>
         </header>
 
@@ -6307,24 +6307,24 @@
           </div>
         </div>
 
-        <div class="kpi-strip reveal reveal-delay-2" aria-label="UX hypothesis KPI summary">
+        <div class="kpi-strip reveal reveal-delay-2" aria-label="Layout decisions">
           <article class="kpi-strip-item">
-            <p class="kpi-strip-metric">−35%</p>
-            <p class="kpi-strip-label">Task-switch time</p>
-            <p class="kpi-strip-desc">Hopping across 3 tabs becomes one Workspace sidebar switch. It answers the parallel-work pain.</p>
-            <span class="kpi-strip-hypo">Hypothesis · path count</span>
+            <p class="kpi-strip-metric">One view</p>
+            <p class="kpi-strip-label">Task switching</p>
+            <p class="kpi-strip-desc">Chat, Image, and Auto share one Workspace sidebar, so the task does not move across separate tools.</p>
+            <span class="kpi-strip-hypo">Layout decision</span>
           </article>
           <article class="kpi-strip-item">
-            <p class="kpi-strip-metric">−30%</p>
-            <p class="kpi-strip-label">Regeneration loop</p>
-            <p class="kpi-strip-desc">Drop export-and-reupload. A bottom prompt plus in-place revise shortens repeated edits.</p>
-            <span class="kpi-strip-hypo">Hypothesis · loop length</span>
+            <p class="kpi-strip-metric">In place</p>
+            <p class="kpi-strip-label">Revise loop</p>
+            <p class="kpi-strip-desc">The prompt stays on the same screen as the result, so a revision does not start from an export.</p>
+            <span class="kpi-strip-hypo">Layout decision</span>
           </article>
           <article class="kpi-strip-item">
-            <p class="kpi-strip-metric">~2×</p>
-            <p class="kpi-strip-label">Comparison speed</p>
-            <p class="kpi-strip-desc">Opening files one after another becomes variant cards side by side. The result panel and history cut the search.</p>
-            <span class="kpi-strip-hypo">Hypothesis · scan time</span>
+            <p class="kpi-strip-metric">One row</p>
+            <p class="kpi-strip-label">Comparison</p>
+            <p class="kpi-strip-desc">Variant cards and the result panel keep options in one view, next to the work that produced them.</p>
+            <span class="kpi-strip-hypo">Layout decision</span>
           </article>
         </div>
       </div>
@@ -6335,7 +6335,7 @@
       <header class="narrative-header reveal">
         <p class="narrative-kicker">11 · Workspace UI</p>
         <h2 class="narrative-title" id="demo-title">One Workspace,<br />and how it is actually used</h2>
-        <p class="narrative-lead">After defining the problem, I tested “why this layout” in two scenarios: Chat and Image.</p>
+        <p class="narrative-lead">Chat and Image use the same structure: input, the result, and the next action stay in one view.</p>
         <ul class="section-dimensions" aria-label="Skills this section shows">
           <li>Live Demo</li>
           <li>Layout Rationale</li>
@@ -6351,7 +6351,7 @@
         </div>
         <div class="ux-story-step" data-step="insight">
           <span class="ux-story-label">Insight</span>
-          <p>People decide faster when they <strong>judge next to the result</strong>, not from the chat log</p>
+          <p>The result stays <strong>beside the conversation</strong>, so compare and revise remain on that screen</p>
         </div>
         <div class="ux-story-step" data-step="decision">
           <span class="ux-story-label">Decision</span>
@@ -6532,7 +6532,7 @@
             <div class="demo-rationale-item" data-zone="center">
               <span class="demo-rationale-zone">Center · Variant Cards</span>
               <strong>Why a card layout?</strong>
-              <span>Lists are slow to compare while scrolling. Same-size cards let you scan A/B differences horizontally.</span>
+              <span>Same-size cards put each variant on one row, so comparison stays in the Workspace view.</span>
             </div>
             <div class="demo-rationale-item" data-zone="result">
               <span class="demo-rationale-zone">Right · Export</span>
@@ -6550,7 +6550,7 @@
             <dl class="spec-rows">
               <div class="spec-row"><dt>Workspace</dt><dd>Chat, Image, and Auto in the sidebar — change mode without switching tabs</dd></div>
               <div class="spec-row"><dt>Bottom prompt</dt><dd>Revise right after seeing the result. The thumb zone and the revise loop stay intact</dd></div>
-              <div class="spec-row"><dt>History tab</dt><dd>Restore the last prompt — no cost of starting from a blank field</dd></div>
+              <div class="spec-row"><dt>History tab</dt><dd>A previous prompt can be opened again from the same Workspace</dd></div>
               <div class="spec-row"><dt>Result Panel</dt><dd>Preview beside the conversation — compare and download without a separate export</dd></div>
             </dl>
           </div>
@@ -6558,9 +6558,9 @@
             <h4>Image — Why this UI</h4>
             <dl class="spec-rows">
               <div class="spec-row"><dt>Prompt bar</dt><dd>Natural-language intent — a lower barrier than a settings form</dd></div>
-              <div class="spec-row"><dt>Variant Cards</dt><dd>Same-size grid — faster A/B scanning than a list</dd></div>
-              <div class="spec-row"><dt>Progress</dt><dd>Feedback while generating — less drop-off from an uncertain wait</dd></div>
-              <div class="spec-row"><dt>Result + Export</dt><dd>Download right after the decision — less eye and click travel</dd></div>
+              <div class="spec-row"><dt>Variant Cards</dt><dd>Same-size cards sit in one row inside the Workspace</dd></div>
+              <div class="spec-row"><dt>Progress</dt><dd>A progress state is visible while the image generates</dd></div>
+              <div class="spec-row"><dt>Result + Export</dt><dd>Download sits on the result panel, next to the preview</dd></div>
             </dl>
           </div>
         </div>
@@ -6589,7 +6589,7 @@
         <div class="why-ui reveal reveal-delay-1" aria-labelledby="why-ui-title">
           <div class="why-ui-header">
             <h3 id="why-ui-title">Why the main UI is placed this way</h3>
-            <p>These are usability decisions to cut hand and eye travel, not choices made because they look nice.</p>
+            <p>Each placement keeps the next action near the work it belongs to.</p>
           </div>
           <div class="why-ui-grid">
             <article class="why-ui-card">
@@ -6614,7 +6614,7 @@
             </article>
             <article class="why-ui-card">
               <p class="why-ui-q">Why cards for variants?</p>
-              <p class="why-ui-a">Lists are slow to compare by scrolling. A same-size card grid moves the eye horizontally so A/B differences are faster to judge.</p>
+              <p class="why-ui-a">A same-size card grid puts the variants on one row, in the same view as the prompt.</p>
               <span class="why-ui-tag">Scanability</span>
             </article>
             <article class="why-ui-card">
@@ -6632,11 +6632,11 @@
       <header class="narrative-header reveal">
         <p class="narrative-kicker">12 · Workflow & Integration</p>
         <h2 class="narrative-title" id="workflow-title">From intent to export,<br />one continuous journey</h2>
-        <p class="narrative-lead">I did not draw the UI first. I placed Workspace information in the order people think.</p>
+        <p class="narrative-lead">The screen follows one order: intent, planning, generation, iteration, and export.</p>
         <ul class="section-dimensions" aria-label="Skills this section shows">
           <li>User Journey</li>
           <li>Information Architecture</li>
-          <li>KPI Hypothesis</li>
+          <li>Layout decisions</li>
         </ul>
       </header>
 
@@ -6647,7 +6647,7 @@
         </div>
         <div class="ux-story-step" data-step="insight">
           <span class="ux-story-label">Insight</span>
-          <p>People think in <strong>intent → result → revise → export</strong>, not in menus</p>
+          <p>The interface is ordered as <strong>intent → result → revise → export</strong></p>
         </div>
         <div class="ux-story-step" data-step="decision">
           <span class="ux-story-label">Decision</span>
@@ -6731,7 +6731,7 @@
             <div class="hub-center">N<span>Hub</span></div>
             <span class="hub-app" style="top:6%;left:42%">Slack</span>
             <span class="hub-app" style="top:16%;right:8%">Notion</span>
-            <span class="hub-app" style="top:42%;right:2%">Gmail</span>
+            <span class="hub-app" style="top:42%;right:2%">OpenAI</span>
             <span class="hub-app" style="bottom:18%;right:8%">Jira</span>
             <span class="hub-app" style="bottom:6%;left:42%">Figma</span>
             <span class="hub-app" style="bottom:18%;left:8%">Drive</span>
@@ -6740,9 +6740,9 @@
           </div>
           <div class="app-chips">
             <span class="app-chip">Slack</span>
-            <span class="app-chip">Gmail</span>
             <span class="app-chip">Notion</span>
-            <span class="app-chip">+46</span>
+            <span class="app-chip">GitHub</span>
+            <span class="app-chip">Linear</span>
           </div>
         </div>
       </div>
@@ -6764,99 +6764,99 @@
 
       <div class="benefits-section">
         <div class="benefits-header">
-          <h3>KPIs from UX hypotheses</h3>
-          <p>These are improvement hypotheses from task scenarios and click paths, not a measured A/B test. The numbers stay in a realistic range.</p>
+          <h3>Layout decisions in the Workspace</h3>
+          <p>Each card records what the interface changes, and which part of the screen carries that job.</p>
         </div>
         <div class="kpi-grid kpi-grid--hypo">
           <div class="kpi-card">
             <span class="icon-box" aria-hidden="true"><i data-lucide="shuffle"></i></span>
             <div class="kpi-impact">
-              <span class="kpi-metric">−35%</span>
-              <span class="kpi-metric-sub">Task-switch time</span>
+              <span class="kpi-metric">One view</span>
+              <span class="kpi-metric-sub">Task switching</span>
             </div>
             <div class="kpi-compare">
               <span>3-tab switch</span>
               <i data-lucide="arrow-right"></i>
               <span class="kpi-compare-after">1 Workspace</span>
             </div>
-            <strong>Faster task switching</strong>
-            <p>Chat, Image, and Auto continue with a sidebar switch, so tab and login re-entry drop</p>
-            <span class="kpi-hypo">Hypothesis · path count</span>
+            <strong>One Workspace</strong>
+            <p>Chat, Image, and Auto continue from the sidebar in the same Workspace.</p>
+            <span class="kpi-hypo">Layout decision</span>
           </div>
           <div class="kpi-card">
             <span class="icon-box" aria-hidden="true"><i data-lucide="keyboard"></i></span>
             <div class="kpi-impact">
-              <span class="kpi-metric">−20%</span>
-              <span class="kpi-metric-sub">Prompt writing time</span>
+              <span class="kpi-metric">History</span>
+              <span class="kpi-metric-sub">Previous prompt</span>
             </div>
             <div class="kpi-compare">
-              <span>From a blank field</span>
+              <span>Blank field</span>
               <i data-lucide="arrow-right"></i>
-              <span class="kpi-compare-after">Restore from History</span>
+              <span class="kpi-compare-after">History tab</span>
             </div>
-            <strong>Prompt writing time</strong>
-            <p>Load the last prompt from History and only edit it, so the path stays short</p>
-            <span class="kpi-hypo">Hypothesis · task time</span>
+            <strong>History keeps the prompt</strong>
+            <p>The History tab sits in the Workspace so a previous prompt can be opened again.</p>
+            <span class="kpi-hypo">Layout decision</span>
           </div>
           <div class="kpi-card">
             <span class="icon-box" aria-hidden="true"><i data-lucide="mouse-pointer-click"></i></span>
             <div class="kpi-impact">
-              <span class="kpi-metric">−4 clicks</span>
-              <span class="kpi-metric-sub">Per core task</span>
+              <span class="kpi-metric">Beside it</span>
+              <span class="kpi-metric-sub">Next action</span>
             </div>
             <div class="kpi-compare">
-              <span>~11 clicks</span>
+              <span>Scattered actions</span>
               <i data-lucide="arrow-right"></i>
-              <span class="kpi-compare-after">~7 clicks</span>
+              <span class="kpi-compare-after">By the result</span>
             </div>
-            <strong>Fewer clicks</strong>
-            <p>Export, compare, and revise sit near the result panel, so back-and-forth clicks drop</p>
-            <span class="kpi-hypo">Hypothesis · click path</span>
+            <strong>Actions sit with the result</strong>
+            <p>Export, compare, and revise are placed on the result panel.</p>
+            <span class="kpi-hypo">Layout decision</span>
           </div>
           <div class="kpi-card">
             <span class="icon-box" aria-hidden="true"><i data-lucide="refresh-cw"></i></span>
             <div class="kpi-impact">
-              <span class="kpi-metric">−30%</span>
-              <span class="kpi-metric-sub">Regeneration loop</span>
+              <span class="kpi-metric">In place</span>
+              <span class="kpi-metric-sub">Revise loop</span>
             </div>
             <div class="kpi-compare">
               <span>Export then re-upload</span>
               <i data-lucide="arrow-right"></i>
-              <span class="kpi-compare-after">In-place revise</span>
+              <span class="kpi-compare-after">Revise on screen</span>
             </div>
-            <strong>Shorter regeneration</strong>
-            <p>Prompt → Result → Revise on the same screen removes the file round trip</p>
-            <span class="kpi-hypo">Hypothesis · loop length</span>
+            <strong>Revise on the same screen</strong>
+            <p>Prompt, result, and revise stay together in the Workspace.</p>
+            <span class="kpi-hypo">Layout decision</span>
           </div>
           <div class="kpi-card">
             <span class="icon-box" aria-hidden="true"><i data-lucide="columns-2"></i></span>
             <div class="kpi-impact">
-              <span class="kpi-metric">~2×</span>
-              <span class="kpi-metric-sub">Comparison speed</span>
+              <span class="kpi-metric">One row</span>
+              <span class="kpi-metric-sub">Variants</span>
             </div>
             <div class="kpi-compare">
-              <span>Open files one by one</span>
+              <span>One file at a time</span>
               <i data-lucide="arrow-right"></i>
-              <span class="kpi-compare-after">Cards side by side</span>
+              <span class="kpi-compare-after">Cards in a row</span>
             </div>
-            <strong>More efficient comparison</strong>
-            <p>A variant card grid shows A/B differences with eye movement alone</p>
-            <span class="kpi-hypo">Hypothesis · scan time</span>
+            <strong>Variants share a row</strong>
+            <p>Same-size cards keep the options in the Workspace view.</p>
+            <span class="kpi-hypo">Layout decision</span>
           </div>
           <div class="kpi-card">
             <span class="icon-box" aria-hidden="true"><i data-lucide="compass"></i></span>
             <div class="kpi-impact">
-              <span class="kpi-metric">−25%</span>
-              <span class="kpi-metric-sub">Time to find the next step</span>
+              <span class="kpi-metric">Fixed IA</span>
+              <span class="kpi-metric-sub">Next step</span>
             </div>
             <div class="kpi-compare">
-              <span>Menu hunting</span>
+              <span>Open menus</span>
               <i data-lucide="arrow-right"></i>
-              <span class="kpi-compare-after">Fixed IA</span>
+              <span class="kpi-compare-after">Sidebar + History</span>
             </div>
-            <strong>Time to navigate the Workspace</strong>
-            <p>Sidebar modes plus History reduce the “where do I go next?” decision</p>
-            <span class="kpi-hypo">Hypothesis · findability</span>
+            <strong>The next step stays visible</strong>
+            <p>Sidebar modes and History mark where the work continues.</p>
+            <span class="kpi-hypo">Layout decision</span>
           </div>
         </div>
       </div>
@@ -6886,7 +6886,7 @@
               <h3>System Overview</h3>
               <span>Foundation</span>
             </div>
-            <p class="sys-panel-desc">8pt grid, semantic tokens, glass surfaces, premium motion — a Figma-ready structure where design and implementation match</p>
+            <p class="sys-panel-desc">8pt spacing, color, and type are CSS variables. The landing components read those same values.</p>
             <div class="sys-type-stack">
               <div class="sys-type-item">
                 <div class="sys-type-label"><span>Display</span><em>700</em></div>
@@ -6931,7 +6931,7 @@
               <h3>Component Thinking</h3>
               <span>Button Spec</span>
             </div>
-            <p class="sys-panel-desc">Variants, states, and sizes are tokens, mapped 1:1 to a Figma component set</p>
+            <p class="sys-panel-desc">Variants, states, and sizes are the shared Button component in the React UI.</p>
             <div class="comp-thinking">
               <div class="comp-spec-block">
                 <div class="comp-spec-head">
@@ -7016,7 +7016,7 @@
               <div class="sys-spacing-item"><div class="sys-spacing-bar" style="height:24px"></div><span>24</span></div>
               <div class="sys-spacing-item"><div class="sys-spacing-bar" style="height:32px"></div><span>32</span></div>
             </div>
-            <p class="token-meta" style="margin-top:var(--space-2)"><code>--grid-unit</code> multiples · 1:1 with Figma auto layout</p>
+            <p class="token-meta" style="margin-top:var(--space-2)"><code>--grid-unit</code> multiples · the spacing scale used in the layout</p>
           </div>
           <div class="sys-panel sys-span-4">
             <div class="sys-panel-head">
@@ -7295,7 +7295,7 @@
         </article>
         <article class="de-check-item">
           <strong>Is there systems thinking?</strong>
-          <span>Button variant × state × size, foundation tokens, and component rules map 1:1 to a Figma component set.</span>
+          <span>Button variants, states, and sizes, plus color and spacing tokens, are shared React components and CSS variables.</span>
           <em>Component · DS</em>
         </article>
         <article class="de-check-item">
@@ -7304,9 +7304,9 @@
           <em>Responsive</em>
         </article>
         <article class="de-check-item">
-          <strong>Are there states and hypothesis KPIs?</strong>
-          <span>A required 4-state rule, and hypothesis-labeled KPIs, so the UX hypotheses are measurable.</span>
-          <em>State · KPI</em>
+          <strong>Are the interface states defined?</strong>
+          <span>Buttons include hover, focus-visible, and a reduced-motion path. The specimen also shows a disabled state.</span>
+          <em>State · Motion</em>
         </article>
       </div>
 
@@ -7335,12 +7335,12 @@
         <div class="outcome-card">
           <span class="outcome-icon icon-box icon-box--lg" aria-hidden="true"><i data-lucide="link-2"></i></span>
           <strong>A single Workspace experience</strong>
-          <p>Scattered AI features rebuilt into one intent-to-export flow. Designed so people feel the all-in-one value themselves.</p>
+          <p>Chat, image, and automation are composed as one Workspace flow, from the prompt through export.</p>
         </div>
         <div class="outcome-card">
           <span class="outcome-icon icon-box" aria-hidden="true"><i data-lucide="refresh-cw"></i></span>
           <strong>Iteration-first AI UX</strong>
-          <p>The hero live demo and result panel put “revise after you generate” up front. Value is the work loop, not a feature list.</p>
+          <p>The hero live demo and the result panel keep generation and revision in the same view.</p>
         </div>
         <div class="outcome-card">
           <span class="outcome-icon icon-box" aria-hidden="true"><i data-lucide="book-open"></i></span>
@@ -7367,7 +7367,7 @@
             <figure class="learned-timeline-illus" aria-hidden="true">
               <svg viewBox="0 0 72 72" fill="none"><circle cx="36" cy="36" r="34" fill="#ecfeff"/><rect x="20" y="24" width="32" height="24" rx="5" fill="#fff" stroke="#00d4ff" stroke-width="1.2"/><path d="M28 32h16M28 38h12" stroke="#cbd5e1" stroke-width="1.5" stroke-linecap="round"/></svg>
             </figure>
-            <p>Keeping the work flow inside one Workspace clearly improved the experience. Unifying the UI is not “merging features.” The goal is <strong>keeping context</strong>.</p>
+            <p>The Workspace keeps the prompt, the result, and history in one context. The layout holds that context on the screen.</p>
           </div>
           <div class="learned-timeline-item">
             <figure class="learned-timeline-illus" aria-hidden="true">
@@ -7455,7 +7455,7 @@
      */
     (function () {
       const CHAT_PROMPT = "Summarize this month's top 5 customer questions";
-      const CHAT_REPLY = "Analysis ready.\n\n1. Shipping — 32%\n2. Refunds — 21%\n3. How to use — 18%\n4. Exchanges — 15%\n5. Other — 14%";
+      const CHAT_REPLY = "Analysis ready.\n\nShipping questions come up most often, then refunds, how to use the product, exchanges, and other requests.";
 
       const typed = document.getElementById("chat-typed");
       const inputBar = document.getElementById("chat-input");
