@@ -3706,29 +3706,19 @@ body {
   mix-blend-mode: difference;
 }
 
-.studio-cursor-dot,
 .studio-cursor-ring {
   position: absolute;
   top: 0;
   left: 0;
-  border-radius: 999px;
-  will-change: transform;
-}
-
-.studio-cursor-dot {
-  width: 6px;
-  height: 6px;
-  margin: -3px 0 0 -3px;
-  background: #fff;
-}
-
-.studio-cursor-ring {
   display: grid;
   place-items: center;
   width: 36px;
   height: 36px;
   margin: -18px 0 0 -18px;
   border: 1.5px solid rgba(255, 255, 255, 0.92);
+  border-radius: 999px;
+  background: transparent;
+  will-change: transform;
   transition:
     width 0.4s var(--premium-ease),
     height 0.4s var(--premium-ease),
@@ -3743,7 +3733,6 @@ body {
   background: rgba(255, 255, 255, 0.12);
 }
 
-.studio-cursor-dot.is-hidden,
 .studio-cursor-ring.is-hidden {
   opacity: 0;
 }
