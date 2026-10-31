@@ -1,22 +1,26 @@
+"use client";
+
 import { Reveal } from "@/components/motion/Reveal";
 import { Container } from "@/components/layout/Container";
 import { IntegrationHub } from "@/components/effects/IntegrationHub";
+import { useCopy } from "@/components/i18n/LocaleProvider";
 
 const partners = ["Enterprise A", "Company B", "Startup C", "Team D", "Org E", "Studio F"];
 
 export function Integrations() {
+  const integrations = useCopy().integrations;
   return (
     <section id="integrations" className="integration-section section-rhythm-proof-trust border-y border-white/70 bg-white/20 py-10 backdrop-blur-sm sm:py-12">
       <Container>
         <Reveal variant="fade-up">
           <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-lg">
-              <p className="text-sm font-bold tracking-[0.12em] text-neon-cyan uppercase">연동 & 파트너</p>
+              <p className="text-sm font-bold tracking-[0.12em] text-neon-cyan uppercase">{integrations.kicker}</p>
               <h2 className="mt-3 text-2xl font-extrabold tracking-tight text-foreground sm:text-3xl">
                 Trusted by 500+ Teams
               </h2>
               <p className="mt-3 text-base leading-relaxed text-muted">
-                Slack, Notion, GitHub 등 이미 쓰는 도구를 Nexus AI Hub에 연결하세요.
+                {integrations.body}
               </p>
             </div>
 

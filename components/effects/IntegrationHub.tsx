@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useCopy } from "@/components/i18n/LocaleProvider";
 
 const tools = [
   { id: "slack", name: "Slack", x: 50, y: 8 },
@@ -17,6 +18,7 @@ const CX = 50;
 const CY = 50;
 
 export function IntegrationHub() {
+  const hub = useCopy().brand.hub;
   const [activeId, setActiveId] = useState<string | null>(null);
 
   return (
@@ -62,7 +64,7 @@ export function IntegrationHub() {
         <div className="hub-core-node">
           <span className="hub-core-icon">N</span>
           <span className="hub-core-label">Nexus AI</span>
-          <span className="hub-core-sublabel">통합 Hub</span>
+          <span className="hub-core-sublabel">{hub}</span>
         </div>
       </div>
 

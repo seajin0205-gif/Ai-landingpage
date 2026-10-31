@@ -1,22 +1,19 @@
+"use client";
+
 import { Reveal } from "@/components/motion/Reveal";
+import { TiltFrame } from "@/components/motion/TiltFrame";
 import { Container } from "@/components/layout/Container";
 import { Parallax } from "@/components/motion/Parallax";
+import { useCopy } from "@/components/i18n/LocaleProvider";
 import { Button } from "@/components/ui/Button";
 import { HeroImageDemo } from "@/components/effects/HeroImageDemo";
 import { HeroFeatureCards } from "@/components/sections/HeroFeatureCards";
 import { NexusLogoMark } from "@/components/ui/NexusLogo";
 
-const trustTags = ["신용카드 불필요", "14일 무료", "한국어 완벽 지원"];
-
-const impactHighlights = [
-  { value: "3 → 1", label: "툴 통합 Workspace" },
-  { value: "Zero", label: "맥락 단절" },
-  { value: "Live", label: "AI 즉시 체험" },
-];
-
 export function Hero() {
+  const t = useCopy();
   return (
-    <section className="hero-section relative overflow-visible pt-28 pb-16 sm:pt-36 sm:pb-24 lg:flex lg:min-h-[calc(100vh-4.5rem)] lg:items-center lg:pt-32 lg:pb-20">
+    <section id="intro" className="hero-section relative overflow-visible pt-28 pb-16 sm:pt-36 sm:pb-24 lg:flex lg:min-h-[calc(100vh-4.5rem)] lg:items-center lg:pt-32 lg:pb-20">
       <div className="hero-aurora-layer" aria-hidden>
         <div className="hero-aurora-blob hero-aurora-blob-1 motion-glow-aurora" />
         <div className="hero-aurora-blob hero-aurora-blob-2 motion-glow-aurora" />
@@ -38,7 +35,7 @@ export function Hero() {
                 </div>
                 <div className="hero-brand-copy">
                   <p className="hero-brand-wordmark">Nexus AI</p>
-                  <p className="hero-brand-tagline">업무 자동화 AI Workspace</p>
+                  <p className="hero-brand-tagline">{t.brand.heroTagline}</p>
                 </div>
               </div>
 
@@ -53,22 +50,25 @@ export function Hero() {
               </div>
             </Reveal>
 
-            <Reveal variant="fade-up" delay={80}>
+            <Reveal variant="fade" delay={80}>
               <h1 className="headline-display hero-headline mx-auto mt-8 max-w-full lg:mx-0">
-                <span className="headline-gradient-line text-gradient">화면 전환 없이,</span>
-                <span className="headline-gradient-line text-gradient">대화·이미지·자동화를</span>
-                <span className="headline-gradient-line hero-headline-accent text-gradient-accent">
-                  AI Workspace에서
-                </span>
-                <span className="headline-gradient-line hero-headline-accent text-gradient-accent">
-                  한번에
-                </span>
+                {t.hero.lines.map((line) => (
+                  <span key={line.text} className="line-mask">
+                    <span
+                      className={`headline-gradient-line ${
+                        line.accent ? "hero-headline-accent text-gradient-accent" : "text-gradient"
+                      }`}
+                    >
+                      {line.text}
+                    </span>
+                  </span>
+                ))}
               </h1>
             </Reveal>
 
             <Reveal variant="fade-up" delay={140}>
-              <ul className="hero-impact-strip mx-auto lg:mx-0" aria-label="핵심 가치">
-                {impactHighlights.map((item) => (
+              <ul className="hero-impact-strip mx-auto lg:mx-0" aria-label={t.hero.impactLabel}>
+                {t.hero.impacts.map((item) => (
                   <li key={item.label} className="hero-impact-item">
                     <span className="hero-impact-value">{item.value}</span>
                     <span className="hero-impact-label">{item.label}</span>
@@ -79,34 +79,33 @@ export function Hero() {
 
             <Reveal variant="fade-up" delay={200}>
               <p className="hero-lead mx-auto mt-8 max-w-xl text-lg leading-[1.8] text-muted sm:text-xl sm:leading-[1.8] lg:mx-0">
-                생성과 수정, 반복 작업까지 끊기지 않습니다.
-                프롬프트 한 줄로 시작해 팀 업무 자동화까지 같은 맥락에서 이어집니다.
+                {t.hero.lead}
               </p>
             </Reveal>
 
             <Reveal variant="fade-up" delay={260}>
               <p className="hero-social-proof mt-8 text-base text-muted">
-                <span className="font-bold text-foreground">500+개 팀</span>
-                이 여러 AI 툴 대신{" "}
+                <span className="font-bold text-foreground">{t.hero.socialStrong}</span>
+                {t.hero.socialBefore}
                 <span className="hero-brand-inline">Nexus AI</span>
-                하나로 작업 흐름을 유지 중
+                {t.hero.socialAfter}
               </p>
             </Reveal>
 
             <Reveal variant="fade-up" delay={320}>
               <div className="mt-10 flex flex-col items-stretch gap-4 sm:flex-row sm:items-center lg:justify-start">
                 <Button href="#cta" size="lg" showArrow magnetic className="w-full sm:w-auto">
-                  무료로 시작하기
+                  {t.hero.primaryCta}
                 </Button>
-                <Button href="#workspace-demo" variant="secondary" size="lg" className="w-full sm:w-auto">
-                  제품 미리보기
+                <Button href="#workspace-demo" variant="secondary" size="lg" cursorLabel="Demo" className="w-full sm:w-auto">
+                  {t.hero.secondaryCta}
                 </Button>
               </div>
             </Reveal>
 
             <Reveal variant="fade" delay={380}>
               <div className="mt-8 flex flex-col items-center justify-center gap-2 text-sm sm:flex-row sm:flex-wrap sm:gap-x-4 lg:justify-start">
-                {trustTags.map((tag, i) => (
+                {t.hero.trust.map((tag, i) => (
                   <span key={tag} className="flex items-center gap-4">
                     {i > 0 && (
                       <span className="hidden text-muted-foreground/40 sm:inline" aria-hidden>
@@ -131,8 +130,10 @@ export function Hero() {
                   Nexus Live Demo
                 </span>
                 <div className="hero-demo-orbit" aria-hidden />
-                <div className="hero-demo-scroll">
-                  <HeroImageDemo />
+                <div className="hero-demo-scroll" data-cursor="Live">
+                  <TiltFrame max={8}>
+                    <HeroImageDemo />
+                  </TiltFrame>
                 </div>
               </div>
             </Reveal>
