@@ -1,4 +1,5 @@
 import { Reveal } from "@/components/motion/Reveal";
+import { PointerCard } from "@/components/motion/PointerCard";
 import { FeatureIcon } from "@/components/ui/Icons";
 
 const features = [
@@ -32,7 +33,7 @@ export function HeroFeatureCards() {
         {features.map((feature, index) => {
           return (
             <Reveal key={feature.id} variant="scale-in" delay={index * 80} className="flex-1">
-              <div className="card-surface card-surface-flat relative h-full overflow-hidden rounded-2xl p-6 text-left sm:p-6">
+              <PointerCard max={6} lift={4} className="card-surface card-surface-flat relative h-full overflow-hidden rounded-2xl p-6 text-left sm:p-6">
                 <span className="feature-number">{feature.num} · CORE</span>
                 <div className="icon-box mt-6 mb-4 h-12 w-12 rounded-xl border border-white/90 bg-white/70 text-neon-cyan shadow-sm">
                   <FeatureIcon name={feature.icon} />
@@ -41,7 +42,7 @@ export function HeroFeatureCards() {
                   {feature.title}
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted sm:text-base">{feature.description}</p>
-              </div>
+              </PointerCard>
             </Reveal>
           );
         })}

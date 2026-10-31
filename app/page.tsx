@@ -1,6 +1,7 @@
 import { AuroraBackground } from "@/components/effects/AuroraBackground";
 import { Navigation } from "@/components/sections/Navigation";
 import { Hero } from "@/components/sections/Hero";
+import { KineticMarquee } from "@/components/motion/KineticMarquee";
 import { WorkspaceDemo } from "@/components/sections/WorkspaceDemo";
 import { Features } from "@/components/sections/Features";
 import { HowItWorks } from "@/components/sections/HowItWorks";
@@ -20,6 +21,7 @@ export default function Home() {
       <main className="landing-narrative">
         {/* 1. AI가 생성된다 */}
         <Hero />
+        <KineticMarquee />
 
         {/* 2. 실제 제품이다 */}
         <WorkspaceDemo />

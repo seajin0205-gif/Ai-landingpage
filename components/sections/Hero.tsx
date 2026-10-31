@@ -1,4 +1,5 @@
 import { Reveal } from "@/components/motion/Reveal";
+import { TiltFrame } from "@/components/motion/TiltFrame";
 import { Container } from "@/components/layout/Container";
 import { Parallax } from "@/components/motion/Parallax";
 import { Button } from "@/components/ui/Button";
@@ -16,7 +17,7 @@ const impactHighlights = [
 
 export function Hero() {
   return (
-    <section className="hero-section relative overflow-visible pt-28 pb-16 sm:pt-36 sm:pb-24 lg:flex lg:min-h-[calc(100vh-4.5rem)] lg:items-center lg:pt-32 lg:pb-20">
+    <section id="intro" className="hero-section relative overflow-visible pt-28 pb-16 sm:pt-36 sm:pb-24 lg:flex lg:min-h-[calc(100vh-4.5rem)] lg:items-center lg:pt-32 lg:pb-20">
       <div className="hero-aurora-layer" aria-hidden>
         <div className="hero-aurora-blob hero-aurora-blob-1 motion-glow-aurora" />
         <div className="hero-aurora-blob hero-aurora-blob-2 motion-glow-aurora" />
@@ -53,15 +54,23 @@ export function Hero() {
               </div>
             </Reveal>
 
-            <Reveal variant="fade-up" delay={80}>
+            <Reveal variant="fade" delay={80}>
               <h1 className="headline-display hero-headline mx-auto mt-8 max-w-full lg:mx-0">
-                <span className="headline-gradient-line text-gradient">화면 전환 없이,</span>
-                <span className="headline-gradient-line text-gradient">대화·이미지·자동화를</span>
-                <span className="headline-gradient-line hero-headline-accent text-gradient-accent">
-                  AI Workspace에서
+                <span className="line-mask">
+                  <span className="headline-gradient-line text-gradient">화면 전환 없이,</span>
                 </span>
-                <span className="headline-gradient-line hero-headline-accent text-gradient-accent">
-                  한번에
+                <span className="line-mask">
+                  <span className="headline-gradient-line text-gradient">대화·이미지·자동화를</span>
+                </span>
+                <span className="line-mask">
+                  <span className="headline-gradient-line hero-headline-accent text-gradient-accent">
+                    AI Workspace에서
+                  </span>
+                </span>
+                <span className="line-mask">
+                  <span className="headline-gradient-line hero-headline-accent text-gradient-accent">
+                    한번에
+                  </span>
                 </span>
               </h1>
             </Reveal>
@@ -98,7 +107,7 @@ export function Hero() {
                 <Button href="#cta" size="lg" showArrow magnetic className="w-full sm:w-auto">
                   무료로 시작하기
                 </Button>
-                <Button href="#workspace-demo" variant="secondary" size="lg" className="w-full sm:w-auto">
+                <Button href="#workspace-demo" variant="secondary" size="lg" cursorLabel="Demo" className="w-full sm:w-auto">
                   제품 미리보기
                 </Button>
               </div>
@@ -131,8 +140,10 @@ export function Hero() {
                   Nexus Live Demo
                 </span>
                 <div className="hero-demo-orbit" aria-hidden />
-                <div className="hero-demo-scroll">
-                  <HeroImageDemo />
+                <div className="hero-demo-scroll" data-cursor="Live">
+                  <TiltFrame max={8}>
+                    <HeroImageDemo />
+                  </TiltFrame>
                 </div>
               </div>
             </Reveal>

@@ -1,4 +1,5 @@
 import { Reveal } from "@/components/motion/Reveal";
+import { PointerCard } from "@/components/motion/PointerCard";
 import { Section } from "@/components/layout/Section";
 import { NarrativeStep } from "@/components/layout/NarrativeStep";
 import { FeatureIcon } from "@/components/ui/Icons";
@@ -67,7 +68,10 @@ export function Features() {
       <div className="features-card-grid mt-12 lg:mt-16">
         {featureCards.map((card, index) => (
           <Reveal key={card.label} variant="fade-up" delay={index * 80} className="h-full min-w-0">
-            <article
+            <PointerCard
+              as="article"
+              max={4.5}
+              lift={6}
               className={`feature-card-premium card-surface card-interactive group flex h-full min-h-[336px] flex-col p-8 sm:min-h-[360px] sm:p-8 ${card.surface}`}
             >
               <span className="feature-number relative z-[1]">{card.number} · {card.label}</span>
@@ -92,7 +96,7 @@ export function Features() {
                   />
                 ))}
               </div>
-            </article>
+            </PointerCard>
           </Reveal>
         ))}
       </div>

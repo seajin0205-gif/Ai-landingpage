@@ -35,7 +35,7 @@ export function Navigation() {
             : "glass-strong shadow-premium"
         }`}
       >
-        <Link href="/" className="group flex items-center gap-2">
+        <Link href="/" data-cursor="Home" className="group flex items-center gap-2">
           <NexusLogoMark variant="header" />
           <span className="nav-wordmark text-base font-bold leading-none text-foreground">
             Nexus AI
@@ -50,6 +50,7 @@ export function Navigation() {
             <li key={link.href}>
               <Link
                 href={link.href}
+                data-cursor="Go"
                 className="nav-link rounded-lg px-4 py-2 text-sm font-semibold tracking-[0.06em] text-muted hover:text-foreground"
               >
                 {link.label}
@@ -92,6 +93,7 @@ export function Navigation() {
               <Link
                 key={link.href}
                 href={link.href}
+                data-cursor="Go"
                 className="rounded-xl px-4 py-3 text-sm font-semibold text-muted transition-colors hover:bg-white/70 hover:text-foreground"
                 onClick={() => setMenuOpen(false)}
               >

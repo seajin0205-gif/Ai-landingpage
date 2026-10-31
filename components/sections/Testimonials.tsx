@@ -1,4 +1,5 @@
 import { Reveal } from "@/components/motion/Reveal";
+import { PointerCard } from "@/components/motion/PointerCard";
 import { Section } from "@/components/layout/Section";
 import { NarrativeStep } from "@/components/layout/NarrativeStep";
 import {
@@ -80,7 +81,12 @@ export function Testimonials() {
 
           return (
             <Reveal key={item.name} variant="fade-up" delay={index * 80} className="h-full min-w-0">
-              <figure className="testimonial-card feature-card-premium card-surface card-surface-glass card-interactive flex h-full min-h-[336px] flex-col sm:min-h-[360px]">
+              <PointerCard
+                as="figure"
+                max={4.5}
+                lift={6}
+                className="testimonial-card feature-card-premium card-surface card-surface-glass card-interactive flex h-full min-h-[336px] flex-col sm:min-h-[360px]"
+              >
                 <StarRating rating={item.rating} />
                 <blockquote className="testimonial-quote relative z-[1] flex-1 text-base leading-[1.85] text-foreground/90">
                   &ldquo;{item.quote}&rdquo;
@@ -94,7 +100,7 @@ export function Testimonials() {
                     <p className="mt-1 truncate text-sm text-muted-foreground">{item.role}</p>
                   </div>
                 </figcaption>
-              </figure>
+              </PointerCard>
             </Reveal>
           );
         })}

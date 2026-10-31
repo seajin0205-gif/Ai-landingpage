@@ -13,6 +13,7 @@ type ButtonBaseProps = {
   size?: ButtonSize;
   showArrow?: boolean;
   magnetic?: boolean;
+  cursorLabel?: string;
   className?: string;
   children: ReactNode;
 };
@@ -43,6 +44,7 @@ export function Button({
   size = "default",
   showArrow = false,
   magnetic = false,
+  cursorLabel,
   className = "",
   children,
   ...props
@@ -69,11 +71,13 @@ export function Button({
   const useMagnetic = magnetic && variant !== "ghost";
   const wrap = (node: ReactNode) =>
     useMagnetic ? <Magnetic strength={0.18}>{node}</Magnetic> : node;
+  const cursor =
+    cursorLabel ?? (variant === "primary" ? "Start" : variant === "secondary" ? "View" : "Open");
 
   if ("href" in props && props.href) {
     const { href, ...linkProps } = props;
     return wrap(
-      <Link href={href} className={classes} {...linkProps}>
+      <Link href={href} className={classes} {...linkProps} data-cursor={cursor}>
         {content}
       </Link>
     );
@@ -81,7 +85,7 @@ export function Button({
 
   const buttonProps = props as ButtonAsButton;
   return wrap(
-    <button type="button" className={classes} {...buttonProps}>
+    <button type="button" className={classes} {...buttonProps} data-cursor={cursor}>
       {content}
     </button>
   );

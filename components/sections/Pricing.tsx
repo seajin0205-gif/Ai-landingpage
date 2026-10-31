@@ -1,4 +1,5 @@
 import { Reveal } from "@/components/motion/Reveal";
+import { PointerCard } from "@/components/motion/PointerCard";
 import { Section, sectionGridGap } from "@/components/layout/Section";
 import { NarrativeStep } from "@/components/layout/NarrativeStep";
 import { Button } from "@/components/ui/Button";
@@ -75,7 +76,10 @@ export function Pricing() {
       <div className={`grid items-stretch ${sectionGridGap} lg:grid-cols-3`}>
         {plans.map((plan, index) => (
           <Reveal key={plan.name} variant="scale-in" delay={index * 100} className="h-full">
-            <article
+            <PointerCard
+              as="article"
+              max={4}
+              lift={4}
               className={`card-surface pricing-card card-surface-glass relative flex h-full flex-col rounded-2xl p-8 sm:p-10 ${
                 plan.highlighted ? "pricing-featured" : ""
               }`}
@@ -125,7 +129,7 @@ export function Pricing() {
               >
                 {plan.ctaLabel}
               </Button>
-            </article>
+            </PointerCard>
           </Reveal>
         ))}
       </div>

@@ -29,11 +29,15 @@ export function CTA() {
               id="cta-heading"
               className="cta-headline mt-10 text-foreground"
             >
-              <span className="cta-headline-line text-gradient">
-                한 단계 더 높이,
+              <span className="line-mask">
+                <span className="cta-headline-line text-gradient">
+                  한 단계 더 높이,
+                </span>
               </span>
-              <span className="cta-headline-line cta-headline-accent text-neon-cyan">
-                지금 도전하세요.
+              <span className="line-mask">
+                <span className="cta-headline-line cta-headline-accent text-neon-cyan">
+                  지금 도전하세요.
+                </span>
               </span>
             </h2>
 
