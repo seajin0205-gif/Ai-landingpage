@@ -3,18 +3,12 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Container } from "@/components/layout/Container";
+import { useCopy } from "@/components/i18n/LocaleProvider";
 import { Button } from "@/components/ui/Button";
 import { NexusLogoMark } from "@/components/ui/NexusLogo";
 
-const navLinks = [
-  { href: "#workspace-demo", label: "제품" },
-  { href: "#features", label: "기능" },
-  { href: "#how-it-works", label: "사용법" },
-  { href: "#testimonials", label: "후기" },
-  { href: "#pricing", label: "시작" },
-];
-
 export function Navigation() {
+  const t = useCopy();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -35,18 +29,18 @@ export function Navigation() {
             : "glass-strong shadow-premium"
         }`}
       >
-        <Link href="/" data-cursor="Home" className="group flex items-center gap-2">
+        <Link href={t.footer.home} data-cursor="Home" className="group flex items-center gap-2">
           <NexusLogoMark variant="header" />
-          <span className="nav-wordmark text-base font-bold leading-none text-foreground">
+          <span className="nav-wordmark whitespace-nowrap text-base font-bold leading-none text-foreground">
             Nexus AI
           </span>
           <span className="hidden items-center gap-2 rounded-full border border-white/90 bg-white/70 px-6 py-2 text-sm font-bold tracking-[0.08em] text-muted shadow-sm backdrop-blur-sm sm:inline-flex">
-            챗봇 · 이미지 · 자동화
+            {t.brand.pill}
           </span>
         </Link>
 
         <ul className="hidden items-center gap-1 lg:flex">
-          {navLinks.map((link) => (
+          {t.nav.links.map((link) => (
             <li key={link.href}>
               <Link
                 href={link.href}
@@ -60,17 +54,26 @@ export function Navigation() {
         </ul>
 
         <div className="flex items-center gap-2 sm:gap-3">
-          <Button variant="ghost" href="#" className="hidden sm:inline-flex">
-            로그인
-          </Button>
-          <Button href="#cta" className="h-10 px-4 text-sm sm:h-10 sm:px-6">
-            시작하기
+          <Link
+            href={t.nav.switchHref}
+            hrefLang={t.nav.switchLabel === "EN" ? "en" : "ko"}
+            className="shrink-0 rounded-lg px-2 py-2 text-xs font-bold tracking-[0.14em] text-muted transition-colors hover:text-foreground"
+          >
+            {t.nav.switchLabel}
+          </Link>
+          <span className="hidden sm:inline-flex">
+            <Button variant="ghost" href="#">
+              {t.nav.login}
+            </Button>
+          </span>
+          <Button href="#cta" className="h-10 whitespace-nowrap px-3 text-sm sm:px-6">
+            {t.nav.start}
           </Button>
 
           <button
             type="button"
             className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/80 bg-white/60 shadow-sm transition-colors hover:bg-white/90 lg:hidden"
-            aria-label={menuOpen ? "메뉴 닫기" : "메뉴 열기"}
+            aria-label={menuOpen ? t.nav.closeMenu : t.nav.openMenu}
             aria-expanded={menuOpen}
             aria-controls="mobile-navigation"
             onClick={() => setMenuOpen((open) => !open)}
@@ -89,7 +92,14 @@ export function Navigation() {
       {menuOpen && (
         <Container className="lg:hidden">
           <div id="mobile-navigation" className="mobile-nav-panel mt-2 grid gap-1 rounded-2xl px-4 py-4">
-            {navLinks.map((link) => (
+            <Link
+              href="#"
+              className="rounded-xl px-4 py-3 text-sm font-semibold text-muted transition-colors hover:bg-white/70 hover:text-foreground sm:hidden"
+              onClick={() => setMenuOpen(false)}
+            >
+              {t.nav.login}
+            </Link>
+            {t.nav.links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}

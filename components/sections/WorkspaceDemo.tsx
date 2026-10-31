@@ -8,8 +8,10 @@ import { ScrollFade } from "@/components/motion/ScrollFade";
 import { BrowserMockup } from "@/components/effects/BrowserMockup";
 import { WorkspacePreview } from "@/components/effects/WorkspacePreview";
 import { useFinePointer, usePrefersReducedMotion } from "@/components/motion/usePrefersReducedMotion";
+import { useCopy } from "@/components/i18n/LocaleProvider";
 
 export function WorkspaceDemo() {
+  const intro = useCopy().workspaceIntro;
   const reduced = usePrefersReducedMotion();
   const fine = useFinePointer();
   const lightRef = useRef<HTMLDivElement>(null);
@@ -49,7 +51,7 @@ export function WorkspaceDemo() {
               </h2>
             </div>
             <p className="max-w-md text-base leading-relaxed text-muted lg:text-right">
-              챗봇 · 이미지 · 자동화가 연결된 제품 화면을 확인하세요.
+              {intro}
             </p>
           </div>
         </Reveal>

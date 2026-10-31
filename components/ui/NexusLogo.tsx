@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useCopy } from "@/components/i18n/LocaleProvider";
 
 const LOGO_SRC = "/nexus-ai-logo.png";
 
@@ -76,12 +79,14 @@ export function NexusLogo({
   size = "md",
   showWordmark = true,
   showTagline = false,
-  tagline = "챗봇 · 이미지 · 자동화",
+  tagline,
   className = "",
   wordmarkClassName = "",
   taglineClassName = "",
   layout = "row",
 }: NexusLogoProps) {
+  const fallbackTagline = useCopy().brand.tagline;
+  const resolvedTagline = tagline ?? fallbackTagline;
   const isStack = layout === "stack";
 
   return (
@@ -102,7 +107,7 @@ export function NexusLogo({
             <span
               className={`nexus-logo-tagline font-medium text-muted-foreground ${taglineClassName}`}
             >
-              {tagline}
+              {resolvedTagline}
             </span>
           )}
         </span>

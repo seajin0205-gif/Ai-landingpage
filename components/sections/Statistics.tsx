@@ -2,6 +2,8 @@
 
 import { Container } from "@/components/layout/Container";
 import { Reveal } from "@/components/motion/Reveal";
+import { useCopy, useLocale } from "@/components/i18n/LocaleProvider";
+import { formatStat, type Copy, type Locale } from "@/lib/copy";
 import {
   AnimatedNumber,
   MiniLineChart,
@@ -25,53 +27,55 @@ type StatConfig = {
   progressLabel?: string;
 };
 
-const stats: StatConfig[] = [
-  {
-    label: "챗봇 대화 처리",
-    target: 100_000_000,
-    format: (n) => `${Math.round(n / 10_000_000) / 10}억+`,
-    accent: "text-neon-cyan",
-    accentHex: "#00d4ff",
-    trend: "+12.4%",
-    trendUp: true,
-    chart: "sparkline",
-    data: [42, 55, 48, 62, 58, 71, 68, 82, 90, 100],
-  },
-  {
-    label: "생성된 이미지",
-    target: 5_000_000,
-    format: (n) => `${Math.round(n / 100_000) / 10}만+`,
-    accent: "text-accent-violet",
-    accentHex: "#9b7dff",
-    trend: "+28.1%",
-    trendUp: true,
-    chart: "line",
-    data: [30, 38, 45, 42, 55, 62, 58, 72, 80, 88],
-  },
-  {
-    label: "반복 업무 시간 절감",
-    target: 70,
-    format: (n) => `${n}%`,
-    accent: "text-accent-lime",
-    accentHex: "#9ae600",
-    trend: "평균 70%",
-    trendUp: true,
-    chart: "progress",
-    data: [55, 60, 62, 65, 68, 70],
-    progressLabel: "팀 평균",
-  },
-  {
-    label: "도입 기업·팀",
-    target: 500,
-    format: (n) => `${n}+`,
-    accent: "text-accent-indigo",
-    accentHex: "#6d7cff",
-    trend: "+86 신규",
-    trendUp: true,
-    chart: "bars",
-    data: [28, 42, 35, 55, 48, 62, 58, 70, 65, 78],
-  },
-];
+function buildStats(labels: Copy["stats"], locale: Locale): StatConfig[] {
+  return [
+    {
+      label: labels.chat,
+      target: 100_000_000,
+      format: (n) => formatStat("chat", n, locale),
+      accent: "text-neon-cyan",
+      accentHex: "#00d4ff",
+      trend: "+12.4%",
+      trendUp: true,
+      chart: "sparkline",
+      data: [42, 55, 48, 62, 58, 71, 68, 82, 90, 100],
+    },
+    {
+      label: labels.images,
+      target: 5_000_000,
+      format: (n) => formatStat("images", n, locale),
+      accent: "text-accent-violet",
+      accentHex: "#9b7dff",
+      trend: "+28.1%",
+      trendUp: true,
+      chart: "line",
+      data: [30, 38, 45, 42, 55, 62, 58, 72, 80, 88],
+    },
+    {
+      label: labels.saved,
+      target: 70,
+      format: (n) => formatStat("saved", n, locale),
+      accent: "text-accent-lime",
+      accentHex: "#9ae600",
+      trend: labels.savedTrend,
+      trendUp: true,
+      chart: "progress",
+      data: [55, 60, 62, 65, 68, 70],
+      progressLabel: labels.savedProgress,
+    },
+    {
+      label: labels.teams,
+      target: 500,
+      format: (n) => formatStat("teams", n, locale),
+      accent: "text-accent-indigo",
+      accentHex: "#6d7cff",
+      trend: labels.teamsTrend,
+      trendUp: true,
+      chart: "bars",
+      data: [28, 42, 35, 55, 48, 62, 58, 70, 65, 78],
+    },
+  ];
+}
 
 function StatDashboardCard({ stat, index }: { stat: StatConfig; index: number }) {
   const { ref, inView } = useInViewOnce(0.25);
@@ -136,6 +140,9 @@ function StatDashboardCard({ stat, index }: { stat: StatConfig; index: number })
 }
 
 export function Statistics() {
+  const t = useCopy();
+  const locale = useLocale();
+  const stats = buildStats(t.stats, locale);
   return (
     <section id="stats" className="stats-band section-padding-band section-rhythm-proof-metrics">
       <Container>
@@ -145,7 +152,7 @@ export function Statistics() {
               <div>
                 <p className="text-xs font-bold tracking-[0.14em] text-white/50 uppercase">Analytics Dashboard</p>
                 <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-white sm:text-3xl">
-                  팀의 AI 활용이 실제 성과로 이어집니다
+                  {t.stats.heading}
                 </h2>
               </div>
               <div className="flex items-center gap-2 self-start rounded-full border border-white/15 bg-white/5 px-3 py-2 text-xs font-semibold text-white/70">
