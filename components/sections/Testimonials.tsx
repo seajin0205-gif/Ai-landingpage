@@ -33,7 +33,7 @@ export function Testimonials() {
     <Section id="testimonials" className="section-rhythm-proof narrative-proof-entry">
       <Reveal variant="fade-up">
         <div className="testimonials-section-header max-w-2xl">
-          <NarrativeStep step="05" label="Why Nexus" />
+          <NarrativeStep step="06" label="Why Nexus" />
           <h2 className="mt-2 text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:leading-tight">
             Why it works
           </h2>

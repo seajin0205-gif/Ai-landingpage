@@ -124,11 +124,15 @@ export function Hero() {
           <Parallax strength={0.042} className="hero-demo-column relative min-w-0">
             <Reveal variant="scale-in" delay={160}>
               <div className="hero-demo-stage">
-                <span className="hero-live-badge">
-                  <NexusLogoMark size={20} className="hero-live-badge-mark" />
-                  <span className="hero-live-dot" aria-hidden />
-                  Nexus Live Demo
-                </span>
+                <div className="hero-demo-status">
+                  <span className="hero-live-badge">
+                    <NexusLogoMark size={20} className="hero-live-badge-mark" />
+                    <span className="hero-live-dot" aria-hidden />
+                    {t.hero.demoTitle}
+                    <span className="hero-sim-status">{t.hero.demoStatus}</span>
+                  </span>
+                  <span className="hero-sim-note">{t.hero.demoNote}</span>
+                </div>
                 <div className="hero-demo-orbit" aria-hidden />
                 <div className="hero-demo-scroll" data-cursor="Live">
                   <TiltFrame max={8}>

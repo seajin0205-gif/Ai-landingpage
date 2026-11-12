@@ -5,8 +5,6 @@ import { Container } from "@/components/layout/Container";
 import { IntegrationHub } from "@/components/effects/IntegrationHub";
 import { useCopy } from "@/components/i18n/LocaleProvider";
 
-const partners = ["Enterprise A", "Company B", "Startup C", "Team D", "Org E", "Studio F"];
-
 export function Integrations() {
   const integrations = useCopy().integrations;
   return (
@@ -17,7 +15,7 @@ export function Integrations() {
             <div className="max-w-lg">
               <p className="text-sm font-bold tracking-[0.12em] text-neon-cyan uppercase">{integrations.kicker}</p>
               <h2 className="mt-3 text-2xl font-extrabold tracking-tight text-foreground sm:text-3xl">
-                Trusted by 500+ Teams
+                {integrations.heading}
               </h2>
               <p className="mt-3 text-base leading-relaxed text-muted">
                 {integrations.body}
@@ -25,7 +23,7 @@ export function Integrations() {
             </div>
 
             <div className="flex flex-wrap items-center gap-3 sm:gap-4">
-              {partners.map((name) => (
+              {integrations.tools.map((name) => (
                 <span
                   key={name}
                   className="logo-partner rounded-full border border-white/80 bg-white/50 px-4 py-2 text-xs font-bold tracking-tight text-foreground sm:text-sm"

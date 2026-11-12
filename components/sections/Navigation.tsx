@@ -3,12 +3,13 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Container } from "@/components/layout/Container";
-import { useCopy } from "@/components/i18n/LocaleProvider";
+import { useCopy, useLocale } from "@/components/i18n/LocaleProvider";
 import { Button } from "@/components/ui/Button";
 import { NexusLogoMark } from "@/components/ui/NexusLogo";
 
 export function Navigation() {
   const t = useCopy();
+  const locale = useLocale();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -34,7 +35,7 @@ export function Navigation() {
           <span className="nav-wordmark whitespace-nowrap text-base font-bold leading-none text-foreground">
             Nexus AI
           </span>
-          <span className="hidden items-center gap-2 rounded-full border border-white/90 bg-white/70 px-6 py-2 text-sm font-bold tracking-[0.08em] text-muted shadow-sm backdrop-blur-sm sm:inline-flex">
+          <span className="hidden items-center gap-2 rounded-full border border-white/90 bg-white/70 px-6 py-2 text-sm font-bold tracking-[0.08em] whitespace-nowrap text-muted shadow-sm backdrop-blur-sm xl:inline-flex">
             {t.brand.pill}
           </span>
         </Link>
@@ -54,15 +55,30 @@ export function Navigation() {
         </ul>
 
         <div className="flex items-center gap-2 sm:gap-3">
-          <Link
-            href={t.nav.switchHref}
-            hrefLang={t.nav.switchLabel === "EN" ? "en" : "ko"}
-            className="shrink-0 rounded-lg px-2 py-2 text-xs font-bold tracking-[0.14em] text-muted transition-colors hover:text-foreground"
+          <div
+            role="group"
+            aria-label={t.nav.languageLabel}
+            className="flex shrink-0 items-center rounded-full border border-white/80 bg-white/70 p-0.5 text-[11px] font-bold tracking-[0.14em] shadow-sm"
           >
-            {t.nav.switchLabel}
-          </Link>
+            {t.nav.languages.map((lang) => {
+              const active = locale === lang.code;
+              return (
+                <Link
+                  key={lang.code}
+                  href={lang.href}
+                  hrefLang={lang.code}
+                  aria-current={active ? "page" : undefined}
+                  className={`rounded-full px-2 py-1 transition-colors ${
+                    active ? "bg-foreground text-white" : "text-muted hover:text-foreground"
+                  }`}
+                >
+                  {lang.label}
+                </Link>
+              );
+            })}
+          </div>
           <span className="hidden sm:inline-flex">
-            <Button variant="ghost" href="#">
+            <Button variant="ghost" href="#" className="whitespace-nowrap">
               {t.nav.login}
             </Button>
           </span>

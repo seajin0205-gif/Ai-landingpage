@@ -6,6 +6,7 @@ const SECTIONS = [
   { id: "intro", label: "Intro" },
   { id: "workspace-demo", label: "Product" },
   { id: "features", label: "Craft" },
+  { id: "architecture", label: "Stack" },
   { id: "how-it-works", label: "Flow" },
   { id: "testimonials", label: "Proof" },
   { id: "pricing", label: "Start" },

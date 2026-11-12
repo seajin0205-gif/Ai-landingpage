@@ -18,7 +18,7 @@ export function HowItWorks() {
     <Section id="how-it-works" className="section-rhythm-process" bordered>
       <div className="mx-auto mb-14 max-w-2xl text-center lg:mb-20 lg:text-left">
         <Reveal variant="fade-up">
-          <NarrativeStep step="04" label="How It Works" />
+          <NarrativeStep step="05" label="How It Works" />
           <h2 className="mt-2 text-center text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-left">
             How to use it
           </h2>

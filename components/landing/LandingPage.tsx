@@ -5,6 +5,7 @@ import { Hero } from "@/components/sections/Hero";
 import { KineticMarquee } from "@/components/motion/KineticMarquee";
 import { WorkspaceDemo } from "@/components/sections/WorkspaceDemo";
 import { Features } from "@/components/sections/Features";
+import { TechStack } from "@/components/sections/TechStack";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { Statistics } from "@/components/sections/Statistics";
@@ -26,6 +27,7 @@ export function LandingPage({ locale }: { locale: Locale }) {
           <KineticMarquee />
           <WorkspaceDemo />
           <Features />
+          <TechStack />
           <HowItWorks />
           <div className="narrative-block narrative-block-proof">
             <Testimonials />
