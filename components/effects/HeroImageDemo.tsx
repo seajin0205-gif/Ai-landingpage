@@ -3,14 +3,15 @@
 import { useEffect, useState } from "react";
 import { HeroBannerResultPreview } from "@/components/effects/DemoResultPreviews";
 import { useCancellableWait } from "@/components/effects/useCancellableWait";
-
-const PROMPT = "미니멀 SaaS 히어로 배너 만들어줘";
+import { useCopy } from "@/components/i18n/LocaleProvider";
 
 type Phase = "typing" | "generating" | "result" | "done";
 
 let resultCounter = 0;
 
 export function HeroImageDemo() {
+  const demo = useCopy().heroDemo;
+  const prompt = demo.prompt;
   const [inputText, setInputText] = useState("");
   const [phase, setPhase] = useState<Phase>("typing");
   const [progress, setProgress] = useState(0);
@@ -25,15 +26,15 @@ export function HeroImageDemo() {
       setInputText("");
       setProgress(0);
 
-      for (let i = 1; i <= PROMPT.length; i += 1) {
+      for (let i = 1; i <= prompt.length; i += 1) {
         if (isCancelled()) return;
-        setInputText(PROMPT.slice(0, i));
+        setInputText(prompt.slice(0, i));
         await wait(42);
       }
       await wait(380);
       if (isCancelled()) return;
 
-      setInputText(PROMPT);
+      setInputText(prompt);
       setPhase("generating");
       for (let p = 0; p <= 100; p += 4) {
         if (isCancelled()) return;
@@ -64,7 +65,7 @@ export function HeroImageDemo() {
     loop();
 
     return cancel;
-  }, [createWait]);
+  }, [createWait, prompt]);
 
   const isTyping = phase === "typing";
   const isGenerating = phase === "generating";
@@ -129,7 +130,7 @@ export function HeroImageDemo() {
                   <span className="thinking-dot h-2 w-2 rounded-full bg-accent-violet" />
                   <span className="thinking-dot h-2 w-2 rounded-full bg-accent-violet" />
                 </div>
-                <p className="mt-3 text-sm font-semibold text-accent-violet">이미지 생성 중...</p>
+                <p className="mt-3 text-sm font-semibold text-accent-violet">{demo.generating}</p>
                 <div className="mt-4 w-full max-w-[240px] overflow-hidden rounded-full bg-white/60">
                   <div
                     className="showcase-progress-bar h-2 rounded-full bg-gradient-to-r from-accent-violet to-neon-cyan transition-[width] duration-150 ease-out"
@@ -143,7 +144,7 @@ export function HeroImageDemo() {
             {showResult && (
               <div key={resultKey} className="flex h-full flex-col">
                 <div className="mb-2 flex items-center justify-between">
-                  <p className="text-xs font-bold tracking-wide text-neon-cyan uppercase">생성 결과</p>
+                  <p className="text-xs font-bold tracking-wide text-neon-cyan uppercase">{demo.result}</p>
                   <span
                     className={`rounded-full bg-accent-lime/15 px-2 py-1 text-xs font-semibold text-accent-lime transition-all duration-500 ${
                       isDone ? "opacity-100" : "opacity-0"
@@ -167,7 +168,7 @@ export function HeroImageDemo() {
                     <path d="M3 16l4.5-3.5L12 15l4-3.5L21 16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" className="text-slate-300" />
                   </svg>
                 </div>
-                <p className="mt-3 text-xs font-medium text-muted">프롬프트를 입력하세요</p>
+                <p className="mt-3 text-xs font-medium text-muted">{demo.empty}</p>
               </div>
             )}
           </div>
@@ -185,7 +186,7 @@ export function HeroImageDemo() {
                   inputText ? "font-medium text-foreground" : "text-muted-foreground"
                 }`}
               >
-                {inputText || "프롬프트 입력..."}
+                {inputText || demo.placeholder}
               </span>
               {isTyping && <span className="hero-cursor-blink ml-1 inline-block h-4 w-1 shrink-0 bg-neon-cyan" />}
             </div>

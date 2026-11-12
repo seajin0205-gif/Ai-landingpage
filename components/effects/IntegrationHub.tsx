@@ -1,22 +1,28 @@
 "use client";
 
 import { useState } from "react";
+import { useCopy } from "@/components/i18n/LocaleProvider";
 
-const tools = [
-  { id: "slack", name: "Slack", x: 50, y: 8 },
-  { id: "notion", name: "Notion", x: 82, y: 22 },
-  { id: "github", name: "GitHub", x: 92, y: 50 },
-  { id: "jira", name: "Jira", x: 82, y: 78 },
-  { id: "figma", name: "Figma", x: 50, y: 92 },
-  { id: "gdrive", name: "Google Drive", x: 18, y: 78 },
-  { id: "openai", name: "OpenAI", x: 8, y: 50 },
-  { id: "linear", name: "Linear", x: 18, y: 22 },
+const spots = [
+  { x: 50, y: 10 },
+  { x: 84, y: 28 },
+  { x: 84, y: 72 },
+  { x: 50, y: 90 },
+  { x: 16, y: 72 },
+  { x: 16, y: 28 },
 ];
 
 const CX = 50;
 const CY = 50;
 
 export function IntegrationHub() {
+  const copy = useCopy();
+  const hub = copy.brand.hub;
+  const tools = copy.integrations.tools.map((name, index) => ({
+    id: name,
+    name,
+    ...spots[index],
+  }));
   const [activeId, setActiveId] = useState<string | null>(null);
 
   return (
@@ -62,7 +68,7 @@ export function IntegrationHub() {
         <div className="hub-core-node">
           <span className="hub-core-icon">N</span>
           <span className="hub-core-label">Nexus AI</span>
-          <span className="hub-core-sublabel">통합 Hub</span>
+          <span className="hub-core-sublabel">{hub}</span>
         </div>
       </div>
 

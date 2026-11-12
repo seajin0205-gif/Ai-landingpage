@@ -1,13 +1,11 @@
+"use client";
+
 import { Reveal } from "@/components/motion/Reveal";
+import { useCopy } from "@/components/i18n/LocaleProvider";
 import { Button } from "@/components/ui/Button";
 
-const trustBadges = [
-  { icon: "✓", label: "14일 무료" },
-  { icon: "✓", label: "신용카드 불필요" },
-  { icon: "✓", label: "한국어 완벽 지원" },
-];
-
 export function CTA() {
+  const cta = useCopy().cta;
   return (
     <section id="cta" className="cta-finale" aria-labelledby="cta-heading">
       <div className="cta-aurora-layer" aria-hidden>
@@ -22,29 +20,33 @@ export function CTA() {
           <div className="cta-finale-content">
             <div className="cta-trust-badge">
               <span className="cta-trust-badge-dot" aria-hidden />
-              <span>500+ 팀이 Nexus AI를 선택했습니다</span>
+              <span>{cta.badge}</span>
             </div>
 
             <h2
               id="cta-heading"
               className="cta-headline mt-10 text-foreground"
             >
-              <span className="cta-headline-line text-gradient">
-                한 단계 더 높이,
-              </span>
-              <span className="cta-headline-line cta-headline-accent text-neon-cyan">
-                지금 도전하세요.
-              </span>
+              {cta.lines.map((line) => (
+                <span key={line.text} className="line-mask">
+                  <span
+                    className={`cta-headline-line ${
+                      line.accent ? "cta-headline-accent text-neon-cyan" : "text-gradient"
+                    }`}
+                  >
+                    {line.text}
+                  </span>
+                </span>
+              ))}
             </h2>
 
             <p className="cta-subline mx-auto mt-8 max-w-2xl text-muted">
-              챗봇 · 이미지 · 자동화를 한 플랫폼에서. 설정은 5분, 팀 전체가 바로
-              협업할 수 있습니다.
+              {cta.body}
             </p>
 
             <div className="cta-actions mt-12 sm:mt-14">
               <Button href="#pricing" size="xl" showArrow className="cta-primary-btn">
-                무료 체험 시작하기
+                {cta.primary}
               </Button>
               <Button
                 href="mailto:sales@nexus.ai"
@@ -52,17 +54,17 @@ export function CTA() {
                 size="lg"
                 className="cta-secondary-btn"
               >
-                영업팀 문의
+                {cta.secondary}
               </Button>
             </div>
 
-            <ul className="cta-trust-list mt-10" aria-label="신뢰 배지">
-              {trustBadges.map((badge) => (
-                <li key={badge.label} className="cta-trust-pill">
+            <ul className="cta-trust-list mt-10" aria-label={cta.trustLabel}>
+              {cta.trust.map((label) => (
+                <li key={label} className="cta-trust-pill">
                   <span className="cta-trust-pill-icon" aria-hidden>
-                    {badge.icon}
+                    ✓
                   </span>
-                  {badge.label}
+                  {label}
                 </li>
               ))}
             </ul>

@@ -3,28 +3,10 @@
 import { useEffect, useState } from "react";
 import { ResultPreviewByType } from "@/components/effects/DemoResultPreviews";
 import { useCancellableWait } from "@/components/effects/useCancellableWait";
+import { useCopy } from "@/components/i18n/LocaleProvider";
+import type { Copy } from "@/lib/copy";
 
-const DEMOS = [
-  {
-    prompt: "이번 주 마케팅 보고서 요약해줘",
-    response: "마케팅 보고서를 생성했습니다.",
-    detail: "PDF · 핵심 지표 3종 · 주간 차트 포함",
-    type: "report" as const,
-  },
-  {
-    prompt: "미니멀 SaaS 히어로 배너 만들어줘",
-    response: "히어로 배너 이미지를 생성했습니다.",
-    detail: "PNG 4K · 미니멀 · 블루-퍼플 그라데이션",
-    type: "image" as const,
-  },
-  {
-    prompt: "내일 팀 미팅 일정 잡아줘",
-    response: "캘린더 초대를 보냈습니다.",
-    detail: "Google Meet · 참석자 5명 · 내일 10:00",
-    type: "calendar" as const,
-  },
-];
-
+type Demo = Copy["workspace"]["demos"][number];
 type Phase = "idle" | "typing" | "sending" | "thinking" | "streaming" | "result" | "hold";
 type NavId = "chat" | "image" | "automation" | "workflow" | "history";
 
@@ -33,12 +15,12 @@ type ActiveResult = {
   prompt: string;
   response: string;
   detail: string;
-  type: (typeof DEMOS)[number]["type"];
+  type: Demo["type"];
 };
 
 type HistoryItem = {
   prompt: string;
-  type: (typeof DEMOS)[number]["type"];
+  type: Demo["type"];
 };
 
 let resultCounter = 0;
@@ -68,28 +50,30 @@ function ResultIcon({ type }: { type: ActiveResult["type"] }) {
   );
 }
 
-function navFromDemo(type: (typeof DEMOS)[number]["type"]): NavId {
+function navFromDemo(type: Demo["type"]): NavId {
   if (type === "image") return "image";
   if (type === "calendar") return "automation";
   return "chat";
 }
 
 export function WorkspacePreview() {
+  const workspace = useCopy().workspace;
+  const demos = workspace.demos;
   const [inputText, setInputText] = useState("");
   const [phase, setPhase] = useState<Phase>("result");
   const [activeResult, setActiveResult] = useState<ActiveResult | null>({
     key: 999,
-    prompt: DEMOS[0].prompt,
-    response: DEMOS[0].response,
-    detail: DEMOS[0].detail,
-    type: DEMOS[0].type,
+    prompt: demos[0].prompt,
+    response: demos[0].response,
+    detail: demos[0].detail,
+    type: demos[0].type,
   });
   const [streamedResponse, setStreamedResponse] = useState("");
-  const [sidebarType, setSidebarType] = useState<(typeof DEMOS)[number]["type"]>("report");
+  const [sidebarType, setSidebarType] = useState<Demo["type"]>("report");
   const [imageProgress, setImageProgress] = useState(0);
   const [flowStep, setFlowStep] = useState(-1);
   const [historyItems, setHistoryItems] = useState<HistoryItem[]>([
-    { prompt: DEMOS[0].prompt, type: "report" },
+    { prompt: demos[0].prompt, type: "report" },
   ]);
   const createWait = useCancellableWait();
 
@@ -107,7 +91,7 @@ export function WorkspacePreview() {
       }
     };
 
-    const runDemo = async (demo: (typeof DEMOS)[number]) => {
+    const runDemo = async (demo: Demo) => {
       setFlowStep(-1);
       setImageProgress(0);
       setStreamedResponse("");
@@ -177,7 +161,7 @@ export function WorkspacePreview() {
       await wait(500);
       let index = 0;
       while (!isCancelled()) {
-        await runDemo(DEMOS[index % DEMOS.length]);
+        await runDemo(demos[index % demos.length]);
         index += 1;
         await wait(600);
       }
@@ -186,12 +170,12 @@ export function WorkspacePreview() {
     loop();
 
     return cancel;
-  }, [createWait]);
+  }, [createWait, demos]);
 
   const isThinking = phase === "thinking";
   const isStreaming = phase === "streaming";
   const showResult = activeResult && (phase === "result" || phase === "hold");
-  const flowLabels = ["보고서 생성", "슬랙 전송", "완료"];
+  const flowLabels = workspace.flow;
 
   const activeNav: NavId = (() => {
     if (phase === "hold" && flowStep >= 3) return "history";
@@ -231,7 +215,7 @@ export function WorkspacePreview() {
                   </span>
                   <div className="min-w-0">
                     <p className="truncate text-xs font-semibold text-foreground">{item.prompt}</p>
-                    <p className="mt-1 text-xs text-muted-foreground">방금 · 완료</p>
+                    <p className="mt-1 text-xs text-muted-foreground">{workspace.justNow}</p>
                   </div>
                 </li>
               ))}
@@ -244,7 +228,7 @@ export function WorkspacePreview() {
               <span className="thinking-dot h-2 w-2 rounded-full bg-neon-cyan" />
               <span className="thinking-dot h-2 w-2 rounded-full bg-neon-cyan" />
             </div>
-            <p className="mt-3 text-sm font-semibold text-neon-cyan">AI가 결과를 생성하는 중...</p>
+            <p className="mt-3 text-sm font-semibold text-neon-cyan">{workspace.thinking}</p>
             {sidebarType === "image" && imageProgress > 0 && (
               <p className="mt-2 text-xs font-bold text-accent-violet">{imageProgress}%</p>
             )}
@@ -266,7 +250,7 @@ export function WorkspacePreview() {
               <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-neon-cyan/25 to-accent-violet/20 text-neon-cyan">
                 <ResultIcon type={activeResult.type} />
               </span>
-              <p className="text-xs font-bold tracking-wide text-neon-cyan uppercase">생성 결과</p>
+              <p className="text-xs font-bold tracking-wide text-neon-cyan uppercase">{workspace.resultLabel}</p>
             </div>
             <p className="mt-3 text-base font-bold text-foreground">{activeResult.response}</p>
             <p className="mt-2 text-sm leading-relaxed text-muted">{activeResult.detail}</p>
@@ -280,8 +264,8 @@ export function WorkspacePreview() {
           </div>
         ) : (
           <div className="flex h-full flex-col justify-center rounded-2xl border border-dashed border-slate-300/70 bg-slate-50/60 px-4 py-6 text-center">
-            <p className="text-sm font-medium text-muted">프롬프트를 입력하면</p>
-            <p className="mt-1 text-sm font-medium text-muted">결과가 여기에 표시됩니다</p>
+            <p className="text-sm font-medium text-muted">{workspace.emptyA}</p>
+            <p className="mt-1 text-sm font-medium text-muted">{workspace.emptyB}</p>
           </div>
         )}
       </div>
@@ -300,7 +284,7 @@ export function WorkspacePreview() {
                 inputText ? "font-medium text-foreground" : "text-muted-foreground"
               }`}
             >
-              {inputText || "메시지 입력..."}
+              {inputText || workspace.placeholder}
             </span>
             {phase === "typing" && (
               <span className="hero-cursor-blink ml-1 inline-block h-4 w-1 shrink-0 bg-neon-cyan" />
@@ -316,7 +300,7 @@ export function WorkspacePreview() {
 
   const previewPanel = (
     <div className="dashboard-preview-side shrink-0">
-      <p className="mb-3 text-xs font-bold tracking-wide text-muted uppercase">생성물 미리보기</p>
+      <p className="mb-3 text-xs font-bold tracking-wide text-muted uppercase">{workspace.previewTitle}</p>
       <div className="dashboard-preview-preview-frame relative overflow-hidden rounded-xl">
         {showResult || isStreaming ? (
           <ResultPreviewByType
@@ -340,7 +324,7 @@ export function WorkspacePreview() {
         )}
       </div>
       <p className="mt-2 text-center text-xs font-medium text-muted-foreground">
-        {showResult ? "방금 생성됨" : isThinking && imageProgress > 0 ? "생성 중..." : "미리보기"}
+        {showResult ? workspace.justGenerated : isThinking && imageProgress > 0 ? workspace.generating : workspace.preview}
       </p>
     </div>
   );
@@ -358,7 +342,7 @@ export function WorkspacePreview() {
             </div>
           </div>
           <div className="flex gap-2">
-            {["챗봇", "이미지", "자동화"].map((tab, i) => (
+            {workspace.tabs.map((tab, i) => (
               <span
                 key={tab}
                 className={`rounded-lg px-2 py-1 text-xs font-semibold ${

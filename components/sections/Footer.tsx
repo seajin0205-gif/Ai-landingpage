@@ -1,29 +1,13 @@
+"use client";
+
 import Link from "next/link";
 import { Reveal } from "@/components/motion/Reveal";
 import { Container } from "@/components/layout/Container";
+import { useCopy } from "@/components/i18n/LocaleProvider";
 import { NexusLogo } from "@/components/ui/NexusLogo";
 
-const footerLinks = {
-  제품: [
-    { label: "기능", href: "#features" },
-    { label: "요금제", href: "#pricing" },
-    { label: "변경 로그", href: "#" },
-    { label: "문서", href: "#" },
-  ],
-  회사: [
-    { label: "소개", href: "#" },
-    { label: "블로그", href: "#" },
-    { label: "채용", href: "#" },
-    { label: "문의", href: "#" },
-  ],
-  법적고지: [
-    { label: "개인정보처리방침", href: "#" },
-    { label: "이용약관", href: "#" },
-    { label: "보안", href: "#" },
-  ],
-};
-
 export function Footer() {
+  const footer = useCopy().footer;
   return (
     <footer className="border-t border-foreground/6 py-16 sm:py-20">
       <Container>
@@ -31,7 +15,7 @@ export function Footer() {
           <div className="grid gap-12 lg:grid-cols-[1.6fr_repeat(3,1fr)] lg:gap-12">
             <div>
               <Link
-                href="/"
+                href={footer.home}
                 className="group flex items-center gap-2 transition-opacity hover:opacity-90"
               >
                 <NexusLogo
@@ -42,16 +26,15 @@ export function Footer() {
                 />
               </Link>
               <p className="mt-6 max-w-sm text-base leading-[1.8] text-muted">
-                AI 챗봇, 이미지 생성, 업무 자동화를 하나의 플랫폼에서.
-                팀의 생산성을 한 단계 끌어올리세요.
+                {footer.blurb}
               </p>
             </div>
 
-            {Object.entries(footerLinks).map(([category, links]) => (
-              <nav key={category} aria-label={category}>
-                <p className="text-base font-bold text-foreground">{category}</p>
+            {footer.columns.map((column) => (
+              <nav key={column.title} aria-label={column.title}>
+                <p className="text-base font-bold text-foreground">{column.title}</p>
                 <ul className="mt-6 space-y-4">
-                  {links.map((link) => (
+                  {column.links.map((link) => (
                     <li key={link.label}>
                       <Link
                         href={link.href}

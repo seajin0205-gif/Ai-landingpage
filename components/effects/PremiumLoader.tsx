@@ -1,11 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useCopy } from "@/components/i18n/LocaleProvider";
 import { NexusLogo } from "@/components/ui/NexusLogo";
 
 type LoaderPhase = "loading" | "exit" | "done";
 
 export function PremiumLoader() {
+  const preparing = useCopy().brand.preparing;
   const [phase, setPhase] = useState<LoaderPhase>("loading");
 
   useEffect(() => {
@@ -55,7 +57,7 @@ export function PremiumLoader() {
           <span className="premium-loader-bar-shine" />
         </div>
 
-        <p className="premium-loader-caption">준비 중</p>
+        <p className="premium-loader-caption">{preparing}</p>
       </div>
     </div>
   );
