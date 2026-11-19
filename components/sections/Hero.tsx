@@ -4,6 +4,7 @@ import { Parallax } from "@/components/motion/Parallax";
 import { Button } from "@/components/ui/Button";
 import { HeroImageDemo } from "@/components/effects/HeroImageDemo";
 import { HeroFeatureCards } from "@/components/sections/HeroFeatureCards";
+import { LivePromptForm } from "@/components/workspace/LivePromptForm";
 import { NexusLogoMark } from "@/components/ui/NexusLogo";
 
 const trustTags = ["신용카드 불필요", "14일 무료", "한국어 완벽 지원"];
@@ -95,7 +96,7 @@ export function Hero() {
 
             <Reveal variant="fade-up" delay={320}>
               <div className="mt-10 flex flex-col items-stretch gap-4 sm:flex-row sm:items-center lg:justify-start">
-                <Button href="#cta" size="lg" showArrow magnetic className="w-full sm:w-auto">
+                <Button href="/signup" size="lg" showArrow magnetic className="w-full sm:w-auto">
                   무료로 시작하기
                 </Button>
                 <Button href="#workspace-demo" variant="secondary" size="lg" className="w-full sm:w-auto">
@@ -136,6 +137,9 @@ export function Hero() {
                 </div>
               </div>
             </Reveal>
+            <div className="relative z-10 mt-4">
+              <LivePromptForm locale="ko" />
+            </div>
           </Parallax>
         </div>
 

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Container } from "@/components/layout/Container";
-import { Button } from "@/components/ui/Button";
+import { AuthNav } from "@/components/auth/AuthNav";
 import { NexusLogoMark } from "@/components/ui/NexusLogo";
 
 const navLinks = [
@@ -67,12 +67,7 @@ export function Navigation() {
           >
             EN
           </Link>
-          <Button variant="ghost" href="#" className="hidden sm:inline-flex">
-            로그인
-          </Button>
-          <Button href="#cta" className="h-10 px-4 text-sm sm:h-10 sm:px-6">
-            시작하기
-          </Button>
+          <AuthNav locale="ko" />
 
           <button
             type="button"
@@ -106,6 +101,20 @@ export function Navigation() {
                 {link.label}
               </Link>
             ))}
+            <Link
+              href="/login"
+              className="rounded-xl px-4 py-3 text-sm font-semibold text-muted transition-colors hover:bg-white/70 hover:text-foreground"
+              onClick={() => setMenuOpen(false)}
+            >
+              로그인
+            </Link>
+            <Link
+              href="/signup"
+              className="rounded-xl px-4 py-3 text-sm font-semibold text-muted transition-colors hover:bg-white/70 hover:text-foreground"
+              onClick={() => setMenuOpen(false)}
+            >
+              시작하기
+            </Link>
             <Link
               href="/en"
               hrefLang="en"

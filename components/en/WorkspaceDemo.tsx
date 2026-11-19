@@ -6,6 +6,8 @@ import { NarrativeStep } from "@/components/layout/NarrativeStep";
 import { ScrollFade } from "@/components/motion/ScrollFade";
 import { BrowserMockup } from "@/components/effects/BrowserMockup";
 import { WorkspacePreview } from "@/components/en/WorkspacePreview";
+import { LivePromptForm } from "@/components/workspace/LivePromptForm";
+import { Container } from "@/components/layout/Container";
 
 export function WorkspaceDemo() {
   return (
@@ -43,6 +45,9 @@ export function WorkspaceDemo() {
 
         <div className="workspace-demo-bottom-fade" aria-hidden />
       </div>
+      <Container className="relative z-10 -mt-6 pb-8">
+        <LivePromptForm locale="en" />
+      </Container>
     </>
   );
 }

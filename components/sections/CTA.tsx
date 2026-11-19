@@ -1,5 +1,6 @@
 import { Reveal } from "@/components/motion/Reveal";
 import { Button } from "@/components/ui/Button";
+import { SalesButton } from "@/components/leads/SalesButton";
 
 const trustBadges = [
   { icon: "✓", label: "14일 무료" },
@@ -43,17 +44,10 @@ export function CTA() {
             </p>
 
             <div className="cta-actions mt-12 sm:mt-14">
-              <Button href="#pricing" size="xl" showArrow className="cta-primary-btn">
+              <Button href="/signup" size="xl" showArrow className="cta-primary-btn">
                 무료 체험 시작하기
               </Button>
-              <Button
-                href="mailto:sales@nexus.ai"
-                variant="secondary"
-                size="lg"
-                className="cta-secondary-btn"
-              >
-                영업팀 문의
-              </Button>
+              <SalesButton label="영업팀 문의" className="cta-secondary-btn" />
             </div>
 
             <ul className="cta-trust-list mt-10" aria-label="신뢰 배지">

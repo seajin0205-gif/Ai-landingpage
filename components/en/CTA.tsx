@@ -1,5 +1,6 @@
 import { Reveal } from "@/components/motion/Reveal";
 import { Button } from "@/components/ui/Button";
+import { SalesButton } from "@/components/leads/SalesButton";
 
 const trustBadges = [
   { icon: "✓", label: "14 days free" },
@@ -43,17 +44,10 @@ export function CTA() {
             </p>
 
             <div className="cta-actions mt-12 sm:mt-14">
-              <Button href="#pricing" size="xl" showArrow className="cta-primary-btn">
+              <Button href="/en/signup" size="xl" showArrow className="cta-primary-btn">
                 Start free trial
               </Button>
-              <Button
-                href="mailto:sales@nexus.ai"
-                variant="secondary"
-                size="lg"
-                className="cta-secondary-btn"
-              >
-                Talk to sales
-              </Button>
+              <SalesButton label="Talk to sales" className="cta-secondary-btn" />
             </div>
 
             <ul className="cta-trust-list mt-10" aria-label="Trust badges">

@@ -2,6 +2,7 @@ import { Reveal } from "@/components/motion/Reveal";
 import { Section, sectionGridGap } from "@/components/layout/Section";
 import { NarrativeStep } from "@/components/layout/NarrativeStep";
 import { Button } from "@/components/ui/Button";
+import { SalesButton } from "@/components/leads/SalesButton";
 import { CheckIcon } from "@/components/ui/Icons";
 
 const plans = [
@@ -18,7 +19,7 @@ const plans = [
       "커뮤니티 지원",
     ],
     highlighted: false,
-    ctaHref: "#cta",
+    ctaHref: "/signup",
     ctaLabel: "무료로 시작",
   },
   {
@@ -35,7 +36,7 @@ const plans = [
       "우선 지원",
     ],
     highlighted: true,
-    ctaHref: "mailto:sales@nexus.ai",
+    ctaHref: "/signup",
     ctaLabel: "Pro 무료 체험",
   },
   {
@@ -117,14 +118,18 @@ export function Pricing() {
                 ))}
               </ul>
 
-              <Button
-                href={plan.ctaHref}
-                variant={plan.highlighted ? "primary" : "secondary"}
-                showArrow={plan.highlighted}
-                className="mt-10 w-full"
-              >
-                {plan.ctaLabel}
-              </Button>
+              {plan.name === "Enterprise" ? (
+                <SalesButton label={plan.ctaLabel} inquiryType="quote" className="mt-10 w-full" />
+              ) : (
+                <Button
+                  href={plan.ctaHref}
+                  variant={plan.highlighted ? "primary" : "secondary"}
+                  showArrow={plan.highlighted}
+                  className="mt-10 w-full"
+                >
+                  {plan.ctaLabel}
+                </Button>
+              )}
             </article>
           </Reveal>
         ))}
