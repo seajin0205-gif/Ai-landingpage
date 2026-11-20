@@ -432,9 +432,10 @@
 
     /* ── Layout ── */
     .page {
+      --page-pad-top: 7.5rem;
       max-width: 76rem;
       margin: 0 auto;
-      padding: 7.5rem clamp(var(--space-3), 4vw, var(--space-6)) var(--space-15);
+      padding: var(--page-pad-top) clamp(var(--space-3), 4vw, var(--space-6)) var(--space-15);
     }
 
     .portfolio-section {
@@ -1778,8 +1779,12 @@
     }
     .overview-fullstack {
       display: block;
-      max-width: none;
-      padding-top: 0.5rem;
+      width: 100vw;
+      max-width: 100vw;
+      margin-top: calc(-1 * var(--page-pad-top));
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+      padding: 0;
     }
     .fs-stage {
       position: relative;
@@ -1787,17 +1792,18 @@
       grid-template-columns: 1fr;
       gap: var(--space-6);
       align-items: center;
-      min-height: calc(100vh - 11.5rem);
-      padding: clamp(1.5rem, 3vw, 3rem);
-      border-radius: 32px;
+      min-height: 100vh;
+      width: 100%;
+      padding: calc(var(--page-pad-top) + 1.25rem) clamp(1.5rem, 6vw, 5rem) 4.5rem;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
       overflow: hidden;
       background:
-        radial-gradient(460px 300px at 92% 8%, rgba(0, 212, 255, 0.28), transparent 68%),
-        radial-gradient(380px 280px at 78% 100%, rgba(184, 164, 255, 0.26), transparent 70%),
-        radial-gradient(280px 220px at 8% 90%, rgba(61, 255, 168, 0.16), transparent 70%),
-        linear-gradient(165deg, #f4fbff 0%, #ffffff 58%);
-      border: 1px solid rgba(0, 212, 255, 0.22);
-      box-shadow: 0 28px 80px rgba(11, 18, 32, 0.07);
+        radial-gradient(560px 360px at 88% 12%, rgba(0, 212, 255, 0.3), transparent 68%),
+        radial-gradient(480px 340px at 72% 88%, rgba(184, 164, 255, 0.26), transparent 70%),
+        radial-gradient(360px 280px at 8% 86%, rgba(61, 255, 168, 0.16), transparent 70%),
+        linear-gradient(180deg, #f3fbff 0%, #f7fdff 78%, #ffffff 100%);
     }
     .fs-stage::before {
       content: "";
@@ -1920,7 +1926,8 @@
       .fs-board-server { transform: translate(-10px, 6px); }
     }
     .overview-fullstack .portfolio-lens {
-      margin-top: var(--space-8);
+      width: min(76rem, calc(100% - 3rem));
+      margin: var(--space-8) auto 0;
     }
     .overview-fullstack .portfolio-lens-badge { font-size: 0.75rem; }
     .overview-fullstack .portfolio-lens-head p { font-size: 1.0625rem; line-height: 1.5; }
@@ -1928,8 +1935,9 @@
     .overview-fullstack .lens-chip span { font-size: 1rem; }
     .overview-fullstack .lens-chip em { font-size: 0.8rem; }
     .overview-fullstack .overview-brief {
+      width: min(40rem, calc(100% - 3rem));
       max-width: 40rem;
-      margin-top: var(--space-6);
+      margin: var(--space-6) auto 0;
     }
     .overview-fullstack .overview-brief p {
       font-size: 1.0625rem;
@@ -5812,7 +5820,7 @@
     }
 
     @media (max-width: 768px) {
-      .page { padding: var(--space-5) var(--space-3) var(--space-10); }
+      .page { --page-pad-top: var(--space-5); padding: var(--page-pad-top) var(--space-3) var(--space-10); }
       .portfolio-section { padding: var(--gap-section) 0; }
       .hero-mockup-grid { grid-template-columns: 1fr; }
       .ix-flow-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-2); }
