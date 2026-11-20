@@ -165,12 +165,14 @@
       left: 0;
       right: 0;
       z-index: 50;
-      height: var(--nav-h);
+      height: auto;
+      min-height: var(--nav-h);
       display: flex;
       align-items: center;
+      flex-wrap: wrap;
       justify-content: space-between;
-      gap: var(--space-3);
-      padding: 0 clamp(var(--space-3), 4vw, var(--space-6));
+      gap: 8px var(--space-3);
+      padding: 10px clamp(var(--space-3), 4vw, var(--space-6));
       background: var(--glass);
       backdrop-filter: blur(16px) saturate(1.4);
       -webkit-backdrop-filter: blur(16px) saturate(1.4);
@@ -206,18 +208,25 @@
     @media (min-width: 904px) {
       .nav-chapters { display: flex; }
     }
+    .nav-chapters {
+      flex: 1 1 100%;
+      order: 3;
+      max-width: none;
+      flex-wrap: wrap;
+      overflow: visible;
+    }
     .nav-chapters a {
       display: inline-flex;
       align-items: center;
-      gap: var(--space-2);
+      gap: 6px;
       flex-shrink: 0;
       white-space: nowrap;
-      padding: var(--space-2);
+      padding: 6px 8px;
       border-radius: var(--r-pill);
       font-family: var(--mono);
-      font-size: var(--fs-2xs);
-      font-weight: 500;
-      letter-spacing: 0.02em;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
       text-transform: uppercase;
       color: var(--muted);
       text-decoration: none;
@@ -425,7 +434,7 @@
     .page {
       max-width: 76rem;
       margin: 0 auto;
-      padding: calc(var(--nav-h) + var(--space-6)) clamp(var(--space-3), 4vw, var(--space-6)) var(--space-15);
+      padding: 7.5rem clamp(var(--space-3), 4vw, var(--space-6)) var(--space-15);
     }
 
     .portfolio-section {
@@ -1767,30 +1776,98 @@
       align-items: center;
       padding-top: var(--space-4);
     }
-    @media (min-width: 1024px) {
-      .overview {
-        grid-template-columns: minmax(20rem, 28rem) minmax(0, 1.6fr);
-        gap: clamp(var(--space-5), 3.5vw, var(--space-7));
-        min-height: calc(100vh - var(--nav-h) - 4rem);
-        align-items: center;
-      }
-      .overview-meta { grid-column: 1; grid-row: 1; align-self: center; }
-      .mockup-stage { grid-column: 2; grid-row: 1; }
-      .overview-brief { grid-column: 1 / -1; grid-row: 2; }
-      .portfolio-lens { grid-column: 1 / -1; grid-row: 3; }
+    .overview-fullstack {
+      display: block;
+      max-width: 60rem;
+      padding-top: var(--space-7);
     }
-
-    @media (min-width: 1024px) {
-      .overview-meta .project-title h1 {
-        font-size: clamp(1.75rem, 2.5vw, var(--space-6));
-      }
-      .overview-meta .project-tagline {
-        font-size: var(--fs-sm);
-        line-height: var(--lh-relaxed);
-      }
-      .overview-meta .hero-actions {
-        margin-top: var(--space-3);
-      }
+    .fs-hero {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-4);
+    }
+    .fs-lead {
+      max-width: 40rem;
+      margin: 0;
+      font-size: 1.25rem;
+      font-weight: 500;
+      line-height: 1.55;
+      letter-spacing: -0.02em;
+      color: var(--fg);
+    }
+    .fs-split {
+      display: grid;
+      gap: var(--space-4);
+      width: 100%;
+      margin-top: var(--space-3);
+    }
+    @media (min-width: 720px) {
+      .fs-split { grid-template-columns: 1fr 1fr; }
+    }
+    .fs-card {
+      padding: var(--space-5);
+      border-radius: var(--r-lg);
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+    .fs-card h2 {
+      margin: 0;
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.2;
+    }
+    .fs-card p {
+      margin: var(--space-2) 0 0;
+      font-size: 1.0625rem;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+    .fs-card ul {
+      list-style: none;
+      margin: var(--space-4) 0 0;
+      padding: 0;
+      display: grid;
+      gap: var(--space-2);
+    }
+    .fs-card li {
+      font-size: 1.0625rem;
+      line-height: 1.45;
+      font-weight: 600;
+      color: var(--fg);
+    }
+    .overview-fullstack .project-title h1 {
+      font-size: clamp(3rem, 6vw, 4.5rem);
+    }
+    .overview-fullstack .project-subtitle {
+      font-size: clamp(1.25rem, 2vw, 1.5rem);
+    }
+    .overview-fullstack .project-role {
+      margin-top: 0;
+      font-size: 1rem;
+      letter-spacing: 0.01em;
+    }
+    .overview-fullstack .hero-cta {
+      font-size: 1rem;
+      padding: 14px 22px;
+    }
+    .overview-fullstack .portfolio-lens {
+      margin-top: var(--space-8);
+    }
+    .overview-fullstack .portfolio-lens-badge { font-size: 0.75rem; }
+    .overview-fullstack .portfolio-lens-head p { font-size: 1.0625rem; line-height: 1.5; }
+    .overview-fullstack .lens-chip { min-height: 4.5rem; padding: var(--space-3); }
+    .overview-fullstack .lens-chip span { font-size: 1rem; }
+    .overview-fullstack .lens-chip em { font-size: 0.8rem; }
+    .overview-fullstack .overview-brief {
+      max-width: 40rem;
+      margin-top: var(--space-6);
+    }
+    .overview-fullstack .overview-brief p {
+      font-size: 1.0625rem;
+      line-height: 1.65;
     }
 
     .hero-eyebrow {
@@ -5756,44 +5833,52 @@
   <main id="main-content" class="page">
 
     <!-- Section 01: Nexus AI -->
-    <section class="portfolio-section overview" id="overview" aria-labelledby="overview-title">
-      <div class="overview-meta reveal is-visible">
-        <header>
-          <p class="hero-eyebrow"><span class="live-dot" aria-hidden="true"></span> 01 · Overview</p>
-          <div class="project-title">
-            <img src="../assets/nexus-ai-logo.png" alt="" width="48" height="48" aria-hidden="true" />
-            <div class="project-title-copy">
-              <h1 id="overview-title">Nexus AI</h1>
-              <p class="project-subtitle">AI Workspace</p>
-            </div>
+    <section class="portfolio-section overview overview-fullstack" id="overview" aria-labelledby="overview-title">
+      <div class="fs-hero">
+        <p class="hero-eyebrow"><span class="live-dot" aria-hidden="true"></span> 01 · Full-stack Engineer</p>
+        <div class="project-title">
+          <img src="../assets/nexus-ai-logo.png" alt="" width="56" height="56" aria-hidden="true" />
+          <div class="project-title-copy">
+            <h1 id="overview-title">Nexus AI</h1>
+            <p class="project-subtitle">AI Workspace</p>
           </div>
-          <p class="project-role">Product Design · UI/UX · Frontend Development</p>
-          <p class="project-tagline">
-            Designing a focused AI workspace that brings everyday tasks into one streamlined digital environment.
-          </p>
-          <div class="hero-actions">
-            <a class="hero-cta primary" href="http://localhost:3000/en" target="_blank" rel="noopener noreferrer">View Live Site</a>
-            <a class="hero-cta ghost" href="https://github.com/seajin0205-gif/Ai-landingpage" target="_blank" rel="noopener noreferrer">View GitHub</a>
-            <a class="hero-cta ghost" href="#strategy">UX Challenge ↓</a>
-          </div>
-        </header>
-
-        <aside class="hero-vp" aria-label="Project snapshot">
-          <span class="hero-vp-label">At a glance</span>
-          <ul class="hero-vp-list">
-            <li><strong>What I built</strong> An AI workspace for everyday tasks</li>
-            <li><strong>My role</strong> Product Design · UI/UX · Frontend</li>
-            <li><strong>Focus</strong> From layout to a working interface</li>
-            <li><strong>How I built it</strong> Next.js · React · TypeScript · Tailwind</li>
-            <li><strong>Live result</strong> <a href="http://localhost:3000/en" target="_blank" rel="noopener noreferrer">Open the product</a></li>
-          </ul>
-        </aside>
+        </div>
+        <p class="project-role">Interface, accounts, live prompts, and sales inquiries.</p>
+        <p class="fs-lead">I designed the workspace and built the server behind it. Chat, image, and automation stay on one screen. Sign-in, model calls, and inquiries run on the server.</p>
+        <div class="hero-actions">
+          <a class="hero-cta primary" href="http://localhost:3000/en" target="_blank" rel="noopener noreferrer">View Live Site</a>
+          <a class="hero-cta ghost" href="https://github.com/seajin0205-gif/Ai-landingpage" target="_blank" rel="noopener noreferrer">View GitHub</a>
+        </div>
+        <div class="fs-split">
+          <article class="fs-card">
+            <h2>Interface</h2>
+            <p>One responsive screen for chat, image, and automation.</p>
+            <ul>
+              <li>Next.js 16 App Router</li>
+              <li>React 19 and TypeScript</li>
+              <li>Tailwind CSS 4</li>
+            </ul>
+          </article>
+          <article class="fs-card">
+            <h2>Server</h2>
+            <p>Keys, sessions, and saved inquiries stay off the browser.</p>
+            <ul>
+              <li>Email sign-in and httpOnly sessions</li>
+              <li>Chat, image, and automation routes</li>
+              <li>SQLite leads, rate limits, and usage</li>
+            </ul>
+          </article>
+        </div>
       </div>
 
-      <div class="portfolio-lens reveal reveal-delay-1" aria-label="Portfolio framing">
+      <div class="overview-brief">
+        <p>The rest of this case study follows that build: the layout decisions, the interface system, and the server routes that make the workspace run.</p>
+      </div>
+
+      <div class="portfolio-lens" aria-label="Portfolio framing">
         <div class="portfolio-lens-head">
           <span class="portfolio-lens-badge">Case Study Lens</span>
-          <p>Not a pretty landing page — a design-engineer portfolio where <strong>UX thinking, problem solving, design rationale, and systems design</strong> are readable.</p>
+          <p>A full-stack case study. The interface decisions and the server that runs them are both on this page.</p>
         </div>
         <ul class="portfolio-lens-grid">
           <li class="lens-chip" data-accent="cyan"><span>UX Story</span><em>Problem → Result</em></li>
@@ -5805,93 +5890,6 @@
           <li class="lens-chip" data-accent="cyan"><span>Layout decisions</span><em>Why the structure changed</em></li>
           <li class="lens-chip" data-accent="lavender"><span>Design System</span><em>Token · Motion · Grid</em></li>
         </ul>
-      </div>
-
-      <figure class="mockup-stage reveal reveal-delay-1 is-visible" aria-label="Landing page AI demo">
-        <span class="mockup-live-badge"><span class="live-dot" aria-hidden="true"></span> Live AI Demo</span>
-        <div class="browser-frame" role="img" aria-label="Nexus AI landing page browser preview">
-          <div class="browser-chrome" aria-hidden="true">
-            <div class="browser-dots">
-              <span></span><span></span><span></span>
-            </div>
-            <div class="browser-url">nexus.ai</div>
-          </div>
-          <div class="hero-mockup" aria-hidden="true">
-            <div class="hero-mockup-grid">
-              <div class="hero-demo-card">
-                <div class="demo-header">
-                  <div class="demo-brand">
-                    <span class="logo-n">N</span>
-                    Nexus AI
-                  </div>
-                  <div class="demo-status">Done</div>
-                </div>
-                <div class="demo-body">
-                  <div class="demo-result-label">
-                    <span>Output</span>
-                    <span>nexus-hero-banner.png</span>
-                  </div>
-                  <div class="banner-preview">
-                    <div class="banner-chrome">
-                      <span></span><span></span><span></span>
-                      <span class="fn">nexus-hero-banner.png</span>
-                    </div>
-                    <div class="banner-content">
-                      <span class="banner-badge">AI Platform</span>
-                      <p class="banner-title">
-                        Automate the work<br />
-                        <span class="accent">AI Workspace</span>
-                      </p>
-                      <div class="banner-btns">
-                        <span class="primary">Start</span>
-                        <span class="ghost">Learn</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="demo-input">
-                    <span class="prompt">Minimal SaaS hero banner</span>
-                    <span class="send">↑</span>
-                  </div>
-                </div>
-              </div>
-              <div class="hero-mockup-left">
-                <p class="hero-step">Hero Section</p>
-                <div class="hero-pill">Unified AI workspace</div>
-                <h2 class="hero-headline">
-                  No tool hopping,<br />
-                  <span class="accent">Finish in one place</span>
-                </h2>
-                <div class="hero-keywords">
-                  <span>Create → revise</span>
-                  <span>Keep the flow</span>
-                  <span>Compare fast</span>
-                </div>
-                <div class="hero-ctas">
-                  <span class="btn-primary">Get Started</span>
-                  <span class="btn-secondary">Preview</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="mockup-meta mockup-meta--slim">
-          <article class="mockup-meta-card tech-stack">
-            <h3>Built with</h3>
-            <div class="tech-tags">
-              <span class="tech-tag primary">Next.js 16</span>
-              <span class="tech-tag primary">React 19</span>
-              <span class="tech-tag">TypeScript</span>
-              <span class="tech-tag">Tailwind 4</span>
-            </div>
-          </article>
-        </div>
-
-        <figcaption class="mockup-caption">Featured demo · Prompt → Result → Revise</figcaption>
-      </figure>
-
-      <div class="overview-brief reveal">
-        <p>Nexus AI is a concept AI workspace designed to bring multiple AI-powered workflows into a single focused interface. Chat, image, and automation stay on that screen, so a task can move from prompt to result without switching tools.</p>
       </div>
     </section>
 
