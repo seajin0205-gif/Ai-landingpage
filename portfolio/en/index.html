@@ -1262,6 +1262,190 @@
       }
     }
 
+    .be-block { display: grid; gap: var(--space-4); margin-top: var(--space-8); }
+    .be-block h3 {
+      margin: 0;
+      font-size: clamp(1.5rem, 2vw, 1.85rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.15;
+    }
+    .be-block > p { margin: 0; max-width: 42rem; color: var(--muted); line-height: 1.55; }
+    .be-arch, .be-flow, .be-steps, .be-parts, .be-ai, .be-specs, .be-quota {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .be-arch, .be-flow {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .be-arch > .be-node, .be-flow > .be-node { min-width: 0; }
+    .be-node, .be-card, .be-step, .be-callout {
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      background: var(--bg-elevated);
+      transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease);
+    }
+    .be-node:hover, .be-card:hover, .be-step:hover {
+      border-color: var(--neon-border);
+      box-shadow: 0 0 0 1px var(--neon-soft);
+    }
+    .be-node, .be-step, .be-card { padding: var(--space-4); }
+    .be-node span, .be-step span, .be-card span, .be-k {
+      display: block;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #0098c4;
+    }
+    .be-node strong, .be-step h4, .be-card h4 {
+      display: block;
+      margin: 0.35rem 0 0;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+    .be-node em, .be-step p, .be-card p, .be-step li {
+      font-style: normal;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.45;
+    }
+    .be-step ul, .be-card ul { margin: 0.7rem 0 0; padding: 0; list-style: none; display: grid; gap: 0.35rem; }
+    .be-arrow {
+      width: 1px;
+      height: var(--space-5);
+      margin: 0 auto;
+      background: var(--neon);
+      position: relative;
+    }
+    .be-arrow::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      transform: translate(-50%, 2px);
+      border-width: 5px 4px 0;
+      border-style: solid;
+      border-color: var(--neon) transparent transparent;
+    }
+    .be-parts, .be-ai, .be-steps { display: grid; gap: var(--space-3); }
+    .be-card.is-db {
+      background: linear-gradient(145deg, #fff, rgba(0, 212, 255, 0.08));
+      border-color: rgba(0, 212, 255, 0.35);
+    }
+    .be-card code, .be-note code {
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      color: var(--fg);
+    }
+    .be-note, .be-callout {
+      margin: 0;
+      padding: var(--space-3) var(--space-4);
+      border-radius: var(--r-md);
+      background: var(--bg-subtle);
+      color: var(--fg);
+      line-height: 1.5;
+    }
+    .be-callout { border-left: 3px solid var(--mint); background: rgba(61, 255, 168, 0.08); }
+    .be-callout.is-reliable { border-left-color: var(--neon); background: rgba(0, 212, 255, 0.08); }
+    .be-endpoints { display: grid; gap: 0.4rem; margin: 0; }
+    .be-rules {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .be-endpoints div, .be-rules li {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 0.8rem;
+      align-items: baseline;
+      padding: 0.45rem 0.7rem;
+      border-radius: var(--r-sm);
+      border: 1px solid var(--border);
+      background: #fff;
+    }
+    .be-endpoints b {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      color: #7a62d6;
+    }
+    .be-endpoints code, .be-rules code { font-family: var(--mono); font-size: 0.86rem; }
+    .be-quota { display: grid; gap: 0.6rem; }
+    .be-quota li {
+      display: grid;
+      grid-template-columns: 7rem 1fr 1fr;
+      gap: 0.6rem;
+      align-items: center;
+    }
+    .be-meter { display: grid; gap: 0.25rem; }
+    .be-meter b { font-size: 1.15rem; letter-spacing: -0.03em; }
+    .be-meter i { font-style: normal; font-size: 0.75rem; color: var(--muted); }
+    .be-meter em {
+      display: block;
+      height: 4px;
+      border-radius: 99px;
+      background: linear-gradient(90deg, var(--neon), var(--lavender));
+    }
+    .be-badges { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0; padding: 0; list-style: none; }
+    .be-badges li {
+      padding: 0.45rem 0.75rem;
+      border-radius: var(--r-pill);
+      border: 1px solid var(--border);
+      background: #fff;
+      font-size: 0.86rem;
+      font-weight: 600;
+    }
+    .be-specs {
+      display: grid;
+      gap: var(--space-3);
+    }
+    .be-specs li {
+      padding: var(--space-3);
+      border-radius: var(--r-md);
+      border: 1px solid var(--border);
+      background: #fff;
+    }
+    .be-specs span { display: block; font-size: 0.75rem; color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase; }
+    .be-specs strong { display: block; margin-top: 0.2rem; font-size: 1rem; }
+    .be-quota-head {
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    @media (min-width: 720px) {
+      .be-parts, .be-ai, .be-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .be-specs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (min-width: 1024px) {
+      .be-arch, .be-flow { flex-direction: row; align-items: stretch; }
+      .be-arch > .be-node, .be-flow > .be-node { flex: 1 1 0; }
+      .be-arrow { width: var(--space-5); height: 1px; align-self: center; margin: 0; }
+      .be-arrow::after {
+        top: 50%; right: 0; bottom: auto; left: auto;
+        transform: translate(2px, -50%);
+        border-width: 4px 0 4px 5px;
+        border-color: transparent transparent transparent var(--neon);
+      }
+      .be-parts { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .be-steps, .be-ai { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .be-specs { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+      .be-endpoints { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    }
+    @media (max-width: 700px) {
+      .be-quota li, .be-quota-head { grid-template-columns: 1fr; }
+      .be-quota-head { display: none; }
+    }
+
     .ux-devices {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -7480,6 +7664,186 @@
           Live Site →
         </a>
       </div>
+      </div>
+    </section>
+
+    <section class="portfolio-section" id="backend" aria-labelledby="backend-title">
+      <header class="narrative-header reveal">
+        <p class="narrative-kicker">Backend</p>
+        <h2 class="narrative-title" id="backend-title">Backend Architecture &amp; System Implementation</h2>
+        <p class="narrative-lead">Behind the interface is a lightweight backend architecture designed to handle authentication, AI interactions, usage limits, and lead management.</p>
+      </header>
+
+      <ol class="be-arch reveal" aria-label="Request path">
+        <li class="be-node"><span>01</span><strong>Frontend Interface</strong><em>Landing, forms, and workspace</em></li>
+        <li class="be-arrow" aria-hidden="true"></li>
+        <li class="be-node"><span>02</span><strong>REST API Layer</strong><em>Next.js route handlers</em></li>
+        <li class="be-arrow" aria-hidden="true"></li>
+        <li class="be-node"><span>03</span><strong>Backend Processing</strong><em>Auth, quotas, validation</em></li>
+        <li class="be-arrow" aria-hidden="true"></li>
+        <li class="be-node"><span>04</span><strong>SQLite Database</strong><em>data/nexus.sqlite</em></li>
+      </ol>
+
+      <ul class="be-parts reveal">
+        <li class="be-card"><span>Auth</span><h4>Authentication &amp; Session Management</h4><p>Email accounts and an httpOnly session cookie.</p></li>
+        <li class="be-card"><span>AI</span><h4>AI Request Processing</h4><p>Chat, image, and automation run on the server.</p></li>
+        <li class="be-card"><span>Limits</span><h4>Usage &amp; Rate Limit Management</h4><p>Plan quotas and a per-IP request cap.</p></li>
+        <li class="be-card"><span>Leads</span><h4>Lead Management</h4><p>Validated sales inquiries saved as rows.</p></li>
+        <li class="be-card"><span>Notify</span><h4>Webhook Notifications</h4><p>Optional webhook or Slack after a lead is saved.</p></li>
+        <li class="be-card is-db"><span>MVP database</span><h4>SQLite Persistence</h4><p>One local file. <code>data/nexus.sqlite</code></p></li>
+      </ul>
+
+      <div class="be-block reveal">
+        <h3>Secure Authentication &amp; Session Management</h3>
+        <ol class="be-steps">
+          <li class="be-step">
+            <span>01 — Account Creation</span>
+            <h4>Create the account</h4>
+            <ul>
+              <li>Email and password registration</li>
+              <li>Password hashing with scrypt</li>
+              <li>User row stored in SQLite</li>
+            </ul>
+          </li>
+          <li class="be-step">
+            <span>02 — Session Authentication</span>
+            <h4>Open a session</h4>
+            <ul>
+              <li>Login creates a session token</li>
+              <li>Only the hashed token is stored</li>
+              <li>HttpOnly cookie: <code>nexus_session</code></li>
+              <li>Expires in 14 days</li>
+            </ul>
+          </li>
+          <li class="be-step">
+            <span>03 — Protected Workspace</span>
+            <h4>Gate the workspace</h4>
+            <ul>
+              <li><code>/workspace</code></li>
+              <li><code>/en/workspace</code></li>
+              <li>Requires a valid session</li>
+              <li>Header switches to Workspace</li>
+            </ul>
+          </li>
+        </ol>
+        <ol class="be-flow" aria-label="Sign up path">
+          <li class="be-node"><strong>Sign Up</strong></li>
+          <li class="be-arrow" aria-hidden="true"></li>
+          <li class="be-node"><strong>Password Hashing</strong></li>
+          <li class="be-arrow" aria-hidden="true"></li>
+          <li class="be-node"><strong>Database</strong></li>
+        </ol>
+        <ol class="be-flow" aria-label="Login path">
+          <li class="be-node"><strong>Login</strong></li>
+          <li class="be-arrow" aria-hidden="true"></li>
+          <li class="be-node"><strong>Session Token</strong></li>
+          <li class="be-arrow" aria-hidden="true"></li>
+          <li class="be-node"><strong>HttpOnly Cookie</strong></li>
+          <li class="be-arrow" aria-hidden="true"></li>
+          <li class="be-node"><strong>Protected Workspace</strong></li>
+        </ol>
+        <div class="be-endpoints" aria-label="Auth endpoints">
+          <div><b>POST</b><code>/api/auth/signup</code></div>
+          <div><b>POST</b><code>/api/auth/login</code></div>
+          <div><b>POST</b><code>/api/auth/logout</code></div>
+          <div><b>GET</b><code>/api/auth/session</code></div>
+        </div>
+        <p class="be-note">Social login is not implemented. The account table includes a <code>provider</code> field so a later provider can be added without a new table.</p>
+      </div>
+
+      <div class="be-block reveal">
+        <h3>AI Services &amp; Usage Management</h3>
+        <ul class="be-ai">
+          <li class="be-card">
+            <span>POST /api/ai/chat</span>
+            <h4>AI Chat</h4>
+            <ul>
+              <li>Processed on the server</li>
+              <li>Streams the reply as text</li>
+              <li>Empty prompts are rejected</li>
+              <li>Local preview when no AI key is set</li>
+            </ul>
+          </li>
+          <li class="be-card">
+            <span>POST /api/ai/image</span>
+            <h4>Image Generation</h4>
+            <ul>
+              <li>Image request stays on the server</li>
+              <li>Quota is checked before the count increases</li>
+              <li>Local preview when no AI key is set</li>
+            </ul>
+          </li>
+          <li class="be-card">
+            <span>POST /api/ai/automation</span>
+            <h4>Workflow Automation</h4>
+            <ul>
+              <li>Automation request stays on the server</li>
+              <li>Quota is checked before the count increases</li>
+              <li>Local preview when no AI key is set</li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="be-quota" aria-label="Usage quotas">
+          <li class="be-quota-head"><span>Feature</span><span>Guest / day</span><span>Starter / month</span></li>
+          <li><strong>Chat</strong><div class="be-meter"><b>8</b><em style="width:22%"></em></div><div class="be-meter"><b>500</b><em style="width:100%"></em></div></li>
+          <li><strong>Image</strong><div class="be-meter"><b>3</b><em style="width:16%"></em></div><div class="be-meter"><b>50</b><em style="width:48%"></em></div></li>
+          <li><strong>Automation</strong><div class="be-meter"><b>3</b><em style="width:16%"></em></div><div class="be-meter"><b>3</b><em style="width:16%"></em></div></li>
+        </ul>
+        <p class="be-note">Bars compare the two plans inside each feature. Guest limits reset daily. Starter limits reset monthly.</p>
+        <article class="be-card">
+          <span>Rate limiting</span>
+          <h4>IP-based cap</h4>
+          <ul>
+            <li>20 AI requests per IP each 10 minutes</li>
+            <li>Plan usage increases only after a successful response</li>
+            <li><code>quota_exceeded</code> when that plan limit is reached</li>
+          </ul>
+        </article>
+        <p class="be-callout">AI credentials are accessed exclusively through server-side environment variables and are never exposed to the client.</p>
+      </div>
+
+      <div class="be-block reveal">
+        <h3>Lead Management &amp; Notification Pipeline</h3>
+        <ol class="be-flow" aria-label="Lead path">
+          <li class="be-node"><strong>Contact Form</strong></li>
+          <li class="be-arrow" aria-hidden="true"></li>
+          <li class="be-node"><strong>Server Validation</strong></li>
+          <li class="be-arrow" aria-hidden="true"></li>
+          <li class="be-node"><strong>SQLite Storage</strong></li>
+          <li class="be-arrow" aria-hidden="true"></li>
+          <li class="be-node"><strong>Notification System</strong></li>
+        </ol>
+        <ul class="be-rules">
+          <li>Name required</li>
+          <li>Company required</li>
+          <li>Valid email required</li>
+          <li>Inquiry type required</li>
+          <li>Message of at least 8 characters</li>
+        </ul>
+        <p class="be-note"><code>POST /api/leads</code> · 8 requests per IP each 10 minutes</p>
+        <ul class="be-badges">
+          <li>Server Logs (Default)</li>
+          <li>LEAD_WEBHOOK_URL</li>
+          <li>SLACK_WEBHOOK_URL</li>
+        </ul>
+        <p class="be-callout is-reliable">Lead data is persisted independently of notification delivery. A webhook failure does not affect successful database storage.</p>
+      </div>
+
+      <div class="be-block reveal">
+        <h3>Technical Stack &amp; Implementation Summary</h3>
+        <ul class="be-specs">
+          <li><span>Database</span><strong>SQLite</strong></li>
+          <li><span>Location</span><strong>data/nexus.sqlite</strong></li>
+          <li><span>Passwords</span><strong>scrypt</strong></li>
+          <li><span>Session</span><strong>HttpOnly cookie</strong></li>
+          <li><span>Duration</span><strong>14 days</strong></li>
+          <li><span>API</span><strong>REST</strong></li>
+          <li><span>AI</span><strong>Server-side</strong></li>
+          <li><span>Limits</span><strong>IP-based</strong></li>
+          <li><span>Notices</span><strong>Webhooks</strong></li>
+          <li><span>Config</span><strong>.env.example</strong></li>
+        </ul>
+        <p class="be-note">Required names are listed in <code>.env.example</code>. Unset <code>OPENAI_API_KEY</code> keeps chat, image, and automation on the local preview.</p>
       </div>
     </section>
 
