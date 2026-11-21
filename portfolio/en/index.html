@@ -1796,6 +1796,30 @@
       }
     }
 
+    .story-bridge {
+      display: grid;
+      grid-template-columns: clamp(5.5rem, 12vw, 7rem) minmax(0, 1fr);
+      gap: clamp(var(--space-3), 3vw, var(--space-5));
+      align-items: center;
+      margin: var(--space-5) 0 var(--space-6);
+    }
+    .story-bridge-illus svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .story-bridge-text {
+      margin: 0;
+      max-width: 40rem;
+      color: var(--muted);
+      font-size: var(--fs-base);
+      line-height: 1.7;
+    }
+    .story-bridge-text strong { color: var(--fg); }
+    @media (max-width: 768px) {
+      .story-bridge { grid-template-columns: 5.5rem minmax(0, 1fr); }
+    }
+
     .decision-card .decision-illus {
       width: 3.25rem;
       height: 3.25rem;
