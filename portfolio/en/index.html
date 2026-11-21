@@ -4135,8 +4135,8 @@
     }
     .kpi-grid--hypo .kpi-card:first-child {
       grid-column: span 4;
-      grid-row: span 2;
-      padding: clamp(var(--space-4), 2.5vw, var(--space-5));
+      grid-row: auto;
+      padding: var(--space-4);
       border-color: rgba(0,212,255,0.18);
       background: linear-gradient(145deg, var(--bg-elevated) 0%, var(--neon-soft) 100%);
     }
@@ -4145,23 +4145,23 @@
       border-color: var(--lavender-border);
       background: linear-gradient(180deg, var(--bg-elevated), var(--lavender-soft));
     }
-    .kpi-grid--hypo .kpi-card:nth-child(3) {
+    .kpi-grid--hypo .kpi-card:nth-child(3),
+    .kpi-grid--hypo .kpi-card:nth-child(5),
+    .kpi-grid--hypo .kpi-card:nth-child(6) {
       grid-column: span 4;
+      padding: var(--space-4);
     }
     .kpi-grid--hypo .kpi-card:nth-child(4) {
-      grid-column: span 3;
+      grid-column: span 4;
+      padding: var(--space-4);
       border-color: var(--mint-border);
       background: linear-gradient(180deg, var(--bg-elevated), var(--mint-soft));
     }
-    .kpi-grid--hypo .kpi-card:nth-child(5) {
-      grid-column: span 5;
-    }
-    .kpi-grid--hypo .kpi-card:nth-child(6) {
-      grid-column: span 4;
-      padding: var(--space-3) var(--space-4);
-    }
     .kpi-grid--hypo .kpi-card:first-child .kpi-metric {
-      font-size: 2rem;
+      font-size: var(--fs-xl);
+    }
+    .kpi-grid--hypo .kpi-card:first-child strong {
+      font-size: 12px;
     }
     @media (max-width: 904px) {
       .kpi-grid--hypo { grid-template-columns: 1fr 1fr; }
