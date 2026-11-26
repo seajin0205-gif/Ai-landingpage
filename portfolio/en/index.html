@@ -715,9 +715,9 @@
       flex-direction: column;
       min-height: var(--space-12);
     }
-    .pain-tile--1 { grid-column: span 4; transform: rotate(-0.6deg); }
-    .pain-tile--2 { grid-column: span 4; transform: rotate(0.5deg); margin-top: var(--space-3); }
-    .pain-tile--3 { grid-column: span 4; transform: rotate(-0.35deg); margin-top: var(--space-4); }
+    .pain-tile--1,
+    .pain-tile--2,
+    .pain-tile--3 { grid-column: span 4; }
     .pain-tile--cyan { border-color: rgba(0,212,255,0.2); background: linear-gradient(165deg, var(--bg-elevated) 0%, var(--neon-soft) 100%); }
     .pain-tile--lavender { border-color: var(--lavender-border); background: linear-gradient(165deg, var(--bg-elevated) 0%, var(--lavender-soft) 100%); }
     .pain-tile--mint { border-color: var(--mint-border); background: linear-gradient(165deg, var(--bg-elevated) 0%, var(--mint-soft) 100%); }
@@ -764,7 +764,8 @@
       padding-right: var(--space-5);
     }
     .pain-tile-foot {
-      margin-top: var(--space-3);
+      margin-top: auto;
+      padding-top: var(--space-3);
     }
 
     .journey-panel {
