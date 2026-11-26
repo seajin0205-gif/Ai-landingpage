@@ -1765,6 +1765,18 @@ body {
     opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
     transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
+  animation: reveal-fallback 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.6s forwards;
+}
+
+.js-ready .reveal {
+  animation: none;
+}
+
+@keyframes reveal-fallback {
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .reveal-up { transform: translateY(24px); }
@@ -2219,7 +2231,7 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .reveal, .reveal-visible { opacity: 1; transform: none; transition: none; }
+  .reveal, .reveal-visible { opacity: 1; transform: none; transition: none; animation: none; }
   .scroll-fade { opacity: 1 !important; transform: none !important; transition: none; }
   .parallax-layer, .aurora-parallax-wrap, .aurora-parallax-slow { transform: none !important; transition: none; }
   .magnetic-wrap { transform: none !important; }

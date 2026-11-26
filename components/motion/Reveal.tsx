@@ -44,6 +44,7 @@ export function Reveal({
   const resolved = resolveVariant(variant, direction);
 
   useEffect(() => {
+    document.documentElement.classList.add("js-ready");
     const el = ref.current;
     if (!el) return;
 

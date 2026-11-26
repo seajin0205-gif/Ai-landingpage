@@ -1,0 +1,13 @@
+import { Suspense } from "react";
+import { AuthForm } from "@/components/auth/AuthForm";
+import { AuroraBackground } from "@/components/effects/AuroraBackground";
+
+export default function EnglishSignupPage() {
+  return (
+    <AuroraBackground>
+      <Suspense>
+        <AuthForm mode="signup" locale="en" />
+      </Suspense>
+    </AuroraBackground>
+  );
+}
